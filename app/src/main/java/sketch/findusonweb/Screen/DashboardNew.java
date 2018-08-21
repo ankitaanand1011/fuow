@@ -75,7 +75,6 @@ public class DashboardNew extends AppCompatActivity {
 
         initialisation();
         function();
-
         getFavoritiesListByUser();
 
     }
@@ -119,7 +118,7 @@ public class DashboardNew extends AppCompatActivity {
 
     }
 
-    public  void  function(){
+    public void function(){
 
         list_namesfavoriteAll=new ArrayList<>();
         list_credit=new ArrayList<>();
@@ -563,4 +562,5 @@ public class DashboardNew extends AppCompatActivity {
         strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
 
     }
+
 }
