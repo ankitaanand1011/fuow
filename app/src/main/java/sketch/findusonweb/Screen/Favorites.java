@@ -3,6 +3,8 @@ package sketch.findusonweb.Screen;
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
@@ -24,6 +26,7 @@ import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
 import sketch.findusonweb.Adapter.AdapterFavorite;
+import sketch.findusonweb.Adapter.AdapterFavoriteDescriptive;
 import sketch.findusonweb.Adapter.AdpaterFavoritesAll;
 import sketch.findusonweb.Constants.AppConfig;
 import sketch.findusonweb.Controller.GlobalClass;
@@ -31,54 +34,73 @@ import sketch.findusonweb.R;
 import sketch.findusonweb.Utils.Shared_Preference;
 
 public class Favorites extends AppCompatActivity {
-TextView all,listings,product,back;
-ListView list_favorite;
+
+    TextView all,listings,product,back;
+    ListView list_favorite;
     GlobalClass globalClass;
     Shared_Preference prefrence;
     ProgressDialog pd;
     String TAG = "Favorites";
-    AdpaterFavoritesAll adpaterFavoritesAll;
+    AdapterFavoriteDescriptive favoriteDescriptive;
     ArrayList<HashMap<String,String>> list_namesfavoriteAll;
+    RecyclerView rv_listfavorite;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorites);
-        all=findViewById(R.id.all_list);
-        listings=findViewById(R.id.Listing_list);
-        product=findViewById(R.id.product_list);
-        back=findViewById(R.id.back_img);
-        list_favorite=findViewById(R.id.listfavorite);
+
         globalClass = (GlobalClass) getApplicationContext();
         prefrence = new Shared_Preference(Favorites.this);
         prefrence.loadPrefrence();
         pd = new ProgressDialog(Favorites.this);
         pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pd.setMessage(getResources().getString(R.string.loading));
+
+        all=findViewById(R.id.all_list);
+        listings=findViewById(R.id.listing_list);
+        product=findViewById(R.id.product_list);
+        back=findViewById(R.id.back_img);
+        rv_listfavorite=findViewById(R.id.rv_listfavorite);
+
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        rv_listfavorite.setLayoutManager(mLayoutManager);
+
         if (globalClass.isNetworkAvailable()) {
             if (globalClass.getLogin_status()) {
-               /* Intent intent = new Intent(HomeScreen.this, HomeScreen.class);
-                startActivity(intent);
-                finish();*/
+                favoriteALL();
             }
         } else {
             Toasty.info(Favorites.this, getResources().getString(R.string.check_internet), Toast.LENGTH_LONG, true).show();
         }
-        favoriteALL();
+
         all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                all.setBackground(getResources().getDrawable(R.drawable.button_yellow_dashboard));
+                listings.setBackground(getResources().getDrawable(R.drawable.button_grey_dashboard));
+                all.setBackground(getResources().getDrawable(R.drawable.button_grey_dashboard));
                 favoriteALL();
             }
         });
         listings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                all.setBackground(getResources().getDrawable(R.drawable.button_grey_dashboard));
+                listings.setBackground(getResources().getDrawable(R.drawable.button_yellow_dashboard));
+                all.setBackground(getResources().getDrawable(R.drawable.button_grey_dashboard));
                 favoriteLisitngs();
             }
         });
         product.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                all.setBackground(getResources().getDrawable(R.drawable.button_grey_dashboard));
+                listings.setBackground(getResources().getDrawable(R.drawable.button_grey_dashboard));
+                all.setBackground(getResources().getDrawable(R.drawable.button_yellow_dashboard));
                 favoriteProduct();
             }
         });
@@ -93,6 +115,7 @@ ListView list_favorite;
         list_namesfavoriteAll=new ArrayList<>();
 
     }
+
     private void favoriteALL() {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
@@ -107,7 +130,7 @@ ListView list_favorite;
             {
                 Log.d(TAG, "JOB RESPONSE: " + response.toString());
 
-                pd.dismiss();
+                //pd.dismiss();
                 list_namesfavoriteAll.clear();
                 Gson gson = new Gson();
 
@@ -150,10 +173,10 @@ ListView list_favorite;
 
                     }
 
-                   // adpaterFavoritesAll = new AdpaterFavoritesAll(Favorites.this, list_namesfavoriteAll);
-                   // list_favorite.setAdapter(adpaterFavoritesAll);
+                    favoriteDescriptive = new AdapterFavoriteDescriptive(Favorites.this, list_namesfavoriteAll);
+                    rv_listfavorite.setAdapter(favoriteDescriptive);
                   //  ReviewList();
-
+                    pd.dismiss();
 
                 } catch (Exception e) {
 
@@ -194,6 +217,7 @@ ListView list_favorite;
         strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
 
     }
+
     private void favoriteLisitngs() {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
@@ -209,7 +233,7 @@ ListView list_favorite;
             {
                 Log.d(TAG, "JOB RESPONSE: " + response.toString());
 
-                pd.dismiss();
+
                 list_namesfavoriteAll.clear();
                 Gson gson = new Gson();
 
@@ -252,10 +276,10 @@ ListView list_favorite;
 
                     }
 
-                  /*  adpaterFavoritesAll = new AdpaterFavoritesAll(Favorites.this, list_namesfavoriteAll);
-                    list_favorite.setAdapter(adpaterFavoritesAll);*/
+                    favoriteDescriptive = new AdapterFavoriteDescriptive(Favorites.this, list_namesfavoriteAll);
+                    rv_listfavorite.setAdapter(favoriteDescriptive);
                     //  ReviewList();
-
+                    pd.dismiss();
 
                 } catch (Exception e) {
 
@@ -296,6 +320,7 @@ ListView list_favorite;
         strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
 
     }
+
     private void favoriteProduct() {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
@@ -311,7 +336,7 @@ ListView list_favorite;
             {
                 Log.d(TAG, "JOB RESPONSE: " + response.toString());
 
-                pd.dismiss();
+
                 list_namesfavoriteAll.clear();
                 Gson gson = new Gson();
 
@@ -354,11 +379,11 @@ ListView list_favorite;
 
                     }
 
-                /*    adpaterFavoritesAll = new AdpaterFavoritesAll(Favorites.this, list_namesfavoriteAll);
-                    list_favorite.setAdapter(adpaterFavoritesAll);*/
+                    favoriteDescriptive = new AdapterFavoriteDescriptive(Favorites.this, list_namesfavoriteAll);
+                    rv_listfavorite.setAdapter(favoriteDescriptive);
                     //  ReviewList();
 
-
+                    pd.dismiss();
                 } catch (Exception e) {
 
                     Toasty.warning(Favorites.this, "NO DATA FOUND", Toast.LENGTH_SHORT, true).show();

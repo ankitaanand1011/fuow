@@ -2,9 +2,7 @@ package sketch.findusonweb.Screen;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -28,7 +26,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.bvapp.arcmenulibrary.ArcMenu;
 import com.bvapp.arcmenulibrary.widget.FloatingActionButton;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.luseen.spacenavigation.SpaceItem;
 import com.luseen.spacenavigation.SpaceNavigationView;
@@ -55,7 +52,7 @@ public class HomeScreen  extends AppCompatActivity {
     ImageView dialog_cut,profile_img,toolbar_drawer;
     GlobalClass globalClass;
     ProgressDialog pd;
-    RelativeLayout rl_opacity;
+    ImageView rl_opacity;
     EditText search_by_code,search_by_business,search_by_product;
     public static final String PREFS_NAME = "MyPrefsFile";
     private SpaceNavigationView spaceNavigationView;
@@ -63,19 +60,21 @@ public class HomeScreen  extends AppCompatActivity {
             R.mipmap.ico_grid, R.mipmap.marker_location, R.mipmap.ico_browese_deal,
             R.mipmap.ioc_cube};
 
-    private static final String[] STR = {"Browse Job","Browse Category","Browse Location","Browse Deal","Browse Product"};
+    private static final String[] STR = {"Browse\n"+"Job","Browse\n" + "Category","Browse\n" + "Location","Browse\n" + "Deal","Browse\n" + "Product"};
     Button search_button;
     Shared_Preference prefrence;
     Dialog dialog;
     TextView save,submit,tv_browse;
     LinearLayout post_job_layout;
     final int itemCount = ITEM_DRAWABLES.length;
+    RelativeLayout rl_all;
 
     EditText firstname_dialog,lastname_dialog,email_dialog,business_name,phone_dialog,campaign_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen);
+
         ArcMenu arcMenu =  findViewById(R.id.arcMenu);
       //  arcMenu.attachToRecyclerView(recyclerView);
         rl_opacity=findViewById(R.id.rl_opacity);
@@ -110,6 +109,8 @@ public class HomeScreen  extends AppCompatActivity {
         search_by_business=findViewById(R.id.search_by_business);
         search_by_product=findViewById(R.id.search_by_product);
         get_quote_layout=findViewById(R.id.get_quote_layout);
+
+        rl_all=findViewById(R.id.rl_all);
 
         search_button=findViewById(R.id.search_button);
         post_job_layout=findViewById(R.id.post_job_layout);
@@ -209,13 +210,12 @@ public class HomeScreen  extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(globalClass.login_status.equals(false)){
-
-                    Intent intent = new Intent(HomeScreen.this, LoginScreen.class);
+                    Intent intent = new Intent(HomeScreen.this, DashboardScreenWithoutLogin.class);
                     startActivity(intent);
                     finish();
                 }
                 else {
-                    Intent intent = new Intent(HomeScreen.this, DashboardNew.class);
+                    Intent intent = new Intent(HomeScreen.this, DashboardScreenLogin.class);
                     startActivity(intent);
                 }
             }
@@ -229,16 +229,30 @@ public class HomeScreen  extends AppCompatActivity {
                 Log.d("qwerty", "Shrink ");
                 if(rl_opacity.getVisibility()== View.VISIBLE){
                     rl_opacity.setVisibility(View.GONE);
+                    rl_all.setEnabled(true);
                 }else {
                     rl_opacity.setVisibility(View.VISIBLE);
+                    rl_all.setEnabled(false);
                 }
 
             }
         });
-        arcMenu.setMinRadius(130);  //This method will change child radius programmatically
+        arcMenu.setMinRadius(130);//This method will change child radius programmatically
+
+        arcMenu.setToolTipTextColor(Color.WHITE);
+      //  arcMenu.setToolTipBackColor(Color.WHITE);
+        arcMenu.setToolTipSide(ArcMenu.BOTTOM_MIDDLE);
+        arcMenu.setToolTipCorner(2);  //set tooltip corner
+        arcMenu.setToolTipPadding(8);  //set tooltip padding
+        arcMenu.setColorNormal(getResources().getColor(R.color.colorPrimary));
+        arcMenu.showTooltip(true);
+        arcMenu.setDuration(600);
 
 
-        final int itemCount = ITEM_DRAWABLES.length;
+        initArcMenu(arcMenu, STR, ITEM_DRAWABLES);
+
+
+       /* final int itemCount = ITEM_DRAWABLES.length;
         for (int i = 0; i < itemCount; i++) {
 
             FloatingActionButton item = new FloatingActionButton(this);  // Use internal FAB as child
@@ -247,18 +261,19 @@ public class HomeScreen  extends AppCompatActivity {
             item.setSize(FloatingActionButton.SIZE_MINI); // set initial size for child, it will create fab first
             item.setIcon(ITEM_DRAWABLES[i]); // It will set fab icon from your resources which related to 'ITEM_DRAWABLES'
             item.setBackgroundColor(getResources().getColor(R.color.white)); // it will set fab child's color
+            item.setTag(STR[i]);
             arcMenu.setChildSize(item.getIntrinsicHeight()); // set absolout child size for menu
-
+            arcMenu.setToolTipTextColor(R.color.white);
             final int position = i;
 
-            arcMenu.addItem(item, STR[i], new View.OnClickListener() {
+            arcMenu.addItem(item, STR[position], new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //You can access child click in here
                     rl_opacity.setVisibility(View.VISIBLE);
                 }
             });
-
+*/
 /*
             item.setOnShrinkExpandClickListener(new View.OnClickListener() {
                 @Override
@@ -267,7 +282,7 @@ public class HomeScreen  extends AppCompatActivity {
                 }
             });
 */
-        }
+
         arcMenu.setAnim(300,300,ArcMenu.ANIM_MIDDLE_TO_RIGHT,ArcMenu.ANIM_MIDDLE_TO_RIGHT,
                 ArcMenu.ANIM_INTERPOLATOR_ACCELERATE_DECLERATE,ArcMenu.ANIM_INTERPOLATOR_ACCELERATE_DECLERATE);
 
@@ -314,9 +329,32 @@ public class HomeScreen  extends AppCompatActivity {
 
 
     }
+
+    private void initArcMenu(final ArcMenu menu, final String[] str, int[] itemDrawables) {
+        for (int i = 0; i < itemDrawables.length ; i++) {
+            FloatingActionButton item = new FloatingActionButton(this);  //Use internal fab as a child
+            item.setSize(FloatingActionButton.SIZE_MINI);  //set minimum size for fab 42dp
+            item.setShadow(true); //enable to draw shadow
+            item.setIcon(itemDrawables[i]); //add icon for fab
+            item.setBackgroundColor(getResources().getColor(R.color.white));  //set menu button normal color programmatically
+            menu.setChildSize(item.getIntrinsicHeight()); // fit menu child size exactly same as fab
+            menu.setToolTipTextColor(Color.WHITE);
+            menu.setToolTipTextSize(16);
+            menu.setToolTipSide(ArcMenu.BOTTOM_MIDDLE);
+            final int position = i;
+            menu.addItem(item, str[i], new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(HomeScreen.this, str[position],
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
     public void openDialog1() {
-         dialog = new Dialog(HomeScreen.this);
+        dialog = new Dialog(HomeScreen.this);
         dialog.setContentView(R.layout.invite_dialog);
+
         dialog_cut=dialog.findViewById(R.id.cut_dialog);
         firstname_dialog=dialog.findViewById(R.id.firstname);
         lastname_dialog=dialog.findViewById(R.id.lastname);

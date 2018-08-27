@@ -43,6 +43,9 @@ ListView listing;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listtings);
+
+
+
         listing=findViewById(R.id.listing);
         back_img=findViewById(R.id.back_img);
         globalClass = (GlobalClass) getApplicationContext();

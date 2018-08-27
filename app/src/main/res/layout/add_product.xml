@@ -7,29 +7,15 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
-        android:background="@mipmap/header"
+        android:background="@color/colorPrimaryDark"
         >
 
         <ImageView
-            android:id="@+id/header_image"
             android:layout_width="120sp"
             android:layout_height="wrap_content"
             android:src="@mipmap/logo_white"
             android:layout_centerInParent="true"
 
-            android:layout_gravity="center"/>
-        <EditText
-            android:id="@+id/serach_edittext"
-            android:layout_width="180sp"
-            android:singleLine="true"
-            android:visibility="gone"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:backgroundTint="@android:color/transparent"
-            android:textColorHint="@color/white"
-            android:hint="Search by code"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:layout_gravity="center"/>
 
         <TextView
@@ -184,144 +170,102 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/grey"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Attachment :"
+            android:padding="10dp"
+            android:textColor="@color/grey_text"/>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:layout_height="100dp"
+
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Attachment :"
-                android:textColor="@color/grey_text"/>
-
-
-            <TextView
-                android:id="@+id/attach_data"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Browse   "
-                android:layout_marginLeft="10dp"
-                android:background="@color/grey"
-                android:padding="8dp"
-                android:drawableRight="@mipmap/attachment24"/>
-            <TextView
-                android:id="@+id/attach_data_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:padding="8dp"
-                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/grey_stoke_bg"
+                android:layout_weight="1">
 
 
 
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/attach_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@android:color/transparent"
+                    android:src="@mipmap/add"/>
+                <ImageView
+                    android:id="@+id/img_attach_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"/>
+            </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Attachment :"
-                android:textColor="@color/grey_text"/>
-
-
-            <TextView
-                android:id="@+id/attach_data1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Browse   "
-                android:layout_marginLeft="10dp"
-                android:background="@color/grey"
-                android:padding="8dp"
-                android:drawableRight="@mipmap/attachment24"/>
-            <TextView
-                android:id="@+id/attach_data_name1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:padding="8dp"
-                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/grey_stoke_bg"
+                android:layout_weight="1">
 
 
+                <ImageButton
+                    android:id="@+id/attach_data1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@android:color/transparent"
+                    android:src="@mipmap/add"/>
+                <ImageView
+                    android:id="@+id/img_attach_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"/>
 
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:orientation="horizontal">
+            </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Attachment :"
-                android:textColor="@color/grey_text"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/grey_stoke_bg"
+                android:layout_weight="1">
 
 
-            <TextView
-                android:id="@+id/attach_data2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Browse   "
-                android:layout_marginLeft="10dp"
-                android:background="@color/grey"
-                android:padding="8dp"
-                android:drawableRight="@mipmap/attachment24"/>
-            <TextView
-                android:id="@+id/attach_data_name2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:padding="8dp"
-                />
+                <ImageButton
+                    android:id="@+id/attach_data2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@android:color/transparent"
+                    android:src="@mipmap/add"/>
+
+                <ImageView
+                    android:id="@+id/img_attach_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"/>
+
+            </RelativeLayout>
 
 
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Attachment :"
-                android:textColor="@color/grey_text"/>
-
-
-            <TextView
-                android:id="@+id/attach_data3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Browse   "
-                android:layout_marginLeft="10dp"
-                android:background="@color/grey"
-                android:padding="8dp"
-                android:drawableRight="@mipmap/attachment24"/>
-            <TextView
-                android:id="@+id/attach_data_name3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:padding="8dp"
-                />
-
-
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
+            android:visibility="gone"
             android:orientation="horizontal">
 
             <TextView
@@ -354,6 +298,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_marginTop="10dp"
             android:background="@color/grey"/>
 
         <RelativeLayout

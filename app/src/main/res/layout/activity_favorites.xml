@@ -41,68 +41,106 @@
 
     </RelativeLayout>
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
     <LinearLayout
-        android:id="@+id/tab"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-
-        <TextView
-            android:id="@+id/all_list"
-            android:text="All"
-            android:layout_width="match_parent"
-            android:gravity="center"
-            android:textSize="16dp"
-            android:padding="12dp"
-            android:textColor="@color/button"
-            android:textStyle="bold"
-            android:background="@drawable/borderblack"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="left|center_vertical" />
-
-        <TextView
-            android:id="@+id/Listing_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Listings"
-            android:textSize="16dp"
-            android:padding="12dp"
-            android:textStyle="bold"
-            android:background="@drawable/borderblack"
-            android:textColor="@color/button"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_weight="1" />
-
-        <TextView
-            android:id="@+id/product_list"
-            android:gravity="center"
-            android:text="Product"
-            android:textSize="16dp"
-            android:padding="12dp"
-            android:textColor="@color/button"
-            android:layout_width="match_parent"
-            android:background="@drawable/borderblack"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="right|center_vertical" />
-
-
-    </LinearLayout>
-    <ListView
-        android:layout_below="@+id/tab"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/listfavorite"></ListView>
+        android:layout_margin="10dp"
+        android:orientation="vertical">
 
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="MY FAVORITE"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+
+                android:paddingEnd="10dp">
+
+
+                <TextView
+                    android:id="@+id/all_list"
+                    android:text="ALL"
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:textSize="14sp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/button_yellow_dashboard"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:id="@+id/listing_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/all_list"
+                    android:text="LISTINGS"
+                    android:textSize="14sp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:layout_marginStart="10dp"
+
+                    android:background="@drawable/button_grey_dashboard"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    />
+
+                <TextView
+                    android:id="@+id/product_list"
+                    android:gravity="center"
+                    android:text="PRODUCT"
+                    android:textSize="14sp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/listing_list"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:background="@drawable/button_grey_dashboard"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    />
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_marginTop="10dp"
+
+            >
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_listfavorite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

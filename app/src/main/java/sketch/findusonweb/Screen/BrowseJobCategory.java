@@ -73,7 +73,7 @@ public class BrowseJobCategory extends AppCompatActivity {
                     finish();
                 }
                 else {
-                    Intent intent = new Intent(BrowseJobCategory.this, DashboardScreen.class);
+                    Intent intent = new Intent(BrowseJobCategory.this, DashboardScreenLogin.class);
                     startActivity(intent);
                 }
             }

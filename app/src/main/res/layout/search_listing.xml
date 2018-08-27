@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
-        android:background="@mipmap/header"
+        android:background="@color/colorPrimaryDark"
         >
 <!--
         <ImageView
@@ -92,11 +92,10 @@
 
     <ListView
         android:id="@+id/list"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/img_sort"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/img_sort" />
+        android:dividerHeight="2dp"
+        />
 
 
 </LinearLayout>

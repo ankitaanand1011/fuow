@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -49,12 +50,12 @@ public class ManageRequest extends AppCompatActivity{
     ProgressDialog pd;
     RecyclerView rv_list_product;
     String TAG = "product";
-    ImageView down_arrow;
-    TextView back_img,post_job;
+    TextView back_img;
     Spinner spinner_type;
     ArrayList<String> type;
     RelativeLayout rl_add_product;
     ArrayList<HashMap<String,String>> list_products;
+    String item;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,10 +69,8 @@ public class ManageRequest extends AppCompatActivity{
         pd.setMessage(getResources().getString(R.string.loading));
 
         list_products = new ArrayList<>();
-        down_arrow = findViewById(R.id.down_arrow_category);
 
-       post_job=findViewById(R.id.post_job);
-       spinner_type=findViewById(R.id.spinner_type);
+        spinner_type=findViewById(R.id.spinner_type);
         back_img =findViewById(R.id.img_back);
         rv_list_product =findViewById(R.id.list_product);
         rl_add_product =findViewById(R.id.rl_add_product);
@@ -85,54 +84,89 @@ public class ManageRequest extends AppCompatActivity{
             }
         });
 
-post_job.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        Intent intent = new Intent(getApplicationContext(), PostRequriementScreen.class);
-        startActivity(intent);    }
-});
+     /*   post_job.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), PostRequriementScreen.class);
+                startActivity(intent);
+            }
+        });
+*/
         type = new ArrayList<>();
         type.add("All");
         type.add("Active");
-        type.add("Payment Received");
-        type.add("Customer Review");
+        type.add("Pending");
+        type.add("Awaiting Acceptance");
+        type.add("Paused");
         type.add("Unapproved");
         type.add("Complete");
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,R.layout.spinner_color,R.id.txt,type)
-        {
 
+        spinner_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public boolean isEnabled(int position) {
-                return position != 0;
-            }
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String item1 = parent.getItemAtPosition(position).toString();
+                Log.d(TAG, "onItemSelected: "+item);
+                switch (item1) {
+                    case "All":
+                        item = "all";
+                        ViewList();
+                        break;
 
-            @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                    case "Active":
+                        item = "active";
+                        ViewList();
+                        break;
 
-                View view = super.getDropDownView(position, convertView, parent);
+                    case "Pending":
+                        item = "pending";
+                        ViewList();
+                        break;
 
-                if (position == 0) {
+                    case "Complete":
+                        item = "complete";
+                        ViewList();
+                        break;
+
+                    case "Unapproved":
+                        item = "unapproved";
+                        ViewList();
+                        break;
+
+                    case "Awaiting Acceptance":
+                        item = "awaiting_acceptance";
+                        ViewList();
+                        break;
+
+
+                    case "Paused":
+                        item = "paused";
+                        ViewList();
+                        break;
 
 
 
-                } else {
+
                 }
-                return view;
-
 
             }
-        };
-        dataAdapter.setDropDownViewResource(R.layout.spinner_color);
-        spinner_type.setAdapter(dataAdapter);
-        down_arrow.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public void onClick(View v) {
-                spinner_type.performClick();
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>
+                (this, android.R.layout.simple_spinner_item, type);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_type.setAdapter(dataAdapter);
 
-        ViewList();
+
+
+
+
+
+
     }
 
     public void ViewList() {
@@ -148,7 +182,7 @@ post_job.setOnClickListener(new View.OnClickListener() {
             public void onResponse(String response) {
                 Log.d(TAG, "Invitation response: " + response.toString());
 
-                pd.dismiss();
+
 
                 Gson gson = new Gson();
 
@@ -192,25 +226,17 @@ post_job.setOnClickListener(new View.OnClickListener() {
                         hashMap.put("fw_user_id",fw_user_id);
 
 
-                           /* hashMap.put("www",www);
-                            hashMap.put("id",id);
-                            hashMap.put("listingfriendly_url",listingfriendly_url);*/
-                        // hashMap.put(pricerating",rating);
 
                         list_products.add(hashMap);
-                        Log.d(TAG, "id: " + fw_id);
-                        // Toasty.success(SearchListing.this, login, Toast.LENGTH_SHORT, true).show();
+
 
                     }
 
                     AdapterManageRequest adapterSearch = new AdapterManageRequest(ManageRequest.this, list_products);
                     rv_list_product.setAdapter(adapterSearch);
-                    //  }
 
+                    pd.dismiss();
 
-                    //  JsonObject obj3 = jobj1.get("profileDetails").getAsJsonObject();
-
-                    //  Log.d(TAG, "Token \n" + logo_allow);
 
 
                 }
@@ -244,6 +270,7 @@ post_job.setOnClickListener(new View.OnClickListener() {
 
                 params.put("user_id", globalClass.getId());
                 params.put("view","getAllRequestsByUserID");
+                params.put("status",item);
                 Log.d(TAG, "getID: "+params);
                 return params;
             }

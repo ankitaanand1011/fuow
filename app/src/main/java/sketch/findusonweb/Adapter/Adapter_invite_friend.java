@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -20,9 +21,7 @@ import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
 import sketch.findusonweb.Screen.SendProposal;
 
-/**
- * Created by developer on 3/8/18.
- */
+
 
 public class Adapter_invite_friend extends BaseAdapter {
 
@@ -32,12 +31,13 @@ public class Adapter_invite_friend extends BaseAdapter {
 
     LayoutInflater inflater;
 
-    TextView business_name,First_name,Last_name,email,phone_number,total,type,status,payment_status,pay_invoice;
+    TextView tv_name,email,phone_number,status;
     RatingBar rating;
     ImageView img;
     ArrayList<HashMap<String,String>> list_names;
     // ArrayList<String> list_names;
     //ImageLoader loader;
+    CheckBox cb;
     DisplayImageOptions defaultOptions;
 
 
@@ -83,36 +83,37 @@ public class Adapter_invite_friend extends BaseAdapter {
 
         Log.d("TAG", "getItem: "+position);
         View view1 = inflater.inflate(R.layout.single_invite_fiend, parent, false);
-        business_name=view1.findViewById(R.id.tv_busniess_value);
-        First_name=view1.findViewById(R.id.tv_first_value);
-        Last_name=view1.findViewById(R.id.tv_lastname_value);
+        //business_name=view1.findViewById(R.id.tv_busniess_value);
+        tv_name=view1.findViewById(R.id.tv_name);
+
         email=view1.findViewById(R.id.tv_email_value);
         phone_number=view1.findViewById(R.id.tv_phone_value);
         status=view1.findViewById(R.id.tv_status_value);
+        cb=view1.findViewById(R.id.cb);
 
 
         //pay_invoice.setVisibility(View.GONE);
-        business_name.setText(list_names.get(position).get("user_organization"));
-        First_name.setText(list_names.get(position).get("user_first_name"));
-        Last_name.setText(list_names.get(position).get("user_last_name"));
+        cb.setText(list_names.get(position).get("user_organization"));
+        tv_name.setText(list_names.get(position).get("user_first_name")+" "+list_names.get(position).get("user_last_name"));
         email.setText(list_names.get(position).get("user_email"));
         phone_number.setText(list_names.get(position).get("user_phone"));
         status.setText(list_names.get(position).get("status"));
+
         if(list_names.get(position).get("status").equals("1")){
-            status.setText("invited");
-            status.setTextColor(mContext.getResources().getColor(R.color.orange));
+            status.setText("Invited");
+            status.setBackgroundColor(mContext.getResources().getColor(R.color.orange));
 
 
-
-
-        }else if(list_names.get(position).get("status").equals("0")||list_names.get(position).get("status").equals("2")){
-            status.setText("joined");
-            status.setTextColor(mContext.getResources().getColor(R.color.light_green));
-
-
+        }else if(list_names.get(position).get("status").equals("0")){
+            status.setText("Joined");
+            status.setBackgroundColor(mContext.getResources().getColor(R.color.light_green));
 
             Log.d("buzz", "getView: "+list_names.get(position).get("status"));
 
+        }else if(list_names.get(position).get("status").equals("2")){
+
+            status.setText("Pending");
+            status.setBackgroundColor(mContext.getResources().getColor(R.color.grey));
         }
 
 

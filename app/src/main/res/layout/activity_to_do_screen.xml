@@ -8,29 +8,15 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
-        android:background="@mipmap/header"
+        android:background="@color/colorPrimaryDark"
         >
 
         <ImageView
-            android:id="@+id/header_image"
             android:layout_width="120sp"
             android:layout_height="wrap_content"
             android:src="@mipmap/logo_white"
             android:layout_centerInParent="true"
 
-            android:layout_gravity="center"/>
-        <EditText
-            android:id="@+id/serach_edittext"
-            android:layout_width="180sp"
-            android:singleLine="true"
-            android:visibility="gone"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:backgroundTint="@android:color/transparent"
-            android:textColorHint="@color/white"
-            android:hint="Search by code"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:layout_gravity="center"/>
 
         <TextView

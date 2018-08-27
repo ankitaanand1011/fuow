@@ -29,8 +29,8 @@ import java.util.Map;
 import es.dmoral.toasty.Toasty;
 import sketch.findusonweb.Adapter.AdapterCreditHistory;
 import sketch.findusonweb.Adapter.AdapterFavorite;
+import sketch.findusonweb.Adapter.AdapterListing;
 import sketch.findusonweb.Adapter.AdapterToDoScreen;
-import sketch.findusonweb.Adapter.AdpaterFavoritesAll;
 import sketch.findusonweb.Constants.AppConfig;
 import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
@@ -61,12 +61,14 @@ public class DashboardNew extends AppCompatActivity {
     AdapterFavorite adapterFavorite;
     AdapterCreditHistory adapterCreditHistory;
     AdapterToDoScreen adapterToDo;
+    AdapterListing adapterListing;
 
     ArrayList<HashMap<String,String>> list_namesfavoriteAll;
     ArrayList<HashMap<String,String>> list_credit;
     ArrayList<HashMap<String,String>> list_todo;
+    ArrayList<HashMap<String,String>> listing;
 
-
+    TextView back;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,8 +77,7 @@ public class DashboardNew extends AppCompatActivity {
 
         initialisation();
         function();
-        getFavoritiesListByUser();
-
+        viewListingByUser();
     }
 
     public void initialisation(){
@@ -116,6 +117,8 @@ public class DashboardNew extends AppCompatActivity {
         tv_used = findViewById(R.id.tv_used);
         tv_balance = findViewById(R.id.tv_balance);
 
+        back=findViewById(R.id.back_img);
+
     }
 
     public void function(){
@@ -123,6 +126,7 @@ public class DashboardNew extends AppCompatActivity {
         list_namesfavoriteAll=new ArrayList<>();
         list_credit=new ArrayList<>();
         list_todo=new ArrayList<>();
+        listing=new ArrayList<>();
 
 
         mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -147,6 +151,13 @@ public class DashboardNew extends AppCompatActivity {
         rv_search.setLayoutManager(mLayoutManager4);
         rv_invoice.setLayoutManager(mLayoutManager5);
 
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         rl_account.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -562,5 +573,96 @@ public class DashboardNew extends AppCompatActivity {
         strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
 
     }
+
+    private void viewListingByUser() {
+        // Tag used to cancel the request
+        String tag_string_req = "req_login";
+
+        pd.show();
+
+        StringRequest strReq = new StringRequest(Request.Method.POST,
+                AppConfig.URL_DEV, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response)
+            {
+                Log.d(TAG, "JOB RESPONSE: " + response.toString());
+
+                //pd.dismiss();
+
+                Gson gson = new Gson();
+
+                try {
+
+
+                    JsonObject jobj = gson.fromJson(response, JsonObject.class);
+                    Log.d(TAG, "onResponse: " + jobj);
+                    JsonArray data = jobj.getAsJsonArray("data");
+                    Log.d(TAG, "Data: " + data);
+
+                    for (int i = 0; i < data.size(); i++) {
+
+                        JsonObject jsonobj = data.get(i).getAsJsonObject();
+                        String id = jsonobj.get("id").toString().replaceAll("\"", "");
+                        String title = jsonobj.get("title").toString().replaceAll("\"", "");
+
+                        //  Log.d(TAG, "Images 1: " + User_id);
+                        HashMap<String, String> hashMap = new HashMap<>();
+                          hashMap.put("id", id);
+                          hashMap.put("title", title);
+
+
+                        listing.add(hashMap);
+                        //Log.d(TAG, "Listmane: " + list_todo);
+
+                    }
+                    Log.d(TAG, "Listmane outer: " + listing);
+
+                    adapterListing = new AdapterListing(DashboardNew.this, listing);
+                    rv_listing.setAdapter(adapterListing);
+
+                    getFavoritiesListByUser();
+
+                   // pd.dismiss();
+
+                } catch (Exception e) {
+
+                    Toasty.warning(DashboardNew.this, "NO DATA FOUND", Toast.LENGTH_SHORT, true).show();
+                    e.printStackTrace();
+
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Login Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),"Registration Error", Toast.LENGTH_LONG).show();
+                //  pd.dismiss();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<>();
+                params.put("user_id", globalClass.getId());
+                params.put("view", "viewListingByUser");
+
+                Log.d(TAG, "getParams: "+params);
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        GlobalClass.getInstance().addToRequestQueue(strReq, tag_string_req);
+        strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
+
+    }
+
 
 }

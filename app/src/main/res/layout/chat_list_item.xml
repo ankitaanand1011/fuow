@@ -4,17 +4,23 @@
     android:layout_height="fill_parent"
     android:padding="2dp" >
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <com.makeramen.roundedimageview.RoundedImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/imageView2"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:contentDescription="@string/app_name"
         android:scaleType="centerCrop"
+        android:layout_centerVertical="true"
         android:src="@mipmap/no_image"
         app:riv_border_color="@android:color/transparent"
         app:riv_border_width="1dip"
         app:riv_corner_radius="50dip"
+        android:padding="5dp"
         app:riv_mutate_background="true" />
 
     <TextView
@@ -47,5 +53,7 @@
         android:layout_alignParentRight="true"
         android:text="txt"
         android:textSize="16sp" />
+    </RelativeLayout>
+
 
 </RelativeLayout>

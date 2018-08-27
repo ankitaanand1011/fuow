@@ -31,6 +31,7 @@ public class GlobalClass extends Application {
     public String browse_job="browse_request";
     public String search_business="search";
     public String browseProducts="browseProducts";
+    public String pound="£";
 
 
     private static GlobalClass mInstance;

@@ -91,7 +91,7 @@ public class PostRequriementScreen extends AppCompatActivity {
     RadioGroup rg;
     RadioButton rb;
     ArrayList<String> array;
-    ImageView down_arrow;
+   // ImageView down_arrow;
     int columnIndex;
     String id;
     File attachmentFile;
@@ -138,7 +138,7 @@ public class PostRequriementScreen extends AppCompatActivity {
         spinner_days=findViewById(R.id.spinner_days);
         attach_data_link=findViewById(R.id.attach_data_name);
         back_button=findViewById(R.id.back_img);
-        down_arrow=findViewById(R.id.down_arraowpost);
+     //   down_arrow=findViewById(R.id.down_arraowpost);
         tv_submit=findViewById(R.id.tv_submit);
         edt_title=findViewById(R.id.edt_title);
         edt_description=findViewById(R.id.edt_description);
@@ -192,13 +192,13 @@ public class PostRequriementScreen extends AppCompatActivity {
                 // TODO Auto-generated method stub
             }
         });
-        down_arrow.setOnClickListener(new View.OnClickListener() {
+       /* down_arrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 spinner_select_category.performClick();
             }
         });
-
+*/
 
 
 /*

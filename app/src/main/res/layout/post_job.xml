@@ -2,12 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
-        android:background="@mipmap/header"
+        android:background="@color/colorPrimaryDark"
         >
 
         <ImageView
@@ -63,6 +64,7 @@
             android:tint="@color/white"
             android:layout_centerVertical="true"
             android:gravity="center"
+            android:visibility="gone"
             android:padding="10sp"
             android:id="@+id/post_text" />
 
@@ -81,11 +83,18 @@
             android:id="@+id/RL_requirement"
             android:layout_marginBottom="20dp"
             >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="15sp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textSize="14sp"
+                android:text="@string/requirement_title"/>
             <EditText
                 android:id="@+id/edt_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/requirement_title"
                 android:gravity="start"
                 android:textSize="14sp"
                 android:textColorHint="@color/grey_text"
@@ -95,44 +104,55 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/grey"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="15sp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textSize="14sp"
+                android:text="Description"/>
 
             <EditText
                 android:id="@+id/edt_description"
                 android:layout_width="match_parent"
-                android:layout_height="200sp"
-                android:hint="Description"
+                android:layout_height="100sp"
                 android:gravity="start"
                 android:textSize="14sp"
                 android:textColorHint="@color/grey_text"
-
-                android:background="@android:color/transparent"
+                android:background="@drawable/grey_stoke_bg"
                 android:padding="15sp"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/grey"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Attachment :"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:textColor="@color/grey_text"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Attachment :"
-                    android:textColor="@color/grey_text"/>
 
 
                 <TextView
                     android:id="@+id/attach_data"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Browse   "
-                    android:layout_marginLeft="10dp"
-                    android:background="@color/grey"
+                    android:text="   Choose File     "
+                    android:background="@color/button"
                     android:padding="8dp"
-                    android:drawableRight="@mipmap/attachment24"/>
+                    android:textColor="@color/white"
+                    />
                 <TextView
                     android:id="@+id/attach_data_name"
                     android:layout_width="wrap_content"
@@ -172,6 +192,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
+                    android:visibility="gone"
                     android:tint="@color/black"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"

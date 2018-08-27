@@ -24,5 +24,6 @@
     <color name="center_button">#00489A</color>
     <color name="yellow_dashboard">#F6B520</color>
     <color name="grey_dashboard">#9E9E9E</color>
+    <color name="list_bg">#F2F2F2</color>
 
 </resources>

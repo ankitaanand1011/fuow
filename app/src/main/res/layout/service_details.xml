@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
-        android:background="@mipmap/header"
+        android:background="@color/colorPrimaryDark"
         >
 
         <ImageView
@@ -108,8 +108,7 @@
                             android:id="@+id/rl_rating"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
+                            android:layout_below="@+id/tv_name"
                             android:layout_marginRight="5dp"
                             android:orientation="horizontal"
 
@@ -165,6 +164,7 @@
                         android:textSize="12sp"
                         android:layout_marginTop="5dp"
                         android:padding="5dp"
+                        android:visibility="gone"
                         android:background="@drawable/grey_border_corner"
                         />
 
@@ -326,13 +326,16 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/heading"
                 android:gravity="center"
-                android:padding="10sp"
+
                >
                 <TextView
                     android:id="@+id/about_us"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/about_us"
+                    android:background="@color/grey_text"
+                    android:textColor="@color/white"
+                    android:padding="10dp"
                     android:textSize="14sp"/>
                 <TextView
                     android:id="@+id/detail_about_us"

@@ -33,23 +33,20 @@ public class AdapterManageRequest extends RecyclerView.Adapter<AdapterManageRequ
     private LayoutInflater mInflater;
     Context context;
 
-    ArrayList<HashMap<String,String>> list_products;
+    ArrayList<HashMap<String, String>> list_products;
     ImageLoader loader;
     GlobalClass globalClass;
     DisplayImageOptions defaultOptions;
 
-    public AdapterManageRequest(Context c, ArrayList<HashMap<String,String>> list_products) {
+    public AdapterManageRequest(Context c, ArrayList<HashMap<String, String>> list_products) {
         this.mInflater = LayoutInflater.from(c);
         context = c;
         this.list_products = list_products;
 
-        globalClass = (GlobalClass)context.getApplicationContext();
+        globalClass = (GlobalClass) context.getApplicationContext();
         defaultOptions = new DisplayImageOptions.Builder()
                 .cacheOnDisk(true).cacheInMemory(true)
-                //  .showImageOnLoading(R.mipmap.loading_black128px)
-                //  .showImageForEmptyUri(R.mipmap.no_image)
-                //  .showImageOnFail(R.mipmap.no_image)
-                //  .showImageOnFail(R.mipmap.img_failed)
+
                 .imageScaleType(ImageScaleType.EXACTLY)
                 .displayer(new FadeInBitmapDisplayer(300)).build();
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context.getApplicationContext())
@@ -63,7 +60,7 @@ public class AdapterManageRequest extends RecyclerView.Adapter<AdapterManageRequ
 
     @Override
     public AdapterManageRequest.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.manage_request_single, parent, false);
+        View view = mInflater.inflate(R.layout.single_manage_request, parent, false);
         return new AdapterManageRequest.ViewHolder(view);
 
 
@@ -71,16 +68,19 @@ public class AdapterManageRequest extends RecyclerView.Adapter<AdapterManageRequ
 
     @Override
     public void onBindViewHolder(AdapterManageRequest.ViewHolder holder, int position) {
-     //   int po = position+1;
+        //   int po = position+1;
 
 
-        holder.tv_date.setText(list_products.get(position).get("date_requested"));
-        holder.tv_title.setText(list_products.get(position).get("title"));
-        holder.tv_description_new.setText(Html.fromHtml(list_products.get(position).get("description")));
-        holder.tv_proposal.setText(list_products.get(position).get("status"));
+        holder.tv_date_manage_proposal.setText(list_products.get(position).get("date_requested"));
+        holder.tv_manage_proposal.setText(list_products.get(position).get("title"));
+        holder.tv_manage_proposal_brief.setText(Html.fromHtml(list_products.get(position).get("description")));
+        holder.tv_status.setText(list_products.get(position).get("status"));
+        holder.tv_budget.setText(globalClass.pound+list_products.get(position).get("budget"));
+        holder.tv_date_manage_proposal_days.setText(globalClass.pound+list_products.get(position).get("duration")+" Days");
 
 
     }
+
     @Override
     public int getItemCount() {
         return list_products.size();
@@ -89,54 +89,25 @@ public class AdapterManageRequest extends RecyclerView.Adapter<AdapterManageRequ
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
 
-
-        TextView tv_date,tv_description_new, tv_title, tv_proposal;
-        Spinner spinner_type;
-        ImageView spinner_image;
-        ArrayList<String> type;
-
+        TextView tv_manage_proposal_brief, tv_date_manage_proposal_days,
+                tv_manage_proposal, tv_budget, tv_date_manage_proposal,
+                tv_status, tv_complete_order, tv_complete_order1;
 
 
         ViewHolder(View itemView) {
             super(itemView);
-            type = new ArrayList<>();
-            type.add("All");
-            type.add("Active");
-            type.add("Payment Received");
-            spinner_type=itemView.findViewById(R.id.spinner_type);
-            tv_date = itemView.findViewById(R.id.tv_date);
-            spinner_image=itemView.findViewById(R.id.down_arrow_category);
-            tv_description_new = itemView.findViewById(R.id.tv_description);
-            tv_title = itemView.findViewById(R.id.tv_title);
-            tv_proposal = itemView.findViewById(R.id.tv_proposal);
 
-       spinner_image.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               spinner_type.performClick();
-           }
-       });
-
-                  spinner_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent,
-                                                   View view, int position, long id) {
+            tv_manage_proposal_brief = itemView.findViewById(R.id.tv_manage_proposal_brief);
+            tv_date_manage_proposal_days = itemView.findViewById(R.id.tv_date_manage_proposal_days);
+            tv_manage_proposal = itemView.findViewById(R.id.tv_manage_proposal);
+            tv_budget = itemView.findViewById(R.id.tv_budget);
+            tv_date_manage_proposal = itemView.findViewById(R.id.tv_date_manage_proposal);
+            tv_status = itemView.findViewById(R.id.tv_status);
+            tv_complete_order = itemView.findViewById(R.id.tv_complete_order);
+            tv_complete_order1 = itemView.findViewById(R.id.tv_complete_order1);
 
 
-                            // I don't know how you saved the data, the
-                            // above is just an example
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-
-                        }
-                    });
         }
 
-
-
     }
-
 }

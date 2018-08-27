@@ -58,12 +58,10 @@ public class ChatAdapter extends BaseAdapter {
 			convertView = mInflater.inflate(R.layout.chat_list_item, null);
 			holder = new ViewHolder();
 
-			holder.member_name = (TextView) convertView
-					.findViewById(R.id.member_name);
-			holder.profile_pic=convertView.findViewById(R.id.imageView2);
-			holder.status = (TextView) convertView.findViewById(R.id.status);
-			holder.contactType = (TextView) convertView
-					.findViewById(R.id.contact_type);
+			holder.member_name = convertView.findViewById(R.id.member_name);
+			holder.profile_pic = convertView.findViewById(R.id.imageView2);
+			holder.status =  convertView.findViewById(R.id.status);
+			holder.contactType =  convertView.findViewById(R.id.contact_type);
 
 			RowItem row_pos = rowItems.get(position);
 

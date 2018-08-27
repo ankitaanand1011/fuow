@@ -83,7 +83,9 @@ public class Adapter_invoice  extends BaseAdapter {
 
 
         Log.d("TAG", "getItem: "+position);
-        View view1 = inflater.inflate(R.layout.single_my_invoice, parent, false);
+        View view1 = inflater.inflate(R.layout.single_invoice_new, parent, false);
+
+
         invoice_id=view1.findViewById(R.id.tv_invoice_value);
         date=view1.findViewById(R.id.tv_date_value);
         order_id=view1.findViewById(R.id.tv_order_value);
@@ -102,15 +104,15 @@ public class Adapter_invoice  extends BaseAdapter {
         type.setText(list_names.get(position).get("type"));
 
         if(list_names.get(position).get("status").equals("paid")){
-            payment_status.setText("Paid");
-            payment_status.setTextColor(mContext.getResources().getColor(R.color.green_dark));
+            payment_status.setText("PAID");
+            payment_status.setTextColor(mContext.getResources().getColor(R.color.white));
             pay_invoice.setVisibility(View.GONE);
 
 
 
         }else if(list_names.get(position).get("status").equals("unpaid")){
-            payment_status.setText("Unpaid");
-            payment_status.setTextColor(mContext.getResources().getColor(R.color.red));
+            payment_status.setText("UNPAID");
+            payment_status.setTextColor(mContext.getResources().getColor(R.color.white));
             pay_invoice.setVisibility(View.VISIBLE);
 
 

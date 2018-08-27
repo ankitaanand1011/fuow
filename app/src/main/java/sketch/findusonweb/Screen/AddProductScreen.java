@@ -25,6 +25,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -68,9 +70,11 @@ public class AddProductScreen extends AppCompatActivity {
     GlobalClass globalClass;
     Shared_Preference prefrence;
     String status_text,type_text;
-    TextView tv_submit,attach_data,attach_data1,attach_data2,attach_data3,attach_data4;
+    TextView tv_submit;
+    ImageButton attach_data,attach_data1,attach_data2;
+    ImageView img_attach_1,img_attach_2,img_attach_3;
     String title , description, expire, price;
-    File file1,file2,file3,file4,file5;
+    File file1,file2,file3;
     private static final int PICK_IMAGE_CAMERA1 = 11;
     private static final int PICK_IMAGE_CAMERA2 = 12;
     private static final int PICK_IMAGE_CAMERA3 = 13;
@@ -81,7 +85,7 @@ public class AddProductScreen extends AppCompatActivity {
     private static final int PICK_IMAGE_GALLERY3 = 23;
     private static final int PICK_IMAGE_GALLERY4 = 24;
     private static final int PICK_IMAGE_GALLERY5 = 25;
-    TextView attach_data_name,attach_data_name1,attach_data_name2,attach_data_name3,attach_data_name4;
+ //   TextView attach_data_name,attach_data_name1,attach_data_name2,attach_data_name3,attach_data_name4;
 
 
 
@@ -134,14 +138,15 @@ public class AddProductScreen extends AppCompatActivity {
         attach_data=findViewById(R.id.attach_data);
         attach_data1=findViewById(R.id.attach_data1);
         attach_data2=findViewById(R.id.attach_data2);
-        attach_data3=findViewById(R.id.attach_data3);
-        attach_data4=findViewById(R.id.attach_data4);
+        img_attach_1=findViewById(R.id.img_attach_1);
+        img_attach_2=findViewById(R.id.img_attach_2);
+        img_attach_3=findViewById(R.id.img_attach_3);
         tv_submit=findViewById(R.id.tv_submit);
-        attach_data_name=findViewById(R.id.attach_data_name);
+   /*     attach_data_name=findViewById(R.id.attach_data_name);
         attach_data_name1=findViewById(R.id.attach_data_name1);
         attach_data_name2=findViewById(R.id.attach_data_name2);
         attach_data_name3=findViewById(R.id.attach_data_name3);
-        attach_data_name4=findViewById(R.id.attach_data_name4);
+        attach_data_name4=findViewById(R.id.attach_data_name4);*/
 
      //   ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, type);
 
@@ -277,7 +282,7 @@ public class AddProductScreen extends AppCompatActivity {
                 openFolder(PICK_IMAGE_CAMERA3,PICK_IMAGE_GALLERY3);
             }
         });
-        attach_data3.setOnClickListener(new View.OnClickListener() {
+     /*   attach_data3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openFolder(PICK_IMAGE_CAMERA4,PICK_IMAGE_GALLERY4);
@@ -288,7 +293,7 @@ public class AddProductScreen extends AppCompatActivity {
             public void onClick(View v) {
                 openFolder(PICK_IMAGE_CAMERA5,PICK_IMAGE_GALLERY5);
             }
-        });
+        });*/
     }
 
     public void openFolder(final int code_camera,final int code_gallery)
@@ -346,21 +351,24 @@ public class AddProductScreen extends AppCompatActivity {
                     bitmap = (Bitmap) data.getExtras().get("data");
                     Log.d(TAG, "onActivityResult: "+bitmap);
                     file1=camera_pick(bitmap);
-                    attach_data_name.setText(file1.getName());
+                //    attach_data_name.setText(file1.getName());
+                    img_attach_1.setImageBitmap(bitmap);
                     break;
                 case PICK_IMAGE_CAMERA2:
                     Bitmap bitmap1;
                     bitmap1 = (Bitmap) data.getExtras().get("data");
                     file2=camera_pick(bitmap1);
-                    attach_data_name1.setText(file2.getName());
+                 //   attach_data_name1.setText(file2.getName());
+                    img_attach_2.setImageBitmap(bitmap1);
                     break;
                 case PICK_IMAGE_CAMERA3:
                     Bitmap bitmap2;
                     bitmap2 = (Bitmap) data.getExtras().get("data");
                     file3=camera_pick(bitmap2);
-                    attach_data_name2.setText(file3.getName());
+                 //   attach_data_name2.setText(file3.getName());
+                    img_attach_3.setImageBitmap(bitmap2);
                     break;
-                case PICK_IMAGE_CAMERA4:
+             /*   case PICK_IMAGE_CAMERA4:
                     Bitmap bitmap3;
                     bitmap3 = (Bitmap) data.getExtras().get("data");
                     file4=camera_pick(bitmap3);
@@ -372,23 +380,26 @@ public class AddProductScreen extends AppCompatActivity {
                     file5=camera_pick(bitmap4);
                     attach_data_name4.setText(file5.getName());
                     break;
-
+*/
                 case PICK_IMAGE_GALLERY1:
                     Uri uri = data.getData();
                     file1 = gallery_pick(uri);
-                    attach_data_name.setText(file1.getName());
+                   // attach_data_name.setText(file1.getName());
+                    img_attach_1.setImageURI(uri);
                     break;
                 case PICK_IMAGE_GALLERY2:
                     Uri uri2 = data.getData();
                     file2 = gallery_pick(uri2);
-                    attach_data_name1.setText(file2.getName());
+                  //  attach_data_name1.setText(file2.getName());
+                    img_attach_2.setImageURI(uri2);
                     break;
                 case PICK_IMAGE_GALLERY3:
                     Uri uri3 = data.getData();
                     file3 = gallery_pick(uri3);
-                    attach_data_name2.setText(file3.getName());
+                  //  attach_data_name2.setText(file3.getName());
+                    img_attach_3.setImageURI(uri3);
                     break;
-                case PICK_IMAGE_GALLERY4:
+        /*        case PICK_IMAGE_GALLERY4:
                     Uri uri4 = data.getData();
                     file4 = gallery_pick(uri4);
                     attach_data_name3.setText(file4.getName());
@@ -397,7 +408,7 @@ public class AddProductScreen extends AppCompatActivity {
                     Uri uri5 = data.getData();
                     file5 = gallery_pick(uri5);
                     attach_data_name4.setText(file5.getName());
-                    break;
+                    break;*/
 
 
             }
@@ -512,8 +523,8 @@ public class AddProductScreen extends AppCompatActivity {
             params.put("classified_image1", file1);
             params.put("classified_image2", file2);
             params.put("classified_image3", file3);
-            params.put("classified_image4", file4);
-            params.put("classified_image5", file5);
+            params.put("classified_image4", file1);
+            params.put("classified_image5", file1);
 
         }catch (FileNotFoundException e){
             e.printStackTrace();

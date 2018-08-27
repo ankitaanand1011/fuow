@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Screen.HomeScreen">
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey_dashboard"
+        android:padding="5dp"
+
+        >
+
+        <TextView
+            android:id="@+id/tv_invoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Invoice ID :"
+            android:textColor="@color/white"
+            android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/tv_invoice_value"
+            android:layout_toEndOf="@+id/tv_invoice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:gravity="start"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_order"
+            android:layout_toEndOf="@+id/tv_invoice_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order :"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/tv_order_value"
+            android:layout_toEndOf="@+id/tv_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:gravity="start"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_date_value"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="16sp"/>
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_proposal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/toolbar">
+
+        <RelativeLayout
+            android:id="@+id/rl_text_manage_proposal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/rl_eclipse_manage_proposal">
+
+            <TextView
+                android:id="@+id/tv_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Type :"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+
+            <TextView
+                android:id="@+id/tv_type_value"
+                android:layout_toEndOf="@+id/tv_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="16sp"/>
+            <TextView
+                android:id="@+id/tv_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_type"
+                android:text="Total :"
+                android:textSize="14sp"/>
+            <TextView
+                android:id="@+id/tv_total_value"
+                android:layout_toRightOf="@+id/tv_total"
+                android:layout_below="@+id/tv_type_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="14sp"/>
+
+
+            <TextView
+                android:id="@+id/tv_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_total"
+                android:text="Balance :"
+                android:textSize="16sp"/>
+            <TextView
+                android:id="@+id/tv_balance_value"
+                android:layout_toEndOf="@+id/tv_balance"
+                android:layout_below="@+id/tv_total_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="16sp"/>
+
+
+
+
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_eclipse_manage_proposal"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:layout_marginLeft="10dp">
+
+            <RelativeLayout
+                android:id="@+id/rl_cost_in_pound"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_green_dashboard"
+
+                android:layout_marginRight="5dp"
+
+                >
+                <TextView
+                    android:id="@+id/tv_paymemt_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_below="@+id/rl_cost_in_pound"
+                android:id="@+id/rl_complete_order"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_yellow_dashboard"
+                android:layout_marginTop="5dp"
+
+                >
+                <TextView
+                    android:id="@+id/tv_complete_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:text="DOWNLOAD"
+                    android:gravity="center"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_below="@+id/rl_complete_order"
+                android:id="@+id/rl_complete_order1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_grey_dashboard"
+                android:layout_marginTop="5dp"
+                android:visibility="gone"
+
+                >
+                <TextView
+                    android:id="@+id/pay_invoice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:text="DELETE"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"/>
+
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

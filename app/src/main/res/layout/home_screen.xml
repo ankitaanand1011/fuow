@@ -8,6 +8,11 @@
     tools:context=".Screen.HomeScreen"
     android:orientation="vertical"
     android:background="@mipmap/register_bg">
+
+    <RelativeLayout
+        android:id="@+id/rl_all"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <RelativeLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -266,12 +271,16 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
+    </RelativeLayout>
+
+    <ImageView
         android:id="@+id/rl_opacity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scaleType="fitXY"
         android:visibility="gone"
-        android:background="@color/black_oapacity"
+        android:src="@drawable/bg_black"
+
         />
     <com.bvapp.arcmenulibrary.ArcMenu
         android:id="@+id/arcMenu"

@@ -48,7 +48,7 @@ public class ChatScreen extends Activity implements OnItemClickListener {
 			rowItems.add(item);
 		}
 
-		mylistview = (ListView) findViewById(R.id.list);
+		mylistview =  findViewById(R.id.list);
 		ChatAdapter adapter = new ChatAdapter(this, rowItems);
 		mylistview.setAdapter(adapter);
 
