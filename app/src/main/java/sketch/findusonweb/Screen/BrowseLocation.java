@@ -50,7 +50,8 @@ import sketch.findusonweb.Utils.Shared_Preference;
 public class BrowseLocation extends AppCompatActivity {
     ListView listView;
     String TAG = "Listing";
-    TextView back_img,final_search;
+    ImageView back_img;
+    TextView final_search;
     ImageView img_grid,seach_button,header_img,menu;
     String textString;
     Shared_Preference prefrence;
@@ -69,7 +70,7 @@ public class BrowseLocation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.browse_category);
         menu=findViewById(R.id.menu);
-        back_img=findViewById(R.id.cart_img);
+        back_img=findViewById(R.id.back_img);
         globalClass = (GlobalClass) getApplicationContext();
         prefrence = new Shared_Preference(BrowseLocation.this);
         prefrence.loadPrefrence();

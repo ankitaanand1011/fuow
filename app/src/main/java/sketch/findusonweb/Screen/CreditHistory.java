@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +28,7 @@ import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
 import sketch.findusonweb.Adapter.AdapterCreditHistory;
-import sketch.findusonweb.Adapter.AdapterReviewAll;
+
 import sketch.findusonweb.Constants.AppConfig;
 import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
@@ -35,7 +36,8 @@ import sketch.findusonweb.Utils.Shared_Preference;
 
 public class CreditHistory extends AppCompatActivity {
     ListView listing;
-    TextView total,Used,balanced,back;
+    TextView total,Used,balanced;
+    ImageView back;
     String TAG = "Favorites";
     GlobalClass globalClass;
     Shared_Preference prefrence;

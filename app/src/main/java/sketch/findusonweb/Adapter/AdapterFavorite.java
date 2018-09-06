@@ -62,7 +62,7 @@ public class AdapterFavorite  extends RecyclerView.Adapter<AdapterFavorite.MyVie
 
 
 
-        holder.name.setText(list_namesfavoriteAll.get(position).get("product_title"));
+        holder.name.setText(list_namesfavoriteAll.get(position).get("listing_title"));
 
 
 

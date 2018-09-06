@@ -46,7 +46,8 @@ import sketch.findusonweb.Utils.Shared_Preference;
 public class BrowseCategory extends AppCompatActivity {
     ListView listView;
     String TAG = "Listing";
-    TextView back_img,final_search,cart_img;
+    ImageView back_img;
+    TextView final_search,cart_img;
     ImageView img_grid,seach_button,header_img,menu;
     String textString;
     Shared_Preference prefrence;
@@ -64,7 +65,8 @@ public class BrowseCategory extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.browse_category);
-        cart_img=findViewById(R.id.cart_img);
+
+        back_img=findViewById(R.id.back_img);
        // menu=findViewById(R.id.menu);
         globalClass = (GlobalClass) getApplicationContext();
         prefrence = new Shared_Preference(BrowseCategory.this);
@@ -81,7 +83,12 @@ public class BrowseCategory extends AppCompatActivity {
         } else {
             Toasty.info(BrowseCategory.this, getResources().getString(R.string.check_internet), Toast.LENGTH_LONG, true).show();
         }
-
+        back_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 /*
    menu.setOnClickListener(new View.OnClickListener() {
     @Override
@@ -91,17 +98,17 @@ public class BrowseCategory extends AppCompatActivity {
     }
 });
 */
-cart_img.setOnClickListener(new View.OnClickListener() {
+/*cart_img.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
         finish();
     }
-});
+});*/
 
         list_names = new ArrayList<>();
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setNestedScrollingEnabled(false);
-        int numberOfColumns = 2;
+        int numberOfColumns = 3;
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), numberOfColumns));
         browseJob();
     }

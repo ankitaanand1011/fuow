@@ -1,7 +1,6 @@
 package sketch.findusonweb.Screen;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -9,11 +8,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,17 +47,17 @@ public class ManageRequest extends AppCompatActivity{
     ProgressDialog pd;
     RecyclerView rv_list_product;
     String TAG = "product";
-    TextView back_img;
+    ImageView back_img;
     Spinner spinner_type;
     ArrayList<String> type;
-    RelativeLayout rl_add_product;
+    ///RelativeLayout rl_add_product;
     ArrayList<HashMap<String,String>> list_products;
-    String item;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.manage_proposal);
+        setContentView(R.layout.manage_request);
         globalClass = (GlobalClass) getApplicationContext();
         prefrence = new Shared_Preference(ManageRequest.this);
         prefrence.loadPrefrence();
@@ -71,9 +68,9 @@ public class ManageRequest extends AppCompatActivity{
         list_products = new ArrayList<>();
 
         spinner_type=findViewById(R.id.spinner_type);
-        back_img =findViewById(R.id.img_back);
+        back_img =findViewById(R.id.back_img);
         rv_list_product =findViewById(R.id.list_product);
-        rl_add_product =findViewById(R.id.rl_add_product);
+       // rl_add_product =findViewById(R.id.rl_add_product);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         rv_list_product.setLayoutManager(mLayoutManager);
@@ -105,42 +102,44 @@ public class ManageRequest extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String item1 = parent.getItemAtPosition(position).toString();
-                Log.d(TAG, "onItemSelected: "+item);
+
+                //Log.d(TAG, "onItemSelected: "+item);
+                String item;
                 switch (item1) {
                     case "All":
                         item = "all";
-                        ViewList();
+                        ViewList(item);
                         break;
 
                     case "Active":
                         item = "active";
-                        ViewList();
+                        ViewList(item);
                         break;
 
                     case "Pending":
                         item = "pending";
-                        ViewList();
+                        ViewList(item);
                         break;
 
                     case "Complete":
                         item = "complete";
-                        ViewList();
+                        ViewList(item);
                         break;
 
                     case "Unapproved":
                         item = "unapproved";
-                        ViewList();
+                        ViewList(item);
                         break;
 
                     case "Awaiting Acceptance":
                         item = "awaiting_acceptance";
-                        ViewList();
+                        ViewList(item);
                         break;
 
 
                     case "Paused":
                         item = "paused";
-                        ViewList();
+                        ViewList(item);
                         break;
 
 
@@ -169,7 +168,7 @@ public class ManageRequest extends AppCompatActivity{
 
     }
 
-    public void ViewList() {
+    public void ViewList(final String item) {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
 
@@ -183,7 +182,7 @@ public class ManageRequest extends AppCompatActivity{
                 Log.d(TAG, "Invitation response: " + response.toString());
 
 
-
+                list_products.clear();
                 Gson gson = new Gson();
 
                 try {

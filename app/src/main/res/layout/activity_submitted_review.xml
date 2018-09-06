@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -21,34 +21,47 @@
 
             android:layout_gravity="center"/>
 
-        <TextView
+        <ImageView
             android:id="@+id/back_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10sp"
-            android:text="Back"
+            android:src="@mipmap/back"
             android:layout_marginRight="10sp"
-            android:textSize="12sp"
             android:textColor="@color/white"
             android:layout_centerVertical="true"
             android:gravity="center"
             android:layout_alignParentEnd="true"
             android:padding="5dp"
             android:contentDescription="@string/app_name"
-            android:background="@drawable/button_home_screee"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="true"
+            tools:ignore="RtlHardcoded" />
 
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="MY SUBMITTED REVIEW"/>
+
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/white">
 
-        <ListView
-
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_submitted_review"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/listing"/>
+            android:layout_below="@+id/rl_view"
+            android:layout_marginTop="5dp"
+            />
 
     </RelativeLayout>
 

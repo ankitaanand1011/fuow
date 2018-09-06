@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.LayerDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.github.ivbaranov.mli.MaterialLetterIcon;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -24,6 +26,7 @@ import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
@@ -48,7 +51,7 @@ public class AdapterClaim extends BaseAdapter {
     ImageLoader loader;
     GlobalClass globalClass;
     DisplayImageOptions defaultOptions;
-
+    MaterialLetterIcon icon;
 
 
 
@@ -109,6 +112,7 @@ public class AdapterClaim extends BaseAdapter {
         tv_des = view1.findViewById(R.id.tv_des);
         img = view1.findViewById(R.id.img);
         rating=view1.findViewById(R.id.rating_adpater);
+        icon =  view1.findViewById(R.id.icon);
 
         stars = (LayerDrawable) rating.getProgressDrawable();
         stars.getDrawable(2).setColorFilter(mContext.getResources().getColor(R.color.golden), PorterDuff.Mode.SRC_ATOP);
@@ -119,11 +123,25 @@ public class AdapterClaim extends BaseAdapter {
         tv_name.setText(list_claim.get(position).get("title"));
         tv_des.setText(list_claim.get(position).get("location_search_text"));
 
+        int[] androidColors = mContext.getResources().getIntArray(R.array.androidcolors);
+        int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
+
         if(list_claim.get(position).get("logo_url").equals(""))
         {
-            img.setImageDrawable(mContext.getResources().getDrawable(R.mipmap.no_image));
+            img.setVisibility(View.GONE);
+            icon.setVisibility(View.VISIBLE);
+            icon.setLetter(list_claim.get(position).get("title"));
+            icon.setLetterColor(mContext.getResources().getColor(R.color.white));
+            icon.setShapeColor(randomAndroidColor);
+            icon.setShapeType(MaterialLetterIcon.Shape.ROUND_RECT);
+            icon.setLetterSize(26);
+            icon.setLetterTypeface(Typeface.SANS_SERIF);
+            icon.setInitials(true);
+            icon.setInitialsNumber(2);
         }
         else {
+            img.setVisibility(View.VISIBLE);
+            icon.setVisibility(View.GONE);
             loader.displayImage(list_claim.get(position).get("logo_url"),img, defaultOptions);
         }
         tv_claim_business.setOnClickListener(new View.OnClickListener() {

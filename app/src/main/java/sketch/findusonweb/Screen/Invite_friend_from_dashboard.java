@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +36,7 @@ public class Invite_friend_from_dashboard extends AppCompatActivity {
     GlobalClass globalClass;
     Shared_Preference prefrence;
     Adapter_invite_friend adapter_invoice;
-    TextView back_img;
+    ImageView back_img;
     ProgressDialog pd;
     ArrayList<HashMap<String,String>> list_namesfavoriteAll;
     @Override

@@ -366,7 +366,7 @@ public class Register extends AppCompatActivity{
                         globalClass.setFname(user_first_name);
                         globalClass.setLname(user_last_name);
                         globalClass.setPhone_number(user_phone);
-                        globalClass.setOrgazination(user_organization);
+                        globalClass.setOrganization(user_organization);
                         globalClass.setLogin_status(true);
 
                         prefrence.savePrefrence();
@@ -689,7 +689,9 @@ public class Register extends AppCompatActivity{
 
     }
 
-
-
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }

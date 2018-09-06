@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +43,7 @@ public class Manage_Proposal extends AppCompatActivity {
     Shared_Preference prefrence;
     ProgressDialog pd;
     String TAG = "Manage_Proposal";
-    TextView back;
+    ImageView back;
     ArrayList<HashMap<String,String>> list_namesfavoriteAll;
     RecyclerView.LayoutManager mLayoutManager;
     AdapterManageProposal adapterManageProposal;

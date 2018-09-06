@@ -73,7 +73,8 @@ import sketch.findusonweb.Utils.Shared_Preference;
 public class RecommedBuisness  extends AppCompatActivity {
     String TAG = "post requirement";
 
-    TextView back_button,attach_data,attach_data_link,tv_submit;
+    ImageView back_button;
+    TextView attach_data,attach_data_link,tv_submit;
     String city_id,cat_id;
     Shared_Preference prefrence;
     Spinner spinner_select_category,spinner_city;

@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -41,7 +42,8 @@ public class EditReview  extends AppCompatActivity {
     GlobalClass globalClass;
     Shared_Preference prefrence;
     Adapter_invoice adapter_invoice;
-    TextView back_img,review_available,review_edit_note,submit_review;
+    ImageView back_img;
+    TextView review_available,review_edit_note,submit_review;
     ProgressDialog pd;
     RatingBar value_ratingbar;
     String id,review,title_name,review_name,ranking;

@@ -1,6 +1,7 @@
 package sketch.findusonweb.Adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,17 +11,17 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.github.ivbaranov.mli.MaterialLetterIcon;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
 
-/**
- * Created by developer on 3/8/18.
- */
+
 
 public class AdapterMyOrder extends BaseAdapter {
 
@@ -30,14 +31,15 @@ public class AdapterMyOrder extends BaseAdapter {
 
     LayoutInflater inflater;
 
-    TextView order_id,date,Last_name,name,amount,order_status,type,status,payment_status,pay_invoice;
+    TextView order_id,date,tv_manage_proposal,tv_listing_name_val,amount,order_status,type,
+            view_order,tv_cancel,tv_invoice_status_value;
     RatingBar rating;
     ImageView img;
     ArrayList<HashMap<String,String>> list_names;
     // ArrayList<String> list_names;
     //ImageLoader loader;
     DisplayImageOptions defaultOptions;
-
+    MaterialLetterIcon icon;
 
 
 
@@ -80,22 +82,44 @@ public class AdapterMyOrder extends BaseAdapter {
 
 
         Log.d("TAG", "getItem: "+position);
-        View view1 = inflater.inflate(R.layout.single_my_order, parent, false);
+        View view1 = inflater.inflate(R.layout.single_my_order_new, parent, false);
+        icon =  view1.findViewById(R.id.icon);
         order_id=view1.findViewById(R.id.tv_order_id);
         date=view1.findViewById(R.id.tv_date_value_order);
-        name=view1.findViewById(R.id.tv_name_value);
+        tv_listing_name_val=view1.findViewById(R.id.tv_listing_name_val);
+        tv_manage_proposal=view1.findViewById(R.id.tv_manage_proposal);
         amount=view1.findViewById(R.id.tv_amount_order_value);
         type=view1.findViewById(R.id.tv_type_order_value);
         order_status=view1.findViewById(R.id.tv_status_order_new);
+        view_order=view1.findViewById(R.id.view_order);
+        tv_cancel=view1.findViewById(R.id.tv_cancel);
+        img=view1.findViewById(R.id.imageView1);
+        tv_invoice_status_value=view1.findViewById(R.id.tv_invoice_status_value);
 
-
+        int[] androidColors = mContext.getResources().getIntArray(R.array.androidcolors);
+        int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
         //pay_invoice.setVisibility(View.GONE);
         order_id.setText(list_names.get(position).get("order_id"));
-        name.setText(list_names.get(position).get("name"));
+        tv_manage_proposal.setText(list_names.get(position).get("title"));
+        tv_listing_name_val.setText(list_names.get(position).get("name"));
         date.setText(list_names.get(position).get("date"));
         order_status.setText(list_names.get(position).get("status"));
         type.setText(list_names.get(position).get("type"));
-        amount.setText(list_names.get(position).get("amount"));
+        amount.setText(globalClass.pound+list_names.get(position).get("amount"));
+        tv_invoice_status_value.setText("");
+
+        img.setVisibility(View.GONE);
+        icon.setVisibility(View.VISIBLE);
+        icon.setLetter(list_names.get(position).get("title"));
+        icon.setLetterColor(mContext.getResources().getColor(R.color.white));
+        icon.setShapeColor(randomAndroidColor);
+        icon.setShapeType(MaterialLetterIcon.Shape.ROUND_RECT);
+        icon.setLetterSize(26);
+        icon.setLetterTypeface(Typeface.SANS_SERIF);
+        icon.setInitials(true);
+        icon.setInitialsNumber(2);
+
+
      /*   if(list_names.get(position).get("status").equals("1")){
             status.setText("invited");
             status.setTextColor(mContext.getResources().getColor(R.color.orange));

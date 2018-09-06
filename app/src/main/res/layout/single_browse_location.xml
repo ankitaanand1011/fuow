@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl_image"
         android:layout_margin="20dp"
-        android:background="@color/grey">
+        >
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"

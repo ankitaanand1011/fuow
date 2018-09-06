@@ -1,6 +1,7 @@
 package sketch.findusonweb.Screen;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -68,7 +70,13 @@ public class DashboardNew extends AppCompatActivity {
     ArrayList<HashMap<String,String>> list_todo;
     ArrayList<HashMap<String,String>> listing;
 
-    TextView back;
+    TextView tv_name,tv_phone_val,tv_business_val;
+
+    ImageView back;
+
+    ImageView edit_img,sync_img,sync_img1;
+    ImageView arrow_img_1,arrow_img_2,arrow_img_3,arrow_img_4,arrow_img_5,arrow_img_6,arrow_img_7;
+    TextView tv_view_all,tv_add_listing,tv_view_all_fav,tv_top_up,tv_new_search,tv_view_all_invoice;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -113,15 +121,47 @@ public class DashboardNew extends AppCompatActivity {
         rv_invoice = findViewById(R.id.rv_invoice);
 
 
+        arrow_img_1 = findViewById(R.id.arrow_img_1);
+        edit_img = findViewById(R.id.edit_img);
+        sync_img = findViewById(R.id.sync_img);
+
+        arrow_img_2 = findViewById(R.id.arrow_img_2);
+        tv_view_all    = findViewById(R.id.tv_view_all);
+        tv_add_listing = findViewById(R.id.tv_add_listing);
+        sync_img1      = findViewById(R.id.sync_img1);
+
+        arrow_img_3 = findViewById(R.id.arrow_img_3);
+        tv_view_all_fav = findViewById(R.id.tv_view_all_fav);
+
+        arrow_img_4 = findViewById(R.id.arrow_img_4);
+        tv_top_up = findViewById(R.id.tv_top_up);
+
+        arrow_img_5 = findViewById(R.id.arrow_img_5);
+
+        arrow_img_6 = findViewById(R.id.arrow_img_6);
+        tv_new_search = findViewById(R.id.tv_new_search);
+
+        arrow_img_7 = findViewById(R.id.arrow_img_7);
+        tv_view_all_invoice = findViewById(R.id.tv_view_all_invoice);
+
+
         tv_total = findViewById(R.id.tv_total);
         tv_used = findViewById(R.id.tv_used);
         tv_balance = findViewById(R.id.tv_balance);
+
+        tv_name=findViewById(R.id.tv_name);
+        tv_phone_val=findViewById(R.id.tv_phone_val);
+        tv_business_val=findViewById(R.id.tv_business_val);
 
         back=findViewById(R.id.back_img);
 
     }
 
     public void function(){
+
+        tv_name.setText(globalClass.getFname()+" "+globalClass.getLname());
+        tv_phone_val.setText(globalClass.getPhone_number());
+        tv_business_val.setText(globalClass.getOrganization());
 
         list_namesfavoriteAll=new ArrayList<>();
         list_credit=new ArrayList<>();
@@ -143,6 +183,7 @@ public class DashboardNew extends AppCompatActivity {
         rl_to_do_detail.setVisibility(View.GONE);
         rl_search_detail.setVisibility(View.GONE);
         rl_invoice_detail.setVisibility(View.GONE);
+
 
         rv_listing.setLayoutManager(mLayoutManager);
         rv_favorite.setLayoutManager(mLayoutManager1);
@@ -169,6 +210,24 @@ public class DashboardNew extends AppCompatActivity {
                 rl_to_do_detail.setVisibility(View.GONE);
                 rl_search_detail.setVisibility(View.GONE);
                 rl_invoice_detail.setVisibility(View.GONE);
+
+                arrow_img_1.setVisibility(View.GONE);
+                arrow_img_2.setVisibility(View.VISIBLE);
+                arrow_img_3.setVisibility(View.VISIBLE);
+                arrow_img_4.setVisibility(View.VISIBLE);
+                arrow_img_5.setVisibility(View.VISIBLE);
+                arrow_img_6.setVisibility(View.VISIBLE);
+                arrow_img_7.setVisibility(View.VISIBLE);
+
+                edit_img.setVisibility(View.VISIBLE);
+                sync_img.setVisibility(View.VISIBLE);
+                tv_view_all.setVisibility(View.GONE);
+                tv_add_listing.setVisibility(View.GONE);
+                sync_img1.setVisibility(View.GONE);
+                tv_view_all_fav.setVisibility(View.GONE);
+                tv_new_search.setVisibility(View.GONE);
+                tv_view_all_invoice.setVisibility(View.GONE);
+                tv_top_up.setVisibility(View.GONE);
             }
         });
 
@@ -182,6 +241,29 @@ public class DashboardNew extends AppCompatActivity {
                 rl_to_do_detail.setVisibility(View.GONE);
                 rl_search_detail.setVisibility(View.GONE);
                 rl_invoice_detail.setVisibility(View.GONE);
+
+                arrow_img_1.setVisibility(View.VISIBLE);
+                arrow_img_2.setVisibility(View.GONE);
+                arrow_img_3.setVisibility(View.VISIBLE);
+                arrow_img_4.setVisibility(View.VISIBLE);
+                arrow_img_5.setVisibility(View.VISIBLE);
+                arrow_img_6.setVisibility(View.VISIBLE);
+                arrow_img_7.setVisibility(View.VISIBLE);
+
+
+                edit_img.setVisibility(View.GONE);
+                sync_img.setVisibility(View.GONE);
+
+                tv_view_all.setVisibility(View.VISIBLE);
+                tv_add_listing.setVisibility(View.VISIBLE);
+                sync_img1.setVisibility(View.VISIBLE);
+                edit_img.setVisibility(View.GONE);
+                sync_img.setVisibility(View.GONE);
+                tv_view_all_fav.setVisibility(View.GONE);
+                tv_new_search.setVisibility(View.GONE);
+                tv_view_all_invoice.setVisibility(View.GONE);
+                tv_top_up.setVisibility(View.GONE);
+
             }
         });
 
@@ -195,6 +277,27 @@ public class DashboardNew extends AppCompatActivity {
                 rl_to_do_detail.setVisibility(View.GONE);
                 rl_search_detail.setVisibility(View.GONE);
                 rl_invoice_detail.setVisibility(View.GONE);
+
+                arrow_img_1.setVisibility(View.VISIBLE);
+                arrow_img_2.setVisibility(View.VISIBLE);
+                arrow_img_3.setVisibility(View.GONE);
+                arrow_img_4.setVisibility(View.VISIBLE);
+                arrow_img_5.setVisibility(View.VISIBLE);
+                arrow_img_6.setVisibility(View.VISIBLE);
+                arrow_img_7.setVisibility(View.VISIBLE);
+                edit_img.setVisibility(View.GONE);
+                sync_img.setVisibility(View.GONE);
+
+
+                tv_view_all_fav.setVisibility(View.VISIBLE);
+                edit_img.setVisibility(View.GONE);
+                sync_img.setVisibility(View.GONE);
+                tv_view_all.setVisibility(View.GONE);
+                tv_add_listing.setVisibility(View.GONE);
+                sync_img1.setVisibility(View.GONE);
+                tv_new_search.setVisibility(View.GONE);
+                tv_view_all_invoice.setVisibility(View.GONE);
+                tv_top_up.setVisibility(View.GONE);
             }
         });
 
@@ -208,6 +311,27 @@ public class DashboardNew extends AppCompatActivity {
                 rl_to_do_detail.setVisibility(View.GONE);
                 rl_search_detail.setVisibility(View.GONE);
                 rl_invoice_detail.setVisibility(View.GONE);
+
+                arrow_img_1.setVisibility(View.VISIBLE);
+                arrow_img_2.setVisibility(View.VISIBLE);
+                arrow_img_3.setVisibility(View.VISIBLE);
+                arrow_img_4.setVisibility(View.GONE);
+                arrow_img_5.setVisibility(View.VISIBLE);
+                arrow_img_6.setVisibility(View.VISIBLE);
+                arrow_img_7.setVisibility(View.VISIBLE);
+
+                edit_img.setVisibility(View.GONE);
+                sync_img.setVisibility(View.GONE);
+
+                tv_top_up.setVisibility(View.VISIBLE);
+                edit_img.setVisibility(View.GONE);
+                sync_img.setVisibility(View.GONE);
+                tv_view_all.setVisibility(View.GONE);
+                tv_add_listing.setVisibility(View.GONE);
+                sync_img1.setVisibility(View.GONE);
+                tv_view_all_fav.setVisibility(View.GONE);
+                tv_new_search.setVisibility(View.GONE);
+                tv_view_all_invoice.setVisibility(View.GONE);
             }
         });
 
@@ -221,6 +345,27 @@ public class DashboardNew extends AppCompatActivity {
                 rl_to_do_detail.setVisibility(View.VISIBLE);
                 rl_search_detail.setVisibility(View.GONE);
                 rl_invoice_detail.setVisibility(View.GONE);
+
+                arrow_img_1.setVisibility(View.VISIBLE);
+                arrow_img_2.setVisibility(View.VISIBLE);
+                arrow_img_3.setVisibility(View.VISIBLE);
+                arrow_img_4.setVisibility(View.VISIBLE);
+                arrow_img_5.setVisibility(View.VISIBLE);
+                arrow_img_6.setVisibility(View.VISIBLE);
+                arrow_img_7.setVisibility(View.VISIBLE);
+
+                edit_img.setVisibility(View.GONE);
+                sync_img.setVisibility(View.GONE);
+
+
+                tv_view_all.setVisibility(View.GONE);
+                tv_add_listing.setVisibility(View.GONE);
+                sync_img1.setVisibility(View.GONE);
+                tv_view_all_fav.setVisibility(View.GONE);
+                tv_new_search.setVisibility(View.GONE);
+                tv_view_all_invoice.setVisibility(View.GONE);
+                tv_top_up.setVisibility(View.GONE);
+
             }
         });
 
@@ -234,6 +379,27 @@ public class DashboardNew extends AppCompatActivity {
                 rl_to_do_detail.setVisibility(View.GONE);
                 rl_search_detail.setVisibility(View.VISIBLE);
                 rl_invoice_detail.setVisibility(View.GONE);
+
+                arrow_img_1.setVisibility(View.VISIBLE);
+                arrow_img_2.setVisibility(View.VISIBLE);
+                arrow_img_3.setVisibility(View.VISIBLE);
+                arrow_img_4.setVisibility(View.VISIBLE);
+                arrow_img_5.setVisibility(View.GONE);
+                arrow_img_6.setVisibility(View.VISIBLE);
+                arrow_img_7.setVisibility(View.VISIBLE);
+
+
+                edit_img.setVisibility(View.GONE);
+                sync_img.setVisibility(View.GONE);
+
+                tv_new_search.setVisibility(View.VISIBLE);
+                tv_view_all.setVisibility(View.GONE);
+                tv_add_listing.setVisibility(View.GONE);
+                sync_img1.setVisibility(View.GONE);
+                tv_view_all_fav.setVisibility(View.GONE);
+                tv_view_all_invoice.setVisibility(View.GONE);
+                tv_top_up.setVisibility(View.GONE);
+
             }
         });
 
@@ -248,8 +414,45 @@ public class DashboardNew extends AppCompatActivity {
                 rl_to_do_detail.setVisibility(View.GONE);
                 rl_search_detail.setVisibility(View.GONE);
                 rl_invoice_detail.setVisibility(View.VISIBLE);
+
+                arrow_img_1.setVisibility(View.VISIBLE);
+                arrow_img_2.setVisibility(View.VISIBLE);
+                arrow_img_3.setVisibility(View.VISIBLE);
+                arrow_img_4.setVisibility(View.VISIBLE);
+                arrow_img_5.setVisibility(View.VISIBLE);
+                arrow_img_6.setVisibility(View.VISIBLE);
+                arrow_img_7.setVisibility(View.GONE);
+
+
+                edit_img.setVisibility(View.GONE);
+                sync_img.setVisibility(View.GONE);
+
+                tv_view_all_invoice.setVisibility(View.VISIBLE);
+                tv_view_all.setVisibility(View.GONE);
+                tv_add_listing.setVisibility(View.GONE);
+                sync_img1.setVisibility(View.GONE);
+                tv_view_all_fav.setVisibility(View.GONE);
+                tv_new_search.setVisibility(View.GONE);
+                tv_top_up.setVisibility(View.GONE);
+
             }
         });
+
+        /*tv_view_all.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DashboardNew,this,)
+            }
+        });*/
+
+        tv_view_all_fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DashboardNew.this,Favorites.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 
@@ -383,6 +586,9 @@ public class DashboardNew extends AppCompatActivity {
                     String result = jobj.get("success").toString().replaceAll("\"", "");
                     String total_credits = jobj.get("total_credits").toString().replaceAll("\"", "");
                     String used_credits = jobj.get("used_credits").toString().replaceAll("\"", "");
+
+
+
                     if (result.equals("1")) {
                         JsonArray data = jobj.getAsJsonArray("records");
                         Log.d(TAG, "Data: " + data);
@@ -491,12 +697,16 @@ public class DashboardNew extends AppCompatActivity {
 
                     JsonObject jobj = gson.fromJson(response, JsonObject.class);
                     Log.d(TAG, "onResponse: " + jobj);
-                    JsonArray data = jobj.getAsJsonArray("data");
+                    JsonObject data=jobj.getAsJsonObject("data");
+
+                    //  String Login = data.get("msg").getAsString().replaceAll("\"", "");
+
+                    JsonArray data1 = data.getAsJsonArray("data");
                     Log.d(TAG, "Data: " + data);
 
-                    for (int i = 0; i < data.size(); i++) {
+                    for (int i = 0; i < data1.size(); i++) {
 
-                        JsonObject images1 = data.get(i).getAsJsonObject();
+                        JsonObject images1 = data1.get(i).getAsJsonObject();
                         //  String User_id = images1.get("user_id").toString().replaceAll("\"", "");
                         // String listing_id = images1.get("listing_id").toString().replaceAll("\"", "");
                         String credit_id = images1.get("credit_id").toString().replaceAll("\"", "");
@@ -605,6 +815,7 @@ public class DashboardNew extends AppCompatActivity {
                         JsonObject jsonobj = data.get(i).getAsJsonObject();
                         String id = jsonobj.get("id").toString().replaceAll("\"", "");
                         String title = jsonobj.get("title").toString().replaceAll("\"", "");
+                      //  String title = jsonobj.get("title").toString().replaceAll("\"", "");
 
                         //  Log.d(TAG, "Images 1: " + User_id);
                         HashMap<String, String> hashMap = new HashMap<>();
@@ -650,7 +861,7 @@ public class DashboardNew extends AppCompatActivity {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<>();
                 params.put("user_id", globalClass.getId());
-                params.put("view", "viewListingByUser");
+                params.put("view", "viewListingDDByUser");
 
                 Log.d(TAG, "getParams: "+params);
                 return params;

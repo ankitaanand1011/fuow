@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="@color/white">
     <RelativeLayout
@@ -20,22 +21,21 @@
 
             android:layout_gravity="center"/>
 
-        <TextView
+        <ImageView
             android:id="@+id/back_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10sp"
-            android:text="Back"
+            android:src="@mipmap/back"
             android:layout_marginRight="10sp"
-            android:textSize="12sp"
             android:textColor="@color/white"
             android:layout_centerVertical="true"
             android:gravity="center"
             android:layout_alignParentEnd="true"
             android:padding="5dp"
             android:contentDescription="@string/app_name"
-            android:background="@drawable/button_home_screee"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="true"
+            tools:ignore="RtlHardcoded" />
 
     </RelativeLayout>
 
@@ -64,7 +64,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
-                    app:cpb_background_progressbar_color="@color/grey"
+                    app:cpb_background_progressbar_color="@color/red"
                     app:cpb_background_progressbar_width="5dp"
                     app:cpb_progressbar_color="#F44336"
                     app:cpb_progressbar_width="10dp"
@@ -98,6 +98,7 @@
                     android:layout_below="@+id/total1"
                     android:textStyle="bold"
                     android:textSize="10dp"
+
                     android:layout_marginTop="5dp"
 
                     />
@@ -123,7 +124,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
-                    app:cpb_background_progressbar_color="@color/grey"
+                    app:cpb_background_progressbar_color="@color/green"
                     app:cpb_background_progressbar_width="5dp"
                     app:cpb_progressbar_color="#F44336"
                     app:cpb_progressbar_width="10dp"
@@ -142,7 +143,7 @@
                     android:id="@+id/used1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="USED"
+                    android:text="PAID"
                     android:textSize="10dp"
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true"
@@ -182,7 +183,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
-                    app:cpb_background_progressbar_color="@color/grey"
+                    app:cpb_background_progressbar_color="@color/green_dark"
                     app:cpb_background_progressbar_width="5dp"
                     app:cpb_progressbar_color="#F44336"
                     app:cpb_progressbar_width="10dp"
@@ -201,7 +202,7 @@
                     android:id="@+id/balance1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="BALANCE"
+                    android:text="UNPAID"
                     android:textSize="10dp"
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true"
@@ -217,6 +218,7 @@
                     android:layout_below="@+id/balance1"
                     android:textStyle="bold"
                     android:textSize="10dp"
+
                     android:layout_marginTop="5dp"
 
                     />
@@ -241,7 +243,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
-                    app:cpb_background_progressbar_color="@color/grey"
+                    app:cpb_background_progressbar_color="@color/orange"
                     app:cpb_background_progressbar_width="5dp"
                     app:cpb_progressbar_color="#F44336"
                     app:cpb_progressbar_width="10dp"
@@ -260,7 +262,7 @@
                     android:id="@+id/balance2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="BALANCE"
+                    android:text="CANCELLED"
                     android:textSize="10dp"
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true"
@@ -276,6 +278,7 @@
                     android:layout_below="@+id/balance2"
                     android:textStyle="bold"
                     android:textSize="10dp"
+
                     android:layout_marginTop="5dp"
 
                     />

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -20,22 +20,21 @@
 
             android:layout_gravity="center"/>
 
-        <TextView
+        <ImageView
             android:id="@+id/back_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10sp"
-            android:text="Back"
+            android:src="@mipmap/back"
             android:layout_marginRight="10sp"
-            android:textSize="12sp"
             android:textColor="@color/white"
             android:layout_centerVertical="true"
             android:gravity="center"
             android:layout_alignParentEnd="true"
             android:padding="5dp"
             android:contentDescription="@string/app_name"
-            android:background="@drawable/button_home_screee"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="true"
+            tools:ignore="RtlHardcoded" />
 
     </RelativeLayout>
 
@@ -69,13 +68,21 @@
                     android:padding="5dp"
                     android:gravity="center"
                     android:contentDescription="@string/app_name"/>
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="1dp"
+                    android:layout_height="25dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:background="@color/grey"
+                    android:layout_toEndOf="@+id/img1"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Login to my Account"
                     android:layout_marginStart="10dp"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/img1"
+                    android:layout_toEndOf="@+id/view1"
                     android:textColor="@color/dark_grey"
                     android:textSize="16sp"
                     android:layout_marginTop="5dp"
@@ -112,13 +119,21 @@
                     android:padding="5dp"
                     android:gravity="center"
                     android:contentDescription="@string/app_name"/>
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="1dp"
+                    android:layout_height="25dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:background="@color/grey"
+                    android:layout_toEndOf="@+id/img9"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Forgot Password"
                     android:layout_marginStart="10dp"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/img9"
+                    android:layout_toEndOf="@+id/view2"
                     android:textColor="@color/dark_grey"
                     android:textSize="16sp"
                     android:layout_marginTop="5dp"
@@ -154,13 +169,21 @@
                     android:padding="5dp"
                     android:gravity="center"
                     android:contentDescription="@string/app_name"/>
+                <View
+                    android:id="@+id/view3"
+                    android:layout_width="1dp"
+                    android:layout_height="25dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:background="@color/grey"
+                    android:layout_toEndOf="@+id/img6"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Register an Account"
                     android:layout_marginStart="10dp"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/img6"
+                    android:layout_toEndOf="@+id/view3"
                     android:textColor="@color/dark_grey"
                     android:textSize="16sp"
                     android:layout_marginTop="5dp"
@@ -197,13 +220,22 @@
                     android:padding="5dp"
                     android:gravity="center"
                     android:contentDescription="@string/app_name"/>
+                <View
+                    android:id="@+id/view4"
+                    android:layout_width="1dp"
+                    android:layout_height="25dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:background="@color/grey"
+                    android:layout_toEndOf="@+id/img3"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/recommend"
                     android:layout_marginStart="10dp"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/img3"
+                    android:layout_toEndOf="@+id/view4"
                     android:textColor="@color/dark_grey"
                     android:textSize="16sp"
                     android:layout_marginTop="5dp"
@@ -240,13 +272,23 @@
                     android:padding="5dp"
                     android:gravity="center"
                     android:contentDescription="@string/app_name"/>
+
+                <View
+                    android:id="@+id/view5"
+                    android:layout_width="1dp"
+                    android:layout_height="25dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:background="@color/grey"
+                    android:layout_toEndOf="@+id/img19"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Claim a Listing"
                     android:layout_marginStart="10dp"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/img19"
+                    android:layout_toEndOf="@+id/view5"
                     android:textColor="@color/dark_grey"
                     android:textSize="16sp"
                     android:layout_marginTop="5dp"
@@ -283,17 +325,25 @@
                     android:padding="5dp"
                     android:gravity="center"
                     android:contentDescription="@string/app_name"/>
+                <View
+                    android:id="@+id/view6"
+                    android:layout_width="1dp"
+                    android:layout_height="25dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:background="@color/grey"
+                    android:layout_toEndOf="@+id/img13"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Local Business Search Based On Criteria"
                     android:layout_marginStart="10dp"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/img13"
+                    android:layout_toEndOf="@+id/view6"
                     android:textColor="@color/dark_grey"
                     android:textSize="16sp"
                     android:layout_marginTop="5dp"
-                    android:gravity="center" />
+                    android:gravity="start" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -322,13 +372,21 @@
                     android:padding="5dp"
                     android:gravity="center"
                     android:contentDescription="@string/app_name"/>
+                <View
+                    android:id="@+id/view7"
+                    android:layout_width="1dp"
+                    android:layout_height="25dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:background="@color/grey"
+                    android:layout_toEndOf="@+id/img14"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="About Us"
                     android:layout_marginStart="10dp"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/img14"
+                    android:layout_toEndOf="@+id/view7"
                     android:textColor="@color/dark_grey"
                     android:textSize="16sp"
                     android:layout_marginTop="5dp"
@@ -362,13 +420,24 @@
                     android:padding="5dp"
                     android:gravity="center"
                     android:contentDescription="@string/app_name"/>
+
+                <View
+                    android:id="@+id/view8"
+                    android:layout_width="1dp"
+                    android:layout_height="25dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:background="@color/grey"
+                    android:layout_toEndOf="@+id/img2"/>
+
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Contacts"
                     android:layout_marginStart="10dp"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/img2"
+                    android:layout_toEndOf="@+id/view8"
                     android:textColor="@color/dark_grey"
                     android:textSize="16sp"
                     android:layout_marginTop="5dp"

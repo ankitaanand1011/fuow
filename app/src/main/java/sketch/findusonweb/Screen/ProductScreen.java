@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +31,6 @@ import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
 import sketch.findusonweb.Adapter.AdapterProduct;
-import sketch.findusonweb.Adapter.AdapterSearch;
 import sketch.findusonweb.Constants.AppConfig;
 import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
@@ -44,7 +44,8 @@ public class ProductScreen extends AppCompatActivity{
     ProgressDialog pd;
     RecyclerView rv_list_product;
     String TAG = "product";
-    TextView back_img;
+    ImageView back_img;
+    TextView tv_add_products;
     RelativeLayout rl_add_product;
     ArrayList<HashMap<String,String>> list_products;
 
@@ -64,8 +65,8 @@ public class ProductScreen extends AppCompatActivity{
 
 
         back_img =findViewById(R.id.back_img);
-        rv_list_product =findViewById(R.id.list_product);
-        rl_add_product =findViewById(R.id.rl_add_product);
+        rv_list_product =findViewById(R.id.rv_list_product);
+        tv_add_products =findViewById(R.id.tv_add_products);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         rv_list_product.setLayoutManager(mLayoutManager);
@@ -80,7 +81,7 @@ public class ProductScreen extends AppCompatActivity{
         });
 
 
-        rl_add_product.setOnClickListener(new View.OnClickListener() {
+        tv_add_products.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProductScreen.this,AddProductScreen.class);
@@ -111,39 +112,37 @@ public class ProductScreen extends AppCompatActivity{
                 try {
 
                     JsonObject jobj = gson.fromJson(response, JsonObject.class);
-              //      String status = jobj.get("status").toString().replaceAll("\"", "");
-              //      String message = jobj.get("message").toString().replaceAll("\"", "");
-                //    Log.d(TAG, "message: "+message);
-                   // final_search.setText(message);
+                    String success = jobj.get("success").toString().replaceAll("\"", "");
+                   // String message = jobj.get("message").toString().replaceAll("\"", "");
 
-                   // if (status.equals("1")) {
-                        JsonArray products = jobj.getAsJsonArray("products");
+                   if (success.equals("1")) {
+                        JsonArray products = jobj.getAsJsonArray("data");
 
                         for (int i = 0; i < products.size(); i++) {
 
 
 
                             JsonObject images1 = products.get(i).getAsJsonObject();
-                            String fow_id = images1.get("fow_id").toString().replaceAll("\"", "");
+                            String id = images1.get("id").toString().replaceAll("\"", "");
                             String listing_id = images1.get("listing_id").toString().replaceAll("\"", "");
-                            String friendly_url = images1.get("friendly_url").toString().replaceAll("\"", "");
                             String title = images1.get("title").toString().replaceAll("\"", "");
+                            String friendly_url = images1.get("friendly_url").toString().replaceAll("\"", "");
                             String date = images1.get("date").toString().replaceAll("\"", "");
                             String description = images1.get("description").toString().replaceAll("\"", "");
                             String price = images1.get("price").toString().replaceAll("\"", "");
                             String expire_date = images1.get("expire_date").toString().replaceAll("\"", "");
                             String type = images1.get("type").toString().replaceAll("\"", "");
-                            String fw_user_id = images1.get("fw_user_id").toString().replaceAll("\"", "");
                             String listing_name = images1.get("listing_name").toString().replaceAll("\"", "");
                             String images = images1.get("images").toString().replaceAll("\"", "");
                             String keywords = images1.get("keywords").toString().replaceAll("\"", "");
                             String www = images1.get("www").toString().replaceAll("\"", "");
-                            String id = images1.get("id").toString().replaceAll("\"", "");
                             String listingfriendly_url = images1.get("listingfriendly_url").toString().replaceAll("\"", "");
+                            String listing_location_id = images1.get("listing_location_id").toString().replaceAll("\"", "");
+                            String primary_category_id = images1.get("primary_category_id").toString().replaceAll("\"", "");
 
 
                             HashMap<String, String> hashMap = new HashMap<>();
-                            hashMap.put("fow_id", fow_id);
+                            hashMap.put("id", id);
                             hashMap.put("listing_id", listing_id);
                             hashMap.put("friendly_url", friendly_url);
                             hashMap.put("title", title);
@@ -152,7 +151,6 @@ public class ProductScreen extends AppCompatActivity{
                             hashMap.put("price",price);
                             hashMap.put("expire_date",expire_date);
                             hashMap.put("type",type);
-                            hashMap.put("fw_user_id",fw_user_id);
                             hashMap.put("listing_name",listing_name);
                             hashMap.put("images",images);
                             hashMap.put("keywords",keywords);
@@ -169,7 +167,9 @@ public class ProductScreen extends AppCompatActivity{
 
                         AdapterProduct adapterSearch = new AdapterProduct(ProductScreen.this, list_products);
                         rv_list_product.setAdapter(adapterSearch);
-                  //  }
+                  }else {
+                       // Toasty.success(ProductScreen.this, message, Toast.LENGTH_SHORT, true).show();
+                   }
 
 
                     //  JsonObject obj3 = jobj1.get("profileDetails").getAsJsonObject();
@@ -206,8 +206,9 @@ public class ProductScreen extends AppCompatActivity{
 
 
 
-                params.put("listing_id", "808684");
-                params.put("view","getProductsByListing");
+                params.put("user_id", globalClass.getId());
+                params.put("view","myProducts");
+
                 Log.d(TAG, "getParams: "+params);
                 return params;
             }

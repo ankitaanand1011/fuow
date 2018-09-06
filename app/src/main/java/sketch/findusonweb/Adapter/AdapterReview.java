@@ -2,21 +2,29 @@ package sketch.findusonweb.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.Typeface;
+import android.graphics.drawable.LayerDrawable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.github.ivbaranov.mli.MaterialLetterIcon;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
 import sketch.findusonweb.Screen.BrowseProductSingleSelection;
+import sketch.findusonweb.Screen.EditReview;
 
 /**
  * Created by developer on 1/8/18.
@@ -30,11 +38,7 @@ public class AdapterReview  extends RecyclerView.Adapter<AdapterReview.MyViewHol
 
     GlobalClass globalClass;
     DisplayImageOptions defaultOptions;
-
-
-
-
-
+    LayerDrawable stars;
     LayoutInflater inflater;
 
     public AdapterReview(Context c,ArrayList<HashMap<String,String>> Arraylist_review
@@ -68,36 +72,54 @@ public class AdapterReview  extends RecyclerView.Adapter<AdapterReview.MyViewHol
 
 
 
+        final String id =  Arraylist_review.get(position).get("id");
         String name =  Arraylist_review.get(position).get("title");
-        String date =  Arraylist_review.get(position).get("date");
+        String review =  Arraylist_review.get(position).get("review");
         String status =  Arraylist_review.get(position).get("status");
         String ratingBar =  Arraylist_review.get(position).get("rating");
 
+        int[] androidColors = context.getResources().getIntArray(R.array.androidcolors);
+        int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
+
+
+
+
+        stars = (LayerDrawable) holder.rating.getProgressDrawable();
+        stars.getDrawable(2).setColorFilter(context.getResources().getColor(R.color.golden), PorterDuff.Mode.SRC_ATOP);
+        stars.getDrawable(1).setColorFilter(context.getResources().getColor(R.color.golden), PorterDuff.Mode.SRC_ATOP);
+        stars.getDrawable(0).setColorFilter(context.getResources().getColor(R.color.grey), PorterDuff.Mode.SRC_ATOP);
+
 
         holder.name.setText(name);
-        holder.date.setText(date);
-        holder.status.setText(status);
-        holder.ratingBar.setRating(Float.parseFloat(ratingBar));
+        holder.rating.setRating(Float.parseFloat(ratingBar));
+        holder.tv_des.setText(review);
 
 
+        holder.img.setVisibility(View.GONE);
+        holder.icon.setVisibility(View.VISIBLE);
+        holder.icon.setLetter(name);
+        holder.icon.setLetterColor(context.getResources().getColor(R.color.white));
+        holder.icon.setShapeColor(randomAndroidColor);
+        holder.icon.setShapeType(MaterialLetterIcon.Shape.ROUND_RECT);
+        holder.icon.setLetterSize(26);
+        holder.icon.setLetterTypeface(Typeface.SANS_SERIF);
+        holder.icon.setInitials(true);
+        holder.icon.setInitialsNumber(2);
 
-
-
-        //  final HashMap<String, String> hashMap_child = (HashMap<String, String>) getChild(groupPosition, childPosition);
-
-
-/*
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, BrowseProductSingleSelection.class);
-                intent.putExtra("id",Arraylist_review.get(position).get("id"));
-
+            public void onClick(View v) {
+                Intent intent = new Intent(context, EditReview.class);
+                intent.putExtra("id", id);
+                Log.d("tag", "onClick: " + id);
                 context.startActivity(intent);
 
             }
         });
-*/
+
+
+
+
     }
 
     @Override
@@ -107,17 +129,22 @@ public class AdapterReview  extends RecyclerView.Adapter<AdapterReview.MyViewHol
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         // init the item view's
-        TextView name,date,status,edit_review;
-        RatingBar ratingBar;
+
+
+        TextView name,tv_des,edit;
+        RatingBar rating;
+        ImageView img;
+        MaterialLetterIcon icon;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             // get the reference of item view's
-            name =  itemView.findViewById(R.id.title_review_new);
-            date =  itemView.findViewById(R.id.date_review);
-            status =  itemView.findViewById(R.id.status_review);
-            ratingBar =  itemView.findViewById(R.id.ratingBar);
-            edit_review=itemView.findViewById(R.id.edit_review);
+            name = itemView.findViewById(R.id.title_review_new);
+            tv_des = itemView.findViewById(R.id.tv_des);
+            rating = itemView.findViewById(R.id.ratingBar);
+            edit = itemView.findViewById(R.id.edit_review);
+            icon =  itemView.findViewById(R.id.icon);
+            img =  itemView.findViewById(R.id.img);
 
         }
     }

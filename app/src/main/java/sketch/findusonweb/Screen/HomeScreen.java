@@ -48,7 +48,7 @@ import sketch.findusonweb.Utils.Shared_Preference;
 
 public class HomeScreen  extends AppCompatActivity {
     LinearLayout refer_friend_layout,get_quote_layout;
-    String TAG = "Home Screen";
+    String TAG = "home";
     ImageView dialog_cut,profile_img,toolbar_drawer;
     GlobalClass globalClass;
     ProgressDialog pd;
@@ -75,11 +75,10 @@ public class HomeScreen  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen);
 
-        ArcMenu arcMenu =  findViewById(R.id.arcMenu);
+        final ArcMenu arcMenu =  findViewById(R.id.arcMenu);
       //  arcMenu.attachToRecyclerView(recyclerView);
         rl_opacity=findViewById(R.id.rl_opacity);
 
-        tv_browse=findViewById(R.id.tv_browse);
         spaceNavigationView =  findViewById(R.id.space);
 
         // setUpRecyclerView();
@@ -161,13 +160,7 @@ public class HomeScreen  extends AppCompatActivity {
                 }
             }
         });
-        tv_browse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent =new Intent(HomeScreen.this,BrowseJobCategory.class);
-                startActivity(intent);
-            }
-        });
+
         profile_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -223,6 +216,21 @@ public class HomeScreen  extends AppCompatActivity {
 
 
 
+
+        arcMenu.setMinRadius(130);//This method will change child radius programmatically
+
+        arcMenu.setToolTipTextColor(Color.WHITE);
+      //  arcMenu.setToolTipBackColor(Color.WHITE);
+       // arcMenu.setToolTipSide(ArcMenu.BOTTOM_MIDDLE);
+        arcMenu.setToolTipCorner(2);  //set tooltip corner
+        arcMenu.setToolTipPadding(8);  //set tooltip padding
+        arcMenu.setColorNormal(getResources().getColor(R.color.colorPrimary));
+        arcMenu.showTooltip(true);
+        arcMenu.setDuration(600);
+
+
+    //    initArcMenu(arcMenu, STR, ITEM_DRAWABLES);
+
         arcMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -232,25 +240,14 @@ public class HomeScreen  extends AppCompatActivity {
                     rl_all.setEnabled(true);
                 }else {
                     rl_opacity.setVisibility(View.VISIBLE);
+
                     rl_all.setEnabled(false);
                 }
 
             }
         });
-        arcMenu.setMinRadius(130);//This method will change child radius programmatically
-
-        arcMenu.setToolTipTextColor(Color.WHITE);
-      //  arcMenu.setToolTipBackColor(Color.WHITE);
-        arcMenu.setToolTipSide(ArcMenu.BOTTOM_MIDDLE);
-        arcMenu.setToolTipCorner(2);  //set tooltip corner
-        arcMenu.setToolTipPadding(8);  //set tooltip padding
-        arcMenu.setColorNormal(getResources().getColor(R.color.colorPrimary));
-        arcMenu.showTooltip(true);
-        arcMenu.setDuration(600);
-
 
         initArcMenu(arcMenu, STR, ITEM_DRAWABLES);
-
 
        /* final int itemCount = ITEM_DRAWABLES.length;
         for (int i = 0; i < itemCount; i++) {
@@ -340,13 +337,47 @@ public class HomeScreen  extends AppCompatActivity {
             menu.setChildSize(item.getIntrinsicHeight()); // fit menu child size exactly same as fab
             menu.setToolTipTextColor(Color.WHITE);
             menu.setToolTipTextSize(16);
-            menu.setToolTipSide(ArcMenu.BOTTOM_MIDDLE);
+            menu.setToolTipSide(ArcMenu.TOOLTIP_UP);
+
             final int position = i;
             menu.addItem(item, str[i], new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(HomeScreen.this, str[position],
-                            Toast.LENGTH_SHORT).show();
+                  /*  Toast.makeText(HomeScreen.this, str[position],
+                            Toast.LENGTH_SHORT).show();*/
+                    Log.d(TAG, "onClick position: "+position);
+                    if(position == 0 ){
+
+                        rl_opacity.setVisibility(View.GONE);
+                        Intent intent = new Intent(HomeScreen.this,BrowseJobScreen.class);
+                        startActivity(intent);
+
+                    }else if(position == 1){
+
+                        rl_opacity.setVisibility(View.GONE);
+                        Intent intent = new Intent(HomeScreen.this,BrowseCategory.class);
+                        startActivity(intent);
+
+                    }else if(position == 2){
+
+                        rl_opacity.setVisibility(View.GONE);
+                        Intent intent = new Intent(HomeScreen.this,BrowseLocation.class);
+                        startActivity(intent);
+
+                    }else if(position == 3){
+
+                        /*rl_opacity.setVisibility(View.GONE);
+                        Intent intent = new Intent(HomeScreen.this,BrowseProduct.class);
+                        startActivity(intent);*/
+
+                    }else if(position == 4){
+
+                        rl_opacity.setVisibility(View.GONE);
+                        Intent intent = new Intent(HomeScreen.this,BrowseProduct.class);
+                        startActivity(intent);
+                    }
+
+
                 }
             });
         }
@@ -467,9 +498,10 @@ public class HomeScreen  extends AppCompatActivity {
 
         dialog.show();
     }
+
     private static boolean isValidEmail(String email) {
-        return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
-    }
+        return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();}
+
     private void inviteFriend(final String user_first_name, final String user_last_name, final String user_email,  final String user_organizaton, final String phone_number, final String campaign_source_field, final String view) {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
@@ -565,6 +597,7 @@ public class HomeScreen  extends AppCompatActivity {
         strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
 
     }
+
     private void submitFriend(final String user_first_name, final String user_last_name, final String user_email,  final String user_organizaton, final String phone_number, final String campaign_source_field, final String view) {
         // Tag used to cancel the request
         String tag_string_req = "req_login";

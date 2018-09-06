@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.github.ivbaranov.mli.MaterialLetterIcon;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -26,6 +28,7 @@ import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
@@ -50,6 +53,7 @@ public class AdapterBrowseCategory extends RecyclerView.Adapter<AdapterBrowseCat
     ArrayList<HashMap<String, HashMap<String, String>>> Arraylist_DataChild;
     ImageLoader loader;
     LayoutInflater inflater;
+
 
     public AdapterBrowseCategory(Context c, ArrayList<HashMap<String,String>> list_claim
                             ) {
@@ -90,20 +94,7 @@ public class AdapterBrowseCategory extends RecyclerView.Adapter<AdapterBrowseCat
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
 
-        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
-                .cacheOnDisk(true).cacheInMemory(true)
-                //  .showImageOnLoading(R.mipmap.loading_black128px)
-                //  .showImageForEmptyUri(R.mipmap.no_image)
-                //  .showImageOnFail(R.mipmap.no_image)
-                //  .showImageOnFail(R.mipmap.img_failed)
-                .imageScaleType(ImageScaleType.EXACTLY)
-                .displayer(new FadeInBitmapDisplayer(300)).build();
-        final ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context.getApplicationContext())
-                .defaultDisplayImageOptions(defaultOptions)
-                .memoryCache(new WeakMemoryCache())
-                .diskCacheSize(100 * 1024 * 1024).build();
-        ImageLoader.getInstance().init(config);
-        loader = ImageLoader.getInstance();
+
 
 
         String name =  list_claim.get(position).get("title");
@@ -114,38 +105,29 @@ public class AdapterBrowseCategory extends RecyclerView.Adapter<AdapterBrowseCat
 
         holder.name.setText(name);
 
-        int type=position;
-        //For each row processing respectively
-/*
-        switch(type){
-            case 0:
-                holder.itemView.setBackgroundColor(Color.parseColor("#ffffff"));
-                break;
-            case 1:
-                holder.itemView.setBackgroundColor(Color.parseColor("#ffffff"));
-                break;
-            case 2:
-                holder.itemView.setBackgroundColor(Color.parseColor("#ffffff"));
-                break;
-            case 3:
-                holder.itemView.setBackgroundColor(Color.parseColor("#ffffff"));
-                break;
-            case 4:
-                holder.itemView.setBackgroundColor(Color.parseColor("#ffffff"));
-                break;
-            case 5:
-                holder.itemView.setBackgroundColor(Color.parseColor("#ffffff"));
-                break;
-            case 6:
-                holder.itemView.setBackgroundColor(Color.parseColor("#ffffff"));
-                break;
+        int[] androidColors = context.getResources().getIntArray(R.array.androidcolors);
+        int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
+
+
+        if (list_claim.get(position).get("image").equals("")){
+
+            holder.image.setVisibility(View.GONE);
+            holder.icon.setVisibility(View.VISIBLE);
+            holder.icon.setLetter(name);
+            holder.icon.setLetterColor(context.getResources().getColor(R.color.white));
+            holder.icon.setShapeColor(randomAndroidColor);
+            holder.icon.setShapeType(MaterialLetterIcon.Shape.ROUND_RECT);
+            holder.icon.setLetterSize(26);
+            holder.icon.setLetterTypeface(Typeface.SANS_SERIF);
+            holder.icon.setInitials(true);
+            holder.icon.setInitialsNumber(2);
+
+        }else {
+            holder.image.setVisibility(View.VISIBLE);
+            holder.icon.setVisibility(View.GONE);
+            loader.displayImage(list_claim.get(position).get("image"), holder.image, defaultOptions);
         }
-*/
 
-
-        loader.displayImage(list_claim.get(position).get("image"), holder.image , defaultOptions);
-
-        //  final HashMap<String, String> hashMap_child = (HashMap<String, String>) getChild(groupPosition, childPosition);
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -169,11 +151,13 @@ public class AdapterBrowseCategory extends RecyclerView.Adapter<AdapterBrowseCat
         // init the item view's
         TextView name;
         ImageView image;
+        MaterialLetterIcon icon;
         public MyViewHolder(View itemView) {
             super(itemView);
             // get the reference of item view's
             name =  itemView.findViewById(R.id.name);
             image = (ImageView) itemView.findViewById(R.id.image);
+            icon =  itemView.findViewById(R.id.icon);
         }
     }
 }

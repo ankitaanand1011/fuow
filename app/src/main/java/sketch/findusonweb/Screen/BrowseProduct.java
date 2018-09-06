@@ -42,8 +42,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
-import sketch.findusonweb.Adapter.AdapterBrowse;
-import sketch.findusonweb.Adapter.AdapterSearch;
 import sketch.findusonweb.Adapter.BrowseProductAdapter;
 import sketch.findusonweb.Constants.AppConfig;
 import sketch.findusonweb.Controller.GlobalClass;
@@ -53,7 +51,8 @@ import sketch.findusonweb.Utils.Shared_Preference;
 public class BrowseProduct extends AppCompatActivity{
     ListView listView;
     String TAG = "Listing";
-    TextView back_img,final_search;
+    TextView final_search;
+    ImageView back_img;
     ImageView img_grid,seach_button,header_img,menu;
     String textString;
     Shared_Preference prefrence;
@@ -104,7 +103,7 @@ public class BrowseProduct extends AppCompatActivity{
         // img_grid=findViewById(R.id.img_grid);
         listView=findViewById(R.id.list);
         final_search=findViewById(R.id.textView);
-        back_img=findViewById(R.id.cart_img);
+        back_img=findViewById(R.id.back_img);
         header_img=findViewById(R.id.header_image);
         ib_icon_slide=findViewById(R.id.ib_icon_slide);
         rl_slide_layout=findViewById(R.id.rl_slide_layout);
@@ -194,6 +193,8 @@ public class BrowseProduct extends AppCompatActivity{
                 if(globalClass.isNetworkAvailable()){
                     //ViewList_new(search_edit.getText().toString());
 
+                    ViewList_new(search_edit.getText().toString());
+
                 }else{
                     Toasty.warning(BrowseProduct.this, "Please check your internet connect", Toast.LENGTH_SHORT, true).show();
                 }
@@ -247,7 +248,7 @@ public class BrowseProduct extends AppCompatActivity{
                 Log.d(TAG, "JOB RESPONSE: " + response.toString());
 
                 pd.dismiss();
-              //  list_names.clear();
+                list_names.clear();
 
                 Gson gson = new Gson();
 
@@ -374,12 +375,11 @@ public class BrowseProduct extends AppCompatActivity{
         strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
 
     }
-/*
     public void ViewList_new(final String product) {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
 
-        pd.show();
+      //  pd.show();
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
                 AppConfig.URL_DEV, new Response.Listener<String>() {
@@ -388,23 +388,22 @@ public class BrowseProduct extends AppCompatActivity{
             public void onResponse(String response) {
                 Log.d(TAG, "Invitation response: " + response.toString());
 
-                pd.dismiss();
-
+              //  pd.dismiss();
+                list_names.clear();
                 Gson gson = new Gson();
 
                 try {
 
-                    JsonObject jobj = gson.fromJson(response, JsonObject.class);
-                    String status = jobj.get("status").toString().replaceAll("\"", "");
-                    String message = jobj.get("message").toString().replaceAll("\"", "");
-                    Log.d(TAG, "message: "+message);
-                    final_search.setText(message);
 
-                    if (status.equals("1")) {
+                    JsonObject jobj = gson.fromJson(response, JsonObject.class);
+                    String result = jobj.get("success").toString().replaceAll("\"", "");
+                    // String message = jobj.get("msg").toString().replaceAll("\"", "");
+
+
+                    if (result.equals("1")) {
                         JsonArray images = jobj.getAsJsonArray("data");
 
                         for (int i = 0; i < images.size(); i++) {
-
                             JsonObject images1 = images.get(i).getAsJsonObject();
                             String title = images1.get("title").toString().replaceAll("\"", "");
                             String listing_id = images1.get("listing_id").toString().replaceAll("\"", "");
@@ -427,31 +426,45 @@ public class BrowseProduct extends AppCompatActivity{
                             String sync = images1.get("sync").toString().replaceAll("\"", "");
                             String listing_name = images1.get("listing_name").toString().replaceAll("\"", "");
                             String listingfriendly_url = images1.get("listingfriendly_url").toString().replaceAll("\"", "");
-                            String category = images1.get("category").toString().replaceAll("\"", "");
-
-                            String image_url = images1.get("image_url").toString().replaceAll("\"", "");
+                            String image_url = images1.get("images").toString().replaceAll("\"", "");
                             String id = images1.get("id").toString().replaceAll("\"", "");
 
                             HashMap<String, String> hashMap = new HashMap<>();
                             hashMap.put("title", title);
+                            hashMap.put("listing_id", listing_id);
+                            hashMap.put("listing_location_id", listing_location_id);
+                            hashMap.put("primary_category_id", primary_category_id);
+                            hashMap.put("friendly_url", friendly_url);
+                            hashMap.put("date", date);
+                            hashMap.put("meta_title", meta_title);
+                            hashMap.put("meta_description", meta_description);
+                            hashMap.put("meta_keywords", meta_keywords);
+                            hashMap.put("keywords", keywords);
+                            hashMap.put("price", price);
+                            hashMap.put("expire_date", expire_date);
+                            hashMap.put("www", www);
+                            hashMap.put("buttoncode", buttoncode);
+                            hashMap.put("type", type);
+                            hashMap.put("priority", priority);
+                            hashMap.put("custom_15", custom_15);
+                            hashMap.put("sync", sync);
+                            hashMap.put("listingfriendly_url", listingfriendly_url);
                             hashMap.put("description", description);
-                            hashMap.put("primary_category_name", listing_name);
-                            hashMap.put("logo_url", image_url);
+                            hashMap.put("listing_name", listing_name);
+                            hashMap.put("images", image_url);
                             hashMap.put("id", id);
-                            hashMap.put("location_name",category);
+
 
                             list_names.add(hashMap);
-                            Log.d(TAG, "id: " + id);
+                            Log.d(TAG, "Hashmap " + hashMap);
                             // Toasty.success(SearchListing.this, login, Toast.LENGTH_SHORT, true).show();
 
                         }
-
-                        BrowseProductAdapter adapterSearch = new BrowseProductAdapter(BrowseProduct.this, list_names);
-                        listView.setAdapter(adapterSearch);
+                        adapterBrowse = new BrowseProductAdapter(BrowseProduct.this, list_names);
+                        listView.setAdapter(adapterBrowse);
                     }
 
-
-                    //  JsonObject obj3 = jobj1.get("profileDetails").getAsJsonObject();
+                        //  JsonObject obj3 = jobj1.get("profileDetails").getAsJsonObject();
 
                     //  Log.d(TAG, "Token \n" + logo_allow);
 
@@ -485,11 +498,11 @@ public class BrowseProduct extends AppCompatActivity{
 
 
 
-                params.put("title", product);
-                params.put("description", getIntent().getStringExtra("description"));
-                params.put("category", getIntent().getStringExtra("category"));
-                params.put("keywords", getIntent().getStringExtra("keywords"));
-                params.put("page", getIntent().getStringExtra("page"));
+                params.put("title", "");
+                params.put("description", "");
+                params.put("category", "");
+                params.put("keywords",product);
+                params.put("page", "");
                 params.put("view", globalClass.browseProducts);
                 Log.d(TAG, "getParams: "+params);
                 return params;
@@ -502,7 +515,6 @@ public class BrowseProduct extends AppCompatActivity{
         strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
 
     }
-*/
 
 
     private void BrowseFilter(final String keywords,final String title,final String description,final String location,final String category ,final String price1,final String price2,final String grade )

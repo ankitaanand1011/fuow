@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -25,11 +27,14 @@ public class ChatScreen extends Activity implements OnItemClickListener {
 
 	List<RowItem> rowItems;
 	ListView mylistview;
+	ImageView img_back;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.chat_screen);
+
+		img_back = findViewById(R.id.img_back);
 
 		rowItems = new ArrayList<RowItem>();
 
@@ -53,6 +58,13 @@ public class ChatScreen extends Activity implements OnItemClickListener {
 		mylistview.setAdapter(adapter);
 
 		mylistview.setOnItemClickListener(this);
+
+		img_back.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
 
 	}
 

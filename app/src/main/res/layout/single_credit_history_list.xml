@@ -10,10 +10,9 @@
 
         >
         <TextView
-            android:id="@+id/toolbar_drawer"
+            android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/listview_32"
             android:padding="5dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
@@ -58,6 +57,8 @@
                     android:layout_width="match_parent"
                     android:gravity="center"
                     android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/red"
                     android:layout_height="wrap_content"
                     android:padding="5dp"/>
 
@@ -84,6 +85,8 @@
                     android:layout_width="match_parent"
                     android:gravity="center"
                     android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/red"
                     android:layout_height="wrap_content"
                     android:padding="5dp"/>
 

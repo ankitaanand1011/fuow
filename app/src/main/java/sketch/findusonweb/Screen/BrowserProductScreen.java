@@ -17,6 +17,9 @@ import sketch.findusonweb.R;
 public class BrowserProductScreen extends AppCompatActivity {
    Button search_product;
    TextView search_by_name,search_by_cat,search_by_keyword,search_by_description;
+
+
+
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.browse_product);

@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -40,7 +41,9 @@ public class ClaimBusinessScreen extends AppCompatActivity {
 
     ListView claim_business_lv;
     String TAG = "claim";
-    TextView back_img,tv_submit;
+    ImageView back_img;
+    TextView tv_submit;
+
 
     Shared_Preference prefrence;
     Context context;

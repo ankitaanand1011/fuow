@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".Screen.HomeScreen">
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/grey_dashboard"
+
+        >
+        <TextView
+            android:id="@+id/tv_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order :"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/tv_order_id"
+            android:layout_toEndOf="@+id/tv_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_centerVertical="true"
+            android:gravity="start"
+            android:textSize="16sp"/>
+
+
+        <TextView
+            android:id="@+id/tv_date_value_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:textSize="16sp"
+            tools:ignore="RelativeOverlap" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_proposal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_below="@+id/toolbar">
+        <RelativeLayout
+            android:id="@+id/rl_image_manage_proposal"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerVertical="true">
+            <com.github.ivbaranov.mli.MaterialLetterIcon
+                android:id="@+id/icon"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/imageView1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:src="@mipmap/big"
+                android:scaleType="fitXY"
+                app:riv_corner_radius="15dip"
+                app:riv_border_width="3dip"
+                app:riv_oval="false"
+                app:riv_border_color="@color/space_transparent"
+                />
+
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view_1"
+            android:layout_width="2dp"
+            android:layout_toEndOf="@+id/rl_image_manage_proposal"
+            android:layout_height="80dp"
+            android:layout_centerVertical="true"
+            android:background="@color/grey"/>
+        <RelativeLayout
+            android:id="@+id/rl_text_manage_proposal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_toStartOf="@+id/rl_eclipse_manage_proposal"
+            android:layout_toEndOf="@+id/view_1">
+
+            <TextView
+                android:id="@+id/tv_manage_proposal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/listview_32"
+                android:gravity="start"
+                android:textSize="14sp"
+                android:text="Your Proposal"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+
+                />
+            <LinearLayout
+                android:id="@+id/rl_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_manage_proposal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_listing_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="LISTING NAME : "
+                    android:textSize="14sp"/>
+                <TextView
+                    android:id="@+id/tv_listing_name_val"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:textSize="16sp"/>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rl_order_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_order"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TYPE : "
+                    android:layout_weight="1"
+                    android:textSize="14sp"/>
+                <TextView
+                    android:id="@+id/tv_type_order_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:textSize="14sp"/>
+
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_eclipse_manage_proposal"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:layout_marginLeft="10dp">
+
+            <RelativeLayout
+                android:id="@+id/rl_cost_in_pound"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_green_dashboard"
+
+                android:layout_marginRight="5dp"
+
+                >
+                <TextView
+                    android:id="@+id/tv_amount_order_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"/>
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_below="@+id/rl_cost_in_pound"
+                android:id="@+id/rl_complete_order"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_yellow_dashboard"
+                android:layout_marginTop="10dp"
+
+                >
+                <TextView
+                    android:id="@+id/view_order"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:text="VIEW ORDER"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"/>
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_below="@+id/rl_complete_order"
+                android:id="@+id/rl_complete_order1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_grey_dashboard"
+                android:layout_marginTop="5dp"
+
+                >
+                <TextView
+                    android:id="@+id/tv_cancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:text="CANCEL"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"/>
+
+
+            </RelativeLayout>
+
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:padding="10dp"
+       >
+        <TextView
+            android:id="@+id/tv_order_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="ORDER STATUS : "
+            android:textSize="12sp"/>
+        <TextView
+            android:id="@+id/tv_status_order_new"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/tv_order_status"
+            android:layout_centerVertical="true"
+            android:textColor="@color/black"
+            android:gravity="start"
+            android:textSize="12sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/tv_status_order_new">
+
+            <TextView
+                android:id="@+id/tv_invoice_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="INVOICE STATUS : "
+                android:textSize="12sp"/>
+            <TextView
+                android:id="@+id/tv_invoice_status_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:gravity="start"
+                android:textSize="12sp"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"
+        android:layout_marginBottom="10dp"/>
+
+</LinearLayout>

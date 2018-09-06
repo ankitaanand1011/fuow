@@ -42,7 +42,7 @@ public class ClaimBusiness extends AppCompatActivity {
 
     ListView claim_business_lv;
     String TAG = "claim";
-    TextView back_img;
+    ImageView back_img;
     Shared_Preference prefrence;
     Context context;
     GlobalClass globalClass;
@@ -74,6 +74,14 @@ public class ClaimBusiness extends AppCompatActivity {
             public void onClick(View v) {
                 String business_name_text = edit_search_by_business.getText().toString();
                 claimBusiness(business_name_text);
+            }
+        });
+
+        ImageView back_img = findViewById(R.id.back_img);
+        back_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 

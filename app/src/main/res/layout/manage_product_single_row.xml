@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Screen.HomeScreen">
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/grey_dashboard"
+
+        >
+        <TextView
+            android:id="@+id/tv_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="ID :"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:layout_marginStart="10dp"
+            />
+        <TextView
+            android:id="@+id/tv_id_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_toEndOf="@+id/tv_id"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:layout_marginStart="10dp"
+            />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            tools:ignore="RelativeOverlap">
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_marginEnd="10dp"
+
+            android:layout_toStartOf="@+id/tv_price_value"
+            android:text="Price :"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_price_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentEnd="true"
+            />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_proposal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/toolbar">
+
+        <RelativeLayout
+            android:id="@+id/rl_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:gravity="center">
+            <com.github.ivbaranov.mli.MaterialLetterIcon
+                android:id="@+id/icon"
+                android:layout_width="70dp"
+                android:layout_height="70dp" />
+
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_centerVertical="true"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/invite_fr"
+                android:contentDescription="@string/app_name" />
+
+
+        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/rl_text_manage_proposal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_toEndOf="@+id/rl_img"
+            android:layout_marginStart="5dp"
+            android:layout_toStartOf="@+id/rl_eclipse_manage_proposal"
+            android:layout_centerVertical="true">
+
+            <RelativeLayout
+                android:id="@+id/rl_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_des"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:textColor="@color/dark_grey"
+
+                    />
+
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_cat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:textColor="@color/dark_grey"
+
+                    />
+
+
+
+
+            </RelativeLayout>
+
+
+
+
+        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/rl_eclipse_manage_proposal"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:layout_marginStart="5dp">
+
+            <RelativeLayout
+                android:id="@+id/rl_edit"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_yellow_dashboard"
+
+                android:layout_marginRight="5dp"
+
+                >
+                <TextView
+                    android:id="@+id/tv_amount_value_order"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:text="Edit"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"/>
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_below="@+id/rl_edit"
+                android:id="@+id/rl_delete"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_grey_dashboard"
+                android:layout_marginTop="10dp"
+
+                >
+                <TextView
+                    android:id="@+id/tv_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:text="Delete"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"/>
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
+</LinearLayout>
+

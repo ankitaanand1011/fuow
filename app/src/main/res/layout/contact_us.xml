@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimaryDark"
+        >
+
+        <ImageView
+            android:layout_width="120sp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/logo_white"
+            android:layout_centerInParent="true"
+
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:id="@+id/back_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:src="@mipmap/back"
+            android:layout_marginRight="10sp"
+            android:textColor="@color/white"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_alignParentEnd="true"
+            android:padding="5dp"
+            android:contentDescription="@string/app_name"
+            android:layout_alignParentRight="true"
+            tools:ignore="RtlHardcoded" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_below="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/tv_date_requested"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="CONTACT US  : "
+                android:background="@color/grey_dashboard"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+               
+                />
+
+            <TextView
+                android:id="@+id/tv_date_manage_proposal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/a_contact_us"
+                android:textColor="@color/dark_grey"
+              
+                />
+
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="TEXT US  : "
+                android:background="@color/grey_dashboard"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+              
+                />
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/a_text_us"
+                android:textColor="@color/dark_grey"
+              
+                />
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="COMPLIMENTARY MEETING  : "
+                android:background="@color/grey_dashboard"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+             
+                />
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/a_meeting"
+                android:textColor="@color/dark_grey"
+              
+                />
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="ADDRESS  : "
+                android:background="@color/grey_dashboard"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+               
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/add_a"
+                        android:textColor="@color/dark_grey"
+
+                        />
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="@string/add_b"
+                        android:layout_weight="1"
+                        android:textColor="@color/dark_grey"
+                      
+                        />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="80dp"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="@color/grey"/>
+
+            </RelativeLayout>
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="ADDRESS  : "
+                android:background="@color/grey_dashboard"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:padding="5dp"
+                    android:textColor="@color/dark_grey"
+                    />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="shajskdh"
+                    android:padding="5dp"
+                    android:textSize="14sp"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/black"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/grey"/>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    android:padding="5dp"
+
+                    android:textColor="@color/dark_grey"
+                    />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="gdhjkdks@hsdkjfh.cndc"
+                    android:padding="5dp"
+                    android:textSize="14sp"
+                    android:inputType="textEmailAddress"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/black"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/grey"/>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Confirm Email"
+                    android:padding="5dp"
+
+                    android:textColor="@color/dark_grey"
+                    />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="gdhjkdks@hsdkjfh.cndc"
+                    android:padding="5dp"
+                    android:textSize="14sp"
+                    android:inputType="textEmailAddress"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/black"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/grey"/>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Message"
+                    android:padding="5dp"
+
+                    android:textColor="@color/dark_grey"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@drawable/grey_stoke_bg">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="gdhjkdks@hsdkjfh.cndc"
+                    android:padding="5dp"
+                    android:textSize="14sp"
+                    android:maxLines="3"
+                    android:inputType="textEmailAddress"
+                    android:backgroundTint="@android:color/transparent"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/black"
+                    />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SUBMIT"
+                android:textColor="@color/white"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/button_d_blue_dashboard"
+                />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

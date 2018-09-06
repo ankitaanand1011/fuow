@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -51,10 +52,25 @@ public class AdapterCreditHistory extends RecyclerView.Adapter<AdapterCreditHist
 
 
 
+        if (list_names.get(position).get("type").equals("paid")){
+
+            holder.toolbar.setBackgroundColor(mContext.getResources().getColor(R.color.red));
+            holder.tv_debited_point.setText(list_names.get(position).get("points"));
+            holder.tv_credited_point.setText("-");
+        }else{
 
 
-        holder.tv_credited_point.setText(list_names.get(position).get("points"));
+            holder.toolbar.setBackgroundColor(mContext.getResources().getColor(R.color.green));
+            holder.tv_credited_point.setText(list_names.get(position).get("points"));
+            holder.tv_debited_point.setText("-");
+        }
+
+     //   holder.tv_credited_point.setText(list_names.get(position).get("points"));
+        holder.tv_name.setText(list_names.get(position).get("name"));
+
+      //  holder.tv_debited_point.setText(list_names.get(position).get("points"));
      //   holder. name.setText(list_names.get(position).get("name"));
+/*
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +81,7 @@ public class AdapterCreditHistory extends RecyclerView.Adapter<AdapterCreditHist
                 mContext.startActivity(intent);
             }
         });
+*/
 
 
 
@@ -78,12 +95,17 @@ public class AdapterCreditHistory extends RecyclerView.Adapter<AdapterCreditHist
     public class MyViewHolder extends RecyclerView.ViewHolder {
         // init the item view's
 
-        TextView tv_credited_point,name;
+        TextView tv_name,tv_credited_point,tv_debited_point,tv_balance;
+        RelativeLayout toolbar;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             // get the reference of item view's
-            tv_credited_point=itemView.findViewById(R.id.credit_point);
+            tv_credited_point=itemView.findViewById(R.id.tv_credited_point);
+            tv_debited_point=itemView.findViewById(R.id.tv_debited_point);
+            tv_balance=itemView.findViewById(R.id.tv_balance);
+            tv_name=itemView.findViewById(R.id.tv_name);
+            toolbar=itemView.findViewById(R.id.toolbar);
           //  name=itemView.findViewById(R.id.name);
 
         }

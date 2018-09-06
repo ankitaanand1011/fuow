@@ -24,6 +24,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -93,7 +94,9 @@ import sketch.findusonweb.R;
 
 
 public class ServiceDetailScreen extends AppCompatActivity  {
-    TextView tv_back,tv_name,tv_des,tv_category,detail_about_us,location_list,txt_download,txt_suggestion;
+
+    ImageView tv_back;
+    TextView tv_name,tv_des,tv_category,detail_about_us,location_list,txt_download,txt_suggestion;
     ProgressDialog pd;
     String TAG = "ServiceDetail";
     GoogleMap map;
@@ -135,7 +138,7 @@ public class ServiceDetailScreen extends AppCompatActivity  {
         txt_suggestion=findViewById(R.id.txt_suggestion);
         rl_pdflayout=findViewById(R.id.rl_map);
         txt_download=findViewById(R.id.txt_download);
-        tv_back = findViewById(R.id.tv_back);
+        tv_back = findViewById(R.id.back_img);
         tv_name = findViewById(R.id.tv_name);
         tv_des = findViewById(R.id.tv_des);
        // rl_message=findViewById(R.id.rl_message);

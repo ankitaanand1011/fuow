@@ -37,8 +37,9 @@ import java.util.Map;
 import es.dmoral.toasty.Toasty;
 
 import sketch.findusonweb.Adapter.AdapterFavorite;
-import sketch.findusonweb.Adapter.AdapterReview;
-import sketch.findusonweb.Adapter.AdapterToDoScreen;
+
+import sketch.findusonweb.Adapter.AdapterToDoDetails;
+
 import sketch.findusonweb.Constants.AppConfig;
 import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
@@ -47,7 +48,8 @@ import sketch.findusonweb.Utils.Shared_Preference;
 public class ToDoScreen extends AppCompatActivity {
     ListView listView;
     String TAG = "Listing";
-    TextView back_img,final_search,cart_img,view_all_favorite,view_all,view_all_review,credit_tv;
+    ImageView back_img;
+    TextView final_search,cart_img,view_all_favorite,view_all,view_all_review,credit_tv;
     ImageView img_grid,seach_button,header_img,menu;
     String textString;
     Shared_Preference prefrence;
@@ -55,9 +57,9 @@ public class ToDoScreen extends AppCompatActivity {
     GlobalClass globalClass;
     ProgressDialog pd;
     EditText search_edit;
-    AdapterToDoScreen adapterToDoScreen;
+    AdapterToDoDetails adapterToDo;
     AdapterFavorite adapterFavorite;
-    AdapterReview adapterReview;
+
     ArrayList<HashMap<String,String>> list_namesfavorite;
     ArrayList<HashMap<String,String>> list_names;
     ArrayList<HashMap<String,String>> Arraylist_review;
@@ -66,9 +68,9 @@ public class ToDoScreen extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_do_screen);
-       cart_img=findViewById(R.id.back_img);
-       view_all_favorite=findViewById(R.id.view_all);
-       credit_tv=findViewById(R.id.my_credit_tv);
+       back_img=findViewById(R.id.back_img);
+     //  view_all_favorite=findViewById(R.id.view_all);
+    //   credit_tv=findViewById(R.id.my_credit_tv);
         view_all_review=findViewById(R.id.view_all_review);
         // menu=findViewById(R.id.menu);
         globalClass = (GlobalClass) getApplicationContext();
@@ -79,59 +81,33 @@ public class ToDoScreen extends AppCompatActivity {
         pd.setMessage(getResources().getString(R.string.loading));
         if (globalClass.isNetworkAvailable()) {
             if (globalClass.getLogin_status()) {
-               /* Intent intent = new Intent(HomeScreen.this, HomeScreen.class);
-                startActivity(intent);
-                finish();*/
+                ToDoList();
             }
         } else {
             Toasty.info(ToDoScreen.this, getResources().getString(R.string.check_internet), Toast.LENGTH_LONG, true).show();
         }
 
 
-        cart_img.setOnClickListener(new View.OnClickListener() {
+
+        list_names = new ArrayList<>();
+        list_namesfavorite=new ArrayList<>();
+        Arraylist_review =new ArrayList<>();
+        recyclerView_to = findViewById(R.id.rv_to_do);
+
+
+        recyclerView_to.setNestedScrollingEnabled(true);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView_to.setLayoutManager(mLayoutManager);
+
+        back_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
 
-        list_names = new ArrayList<>();
-        list_namesfavorite=new ArrayList<>();
-        Arraylist_review =new ArrayList<>();
-        recyclerView_to = findViewById(R.id.to_do);
-        recyclerView_favorite=findViewById(R.id.favorites);
-        recyclerView_review=findViewById(R.id.my_reviews);
 
-        recyclerView_to.setNestedScrollingEnabled(true);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView_to.setLayoutManager(mLayoutManager);
 
-        recyclerView_favorite.setNestedScrollingEnabled(true);
-        RecyclerView.LayoutManager mLayoutManagerFavorite = new LinearLayoutManager(getApplicationContext());
-        recyclerView_favorite.setLayoutManager(mLayoutManagerFavorite);
-
-        recyclerView_review.setNestedScrollingEnabled(true);
-        RecyclerView.LayoutManager mLayoutManagerReview= new LinearLayoutManager(getApplicationContext());
-        recyclerView_review.setLayoutManager(mLayoutManagerReview);
-        ToDoList();
-        view_all_favorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplication(),Favorites.class));
-            }
-        });
-        view_all_review.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplication(),Listings.class));
-            }
-        });
-        credit_tv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplication(),CreditHistory.class));
-            }
-        });
 
     }
     private void ToDoList() {
@@ -156,13 +132,16 @@ public class ToDoScreen extends AppCompatActivity {
 
 
                     JsonObject jobj = gson.fromJson(response, JsonObject.class);
+
+
                     Log.d(TAG, "onResponse: " + jobj);
-                    JsonArray data = jobj.getAsJsonArray("data");
+                    JsonObject data=jobj.getAsJsonObject("data");
+                    JsonArray data1 = data.getAsJsonArray("data");
                     Log.d(TAG, "Data: " + data);
 
-                    for (int i = 0; i < data.size(); i++) {
+                    for (int i = 0; i < data1.size(); i++) {
 
-                        JsonObject images1 = data.get(i).getAsJsonObject();
+                        JsonObject images1 = data1.get(i).getAsJsonObject();
                       //  String User_id = images1.get("user_id").toString().replaceAll("\"", "");
                        // String listing_id = images1.get("listing_id").toString().replaceAll("\"", "");
                         String credit_id = images1.get("credit_id").toString().replaceAll("\"", "");
@@ -171,7 +150,7 @@ public class ToDoScreen extends AppCompatActivity {
                         String status = images1.get("status").toString().replaceAll("\"", "");
                        // String sync = images1.get("sync").toString().replaceAll("\"", "");
                         String todo_task = images1.get("todo_task").toString().replaceAll("\"", "");
-//                        String credits_points = images1.get("credits_points").toString().replaceAll("\"", "");
+                       // String credits_points = images1.get("credits_points").toString().replaceAll("\"", "");
                         String fw_id = images1.get("fw_id").toString().replaceAll("\"", "");
 
                       //  Log.d(TAG, "Images 1: " + User_id);
@@ -182,9 +161,10 @@ public class ToDoScreen extends AppCompatActivity {
                         hashMap.put("points", points);
                        // hashMap.put("date", date);
                         hashMap.put("status", status);
+
                        // hashMap.put("sync", sync);
                         hashMap.put("todo_task", todo_task);
-                        //hashMap.put("credits_points", credits_points);
+                      //  hashMap.put("credits_points", credits_points);
                         hashMap.put("fw_id", fw_id);
 
 
@@ -194,10 +174,10 @@ public class ToDoScreen extends AppCompatActivity {
                     }
                     Log.d(TAG, "Listmane outer: " + list_names);
 
-                    adapterToDoScreen = new AdapterToDoScreen(ToDoScreen.this, list_names);
-                    recyclerView_to.setAdapter(adapterToDoScreen);
+                    adapterToDo = new AdapterToDoDetails(ToDoScreen.this, list_names);
+                    recyclerView_to.setAdapter(adapterToDo);
 
-                    favorite();
+                   // favorite();
 
                 } catch (Exception e) {
 
@@ -205,7 +185,7 @@ public class ToDoScreen extends AppCompatActivity {
                     e.printStackTrace();
 
                 }
-
+                 pd.dismiss();
 
             }
         }, new Response.ErrorListener() {
@@ -237,7 +217,7 @@ public class ToDoScreen extends AppCompatActivity {
         strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
 
     }
-    private void favorite() {
+    /*private void favorite() {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
 
@@ -296,7 +276,7 @@ public class ToDoScreen extends AppCompatActivity {
 
                     adapterFavorite = new AdapterFavorite(ToDoScreen.this, list_namesfavorite);
                     recyclerView_favorite.setAdapter(adapterFavorite);
-                    ReviewList();
+                   // ReviewList();
 
 
                 } catch (Exception e) {
@@ -463,6 +443,6 @@ public class ToDoScreen extends AppCompatActivity {
         GlobalClass.getInstance().addToRequestQueue(strReq, tag_string_req);
         strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
 
-    }
+    }*/
 
 }

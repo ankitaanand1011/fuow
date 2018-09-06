@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/light_grey">
     <RelativeLayout
         android:id="@+id/rl_top"
@@ -20,22 +21,21 @@
 
             android:layout_gravity="center"/>
 
-        <TextView
+        <ImageView
             android:id="@+id/back_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10sp"
-            android:text="Back"
+            android:src="@mipmap/back"
             android:layout_marginRight="10sp"
-            android:textSize="12sp"
             android:textColor="@color/white"
             android:layout_centerVertical="true"
             android:gravity="center"
             android:layout_alignParentEnd="true"
             android:padding="5dp"
             android:contentDescription="@string/app_name"
-            android:background="@drawable/button_home_screee"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="true"
+            tools:ignore="RtlHardcoded" />
 
     </RelativeLayout>
 
@@ -87,6 +87,28 @@
                     android:layout_centerVertical="true"
                     android:padding="5dp"
                     android:src="@mipmap/down"/>
+
+                <ImageView
+                    android:id="@+id/edit_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:visibility="gone"
+                    android:src="@mipmap/icon_edit"/>
+
+                <ImageView
+                    android:id="@+id/sync_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@+id/edit_img"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:visibility="gone"
+                    android:src="@mipmap/icon_sync"/>
+
+
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/rl_account_detail"
@@ -236,6 +258,54 @@
                     android:layout_centerVertical="true"
                     android:padding="5dp"
                     android:src="@mipmap/down"/>
+
+                <TextView
+                    android:id="@+id/tv_view_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingTop="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="5dp"
+                    android:gravity="center"
+                    android:text="VIEW ALL"
+                    android:visibility="gone"
+                    android:layout_toStartOf="@+id/tv_add_listing"
+                    android:background="@drawable/button_yellow_dashboard"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"/>
+                <TextView
+                    android:id="@+id/tv_add_listing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingTop="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="5dp"
+                    android:gravity="center"
+                    android:text="ADD LISTING"
+                    android:visibility="gone"
+                    android:layout_marginStart="10dp"
+                    android:layout_toStartOf="@+id/sync_img1"
+                    android:background="@drawable/button_yellow_dashboard"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"/>
+
+                <ImageView
+                    android:id="@+id/sync_img1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:visibility="gone"
+                    android:layout_marginStart="10dp"
+                    android:src="@mipmap/icon_sync"/>
+
+
+
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/rl_listing_detail"
@@ -290,6 +360,24 @@
                     android:layout_centerVertical="true"
                     android:padding="5dp"
                     android:src="@mipmap/down"/>
+
+                <TextView
+                    android:id="@+id/tv_view_all_fav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingTop="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="5dp"
+                    android:visibility="gone"
+                    android:gravity="center"
+                    android:text="VIEW ALL"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/button_yellow_dashboard"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"/>
+
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/rl_favorite_detail"
@@ -343,12 +431,28 @@
                     android:layout_centerVertical="true"
                     android:padding="5dp"
                     android:src="@mipmap/down"/>
+                <TextView
+                    android:id="@+id/tv_top_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingTop="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="5dp"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:text="TOP-UP CREDITS"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/button_yellow_dashboard"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"/>
+
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/rl_credit_detail"
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
-                android:visibility="gone"
                 android:background="@color/white">
 
                 <RelativeLayout
@@ -379,7 +483,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_centerHorizontal="true"
-                                    app:cpb_background_progressbar_color="@color/grey"
+                                    app:cpb_background_progressbar_color="@color/dark_voilet"
                                     app:cpb_background_progressbar_width="5dp"
                                     app:cpb_progressbar_color="#F44336"
                                     app:cpb_progressbar_width="10dp"
@@ -439,7 +543,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_centerHorizontal="true"
-                                    app:cpb_background_progressbar_color="@color/grey"
+                                    app:cpb_background_progressbar_color="#F44336"
                                     app:cpb_background_progressbar_width="5dp"
                                     app:cpb_progressbar_color="#F44336"
                                     app:cpb_progressbar_width="10dp"
@@ -498,7 +602,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_centerHorizontal="true"
-                                    app:cpb_background_progressbar_color="@color/grey"
+                                    app:cpb_background_progressbar_color="@color/green"
                                     app:cpb_background_progressbar_width="5dp"
                                     app:cpb_progressbar_color="#F44336"
                                     app:cpb_progressbar_width="10dp"
@@ -533,6 +637,7 @@
                                     android:layout_below="@+id/balance"
                                     android:textStyle="bold"
                                     android:textSize="10dp"
+                                    android:text="10355.78"
                                     android:layout_marginTop="5dp"
 
                                     />
@@ -647,6 +752,23 @@
                     android:layout_centerVertical="true"
                     android:padding="5dp"
                     android:src="@mipmap/down"/>
+                <TextView
+                    android:id="@+id/tv_new_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingTop="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="5dp"
+                    android:gravity="center"
+                    android:text="NEW SEARCH"
+                    android:visibility="gone"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/button_yellow_dashboard"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"/>
+
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/rl_search_detail"
@@ -701,6 +823,22 @@
                     android:layout_centerVertical="true"
                     android:padding="5dp"
                     android:src="@mipmap/down"/>
+                <TextView
+                    android:id="@+id/tv_view_all_invoice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingTop="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="5dp"
+                    android:gravity="center"
+                    android:text="VIEW ALL"
+                    android:visibility="gone"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/button_yellow_dashboard"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"/>
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/rl_invoice_detail"

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.LayerDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.github.ivbaranov.mli.MaterialLetterIcon;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -24,6 +26,7 @@ import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
@@ -89,6 +92,29 @@ public class AdapterFavoriteDescriptive extends RecyclerView.Adapter<AdapterFavo
 
 
         holder.tv_name.setText(list_namesfavoriteAll.get(position).get("listing_title"));
+        int[] androidColors = context.getResources().getIntArray(R.array.androidcolors);
+        int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
+
+
+        //if (list_namesfavoriteAll.get(position).get("image").equals("")){
+
+            holder.img.setVisibility(View.GONE);
+            holder.icon.setVisibility(View.VISIBLE);
+            holder.icon.setLetter(list_namesfavoriteAll.get(position).get("listing_title"));
+            holder.icon.setLetterColor(context.getResources().getColor(R.color.white));
+            holder.icon.setShapeColor(randomAndroidColor);
+            holder.icon.setShapeType(MaterialLetterIcon.Shape.ROUND_RECT);
+            holder.icon.setLetterSize(26);
+            holder.icon.setLetterTypeface(Typeface.SANS_SERIF);
+            holder.icon.setInitials(true);
+            holder.icon.setInitialsNumber(2);
+
+       /* }else {
+            holder.img.setVisibility(View.VISIBLE);
+            holder.icon.setVisibility(View.GONE);
+            loader.displayImage(list_namesfavoriteAll.get(position).get("image"), holder.img, defaultOptions);
+        }
+*/
      /*   holder.tv_des.setText(list_namesfavoriteAll.get(position).get("description"));
         holder.category.setText(list_namesfavoriteAll.get(position).get("primary_category_name"));
         holder.location_name.setText(list_namesfavoriteAll.get(position).get("location_name"));
@@ -164,6 +190,7 @@ public class AdapterFavoriteDescriptive extends RecyclerView.Adapter<AdapterFavo
         RelativeLayout rl_message,rl_review;
         RatingBar rating;
         LayerDrawable stars;
+        MaterialLetterIcon icon;
         public MyViewHolder(View itemView) {
             super(itemView);
             // get the reference of item view's
@@ -177,6 +204,7 @@ public class AdapterFavoriteDescriptive extends RecyclerView.Adapter<AdapterFavo
             tv_des = itemView.findViewById(R.id.tv_des);
             img = itemView.findViewById(R.id.img);
             rating=itemView.findViewById(R.id.rating_adpater);
+            icon =  itemView.findViewById(R.id.icon);
 
             stars = (LayerDrawable) rating.getProgressDrawable();
             stars.getDrawable(2).setColorFilter(context.getResources().getColor(R.color.golden), PorterDuff.Mode.SRC_ATOP);

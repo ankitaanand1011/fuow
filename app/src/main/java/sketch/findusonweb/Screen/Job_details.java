@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
-import sketch.findusonweb.Adapter.AdapterSearch;
+
 import sketch.findusonweb.Constants.AppConfig;
 import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
@@ -38,7 +38,8 @@ import sketch.findusonweb.Utils.Shared_Preference;
 public class Job_details extends AppCompatActivity {
 
     String TAG = "Listing";
-    TextView back_img,final_search,post_requirement_job,details_about,duration_new,category_name,price,date_time,title_job,send_proposal;
+    ImageView back_img;
+    TextView final_search,post_requirement_job,details_about,duration_new,category_name,price,date_time,title_job,send_proposal;
     Shared_Preference prefrence;
     Context context;
     String id;

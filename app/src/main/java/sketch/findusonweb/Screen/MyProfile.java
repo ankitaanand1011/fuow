@@ -55,7 +55,9 @@ import sketch.findusonweb.Utils.Shared_Preference;
 
 public class MyProfile extends AppCompatActivity{
     ImageView imageView2;
-    TextView tv_edit,tv_phone,tv_email,tv_name,toolbar_back,logout;
+    TextView tv_edit,tv_phone,tv_email,tv_name,logout;
+
+    ImageView toolbar_back;
     RelativeLayout rl_change_pic,rl_edit_details,rl_update_profile,rl_cancel,rl_customer_detail,
             rl_change_password;
     EditText input_mobile,input_fname,input_lname,input_email;
@@ -273,7 +275,7 @@ public class MyProfile extends AppCompatActivity{
                 prefrence.clearPrefrence();
                 globalClass.setLogin_status(false);
                 Toasty.success(MyProfile.this,"You are now logged out.", Toast.LENGTH_SHORT,true).show();
-                Intent intent = new Intent(MyProfile.this, LoginScreen.class);
+                Intent intent = new Intent(MyProfile.this, HomeScreen.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();

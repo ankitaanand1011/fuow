@@ -69,7 +69,8 @@ import sketch.findusonweb.Utils.Shared_Preference;
 public class SendProposal extends AppCompatActivity {
     String TAG = "post requirement";
     Spinner spinner_days;
-    TextView back_button,attach_data,attach_data_link,tv_submit,back;
+    ImageView back_button;
+    TextView attach_data,attach_data_link,tv_submit;
     String city_id,cat_id,id;
     Shared_Preference prefrence;
     Uri URI = null;
@@ -114,7 +115,6 @@ public class SendProposal extends AppCompatActivity {
             }
         }        attach_data=findViewById(R.id.attach_data);
         spinner_days=findViewById(R.id.spinner_days);
-        back=findViewById(R.id.back_img);
         attach_data_link=findViewById(R.id.attach_data_name);
         edt_iteration=findViewById(R.id.edt_iteration);
         back_button=findViewById(R.id.back_img);
@@ -139,12 +139,6 @@ public class SendProposal extends AppCompatActivity {
             Toasty.info(SendProposal.this, getResources().getString(R.string.check_internet), Toast.LENGTH_LONG, true).show();
         }
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
         attach_data.setOnClickListener(new View.OnClickListener() {
             @Override

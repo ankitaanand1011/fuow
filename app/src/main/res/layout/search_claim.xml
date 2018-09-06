@@ -21,6 +21,11 @@
             android:layout_gravity="center"
             android:gravity="center">
 
+            <com.github.ivbaranov.mli.MaterialLetterIcon
+                android:id="@+id/icon"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+
             <ImageView
                 android:id="@+id/img"
                 android:layout_width="100dp"
@@ -29,6 +34,7 @@
                 android:scaleType="centerCrop"
                 android:src="@mipmap/no_image"
                 android:contentDescription="@string/app_name" />
+
 
 
         </RelativeLayout>

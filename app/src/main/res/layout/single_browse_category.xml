@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-
-
-    >
+    android:layout_height="wrap_content">
 
 
     <RelativeLayout
@@ -20,14 +17,20 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerInParent="true"
-            android:src="@mipmap/no_image" />
+          />
+
+        <com.github.ivbaranov.mli.MaterialLetterIcon
+            android:id="@+id/icon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"/>
 
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl_image"
-        android:background="@color/grey">
+       >
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"

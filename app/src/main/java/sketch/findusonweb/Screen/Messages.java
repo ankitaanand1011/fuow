@@ -5,6 +5,7 @@ import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import sketch.findusonweb.R;
@@ -14,7 +15,7 @@ import sketch.findusonweb.R;
  */
 
 public class Messages extends AppCompatActivity {
-    TextView back_button;
+    ImageView back_button;
     @Override
     public void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

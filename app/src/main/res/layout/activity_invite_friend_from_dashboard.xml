@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -9,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
-        android:background="@mipmap/header"
+        android:background="@color/colorPrimaryDark"
         >
 
         <ImageView
@@ -21,22 +22,21 @@
 
             android:layout_gravity="center"/>
 
-        <TextView
+        <ImageView
             android:id="@+id/back_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10sp"
-            android:text="Back"
+            android:src="@mipmap/back"
             android:layout_marginRight="10sp"
-            android:textSize="12sp"
             android:textColor="@color/white"
             android:layout_centerVertical="true"
             android:gravity="center"
             android:layout_alignParentEnd="true"
             android:padding="5dp"
             android:contentDescription="@string/app_name"
-            android:background="@drawable/button_home_screee"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="true"
+            tools:ignore="RtlHardcoded" />
 
     </RelativeLayout>
 
@@ -66,7 +66,7 @@
                 android:textColor="@color/white"
                 android:background="@drawable/dblue_border_corner"
                 android:layout_weight="1"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:layout_marginEnd="5dp"
                 android:text="INVITE FRIENDS"/>
             <TextView
@@ -80,7 +80,7 @@
                 android:layout_marginEnd="5dp"
                 android:background="@drawable/dblue_border_corner"
                 android:layout_weight="1"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:text="IMPORT CSV"/>
             <TextView
 
@@ -91,7 +91,7 @@
                 android:textColor="@color/white"
                 android:background="@drawable/dblue_border_corner"
                 android:layout_weight="1"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:layout_marginStart="5dp"
                 android:text="INVITE SELECTED"/>
 
@@ -124,7 +124,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
-                    app:cpb_background_progressbar_color="@color/grey"
+                    app:cpb_background_progressbar_color="@color/red"
                     app:cpb_background_progressbar_width="5dp"
                     app:cpb_progressbar_color="#F44336"
                     app:cpb_progressbar_width="10dp"
@@ -142,9 +142,10 @@
                     android:id="@+id/total1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TOTAL"
+                    android:text="Invite\nReferral"
                     android:textSize="10dp"
-                    android:textStyle="bold"
+                  
+                    android:gravity="center"
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/dark_voilet"
 
@@ -156,7 +157,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/total1"
-                    android:textStyle="bold"
+                  
                     android:textSize="10dp"
                     android:layout_marginTop="5dp"
 
@@ -183,7 +184,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
-                    app:cpb_background_progressbar_color="@color/grey"
+                    app:cpb_background_progressbar_color="@color/green"
                     app:cpb_background_progressbar_width="5dp"
                     app:cpb_progressbar_color="#F44336"
                     app:cpb_progressbar_width="10dp"
@@ -202,9 +203,10 @@
                     android:id="@+id/used1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="USED"
+                    android:text="Joined\nReferral"
+                    android:gravity="center"
                     android:textSize="10dp"
-                    android:textStyle="bold"
+                  
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/dark_voilet"
 
@@ -216,7 +218,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/used1"
-                    android:textStyle="bold"
+                  
                     android:textSize="10dp"
                     android:layout_marginTop="5dp"
 
@@ -242,7 +244,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
-                    app:cpb_background_progressbar_color="@color/grey"
+                    app:cpb_background_progressbar_color="@color/colorPrimary"
                     app:cpb_background_progressbar_width="5dp"
                     app:cpb_progressbar_color="#F44336"
                     app:cpb_progressbar_width="10dp"
@@ -261,9 +263,10 @@
                     android:id="@+id/balance1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="BALANCE"
+                    android:text="Pending\nJoining"
+                    android:gravity="center"
                     android:textSize="10dp"
-                    android:textStyle="bold"
+                  
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/dark_voilet"
 
@@ -275,7 +278,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/balance1"
-                    android:textStyle="bold"
+                  
                     android:textSize="10dp"
                     android:layout_marginTop="5dp"
 
@@ -301,7 +304,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
-                    app:cpb_background_progressbar_color="@color/grey"
+                    app:cpb_background_progressbar_color="#7B241C"
                     app:cpb_background_progressbar_width="5dp"
                     app:cpb_progressbar_color="#F44336"
                     app:cpb_progressbar_width="10dp"
@@ -320,9 +323,10 @@
                     android:id="@+id/balance2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="BALANCE"
+                    android:text="Pending\nReferrals"
+                    android:gravity="center"
                     android:textSize="10dp"
-                    android:textStyle="bold"
+                  
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/dark_voilet"
 
@@ -334,7 +338,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/balance2"
-                    android:textStyle="bold"
+                  
                     android:textSize="10dp"
                     android:layout_marginTop="5dp"
 
@@ -370,7 +374,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
-                    app:cpb_background_progressbar_color="@color/grey"
+                    app:cpb_background_progressbar_color="@color/red"
                     app:cpb_background_progressbar_width="5dp"
                     app:cpb_progressbar_color="#F44336"
                     app:cpb_progressbar_width="10dp"
@@ -389,9 +393,10 @@
                     android:id="@+id/total"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TOTAL"
+                    android:text="Invitation\nEarning"
+                    android:gravity="center"
                     android:textSize="10dp"
-                    android:textStyle="bold"
+                  
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/dark_voilet"
 
@@ -403,7 +408,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/total"
-                    android:textStyle="bold"
+                  
                     android:textSize="10dp"
                     android:layout_marginTop="5dp"
 
@@ -430,7 +435,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
-                    app:cpb_background_progressbar_color="@color/grey"
+                    app:cpb_background_progressbar_color="@color/green"
                     app:cpb_background_progressbar_width="5dp"
                     app:cpb_progressbar_color="#F44336"
                     app:cpb_progressbar_width="10dp"
@@ -449,9 +454,10 @@
                     android:id="@+id/used"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="USED"
+                    android:text="Joining\nEarning"
+                    android:gravity="center"
                     android:textSize="10dp"
-                    android:textStyle="bold"
+                  
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/dark_voilet"
 
@@ -463,7 +469,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/used"
-                    android:textStyle="bold"
+                  
                     android:textSize="10dp"
                     android:layout_marginTop="5dp"
 
@@ -489,7 +495,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
-                    app:cpb_background_progressbar_color="@color/grey"
+                    app:cpb_background_progressbar_color="@color/colorPrimary"
                     app:cpb_background_progressbar_width="5dp"
                     app:cpb_progressbar_color="#F44336"
                     app:cpb_progressbar_width="10dp"
@@ -508,9 +514,10 @@
                     android:id="@+id/balance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="BALANCE"
+                    android:text="Potential\nEarning"
+                    android:gravity="center"
                     android:textSize="10dp"
-                    android:textStyle="bold"
+                  
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/dark_voilet"
 
@@ -522,7 +529,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/balance"
-                    android:textStyle="bold"
+                  
                     android:textSize="10dp"
                     android:layout_marginTop="5dp"
 
@@ -548,7 +555,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
-                    app:cpb_background_progressbar_color="@color/grey"
+                    app:cpb_background_progressbar_color="#7B241C"
                     app:cpb_background_progressbar_width="5dp"
                     app:cpb_progressbar_color="#F44336"
                     app:cpb_progressbar_width="10dp"
@@ -567,9 +574,10 @@
                     android:id="@+id/balance3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="BALANCE"
+                    android:text="Estimated\nEarning"
+                    android:gravity="center"
                     android:textSize="10dp"
-                    android:textStyle="bold"
+                  
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/dark_voilet"
 
@@ -581,7 +589,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/balance3"
-                    android:textStyle="bold"
+                  
                     android:textSize="10dp"
                     android:layout_marginTop="5dp"
 

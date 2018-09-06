@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -53,7 +54,8 @@ import sketch.findusonweb.Utils.Shared_Preference;
 public class ReviewScreen extends AppCompatActivity {
     String TAG = "Review";
     RatingBar ratingBar,features_rating,performance_rating,value_rating,reliablity_rating;
-    TextView review_note,save_review,back;
+    TextView review_note,save_review;
+    ImageView back;
     EditText title_edt;
     String ratedValue;
     ProgressDialog pd;

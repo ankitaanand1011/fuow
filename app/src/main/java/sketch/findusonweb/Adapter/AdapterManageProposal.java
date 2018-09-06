@@ -1,6 +1,7 @@
 package sketch.findusonweb.Adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.ivbaranov.mli.MaterialLetterIcon;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -17,6 +19,7 @@ import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
@@ -86,7 +89,29 @@ public class AdapterManageProposal extends RecyclerView.Adapter<AdapterManagePro
             loader.displayImage(list_names.get(position).get("logo_url"),img, defaultOptions);
         }*/
 
-        holder.imageView1.setImageDrawable(context.getResources().getDrawable(R.mipmap.no_image));
+        int[] androidColors = context.getResources().getIntArray(R.array.androidcolors);
+        int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
+
+
+
+
+            holder.imageView1.setVisibility(View.GONE);
+            holder.icon.setVisibility(View.VISIBLE);
+            holder.icon.setLetter(list_namesfavoriteAll.get(position).get("title"));
+            holder.icon.setLetterColor(context.getResources().getColor(R.color.white));
+            holder.icon.setShapeColor(randomAndroidColor);
+            holder.icon.setShapeType(MaterialLetterIcon.Shape.CIRCLE);
+            holder.icon.setLetterSize(26);
+            holder.icon.setLetterTypeface(Typeface.SANS_SERIF);
+            holder.icon.setInitials(true);
+            holder.icon.setInitialsNumber(2);
+
+       /* }else {
+            holder.image.setVisibility(View.VISIBLE);
+            holder.icon.setVisibility(View.GONE);
+            loader.displayImage(list_claim.get(position).get("image"), holder.image, defaultOptions);
+        }
+       */
 
 /*
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -112,7 +137,7 @@ public class AdapterManageProposal extends RecyclerView.Adapter<AdapterManagePro
         TextView tv_manage_proposal,tv_manage_proposal_brief,tv_in_pound,tv_complete_order,
         tv_date_manage_proposal,tv_date_manage_proposal_days;
         ImageView imageView1;
-
+        MaterialLetterIcon icon;
         public MyViewHolder(View itemView) {
             super(itemView);
             // get the reference of item view's
@@ -123,6 +148,8 @@ public class AdapterManageProposal extends RecyclerView.Adapter<AdapterManagePro
             tv_date_manage_proposal =  itemView.findViewById(R.id.tv_date_manage_proposal);
             tv_date_manage_proposal_days =  itemView.findViewById(R.id.tv_date_manage_proposal_days);
             imageView1 =  itemView.findViewById(R.id.imageView1);
+            icon =  itemView.findViewById(R.id.icon);
+
 
         }
     }

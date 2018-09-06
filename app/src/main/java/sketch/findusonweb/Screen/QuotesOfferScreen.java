@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -40,7 +41,7 @@ import sketch.findusonweb.R;
 public class QuotesOfferScreen extends AppCompatActivity {
     ProgressDialog pd;
     ArrayList<String> category = new ArrayList<>();
-    TextView image_back;
+    ImageView back_img;
     EditText search;
     String TAG = "quotesnoffers";
     RadioGroup rg;
@@ -62,7 +63,7 @@ public class QuotesOfferScreen extends AppCompatActivity {
         pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pd.setMessage(getResources().getString(R.string.loading));
         search=findViewById(R.id.search);
-        image_back=findViewById(R.id.back_img);
+        back_img=findViewById(R.id.back_img);
          rg=findViewById(R.id.radiogroup);
         array = new ArrayList<>();
        // rg = new RadioGroup(this); // create the RadioGroup
@@ -100,7 +101,7 @@ public class QuotesOfferScreen extends AppCompatActivity {
             }
         });
 
-      image_back.setOnClickListener(new View.OnClickListener() {
+      back_img.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
               finish();

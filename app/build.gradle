@@ -50,9 +50,12 @@ dependencies {
     implementation 'com.commonsware.cwac:merge:1.1.2'
     implementation group: 'com.itextpdf', name: 'itextpdf', version: '5.0.6'
     implementation 'com.android.support:design:27.1.1'
-/*For Bottom navigation and Tab bar*/
-   implementation 'com.github.armcha:SpaceNavigationView:1.6.0'
+
+    implementation 'com.github.armcha:SpaceNavigationView:1.6.0'
     implementation 'com.github.BrotherV:Floating-ArcMenu:1.1.0.2'
+    implementation 'com.github.ar-android:FloatingLabelEditText:0.2'
+    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+    implementation 'com.github.ivbaranov:materiallettericon:0.2.3'
 
     implementation 'com.mcxiaoke.volley:library-aar:1.0.0'
     implementation files('libs/jar_files.zip')

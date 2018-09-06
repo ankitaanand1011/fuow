@@ -132,115 +132,115 @@ public class LoginScreen extends AppCompatActivity
 
     }
 
-             private void checkLogin(final String username, final String password,final String view) {
-                 // Tag used to cancel the request
-                 String tag_string_req = "req_login";
+     private void checkLogin(final String username, final String password,final String view) {
+         // Tag used to cancel the request
+         String tag_string_req = "req_login";
 
-                 pd.show();
+         pd.show();
 
-                 StringRequest strReq = new StringRequest(Request.Method.POST,
-                         AppConfig.URL_DEV, new Response.Listener<String>() {
+         StringRequest strReq = new StringRequest(Request.Method.POST,
+                 AppConfig.URL_DEV, new Response.Listener<String>() {
 
-                     @Override
-                     public void onResponse(String response) {
-                         Log.d(TAG, "Login Response: " + response.toString());
+             @Override
+             public void onResponse(String response) {
+                 Log.d(TAG, "Login Response: " + response.toString());
 
-                       pd.dismiss();
+               pd.dismiss();
 
-                         Gson gson = new Gson();
+                 Gson gson = new Gson();
 
-                         try
-                         {
-
-
-                             JsonObject jobj = gson.fromJson(response, JsonObject.class);
-                             String status = jobj.get("status").getAsString().replaceAll("\"", "");
-                             String message = jobj.get("message").getAsString().replaceAll("\"", "");
-
-                             Log.d(TAG, "Message: "+message);
-
-                             if(status.equals("1") ) {
-                                 JsonObject data=jobj.getAsJsonObject("data");
-
-                               //  String Login = data.get("msg").getAsString().replaceAll("\"", "");
-                                 String user_id = data.get("user_id").getAsString().replaceAll("\"", "");
-                                 String login = data.get("login").getAsString().replaceAll("\"", "");
-                                 String user_first_name = data.get("user_first_name").getAsString().replaceAll("\"", "");
-                                 String user_last_name = data.get("user_last_name").getAsString().replaceAll("\"", "");
-                                 String user_organization = data.get("user_organization").getAsString().replaceAll("\"", "");
-                                 String user_phone = data.get("user_phone").getAsString().replaceAll("\"", "");
-                                 String email = data.get("user_email").getAsString().replaceAll("\"", "");
-
-                                 globalClass.setId(user_id);
-                                 globalClass.setName(login);
-                                 globalClass.setFname(user_first_name);
-                                 globalClass.setLname(user_last_name);
-                                 globalClass.setPhone_number(user_phone);
-                                 globalClass.setOrgazination(user_organization);
-                                 globalClass.setEmail(email);
-                                 globalClass.setLogin_status(true);
-
-                                 globalClass.setLogin_from("signup");
-
-                                 prefrence.savePrefrence();
-
-                                 Toasty.success(LoginScreen.this,message, Toast.LENGTH_SHORT, true).show();
-                                 Intent intent = new Intent(LoginScreen.this, HomeScreen.class);
-                                 startActivity(intent);
-                                 finish();
-                                 pd.dismiss();
-
-                             }
-                             else {
-
-                                 Toasty.success(LoginScreen.this, message, Toast.LENGTH_SHORT, true).show();
-                             }
+                 try
+                 {
 
 
-                                 Log.d(TAG,"Token \n" +message);
+                     JsonObject jobj = gson.fromJson(response, JsonObject.class);
+                     String status = jobj.get("status").getAsString().replaceAll("\"", "");
+                     String message = jobj.get("message").getAsString().replaceAll("\"", "");
 
+                     Log.d(TAG, "Message: "+message);
 
+                     if(status.equals("1") ) {
+                         JsonObject data=jobj.getAsJsonObject("data");
 
-                         }catch (Exception e) {
+                       //  String Login = data.get("msg").getAsString().replaceAll("\"", "");
+                         String user_id = data.get("user_id").getAsString().replaceAll("\"", "");
+                         String login = data.get("login").getAsString().replaceAll("\"", "");
+                         String user_first_name = data.get("user_first_name").getAsString().replaceAll("\"", "");
+                         String user_last_name = data.get("user_last_name").getAsString().replaceAll("\"", "");
+                         String user_organization = data.get("user_organization").getAsString().replaceAll("\"", "");
+                         String user_phone = data.get("user_phone").getAsString().replaceAll("\"", "");
+                         String email = data.get("user_email").getAsString().replaceAll("\"", "");
 
-                             Toast.makeText(getApplicationContext(),"Incorrect Client ID/Password", Toast.LENGTH_LONG).show();
-                             e.printStackTrace();
+                         globalClass.setId(user_id);
+                         globalClass.setName(login);
+                         globalClass.setFname(user_first_name);
+                         globalClass.setLname(user_last_name);
+                         globalClass.setPhone_number(user_phone);
+                         globalClass.setOrganization(user_organization);
+                         globalClass.setEmail(email);
+                         globalClass.setLogin_status(true);
 
-                         }
+                         globalClass.setLogin_from("signup");
 
+                         prefrence.savePrefrence();
 
-                     }
-                 }, new Response.ErrorListener() {
-
-                     @Override
-
-                     public void onErrorResponse(VolleyError error) {
-                         Log.e(TAG, "Login Error: " + error.getMessage());
-                         Toast.makeText(getApplicationContext(),
-                                 "Connection Error", Toast.LENGTH_LONG).show();
+                         Toasty.success(LoginScreen.this,message, Toast.LENGTH_SHORT, true).show();
+                         Intent intent = new Intent(LoginScreen.this, HomeScreen.class);
+                         startActivity(intent);
+                         finish();
                          pd.dismiss();
+
                      }
-                 }) {
+                     else {
 
-                     @Override
-                     protected Map<String, String> getParams() {
-                         // Posting parameters to login url
-                         Map<String, String> params = new HashMap<>();
-
-                         params.put("username", username);
-                         params.put("password", password);
-                         params.put("view",view);
-
-                         return params;
+                         Toasty.success(LoginScreen.this, message, Toast.LENGTH_SHORT, true).show();
                      }
 
-                 };
 
-                 // Adding request to request queue
-                 GlobalClass.getInstance().addToRequestQueue(strReq, tag_string_req);
-                 strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
+                         Log.d(TAG,"Token \n" +message);
+
+
+
+                 }catch (Exception e) {
+
+                     Toast.makeText(getApplicationContext(),"Incorrect Client ID/Password", Toast.LENGTH_LONG).show();
+                     e.printStackTrace();
+
+                 }
+
 
              }
+         }, new Response.ErrorListener() {
+
+             @Override
+
+             public void onErrorResponse(VolleyError error) {
+                 Log.e(TAG, "Login Error: " + error.getMessage());
+                 Toast.makeText(getApplicationContext(),
+                         "Connection Error", Toast.LENGTH_LONG).show();
+                 pd.dismiss();
+             }
+         }) {
+
+             @Override
+             protected Map<String, String> getParams() {
+                 // Posting parameters to login url
+                 Map<String, String> params = new HashMap<>();
+
+                 params.put("username", username);
+                 params.put("password", password);
+                 params.put("view",view);
+
+                 return params;
+             }
+
+         };
+
+         // Adding request to request queue
+         GlobalClass.getInstance().addToRequestQueue(strReq, tag_string_req);
+         strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
+
+     }
 
 
-         }
+}

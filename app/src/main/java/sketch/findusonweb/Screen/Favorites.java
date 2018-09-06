@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +36,8 @@ import sketch.findusonweb.Utils.Shared_Preference;
 
 public class Favorites extends AppCompatActivity {
 
-    TextView all,listings,product,back;
+    TextView all,listings,product;
+    ImageView back;
     ListView list_favorite;
     GlobalClass globalClass;
     Shared_Preference prefrence;

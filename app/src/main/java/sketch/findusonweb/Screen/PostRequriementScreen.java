@@ -78,7 +78,8 @@ import static android.content.ContentValues.TAG;
 public class PostRequriementScreen extends AppCompatActivity {
     String TAG = "post requirement";
     Spinner spinner_days;
-    TextView back_button,attach_data,attach_data_link,tv_submit;
+    ImageView back_button;
+    TextView attach_data,attach_data_link,tv_submit;
     String city_id,cat_id;
     Shared_Preference prefrence;
     Spinner spinner_select_category;
@@ -419,6 +420,8 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
             File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
             try {
                 attachmentFile = file;
+                String strFileName = attachmentFile.getName();
+                attach_data_link.setText(strFileName);
 
                 outFile = new FileOutputStream(file);
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outFile);

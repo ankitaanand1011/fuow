@@ -44,7 +44,8 @@ import sketch.findusonweb.Utils.Shared_Preference;
 public class SearchListing extends AppCompatActivity{
     ListView listView;
     String TAG = "Listing";
-    TextView back_img,final_search;
+    ImageView back_img;
+    TextView final_search;
     ImageView img_grid,seach_button,header_img;
     String textString;
     Shared_Preference prefrence;
@@ -137,7 +138,7 @@ public class SearchListing extends AppCompatActivity{
         // Tag used to cancel the request
         String tag_string_req = "req_login";
 
-        // pd.show();
+       pd.show();
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
                 AppConfig.URL_DEV, new Response.Listener<String>() {
@@ -146,7 +147,7 @@ public class SearchListing extends AppCompatActivity{
             public void onResponse(String response) {
                 Log.d(TAG, "Invitation response: " + response.toString());
 
-                pd.dismiss();
+
                 list_names.clear();
 
                 Gson gson = new Gson();
@@ -199,7 +200,7 @@ public class SearchListing extends AppCompatActivity{
                     //  JsonObject obj3 = jobj1.get("profileDetails").getAsJsonObject();
 
                     //  Log.d(TAG, "Token \n" + logo_allow);
-
+                    pd.dismiss();
 
                 }
                 catch (Exception e) {

@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Screen.HomeScreen">
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/grey_dashboard"
+
+        >
+
+        <TextView
+            android:id="@+id/tv_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="From : "
+            android:layout_centerVertical="true"
+            android:textColor="@color/black"
+            android:layout_marginStart="10dp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/tv_from_val"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_toEndOf="@+id/tv_from"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="To : "
+            android:layout_centerVertical="true"
+            android:textColor="@color/black"
+            android:layout_marginStart="10dp"
+            android:textStyle="bold"
+            android:layout_toEndOf="@+id/tv_from_val"
+            />
+
+        <TextView
+            android:id="@+id/tv_to_val"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_toEndOf="@+id/tv_to"
+            android:layout_toStartOf="@+id/rl_attendees"
+            />
+
+        <RelativeLayout
+            android:id="@+id/rl_attendees"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp">
+
+            <TextView
+                android:id="@+id/tv_attendees"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Attendees : "
+                android:layout_centerVertical="true"
+                android:textColor="@color/black"
+                android:layout_marginStart="10dp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/tv_attendees_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_toEndOf="@+id/tv_attendees"
+                />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_proposal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/toolbar">
+
+        <RelativeLayout
+            android:id="@+id/rl_text_manage_proposal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <RelativeLayout
+                android:id="@+id/rl_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black"
+
+                    />
+                <TextView
+                    android:id="@+id/tv_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textSize="12sp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/tv_title"
+                    android:layout_toStartOf="@+id/tv_status"
+                    android:textStyle="bold"
+                    android:textColor="@color/dark_grey"
+
+                    />
+
+                <TextView
+                    android:id="@+id/tv_status"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_green_dashboard"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"/>
+
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:id="@+id/rl_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/rl_top">
+
+                <TextView
+                    android:id="@+id/tv_start_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:layout_weight="1.1"
+                    android:textSize="10sp"
+                    android:text="Start Time :"
+                    android:textColor="@color/dark_grey"
+
+                    />
+                <TextView
+                    android:id="@+id/tv_start_time_val"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_weight="0.9"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_end_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textSize="10sp"
+                    android:layout_weight="1.1"
+                    android:text="End Time :"
+                    android:layout_marginStart="10dp"
+                    android:textColor="@color/dark_grey"
+                    />
+                <TextView
+                    android:id="@+id/tv_end_time_val"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:textSize="10sp"
+                    android:layout_weight="0.9"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="5dp"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_des"
+                android:layout_below="@+id/rl_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:textSize="14sp"
+                android:layout_centerVertical="true"
+                android:textColor="@color/black"
+                />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/rl_text_manage_proposal">
+
+            <TextView
+                android:id="@+id/tv_edit"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blue_bg_tv"
+                android:layout_centerVertical="true"
+                android:padding="5dp"
+                android:gravity="center"
+                android:text="Edit"
+                android:textColor="@color/white"
+                android:layout_marginEnd="5dp"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/tv_cancel"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_grey_dashboard"
+                android:layout_centerVertical="true"
+                android:padding="5dp"
+                android:gravity="center"
+                android:text="Cancel"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_toEndOf="@+id/tv_edit"
+                android:textColor="@color/white"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_yellow_dashboard"
+                android:layout_centerVertical="true"
+                android:padding="5dp"
+                android:gravity="center"
+                android:text="Propose"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@+id/tv_cancel"
+                android:textColor="@color/white"
+                android:textSize="12sp"/>
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

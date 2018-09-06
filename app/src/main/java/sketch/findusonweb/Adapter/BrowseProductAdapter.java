@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.LayerDrawable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -23,6 +24,7 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.github.ivbaranov.mli.MaterialLetterIcon;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -32,6 +34,7 @@ import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
@@ -49,14 +52,14 @@ public class BrowseProductAdapter extends BaseAdapter {
     RatingBar rating;
     LayoutInflater inflater;
     LayerDrawable stars;
-    TextView tv_name,tv_des,category_product,favorites,send_message,add_review;
+    TextView tv_name,tv_des,category_product,send_message,add_review;
     ImageView img;
     ArrayList<HashMap<String,String>> list_names;
     ImageLoader loader;
     GlobalClass globalClass;
     DisplayImageOptions defaultOptions;
-    RelativeLayout rl_message,rl_review;
-
+    /*RelativeLayout rl_message,rl_review;*/
+    MaterialLetterIcon icon;
 
 
 
@@ -71,10 +74,7 @@ public class BrowseProductAdapter extends BaseAdapter {
 
         defaultOptions = new DisplayImageOptions.Builder()
                 .cacheOnDisk(true).cacheInMemory(true)
-// .showImageOnLoading(R.mipmap.loading_black128px)
-// .showImageForEmptyUri(R.mipmap.no_image)
-// .showImageOnFail(R.mipmap.no_image)
-// .showImageOnFail(R.mipmap.img_failed)
+
                 .imageScaleType(ImageScaleType.EXACTLY)
                 .displayer(new FadeInBitmapDisplayer(300)).build();
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(mContext.getApplicationContext())
@@ -117,14 +117,19 @@ public class BrowseProductAdapter extends BaseAdapter {
 
         View view1 = inflater.inflate(R.layout.single_browse_product, parent, false);
         send_message=view1.findViewById(R.id.send_message);
-        rl_message=view1.findViewById(R.id.rl_message);
-        rl_review=view1.findViewById(R.id.Rl_add_review);
-        add_review=view1.findViewById(R.id.add_review);
-        favorites=view1.findViewById(R.id.favorites);
+
+        icon = (MaterialLetterIcon) view1.findViewById(R.id.icon);
+     /*   rl_message=view1.findViewById(R.id.rl_message);
+        rl_review=view1.findViewById(R.id.rl_add_review);
+        add_review=view1.findViewById(R.id.add_review);*/
+      //  favorites=view1.findViewById(R.id.favorites);
         category_product=view1.findViewById(R.id.category_product);
         tv_name = view1.findViewById(R.id.tv_name);
         tv_des = view1.findViewById(R.id.tv_des);
         img = view1.findViewById(R.id.img);
+
+        int[] androidColors = mContext.getResources().getIntArray(R.array.androidcolors);
+        int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
        // rating=view1.findViewById(R.id.rating_adpater);
 
         //  int rate = Integer.parseInt(list_names.get(position).get("rating"));
@@ -134,11 +139,22 @@ public class BrowseProductAdapter extends BaseAdapter {
         category_product.setText(list_names.get(position).get("listing_name"));
        // favorites.setText(list_names.get(position).get("listing_name"));
         Log.d("TAG", "Category: "+list_names.get(position).get("category"));
-        if(list_names.get(position).get("images").equals("false"))
+        if(list_names.get(position).get("images").equals("")||list_names.get(position).get("images").equals("null"))
         {
-            img.setImageDrawable(mContext.getResources().getDrawable(R.mipmap.no_image));
+            img.setVisibility(View.GONE);
+            icon.setVisibility(View.VISIBLE);
+            icon.setLetter(list_names.get(position).get("title"));
+            icon.setLetterColor(mContext.getResources().getColor(R.color.white));
+            icon.setShapeColor(randomAndroidColor);
+            icon.setShapeType(MaterialLetterIcon.Shape.ROUND_RECT);
+            icon.setLetterSize(26);
+            icon.setLetterTypeface(Typeface.SANS_SERIF);
+            icon.setInitials(true);
+            icon.setInitialsNumber(2);
         }
         else {
+            img.setVisibility(View.VISIBLE);
+            icon.setVisibility(View.GONE);
             loader.displayImage(list_names.get(position).get("images"), img, defaultOptions);
         }
         view1.setOnClickListener(new View.OnClickListener() {
@@ -151,7 +167,7 @@ public class BrowseProductAdapter extends BaseAdapter {
             }
         });
 
-        rl_message.setOnClickListener(new View.OnClickListener() {
+      /*  rl_message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(globalClass.login_status.equals(false)){
@@ -185,7 +201,7 @@ public class BrowseProductAdapter extends BaseAdapter {
                     mContext.startActivity(intent);
                 }
             }
-        });
+        });*/
 
         return view1;
     }

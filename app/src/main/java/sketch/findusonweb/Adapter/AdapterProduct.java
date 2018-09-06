@@ -1,7 +1,9 @@
 package sketch.findusonweb.Adapter;
 
-import android.app.ProgressDialog;
+
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
-
+import com.github.ivbaranov.mli.MaterialLetterIcon;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -22,10 +24,12 @@ import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
-
+import sketch.findusonweb.Screen.ManageProductScreen;
+import sketch.findusonweb.Screen.ViewProductsDetails;
 
 
 public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHolder> {
@@ -68,12 +72,51 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        int po = position+1;
-        holder.tv_sl.setText(String.valueOf(po));
+        int[] androidColors = context.getResources().getIntArray(R.array.androidcolors);
+        int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
+
         holder.tv_product_name.setText(list_products.get(position).get("title"));
-        holder.tv_listing_name.setText(list_products.get(position).get("listing_name"));
-       // holder.tv_product_price.setText(globalClass.getCurrency_symbol()+" "+list_products.get(position).get("product_price"));
-      //  loader.displayImage(list_products.get(position).get("product_image"), holder.img_product , defaultOptions);
+        holder.tv_des.setText(list_products.get(position).get("listing_name"));
+        holder.category.setText(list_products.get(position).get("type"));
+        holder.tv_price_starting.setText("Starting at "+globalClass.pound+list_products.get(position).get("price"));
+
+
+        holder.rl_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,ViewProductsDetails.class);
+                context.startActivity(intent);
+            }
+        });
+
+        holder.rl_manage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,ManageProductScreen.class);
+                context.startActivity(intent);
+            }
+        });
+
+        holder.img_product.setVisibility(View.GONE);
+        holder.icon.setVisibility(View.VISIBLE);
+        holder.icon.setLetter(list_products.get(position).get("title"));
+        holder.icon.setLetterColor(context.getResources().getColor(R.color.white));
+        holder.icon.setShapeColor(randomAndroidColor);
+        holder.icon.setShapeType(MaterialLetterIcon.Shape.ROUND_RECT);
+        holder.icon.setLetterSize(26);
+        holder.icon.setLetterTypeface(Typeface.SANS_SERIF);
+        holder.icon.setInitials(true);
+        holder.icon.setInitialsNumber(2);
+
+
+       /* if(list_products.get(position).get("product_image").equals("null") ||
+                list_products.get(position).get("product_image").equals("")){
+
+            holder.img_product.setImageResource(R.mipmap.no_image);
+        }else{
+            loader.displayImage(list_products.get(position).get("product_image"), holder.img_product , defaultOptions);
+        }*/
+
 
     }
 
@@ -86,16 +129,20 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
 
 
         ImageView img_product;
-        TextView tv_sl,tv_product_name, tv_listing_name, tv_product_price;
-
-
+        TextView tv_product_name, tv_des, tv_price_starting,category;
+        RelativeLayout rl_manage,rl_view;
+        MaterialLetterIcon icon;
         ViewHolder(View itemView) {
             super(itemView);
 
-            img_product = itemView.findViewById(R.id.img_product);
-            tv_sl = itemView.findViewById(R.id.tv_sl);
+            img_product = itemView.findViewById(R.id.img);
+            tv_price_starting = itemView.findViewById(R.id.tv_price_starting);
             tv_product_name = itemView.findViewById(R.id.tv_product_name);
-            tv_listing_name = itemView.findViewById(R.id.tv_listing_name);
+            tv_des = itemView.findViewById(R.id.tv_des);
+            category = itemView.findViewById(R.id.category);
+            rl_manage = itemView.findViewById(R.id.rl_manage);
+            rl_view = itemView.findViewById(R.id.rl_view);
+            icon =  itemView.findViewById(R.id.icon);
           //  tv_product_price = itemView.findViewById(R.id.tv_product_price);
 
 

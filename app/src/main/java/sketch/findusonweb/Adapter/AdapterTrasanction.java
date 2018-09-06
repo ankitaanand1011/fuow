@@ -1,6 +1,8 @@
 package sketch.findusonweb.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,34 +19,30 @@ import java.util.HashMap;
 
 import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
+import sketch.findusonweb.Screen.EditReview;
 
-/**
- * Created by developer on 3/8/18.
- */
 
-public class AdapterTrasanction extends BaseAdapter {
 
-    Context mContext;
+public class AdapterTrasanction extends RecyclerView.Adapter<AdapterTrasanction.MyViewHolder>{
+
+    Context context;
 
     GlobalClass globalClass;
 
     LayoutInflater inflater;
 
-    TextView transaction_id,date,gateway,name,amount,order_status,type,status,payment_status,pay_invoice;
-    RatingBar rating;
-    ImageView img;
+
     ArrayList<HashMap<String,String>> list_names;
-    // ArrayList<String> list_names;
-    //ImageLoader loader;
+
     DisplayImageOptions defaultOptions;
 
 
 
 
     public AdapterTrasanction(Context c, ArrayList<HashMap<String,String>> list_names) {
-        mContext = c;
+        context = c;
         this.list_names = list_names;
-        globalClass = ((GlobalClass) mContext.getApplicationContext());
+        globalClass = ((GlobalClass) context.getApplicationContext());
 
         inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -52,92 +50,78 @@ public class AdapterTrasanction extends BaseAdapter {
     }
 
     @Override
-    public int getCount() {
-        return list_names.size();
+    public AdapterTrasanction.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_financial_transaction, parent, false);
+
+        AdapterTrasanction.MyViewHolder vh = new AdapterTrasanction.MyViewHolder(v);
+        return vh;
+
     }
 
     @Override
-    public Object getItem(int position) {
-        return list_names.size();
+    public void onBindViewHolder(AdapterTrasanction.MyViewHolder holder, final int position) {
+
+
+
+
+        holder. date.setText(list_names.get(position).get("date"));
+        holder. gateway.setText(list_names.get(position).get("gateway_id"));
+        holder.amount.setText(list_names.get(position).get("amount"));
+        holder.type.setText(list_names.get(position).get("type"));
+        holder. transaction_id.setText(list_names.get(position).get("transaction_id"));
+        holder. tv_invoice_val.setText(list_names.get(position).get("invoice_id"));
+        holder. tv_status.setText(list_names.get(position).get("description"));
+
+
+
+
+/*
+
+        holder.tv_claim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, EditReview.class);
+                intent.putExtra("id", id);
+                Log.d("tag", "onClick: " + id);
+                context.startActivity(intent);
+
+            }
+        });
+*/
+
+
+
 
     }
+
+    @Override
+    public int getItemCount() {
+        return list_names.size();
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        // init the item view's
+        TextView transaction_id,date,gateway,name,amount,type,status,tv_invoice_val,tv_status;
+
+        public MyViewHolder(View itemView) {
+            super(itemView);
+            // get the reference of item view's
+            date=itemView.findViewById(R.id.tv_date_transaction_value_order);
+            gateway=itemView.findViewById(R.id.tv_gateway_value);
+            amount=itemView.findViewById(R.id.tv_amount_value_order);
+            type=itemView.findViewById(R.id.tv_type_transaction_value_order);
+            transaction_id=itemView.findViewById(R.id.tv_transaction_id_value_order);
+            tv_invoice_val=itemView.findViewById(R.id.tv_invoice_val);
+            tv_status=itemView.findViewById(R.id.tv_status);
+        }
+    }
+
 
     @Override
     public long getItemId(int position) {
         return position;
     }
 
-    @Override
-    public void notifyDataSetChanged() {
-        super.notifyDataSetChanged();
-    }
-
-    @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
 
 
-
-
-
-        Log.d("TAG", "getItem: "+position);
-        View view1 = inflater.inflate(R.layout.single_financial_transaction, parent, false);
-
-        date=view1.findViewById(R.id.tv_date_transaction_value_order);
-        gateway=view1.findViewById(R.id.tv_gateway_value_order);
-        amount=view1.findViewById(R.id.tv_amount_value_order);
-        type=view1.findViewById(R.id.tv_type_transaction_value_order);
-        transaction_id=view1.findViewById(R.id.tv_transaction_id_value_order);
-
-
-        //pay_invoice.setVisibility(View.GONE);
-        date.setText(list_names.get(position).get("date"));
-        gateway.setText(list_names.get(position).get("paymentmethod"));
-        amount.setText(list_names.get(position).get("amount"));
-        type.setText(list_names.get(position).get("type"));
-        transaction_id.setText(list_names.get(position).get("transaction"));
-     /*   if(list_names.get(position).get("status").equals("1")){
-            status.setText("invited");
-            status.setTextColor(mContext.getResources().getColor(R.color.orange));
-
-
-
-
-        }else if(list_names.get(position).get("status").equals("0")||list_names.get(position).get("status").equals("2")){
-            status.setText("joined");
-            status.setTextColor(mContext.getResources().getColor(R.color.light_green));
-
-
-
-            Log.d("buzz", "getView: "+list_names.get(position).get("status"));
-
-        }*/
-
-
-/*
-        view1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, Job_details.class);
-                intent.putExtra("id",list_names.get(position).get("id"));
-                Log.d("tag", "onClick: "+list_names.get(position).get("id"));
-                mContext.startActivity(intent);
-            }
-        });
-*/
-/*
-        pay_invoice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, SendProposal.class);
-                intent.putExtra("id", list_names.get(position).get("id"));
-                Log.d("tag", "onClick: " + list_names.get(position).get("id"));
-                mContext.startActivity(intent);
-
-            }
-        });
-*/
-
-
-        return view1;
-    }
 }

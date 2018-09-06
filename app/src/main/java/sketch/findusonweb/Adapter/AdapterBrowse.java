@@ -3,6 +3,7 @@ package sketch.findusonweb.Adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.ivbaranov.mli.MaterialLetterIcon;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -20,6 +22,7 @@ import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
@@ -44,7 +47,7 @@ public class AdapterBrowse extends BaseAdapter {
    // ArrayList<String> list_names;
     ImageLoader loader;
     DisplayImageOptions defaultOptions;
-
+    MaterialLetterIcon icon;
 
 
 
@@ -109,17 +112,33 @@ public class AdapterBrowse extends BaseAdapter {
         img=view1.findViewById(R.id.imageView2);
         duration=view1.findViewById(R.id.days);
         tv_price = view1.findViewById(R.id.tv_price);
+        icon = (MaterialLetterIcon) view1.findViewById(R.id.icon);
+
+        int[] androidColors = mContext.getResources().getIntArray(R.array.androidcolors);
+        int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
+
 
         tv_name.setText(list_names.get(position).get("title"));
-        duration.setText(list_names.get(position).get("duration")+" days");
-        tv_price.setText(list_names.get(position).get("budget"));
+        duration.setText(list_names.get(position).get("duration"));
+        tv_price.setText(globalClass.pound+list_names.get(position).get("budget"));
         primary_cat.setText(list_names.get(position).get("primary_category"));
         date_time.setText(list_names.get(position).get("date_requested"));
         if(list_names.get(position).get("profile_pic").equals(""))
         {
-            img.setImageDrawable(mContext.getResources().getDrawable(R.mipmap.no_image));
+            img.setVisibility(View.GONE);
+            icon.setVisibility(View.VISIBLE);
+            icon.setLetter(list_names.get(position).get("title"));
+            icon.setLetterColor(mContext.getResources().getColor(R.color.white));
+            icon.setShapeColor(randomAndroidColor);
+            icon.setShapeType(MaterialLetterIcon.Shape.CIRCLE);
+            icon.setLetterSize(26);
+            icon.setLetterTypeface(Typeface.SANS_SERIF);
+            icon.setInitials(true);
+            icon.setInitialsNumber(2);
         }
         else {
+            img.setVisibility(View.VISIBLE);
+            icon.setVisibility(View.GONE);
             loader.displayImage(list_names.get(position).get("profile_pic"), img, defaultOptions);
         }
         view1.setOnClickListener(new View.OnClickListener() {

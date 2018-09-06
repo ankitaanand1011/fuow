@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -13,8 +14,9 @@ import sketch.findusonweb.R;
 
 public class DashboardScreenWithoutLogin extends AppCompatActivity{
 
-    RelativeLayout rl_claim_business,rl_recommend_business,rl_login,rl_forgot_password,rl_register;
-    TextView back;
+    RelativeLayout rl_claim_business,rl_recommend_business,rl_login,rl_forgot_password,
+            rl_register,rl_contacts;
+    ImageView back;
 
 
     @Override
@@ -34,6 +36,7 @@ public class DashboardScreenWithoutLogin extends AppCompatActivity{
         rl_login=findViewById(R.id.rl_login);
         rl_forgot_password=findViewById(R.id.rl_forgot_password);
         rl_register=findViewById(R.id.rl_register);
+        rl_contacts=findViewById(R.id.rl_contacts);
         back=findViewById(R.id.back_img);
 
     }
@@ -45,7 +48,7 @@ public class DashboardScreenWithoutLogin extends AppCompatActivity{
             public void onClick(View v) {
                 Intent intent = new Intent(DashboardScreenWithoutLogin.this, LoginScreen.class);
                 startActivity(intent);
-                finish();
+              //  finish();
             }
         });
 
@@ -54,7 +57,7 @@ public class DashboardScreenWithoutLogin extends AppCompatActivity{
             public void onClick(View v) {
                 Intent intent = new Intent(DashboardScreenWithoutLogin.this, Forget_Password.class);
                 startActivity(intent);
-                finish();
+              //  finish();
             }
         });
 
@@ -63,7 +66,7 @@ public class DashboardScreenWithoutLogin extends AppCompatActivity{
             public void onClick(View v) {
                 Intent intent = new Intent(DashboardScreenWithoutLogin.this, Register.class);
                 startActivity(intent);
-                finish();
+              //  finish();
             }
         });
 
@@ -80,6 +83,14 @@ public class DashboardScreenWithoutLogin extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DashboardScreenWithoutLogin.this, RecommedBuisness.class);
+                startActivity(intent);
+            }
+        });
+
+        rl_contacts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DashboardScreenWithoutLogin.this, ContactUsScreen.class);
                 startActivity(intent);
             }
         });

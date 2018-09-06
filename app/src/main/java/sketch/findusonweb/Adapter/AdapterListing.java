@@ -57,9 +57,15 @@ public class AdapterListing extends RecyclerView.Adapter<AdapterListing.MyViewHo
 
 
         String name =  list_names.get(position).get("title");
+        String id =  list_names.get(position).get("title");
+        String status =  list_names.get(position).get("title");
 
 
         holder.tv_title.setText(name);
+/*
+        holder.tv_id.setText(id);
+        holder.tv_status.setText(status);
+*/
 
 
 
@@ -89,12 +95,14 @@ public class AdapterListing extends RecyclerView.Adapter<AdapterListing.MyViewHo
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         // init the item view's
-        TextView tv_title;
+        TextView tv_title,tv_id,tv_status;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             // get the reference of item view's
             tv_title =  itemView.findViewById(R.id.tv_title);
+            tv_id =  itemView.findViewById(R.id.tv_id);
+            tv_status =  itemView.findViewById(R.id.tv_status);
 
         }
     }

@@ -11,14 +11,7 @@
         android:orientation="horizontal"
         android:background="@color/colorPrimaryDark"
         >
-        <ImageView
-            android:layout_width="25sp"
-            android:layout_height="25sp"
-            android:src="@mipmap/listview_32"
-            android:tint="@color/white"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="10sp"/>
+
         <ImageView
             android:id="@+id/header_image"
             android:layout_width="120sp"
@@ -40,22 +33,22 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_gravity="center"/>
-        <TextView
-            android:id="@+id/img_back"
+
+        <ImageView
+            android:id="@+id/back_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10sp"
-            android:text="Back"
+            android:src="@mipmap/back"
             android:layout_marginRight="10sp"
-            android:textSize="12sp"
             android:textColor="@color/white"
             android:layout_centerVertical="true"
             android:gravity="center"
             android:layout_alignParentEnd="true"
             android:padding="5dp"
             android:contentDescription="@string/app_name"
-            android:background="@drawable/button_home_screee"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="true"
+            tools:ignore="RtlHardcoded" />
 
     </RelativeLayout>
 

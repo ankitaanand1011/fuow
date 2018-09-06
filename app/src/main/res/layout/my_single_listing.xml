@@ -22,6 +22,29 @@
             android:layout_marginStart="10dp"
             android:layout_alignParentStart="true"/>
 
+        <TextView
+            android:id="@+id/tv_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="start"
+            android:textColor="@color/white"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/tv_title"
+            />
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="start"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/white"
+            android:layout_marginStart="10dp" />
+
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/rl_view"
@@ -54,9 +77,9 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_centerVertical="true"
-                   android:text="mldsnfkdnf"
                    android:textColor="@color/white"
-                   android:textSize="8dp"/>
+                   android:text="MANAGE"
+                   android:textSize="10sp"/>
 
            </RelativeLayout>
             <RelativeLayout
@@ -78,9 +101,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
+                    android:text="QUICK STATISTICs"
                     android:layout_centerVertical="true"
-                    android:textSize="8dp"
-                    android:text="mldsnfkdnfjfd"/>
+                    android:textSize="10sp"
+                 />
 
             </RelativeLayout>
             <RelativeLayout
@@ -101,9 +125,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:textSize="8dp"
+                    android:textSize="10sp"
+                    android:text="VIEW"
                     android:textColor="@color/white"
-                    android:text="mldsnfkdnfjfdfd"/>
+                    />
 
             </RelativeLayout>
 
@@ -139,9 +164,9 @@
         android:id="@+id/progress_value"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="8dp"
-        android:text="jsdbfhjbsddhsfhsd"/>
+        android:textColor="@color/black" 
+        android:textSize="10sp"
+        />
 
     </RelativeLayout>
 

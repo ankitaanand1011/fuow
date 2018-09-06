@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
-import sketch.findusonweb.Adapter.AdapterSearch;
+
 import sketch.findusonweb.Constants.AppConfig;
 import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
@@ -38,7 +38,7 @@ import sketch.findusonweb.Utils.Shared_Preference;
 public class Search_business extends AppCompatActivity {
     ListView listView;
     String TAG = "Listing";
-    TextView back_img;
+    ImageView back_img;
     ImageView img_grid,seach_button,header_img;
     String textString;
     Shared_Preference prefrence;
@@ -234,8 +234,8 @@ public class Search_business extends AppCompatActivity {
 
 
 
-                    AdapterSearch adapterSearch = new AdapterSearch(Search_business.this, list_names);
-                    listView.setAdapter(adapterSearch);
+                /*    AdapterSearch adapterSearch = new AdapterSearch(Search_business.this, list_names);
+                    listView.setAdapter(adapterSearch);*/
                     //  JsonObject obj3 = jobj1.get("profileDetails").getAsJsonObject();
 
                     Log.d(TAG, "Token \n" + logo_allow);

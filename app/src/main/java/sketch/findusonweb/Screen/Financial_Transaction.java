@@ -3,8 +3,11 @@ package sketch.findusonweb.Screen;
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,37 +33,57 @@ import sketch.findusonweb.R;
 import sketch.findusonweb.Utils.Shared_Preference;
 
 public class Financial_Transaction extends AppCompatActivity {
-    ListView listing;
+    RecyclerView rv_financial;
     String TAG = "Favorites";
     GlobalClass globalClass;
     Shared_Preference prefrence;
     AdapterTrasanction adapter_invoice;
-    TextView back_img;
+    ImageView back_img;
     ProgressDialog pd;
+    RecyclerView.LayoutManager mLayoutManager;
+
     ArrayList<HashMap<String,String>> list_namesfavoriteAll;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_financial_trasanction);
-        listing=findViewById(R.id.financial_trasanction_listing);
+
+        initialisation();
+        functions();
+
+    }
+
+    private void initialisation() {
+
+        rv_financial=findViewById(R.id.rv_financial);
         back_img=findViewById(R.id.back_img);
         globalClass = (GlobalClass) getApplicationContext();
         prefrence = new Shared_Preference(Financial_Transaction.this);
-        prefrence.loadPrefrence();
         pd = new ProgressDialog(Financial_Transaction.this);
+    }
+
+    private void functions() {
+
+        prefrence.loadPrefrence();
+        list_namesfavoriteAll=new ArrayList<>();
+
+        mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        rv_financial.setLayoutManager(mLayoutManager);
+
         pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pd.setMessage(getResources().getString(R.string.loading));
+
+
         if (globalClass.isNetworkAvailable()) {
             if (globalClass.getLogin_status()) {
-               /* Intent intent = new Intent(HomeScreen.this, HomeScreen.class);
-                startActivity(intent);
-                finish();*/
+                ReviewList();
             }
         } else {
             Toasty.info(Financial_Transaction.this, getResources().getString(R.string.check_internet), Toast.LENGTH_LONG, true).show();
         }
-        ReviewList();
-        list_namesfavoriteAll=new ArrayList<>();
+
+
+
         back_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +92,7 @@ public class Financial_Transaction extends AppCompatActivity {
             }
         });
     }
+
     private void ReviewList() {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
@@ -102,18 +126,27 @@ public class Financial_Transaction extends AppCompatActivity {
 
                             JsonObject images1 = data.get(i).getAsJsonObject();
 
-                            String date = images1.get("date").toString().replaceAll("\"", "");
-                            String transaction = images1.get("transaction").toString().replaceAll("\"", "");
+                            String id = images1.get("id").toString().replaceAll("\"", "");
+                            String user_id = images1.get("user_id").toString().replaceAll("\"", "");
+                            String gateway_id = images1.get("gateway_id").toString().replaceAll("\"", "");
+                            String transaction_id = images1.get("transaction_id").toString().replaceAll("\"", "");
                             String type = images1.get("type").toString().replaceAll("\"", "");
-                            String paymentmethod = images1.get("paymentmethod").toString().replaceAll("\"", "");
+                            String invoice_id = images1.get("invoice_id").toString().replaceAll("\"", "");
+                            String description = images1.get("description").toString().replaceAll("\"", "");
                             String amount = images1.get("amount").toString().replaceAll("\"", "");
+                            String comments = images1.get("comments").toString().replaceAll("\"", "");
+                            String date = images1.get("date").toString().replaceAll("\"", "");
 
                             HashMap<String, String> hashMap = new HashMap<>();
-                            hashMap.put("transaction", transaction);
-                            hashMap.put("paymentmethod", paymentmethod);
+                            hashMap.put("id", id);
+                            hashMap.put("user_id", user_id);
+                            hashMap.put("gateway_id", gateway_id);
+                            hashMap.put("transaction_id", transaction_id);
                             hashMap.put("type", type);
-                            hashMap.put("date", date);
+                            hashMap.put("invoice_id", invoice_id);
+                            hashMap.put("description", description);
                             hashMap.put("amount", amount);
+                            hashMap.put("date", date);
 
 
 
@@ -125,7 +158,7 @@ public class Financial_Transaction extends AppCompatActivity {
                         Log.d(TAG, "Listmane outer: " + list_namesfavoriteAll);
 
                         adapter_invoice = new AdapterTrasanction(Financial_Transaction.this, list_namesfavoriteAll);
-                        listing.setAdapter(adapter_invoice);
+                        rv_financial.setAdapter(adapter_invoice);
                     }
                     else
 

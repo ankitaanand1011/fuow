@@ -59,7 +59,7 @@ import sketch.findusonweb.Utils.Shared_Preference;
  */
 
 public class AddProductScreen extends AppCompatActivity {
-    TextView back_img;
+    ImageView back_img;
     Spinner spinner_type,spinner_status;
     EditText edt_title,edt_description,edt_price,edt_expire;
     ArrayList<String> type;

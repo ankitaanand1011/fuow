@@ -41,10 +41,10 @@ public class ChatAdapter extends BaseAdapter {
 
 	/* private view holder class */
 	private class ViewHolder {
-		ImageView profile_pic;
+		ImageView profile_pic,img_active;
 		TextView member_name;
-		TextView status;
-		TextView contactType;
+		TextView message;
+		TextView cart_badge;
 	}
 
 	@Override
@@ -60,15 +60,15 @@ public class ChatAdapter extends BaseAdapter {
 
 			holder.member_name = convertView.findViewById(R.id.member_name);
 			holder.profile_pic = convertView.findViewById(R.id.imageView2);
-			holder.status =  convertView.findViewById(R.id.status);
-			holder.contactType =  convertView.findViewById(R.id.contact_type);
+			holder.img_active = convertView.findViewById(R.id.img_active);
+			holder.message =  convertView.findViewById(R.id.message);
+			holder.cart_badge =  convertView.findViewById(R.id.cart_badge);
 
 			RowItem row_pos = rowItems.get(position);
 
 			holder.profile_pic.setImageResource(row_pos.getProfile_pic_id());
 			holder.member_name.setText(row_pos.getMember_name());
-			holder.status.setText(row_pos.getStatus());
-			holder.contactType.setText(row_pos.getContactType());
+
 
 			convertView.setTag(holder);
 		} else {

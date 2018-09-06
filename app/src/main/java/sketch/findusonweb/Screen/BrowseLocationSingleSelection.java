@@ -31,7 +31,7 @@ import java.util.Map;
 import es.dmoral.toasty.Toasty;
 import sketch.findusonweb.Adapter.AdapterBrowseCategorySingle;
 import sketch.findusonweb.Adapter.AdapterBrowseLocationSingle;
-import sketch.findusonweb.Adapter.AdapterSearch;
+
 import sketch.findusonweb.Constants.AppConfig;
 import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
@@ -44,7 +44,8 @@ import sketch.findusonweb.Utils.Shared_Preference;
 public class BrowseLocationSingleSelection extends AppCompatActivity {
     ListView listView;
     String TAG = "Listing";
-    TextView back_img,final_search;
+    TextView final_search;
+    ImageView back_img;
     ImageView img_grid,seach_button,header_img;
     String textString;
     Shared_Preference prefrence;
@@ -445,9 +446,9 @@ public class BrowseLocationSingleSelection extends AppCompatActivity {
                             // Toasty.success(BrowseLocationSingleSelection.this, login, Toast.LENGTH_SHORT, true).show();
 
                         }
-
+/*
                         AdapterSearch adapterSearch = new AdapterSearch(BrowseLocationSingleSelection.this, list_names);
-                        listView.setAdapter(adapterSearch);
+                        listView.setAdapter(adapterSearch);*/
                     }
 
 

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +37,7 @@ public class MyOrderLIst extends AppCompatActivity {
     GlobalClass globalClass;
     Shared_Preference prefrence;
     AdapterMyOrder adapter_invoice;
-    TextView back_img;
+    ImageView back_img;
     ProgressDialog pd;
     ArrayList<HashMap<String,String>> list_namesfavoriteAll;
     @Override
@@ -44,7 +45,7 @@ public class MyOrderLIst extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_order_list);
         listing=findViewById(R.id.my_order_list);
-        back_img=findViewById(R.id.img_back);
+        back_img=findViewById(R.id.back_img);
         globalClass = (GlobalClass) getApplicationContext();
         prefrence = new Shared_Preference(MyOrderLIst.this);
         prefrence.loadPrefrence();
@@ -53,14 +54,12 @@ public class MyOrderLIst extends AppCompatActivity {
         pd.setMessage(getResources().getString(R.string.loading));
         if (globalClass.isNetworkAvailable()) {
             if (globalClass.getLogin_status()) {
-               /* Intent intent = new Intent(HomeScreen.this, HomeScreen.class);
-                startActivity(intent);
-                finish();*/
+                ReviewList();
             }
         } else {
             Toasty.info(MyOrderLIst.this, getResources().getString(R.string.check_internet), Toast.LENGTH_LONG, true).show();
         }
-        ReviewList();
+
         list_namesfavoriteAll=new ArrayList<>();
         back_img.setOnClickListener(new View.OnClickListener() {
             @Override

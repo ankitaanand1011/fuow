@@ -100,6 +100,14 @@ public class GlobalClass extends Application {
         this.currency_symbol = currency_symbol;
     }
 
+    public String getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(String organization) {
+        this.organization = organization;
+    }
+
     public String getFname() {
         return fname;
     }
@@ -161,9 +169,7 @@ public class GlobalClass extends Application {
     public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
     }
-    public void setOrgazination(String orgazination) {
-        this.organization = organization;
-    }
+
     public String getFcm_reg_token() {
         return fcm_reg_token;
     }

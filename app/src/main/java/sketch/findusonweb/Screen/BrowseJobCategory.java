@@ -20,7 +20,8 @@ import sketch.findusonweb.Utils.Shared_Preference;
  */
 
 public class BrowseJobCategory extends AppCompatActivity {
-    TextView browse_jobs,browse_by_cat_by_services,text_back,browse_by_cat,browse_location,cart_img;
+    TextView browse_jobs,browse_by_cat_by_services,text_back,browse_by_cat,browse_location;
+    ImageView cart_img;
     ImageView profile_img,menu;
     GlobalClass globalClass;
     Shared_Preference prefrence;

@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Screen.HomeScreen">
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/grey_dashboard"
+
+        >
+        <TextView
+            android:id="@+id/tv_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Order # :"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:layout_marginStart="10dp"
+            />
+        <TextView
+            android:id="@+id/tv_order_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/listview_32"
+            android:padding="5dp"
+            android:layout_toEndOf="@+id/tv_order"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:layout_marginStart="10dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/listview_32"
+            android:layout_toRightOf="@+id/img_manage_proposal_date"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentEnd="true"
+            />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_proposal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/toolbar">
+        <LinearLayout
+            android:id="@+id/rl_text_manage_proposal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_centerVertical="true">
+
+            <RelativeLayout
+                android:id="@+id/rl_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+
+                    />
+                <TextView
+                    android:id="@+id/tv_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:layout_marginStart="20dp"
+                    android:layout_toEndOf="@+id/tv_title"
+                    android:textStyle="bold"
+                    android:textColor="@color/dark_grey"
+
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_top">
+                <TextView
+                    android:id="@+id/tv_listing_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textSize="12sp"
+
+                    android:text="LISTING NAME :"
+                    android:textColor="@color/dark_grey"
+
+                    />
+
+                <TextView
+                    android:id="@+id/tv_listing_name_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textSize="12sp"
+                    android:layout_toEndOf="@+id/tv_listing_name"
+
+                    android:layout_marginStart="10dp"
+                    android:textColor="@color/black"
+
+                    />
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_top">
+                <TextView
+                    android:id="@+id/tv_payment_method"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textSize="12sp"
+
+                    android:text="PAYMENT METHOD :"
+                    android:textColor="@color/dark_grey"
+
+                    />
+
+                <TextView
+                    android:id="@+id/tv_payment_method_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textSize="12sp"
+                    android:layout_toEndOf="@+id/tv_payment_method"
+                    android:layout_marginStart="10dp"
+                    android:textColor="@color/black"
+
+                    />
+
+
+            </RelativeLayout>
+
+
+
+
+        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/rl_eclipse_manage_proposal"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:layout_marginLeft="10dp">
+
+            <RelativeLayout
+                android:id="@+id/rl_cost_in_pound"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_green_dashboard"
+
+                android:layout_marginRight="5dp"
+
+                >
+                <TextView
+                    android:id="@+id/tv_in_pound"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"/>
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_below="@+id/rl_cost_in_pound"
+                android:id="@+id/rl_complete_order"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_d_blue_dashboard"
+                android:layout_marginTop="10dp"
+
+                >
+                <TextView
+                    android:id="@+id/tv_claim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:text="CLAIM"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"/>
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/llcom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_below="@+id/rl_proposal">
+
+    <RelativeLayout
+        android:id="@+id/rl_commission"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/tv_commission"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textSize="12sp"
+
+            android:text="Commission Amount :"
+            android:textColor="@color/dark_grey"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_commission_val"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textSize="12sp"
+            android:layout_toEndOf="@+id/tv_commission"
+
+            android:layout_marginStart="10dp"
+            android:textColor="@color/black"
+
+            />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_sales_earning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_weight="1"
+        >
+        <TextView
+            android:id="@+id/tv_sales_earning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textSize="12sp"
+
+            android:text="Sales Earning :"
+            android:textColor="@color/dark_grey"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_sales_earning_val"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textSize="12sp"
+            android:layout_toEndOf="@+id/tv_sales_earning"
+
+            android:layout_marginStart="10dp"
+            android:textColor="@color/black"
+
+            />
+
+
+    </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_order_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            >
+            <TextView
+                android:id="@+id/tv_order_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:textSize="12sp"
+
+                android:text="ORDER STATUS :"
+                android:textColor="@color/dark_grey"
+
+                />
+
+            <TextView
+                android:id="@+id/tv_order_status_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:textSize="12sp"
+                android:layout_toEndOf="@+id/tv_order_status"
+
+                android:layout_marginStart="10dp"
+                android:textColor="@color/black"
+
+                />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_invoice_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/rl_order_status"
+            >
+            <TextView
+                android:id="@+id/tv_invoice_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:textSize="12sp"
+
+                android:text="INVOICE STATUS :"
+                android:textColor="@color/dark_grey"
+
+                />
+
+            <TextView
+                android:id="@+id/tv_invoice_status_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:textSize="12sp"
+                android:layout_toEndOf="@+id/tv_invoice_status"
+
+                android:layout_marginStart="10dp"
+                android:textColor="@color/black"
+
+                />
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
+</LinearLayout>

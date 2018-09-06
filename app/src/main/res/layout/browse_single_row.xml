@@ -1,148 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:padding="10dp"
-        android:id="@+id/rl_img">
+        android:background="@color/grey_dashboard"
+        android:gravity="center_vertical"
 
-        <com.makeramen.roundedimageview.RoundedImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/imageView2"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:contentDescription="@string/app_name"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/no_image"
-            app:riv_border_color="@android:color/transparent"
-            app:riv_border_width="1dip"
-            app:riv_corner_radius="50dip"
-            app:riv_mutate_background="true" />
+        >
 
+
+        <TextView
+
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:layout_marginStart="10dp"
+            android:gravity="center_vertical"
+            android:layout_toStartOf="@+id/img_manage_proposal_days"
+            android:textStyle="bold"
+            />
+
+
+        <ImageView
+            android:id="@+id/img_manage_proposal_days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/days"
+            android:src="@mipmap/clock1_xxxhdpi"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:tint="@color/white"/>
+        <TextView
+            android:id="@+id/days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/img_whatsapp"
+            android:padding="5dp"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:textColor="@color/white"
+
+            />
+
+        <ImageView
+
+
+            android:id="@+id/img_whatsapp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/message24"
+            android:padding="5dp"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_alignParentEnd="true"
+            android:tint="@color/white"/>
 
     </RelativeLayout>
 
+
     <RelativeLayout
-        android:id="@+id/rl_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/rl_send"
-        android:layout_toRightOf="@+id/rl_img">
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:id="@+id/rl_img">
+
+            <com.github.ivbaranov.mli.MaterialLetterIcon
+                android:id="@+id/icon"
+                android:layout_width="80dp"
+                android:layout_height="80dp" />
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/imageView2"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/no_image"
+                app:riv_border_color="@android:color/transparent"
+                app:riv_border_width="1dip"
+                app:riv_corner_radius="50dip"
+                app:riv_mutate_background="true" />
 
 
+        </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/rl_img"
+            android:layout_toStartOf="@+id/rl_eclipse_manage_proposal"
+            android:layout_centerVertical="true"
             android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_name"
+            <RelativeLayout
+                android:id="@+id/rl_duration"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_alignParentLeft="true"
-                android:contentDescription="@string/app_name"
-                android:layout_centerVertical="true"
-                android:layout_alignParentStart="true" />
+                android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/date24"
+                    android:padding="5dp"
+                   />
 
                 <TextView
                     android:id="@+id/date_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@mipmap/date24"
-                    android:textSize="10sp"/>
+                    android:padding="5dp"
+                    android:layout_toEndOf="@+id/tv_date"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    />
 
+            </RelativeLayout>
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/img_budget"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/attachment24"
+                    android:padding="5dp"
+                  />
                 <TextView
                     android:id="@+id/primary_cat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@mipmap/tag24"
-                    android:textSize="10sp"/>
+                    android:layout_toEndOf="@+id/img_budget"
+                    android:padding="5dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    />
 
-            </LinearLayout>
+             </RelativeLayout>
+
         </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/rl_eclipse_manage_proposal"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:layout_margin="10dp">
+
+            <RelativeLayout
+                android:id="@+id/rl_cost_in_pound"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_green_dashboard"
+
+
+
+                >
+                <TextView
+                    android:id="@+id/tv_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_below="@+id/rl_cost_in_pound"
+                android:id="@+id/rl_complete_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blue_bg_tv"
+                android:layout_marginTop="10dp"
+
+
+                >
+                <TextView
+                    android:id="@+id/send_proposal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:text="Send Proposal"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"/>
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/rl_send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerVertical="true"
 
-        android:layout_alignParentEnd="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/days"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@mipmap/time24"
-                android:layout_weight="1"
-                android:textSize="10sp"/>
-
-            <TextView
-                android:id="@+id/tv_price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
-                android:drawableLeft="@mipmap/icon_pound"
-                android:textSize="12sp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/grey_stoke_bg"
-                android:padding="5dp"
-
-
-                android:src="@mipmap/message24" />
-
-            <TextView
-                android:id="@+id/send_proposal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_send_bg"
-                android:padding="5dp"
-                android:layout_marginLeft="10dp"
-                android:text="Send Proposal"
-                android:textColor="@color/white"
-                android:textSize="10sp" />
-
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-
-
-
-</RelativeLayout>
+</LinearLayout>
