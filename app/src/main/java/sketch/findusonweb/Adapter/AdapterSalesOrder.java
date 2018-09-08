@@ -46,7 +46,7 @@ public class AdapterSalesOrder extends RecyclerView.Adapter<AdapterSalesOrder.My
     }
     @Override
     public AdapterSalesOrder.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.earning_single_row, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.sales_order_single_row, parent, false);
 
         AdapterSalesOrder.MyViewHolder vh = new AdapterSalesOrder.MyViewHolder(v);
         return vh;
@@ -61,17 +61,18 @@ public class AdapterSalesOrder extends RecyclerView.Adapter<AdapterSalesOrder.My
 
 
         final String id =  Arraylist_review.get(position).get("id");
-        String name =  Arraylist_review.get(position).get("name");
+     //   String name =  Arraylist_review.get(position).get("name");
         String order_id =  Arraylist_review.get(position).get("order_id");
         String date =  Arraylist_review.get(position).get("date");
-        String type =  Arraylist_review.get(position).get("type");
-        String listing_name =  Arraylist_review.get(position).get("title");
-        String payment =  Arraylist_review.get(position).get("gateway");
+       // String type =  Arraylist_review.get(position).get("type");
+        String title =  Arraylist_review.get(position).get("title");
+        String listing_name =  Arraylist_review.get(position).get("listing_name");
+      //  String payment =  Arraylist_review.get(position).get("gateway");
         String amount =  Arraylist_review.get(position).get("amount");
-        String com_val =  Arraylist_review.get(position).get("commission_amount");
-        String sales_val =  Arraylist_review.get(position).get("commission_amount");
-        String order_val =  Arraylist_review.get(position).get("order_status");
-        String invoice_val =  Arraylist_review.get(position).get("payment_status");
+        String order_status =  Arraylist_review.get(position).get("order_status");
+        String invoice_status =  Arraylist_review.get(position).get("invoice_status");
+        String buyer =  Arraylist_review.get(position).get("buyer");
+        String status =  Arraylist_review.get(position).get("status");
 
 
 
@@ -79,28 +80,16 @@ public class AdapterSalesOrder extends RecyclerView.Adapter<AdapterSalesOrder.My
 
 
 
+        holder.tv_id_val.setText(id);
         holder.tv_order_id.setText(order_id);
         holder.tv_date.setText(date);
-        holder.tv_title.setText(name);
-        holder.tv_type.setText("( "+type+" )");
-        holder.tv_listing_name_val.setText(listing_name);
-        holder.tv_payment_method_val.setText(payment);
+        holder.tv_title.setText(title);
+        holder.tv_type.setText("( "+listing_name+" )");
+        holder.tv_listing_name_val.setText(globalClass.getFname());
+        holder.tv_payment_method_val.setText(buyer);
         holder.tv_in_pound.setText(globalClass.pound+amount);
-        holder.tv_commission_val.setText(globalClass.pound+com_val);
-        holder.tv_sales_earning_val.setText(globalClass.pound+sales_val);
-        holder.tv_order_status_val.setText(order_val);
-        holder.tv_invoice_status_val.setText(invoice_val);
-
-        holder.tv_claim.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, EditReview.class);
-                intent.putExtra("id", id);
-                Log.d("tag", "onClick: " + id);
-                context.startActivity(intent);
-
-            }
-        });
+        holder.tv_order_status_val.setText(order_status);
+        holder.tv_invoice_status_val.setText(invoice_status);
 
 
 
@@ -116,12 +105,14 @@ public class AdapterSalesOrder extends RecyclerView.Adapter<AdapterSalesOrder.My
         // init the item view's
 
 
-        TextView tv_title,tv_type,tv_date,tv_listing_name_val,tv_payment_method_val,tv_in_pound,tv_order_id,
-                tv_claim,tv_commission_val,tv_sales_earning_val,tv_order_status_val,tv_invoice_status_val;
+        TextView tv_id_val, tv_title,tv_type,tv_date,tv_listing_name_val,
+                tv_payment_method_val,tv_in_pound,tv_order_id,
+                tv_order_status_val,tv_invoice_status_val;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             // get the reference of item view's
+            tv_id_val = itemView.findViewById(R.id.tv_id_val);
             tv_order_id = itemView.findViewById(R.id.tv_order_id);
             tv_date = itemView.findViewById(R.id.tv_date);
             tv_title = itemView.findViewById(R.id.tv_title);
@@ -129,9 +120,6 @@ public class AdapterSalesOrder extends RecyclerView.Adapter<AdapterSalesOrder.My
             tv_listing_name_val = itemView.findViewById(R.id.tv_listing_name_val);
             tv_payment_method_val = itemView.findViewById(R.id.tv_payment_method_val);
             tv_in_pound = itemView.findViewById(R.id.tv_in_pound);
-            tv_claim = itemView.findViewById(R.id.tv_claim);
-            tv_commission_val = itemView.findViewById(R.id.tv_commission_val);
-            tv_sales_earning_val = itemView.findViewById(R.id.tv_sales_earning_val);
             tv_order_status_val = itemView.findViewById(R.id.tv_order_status_val);
             tv_invoice_status_val = itemView.findViewById(R.id.tv_invoice_status_val);
 

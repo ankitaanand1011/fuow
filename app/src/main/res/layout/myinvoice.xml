@@ -82,9 +82,8 @@
                     android:id="@+id/total1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TOTAL"
                     android:textSize="10dp"
-                    android:textStyle="bold"
+                    android:gravity="center"
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/dark_voilet"
 
@@ -96,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/total1"
-                    android:textStyle="bold"
+                    android:gravity="center"
                     android:textSize="10dp"
 
                     android:layout_marginTop="5dp"
@@ -140,24 +139,24 @@
                 >
 
                 <TextView
-                    android:id="@+id/used1"
+                    android:id="@+id/paid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PAID"
+
                     android:textSize="10dp"
-                    android:textStyle="bold"
+                    android:gravity="center"
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/dark_voilet"
 
                     />
 
                 <TextView
-                    android:id="@+id/tv_used1"
+                    android:id="@+id/tv_paid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/used1"
-                    android:textStyle="bold"
+                    android:layout_below="@+id/paid"
+                    android:gravity="center"
                     android:textSize="10dp"
                     android:layout_marginTop="5dp"
 
@@ -199,24 +198,24 @@
                 >
 
                 <TextView
-                    android:id="@+id/balance1"
+                    android:id="@+id/unpaid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="UNPAID"
+
                     android:textSize="10dp"
-                    android:textStyle="bold"
+                    android:gravity="center"
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/dark_voilet"
 
                     />
 
                 <TextView
-                    android:id="@+id/tv_balance1"
+                    android:id="@+id/tv_unpaid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/balance1"
-                    android:textStyle="bold"
+                    android:layout_below="@+id/unpaid"
+                    android:gravity="center"
                     android:textSize="10dp"
 
                     android:layout_marginTop="5dp"
@@ -259,24 +258,24 @@
                 >
 
                 <TextView
-                    android:id="@+id/balance2"
+                    android:id="@+id/cancelled"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CANCELLED"
+
                     android:textSize="10dp"
-                    android:textStyle="bold"
+                    android:gravity="center"
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/dark_voilet"
 
                     />
 
                 <TextView
-                    android:id="@+id/tv_balance2"
+                    android:id="@+id/tv_cancelled"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/balance2"
-                    android:textStyle="bold"
+                    android:layout_below="@+id/cancelled"
+                    android:gravity="center"
                     android:textSize="10dp"
 
                     android:layout_marginTop="5dp"

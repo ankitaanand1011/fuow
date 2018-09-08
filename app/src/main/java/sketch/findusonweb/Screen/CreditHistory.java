@@ -104,6 +104,9 @@ public class CreditHistory extends AppCompatActivity {
                     String result = jobj.get("success").toString().replaceAll("\"", "");
                     String total_credits = jobj.get("total_credits").toString().replaceAll("\"", "");
                     String used_credits = jobj.get("used_credits").toString().replaceAll("\"", "");
+                    String balance = jobj.get("balance").toString().replaceAll("\"", "");
+
+
                     if (result.equals("1")) {
                         JsonArray data = jobj.getAsJsonArray("records");
                         Log.d(TAG, "Data: " + data);

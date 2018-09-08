@@ -10,11 +10,36 @@
         android:background="@color/grey"
         android:padding="5dp">
 
-        <CheckBox
-            android:id="@+id/cb"
+        <RelativeLayout
+            android:id="@+id/rl_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/cb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <ImageView
+                android:id="@+id/img_tick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="5dp"
+                android:src="@mipmap/checked"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_organisation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/dark_grey"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_toEndOf="@+id/rl_check"/>
 
     </RelativeLayout>
     <RelativeLayout

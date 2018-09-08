@@ -91,10 +91,8 @@ public class DashboardNew extends AppCompatActivity {
     public void initialisation(){
         globalClass = (GlobalClass) getApplicationContext();
         prefrence = new Shared_Preference(DashboardNew.this);
-        prefrence.loadPrefrence();
         pd = new ProgressDialog(DashboardNew.this);
-        pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        pd.setMessage(getResources().getString(R.string.loading));
+
 
 
 
@@ -158,6 +156,9 @@ public class DashboardNew extends AppCompatActivity {
     }
 
     public void function(){
+        prefrence.loadPrefrence();
+        pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        pd.setMessage(getResources().getString(R.string.loading));
 
         tv_name.setText(globalClass.getFname()+" "+globalClass.getLname());
         tv_phone_val.setText(globalClass.getPhone_number());
@@ -586,8 +587,11 @@ public class DashboardNew extends AppCompatActivity {
                     String result = jobj.get("success").toString().replaceAll("\"", "");
                     String total_credits = jobj.get("total_credits").toString().replaceAll("\"", "");
                     String used_credits = jobj.get("used_credits").toString().replaceAll("\"", "");
+                    String balance = jobj.get("balance").toString().replaceAll("\"", "");
 
-
+                    tv_total.setText(total_credits);
+                    tv_used.setText(used_credits);
+                    tv_balance.setText(balance);
 
                     if (result.equals("1")) {
                         JsonArray data = jobj.getAsJsonArray("records");
@@ -697,12 +701,12 @@ public class DashboardNew extends AppCompatActivity {
 
                     JsonObject jobj = gson.fromJson(response, JsonObject.class);
                     Log.d(TAG, "onResponse: " + jobj);
-                    JsonObject data=jobj.getAsJsonObject("data");
+               //     JsonObject data=jobj.getAsJsonObject("data");
 
                     //  String Login = data.get("msg").getAsString().replaceAll("\"", "");
 
-                    JsonArray data1 = data.getAsJsonArray("data");
-                    Log.d(TAG, "Data: " + data);
+                    JsonArray data1 = jobj.getAsJsonArray("data");
+                    Log.d(TAG, "Data: " + data1);
 
                     for (int i = 0; i < data1.size(); i++) {
 

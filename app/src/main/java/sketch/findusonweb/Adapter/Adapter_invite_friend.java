@@ -2,6 +2,7 @@ package sketch.findusonweb.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,9 +32,9 @@ public class Adapter_invite_friend extends BaseAdapter {
 
     LayoutInflater inflater;
 
-    TextView tv_name,email,phone_number,status;
+    TextView tv_name,email,phone_number,status,tv_organisation;
     RatingBar rating;
-    ImageView img;
+    ImageView img,img_tick;
     ArrayList<HashMap<String,String>> list_names;
     // ArrayList<String> list_names;
     //ImageLoader loader;
@@ -90,32 +91,63 @@ public class Adapter_invite_friend extends BaseAdapter {
         phone_number=view1.findViewById(R.id.tv_phone_value);
         status=view1.findViewById(R.id.tv_status_value);
         cb=view1.findViewById(R.id.cb);
+        img_tick=view1.findViewById(R.id.img_tick);
+        tv_organisation=view1.findViewById(R.id.tv_organisation);
 
+        String is_checked = list_names.get(position).get("ischecked") ;
 
         //pay_invoice.setVisibility(View.GONE);
-        cb.setText(list_names.get(position).get("user_organization"));
+        tv_organisation.setText(list_names.get(position).get("user_organization"));
         tv_name.setText(list_names.get(position).get("user_first_name")+" "+list_names.get(position).get("user_last_name"));
         email.setText(list_names.get(position).get("user_email"));
         phone_number.setText(list_names.get(position).get("user_phone"));
         status.setText(list_names.get(position).get("status"));
 
-        if(list_names.get(position).get("status").equals("1")){
-            status.setText("Invited");
-            status.setBackgroundColor(mContext.getResources().getColor(R.color.orange));
+
+        switch (is_checked) {
+            case "checkbox":
+                    cb.setVisibility(View.VISIBLE);
+                    img_tick.setVisibility(View.GONE);
+                    status.setText("Pending");
+                    status.setBackgroundColor(mContext.getResources().getColor(R.color.dark_grey));
+
+                break;
+
+            case "invited":
+                    cb.setVisibility(View.GONE);
+                    img_tick.setVisibility(View.VISIBLE);
+                    status.setText("Invited");
+                    status.setBackgroundColor(mContext.getResources().getColor(R.color.orange));
+
+                break;
+
+            case "join":
+                    cb.setVisibility(View.GONE);
+                    img_tick.setVisibility(View.VISIBLE);
+                    img_tick.setImageResource(R.mipmap.checked_green);
+                    status.setText("Joined");
+                    status.setBackgroundColor(mContext.getResources().getColor(R.color.light_green));
+
+                break;
+        }
+
+
+
+
+      /*  if(list_names.get(position).get("status").equals("1")){
+
 
 
         }else if(list_names.get(position).get("status").equals("0")){
-            status.setText("Joined");
-            status.setBackgroundColor(mContext.getResources().getColor(R.color.light_green));
+
 
             Log.d("buzz", "getView: "+list_names.get(position).get("status"));
 
         }else if(list_names.get(position).get("status").equals("2")){
 
-            status.setText("Pending");
-            status.setBackgroundColor(mContext.getResources().getColor(R.color.grey));
-        }
 
+        }
+*/
 
 /*
         view1.setOnClickListener(new View.OnClickListener() {

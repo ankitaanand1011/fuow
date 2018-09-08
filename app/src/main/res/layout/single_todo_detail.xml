@@ -133,6 +133,7 @@
                 android:layout_below="@+id/rl_cost_in_pound"
                 android:padding="5dp"
                 android:gravity="center"
+                android:visibility="gone"
                 android:text="Credited Points"
                 android:textStyle="bold"
                 android:textColor="@color/black"

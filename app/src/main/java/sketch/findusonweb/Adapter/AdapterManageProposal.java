@@ -95,17 +95,17 @@ public class AdapterManageProposal extends RecyclerView.Adapter<AdapterManagePro
 
 
 
-            holder.imageView1.setVisibility(View.GONE);
-            holder.icon.setVisibility(View.VISIBLE);
+            holder.imageView1.setVisibility(View.VISIBLE);
+          /*  holder.icon.setVisibility(View.GONE);
             holder.icon.setLetter(list_namesfavoriteAll.get(position).get("title"));
             holder.icon.setLetterColor(context.getResources().getColor(R.color.white));
             holder.icon.setShapeColor(randomAndroidColor);
-            holder.icon.setShapeType(MaterialLetterIcon.Shape.CIRCLE);
+            holder.icon.setShapeType(MaterialLetterIcon.Shape.ROUND_RECT);
             holder.icon.setLetterSize(26);
             holder.icon.setLetterTypeface(Typeface.SANS_SERIF);
             holder.icon.setInitials(true);
             holder.icon.setInitialsNumber(2);
-
+*/
        /* }else {
             holder.image.setVisibility(View.VISIBLE);
             holder.icon.setVisibility(View.GONE);

@@ -156,9 +156,8 @@
                             android:id="@+id/total"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="ALL(43)"
-                            android:textSize="10dp"
-                            android:textStyle="bold"
+                            android:textSize="10sp"
+                            android:gravity="center"
                             android:layout_centerHorizontal="true"
                             android:textColor="@color/dark_voilet"
 
@@ -170,9 +169,8 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:layout_below="@+id/total"
-                            android:textStyle="bold"
-                            android:textSize="10dp"
-                            android:text="141"
+                            android:gravity="center"
+                            android:textSize="10sp"
                             android:layout_marginTop="5dp"
 
                             />
@@ -217,10 +215,8 @@
                             android:id="@+id/used"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="COMPLETED(24)"
-                            android:textSize="10dp"
-                            android:textStyle="bold"
-                            android:layout_centerHorizontal="true"
+                            android:textSize="10sp"
+                            android:gravity="center"                            android:layout_centerHorizontal="true"
                             android:textColor="@color/dark_voilet"
 
                             />
@@ -232,8 +228,7 @@
                             android:layout_centerHorizontal="true"
                             android:layout_below="@+id/used"
                             android:textStyle="bold"
-                            android:textSize="10dp"
-                            android:text="108"
+                            android:textSize="10sp"
                             android:layout_marginTop="5dp"
 
                             />
@@ -277,9 +272,8 @@
                             android:id="@+id/balance"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="PENDING(19)"
-                            android:textSize="10dp"
-                            android:textStyle="bold"
+                            android:textSize="10sp"
+                            android:gravity="center"
                             android:layout_centerHorizontal="true"
                             android:textColor="@color/dark_voilet"
 
@@ -291,9 +285,8 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:layout_below="@+id/balance"
-                            android:textStyle="bold"
-                            android:text="33"
-                            android:textSize="10dp"
+                            android:gravity="center"
+                            android:textSize="10sp"
                             android:layout_marginTop="5dp"
 
                             />

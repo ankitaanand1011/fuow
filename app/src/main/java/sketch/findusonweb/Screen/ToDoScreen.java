@@ -49,7 +49,7 @@ public class ToDoScreen extends AppCompatActivity {
     ListView listView;
     String TAG = "Listing";
     ImageView back_img;
-    TextView final_search,cart_img,view_all_favorite,view_all,view_all_review,credit_tv;
+    TextView total,tv_total,used,tv_used,view_all_review,balance,tv_balance;
     ImageView img_grid,seach_button,header_img,menu;
     String textString;
     Shared_Preference prefrence;
@@ -64,15 +64,12 @@ public class ToDoScreen extends AppCompatActivity {
     ArrayList<HashMap<String,String>> list_names;
     ArrayList<HashMap<String,String>> Arraylist_review;
 
-    RecyclerView recyclerView_to,recyclerView_favorite,recyclerView_review;
+    RecyclerView recyclerView_to;
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_do_screen);
-       back_img=findViewById(R.id.back_img);
-     //  view_all_favorite=findViewById(R.id.view_all);
-    //   credit_tv=findViewById(R.id.my_credit_tv);
-        view_all_review=findViewById(R.id.view_all_review);
-        // menu=findViewById(R.id.menu);
+
+
         globalClass = (GlobalClass) getApplicationContext();
         prefrence = new Shared_Preference(ToDoScreen.this);
         prefrence.loadPrefrence();
@@ -92,7 +89,19 @@ public class ToDoScreen extends AppCompatActivity {
         list_names = new ArrayList<>();
         list_namesfavorite=new ArrayList<>();
         Arraylist_review =new ArrayList<>();
+
         recyclerView_to = findViewById(R.id.rv_to_do);
+
+        back_img=findViewById(R.id.back_img);
+        view_all_review=findViewById(R.id.view_all_review);
+
+        total=findViewById(R.id.total);
+        tv_total=findViewById(R.id.tv_total);
+        used=findViewById(R.id.used);
+        tv_used=findViewById(R.id.tv_used);
+        balance=findViewById(R.id.balance);
+        tv_balance=findViewById(R.id.tv_balance);
+
 
 
         recyclerView_to.setNestedScrollingEnabled(true);
@@ -135,9 +144,23 @@ public class ToDoScreen extends AppCompatActivity {
 
 
                     Log.d(TAG, "onResponse: " + jobj);
-                    JsonObject data=jobj.getAsJsonObject("data");
-                    JsonArray data1 = data.getAsJsonArray("data");
-                    Log.d(TAG, "Data: " + data);
+                  //  JsonObject data=jobj.getAsJsonObject("data");
+                    String complete = jobj.get("complete").toString().replaceAll("\"", "");
+                    String complete_credit = jobj.get("complete_credit").toString().replaceAll("\"", "");
+                    String pending = jobj.get("pending").toString().replaceAll("\"", "");
+                    String pending_credit = jobj.get("pending_credit").toString().replaceAll("\"", "");
+                    String total1 = jobj.get("total").toString().replaceAll("\"", "");
+                    String total_credit = jobj.get("total_credit").toString().replaceAll("\"", "");
+
+                    total.setText("ALL "+ "\n" +"("+total1+")");
+                    tv_total.setText(total_credit);
+                    used.setText("COMPLETED"+ "\n" +"("+complete+")");
+                    tv_used.setText(complete_credit);
+                    balance.setText("PENDING"+ "\n" +"("+pending+")");
+                    tv_balance.setText(pending_credit);
+
+                    JsonArray data1 = jobj.getAsJsonArray("data");
+                    Log.d(TAG, "Data: " + data1);
 
                     for (int i = 0; i < data1.size(); i++) {
 

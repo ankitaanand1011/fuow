@@ -70,7 +70,7 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
 
         int[] androidColors = context.getResources().getIntArray(R.array.androidcolors);
         int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
@@ -85,6 +85,12 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context,ViewProductsDetails.class);
+                intent.putExtra("title",list_products.get(position).get("title"));
+                intent.putExtra("listing_name",list_products.get(position).get("listing_name"));
+                intent.putExtra("description",list_products.get(position).get("description"));
+                intent.putExtra("price",list_products.get(position).get("price"));
+                intent.putExtra("custom_15",list_products.get(position).get("custom_15"));
+                intent.putExtra("custom_58",list_products.get(position).get("custom_58"));
                 context.startActivity(intent);
             }
         });

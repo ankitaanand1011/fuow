@@ -129,6 +129,12 @@ public class EarningsScreen extends AppCompatActivity {
                     Log.d(TAG, "onResponse: " + jobj);
 
                     String result = jobj.get("success").toString().replaceAll("\"", "");
+
+
+
+
+
+
                     if (result.equals("1")) {
                         JsonArray data = jobj.getAsJsonArray("data");
                         Log.d(TAG, "Data: " + data);
@@ -170,7 +176,7 @@ public class EarningsScreen extends AppCompatActivity {
                         }
                         Log.d(TAG, "Listmane outer: " + list_namesfavoriteAll);
 
-                        adapterEarning = new AdapterEarning(EarningsScreen.this, list_namesfavoriteAll);
+                        adapterEarning = new AdapterEarning(EarningsScreen.this, list_namesfavoriteAll,pd);
                         rv_earning.setAdapter(adapterEarning);
                     }
                     else

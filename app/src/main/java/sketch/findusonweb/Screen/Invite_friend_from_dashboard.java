@@ -39,13 +39,16 @@ public class Invite_friend_from_dashboard extends AppCompatActivity {
     ImageView back_img;
     ProgressDialog pd;
     ArrayList<HashMap<String,String>> list_namesfavoriteAll;
+    TextView tv_in_ref,tv_joined_ref,tv_pending_join,tv_pending_ref,tv_in_earning,
+            tv_join_earning,tv_potential_earning,tv_estimated_earning;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invite_friend_from_dashboard);
 
-        listing=findViewById(R.id.invite_listing);
-        back_img=findViewById(R.id.back_img);
+
         globalClass = (GlobalClass) getApplicationContext();
         prefrence = new Shared_Preference(Invite_friend_from_dashboard.this);
         prefrence.loadPrefrence();
@@ -53,6 +56,10 @@ public class Invite_friend_from_dashboard extends AppCompatActivity {
         pd = new ProgressDialog(Invite_friend_from_dashboard.this);
         pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pd.setMessage(getResources().getString(R.string.loading));
+
+        listing=findViewById(R.id.invite_listing);
+        back_img=findViewById(R.id.back_img);
+
         if (globalClass.isNetworkAvailable()) {
             if (globalClass.getLogin_status()) {
 
@@ -62,6 +69,15 @@ public class Invite_friend_from_dashboard extends AppCompatActivity {
         } else {
             Toasty.info(Invite_friend_from_dashboard.this, getResources().getString(R.string.check_internet), Toast.LENGTH_LONG, true).show();
         }
+
+        tv_in_ref=findViewById(R.id.tv_in_ref);
+        tv_joined_ref=findViewById(R.id.tv_joined_ref);
+        tv_pending_join=findViewById(R.id.tv_pending_join);
+        tv_pending_ref=findViewById(R.id.tv_pending_ref);
+        tv_in_earning=findViewById(R.id.tv_in_earning);
+        tv_join_earning=findViewById(R.id.tv_join_earning);
+        tv_potential_earning=findViewById(R.id.tv_potential_earning);
+        tv_estimated_earning=findViewById(R.id.tv_estimated_earning);
 
 
 
@@ -78,7 +94,7 @@ public class Invite_friend_from_dashboard extends AppCompatActivity {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
 
-        // pd.show();
+         pd.show();
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
                 AppConfig.URL_DEV, new Response.Listener<String>() {
@@ -88,7 +104,7 @@ public class Invite_friend_from_dashboard extends AppCompatActivity {
             {
                 Log.d(TAG, "JOB RESPONSE: " + response.toString());
 
-                pd.dismiss();
+
 
                 Gson gson = new Gson();
 
@@ -97,6 +113,23 @@ public class Invite_friend_from_dashboard extends AppCompatActivity {
 
                     JsonObject jobj = gson.fromJson(response, JsonObject.class);
                     Log.d(TAG, "onResponse: " + jobj);
+                    String invite_referrals = jobj.get("invite_referrals").toString().replaceAll("\"", "");
+                    String joined_referrals = jobj.get("joined_referrals").toString().replaceAll("\"", "");
+                    String pending_referrals = jobj.get("pending_referrals").toString().replaceAll("\"", "");
+                    String pending_joining = jobj.get("pending_joining").toString().replaceAll("\"", "");
+                    String invited_amount = jobj.get("invited_amount").toString().replaceAll("\"", "");
+                    String joined_amount = jobj.get("joined_amount").toString().replaceAll("\"", "");
+                    String total_amount = jobj.get("total_amount").toString().replaceAll("\"", "");
+                    String pending_amount = jobj.get("pending_amount").toString().replaceAll("\"", "");
+
+                    tv_in_ref.setText(invite_referrals);
+                    tv_joined_ref.setText(joined_referrals);
+                    tv_pending_join.setText(pending_joining);
+                    tv_pending_ref.setText(pending_referrals);
+                    tv_in_earning.setText(globalClass.pound+invited_amount);
+                    tv_join_earning.setText(globalClass.pound+joined_amount);
+                    tv_potential_earning.setText(globalClass.pound+total_amount);
+                    tv_estimated_earning.setText(globalClass.pound+pending_amount);
 
                     String result = jobj.get("success").toString().replaceAll("\"", "");
                     if (result.equals("1")) {
@@ -117,6 +150,7 @@ public class Invite_friend_from_dashboard extends AppCompatActivity {
                             String sync = images1.get("sync").toString().replaceAll("\"", "");
                             String cor_mail_id = images1.get("cor_mail_id").toString().replaceAll("\"", "");
                             String status = images1.get("status").toString().replaceAll("\"", "");
+                            String ischecked = images1.get("ischecked").toString().replaceAll("\"", "");
 
                             HashMap<String, String> hashMap = new HashMap<>();
                             hashMap.put("mail_id", mail_id);
@@ -130,6 +164,7 @@ public class Invite_friend_from_dashboard extends AppCompatActivity {
                             hashMap.put("sync", sync);
                             hashMap.put("cor_mail_id", cor_mail_id);
                             hashMap.put("status", status);
+                            hashMap.put("ischecked", ischecked);
 
 
 
@@ -151,7 +186,7 @@ public class Invite_friend_from_dashboard extends AppCompatActivity {
 
                         Toasty.success(Invite_friend_from_dashboard.this, result, Toast.LENGTH_SHORT, true).show();
                     }
-                    // favorite();
+                    pd.dismiss();
 
                 } catch (Exception e) {
 

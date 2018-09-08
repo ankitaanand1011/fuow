@@ -45,6 +45,7 @@
                 android:layout_alignParentRight="true"
                 android:background="@drawable/badge"
                 android:textColor="@android:color/white"
+                android:visibility="gone"
                 android:gravity="center"
                 android:textSize="10sp"
                 android:layout_marginEnd="5dp"

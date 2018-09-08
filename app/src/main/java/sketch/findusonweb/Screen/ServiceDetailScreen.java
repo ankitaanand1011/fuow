@@ -147,10 +147,15 @@ public class ServiceDetailScreen extends AppCompatActivity  {
         detail_about_us = findViewById(R.id.detail_about_us);
         mapView = findViewById(R.id.map_view);
 
-        id = getIntent().getExtras().getString("id");
+        id = getIntent().getStringExtra("id");
         Log.d(TAG, "id service: "+id);
 
-        if (mapView != null) {
+        ViewList(id);
+
+
+
+
+      /*  if (mapView != null) {
             // Initialise the MapView
             mapView.onCreate(null);
             // Set the map ready callback to receive the GoogleMap object
@@ -173,7 +178,9 @@ public class ServiceDetailScreen extends AppCompatActivity  {
 
             });
             // bindView();
-        }
+        }*/
+
+
         txt_download.setOnClickListener(new View.OnClickListener() {
             @Override
 
@@ -275,6 +282,104 @@ public class ServiceDetailScreen extends AppCompatActivity  {
 
     }
 
+    public void ViewList(final String id) {
+        // Tag used to cancel the request
+        String tag_string_req = "req_login";
+
+        pd.show();
+
+        StringRequest strReq = new StringRequest(Request.Method.POST,
+                AppConfig.URL_DEV, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, "Invitation response: " + response.toString());
+
+                pd.dismiss();
+
+                Gson gson = new Gson();
+
+                try {
+
+
+                    JsonObject jobj = gson.fromJson(response, JsonObject.class);
+                    Log.d(TAG, "onResponse: "+jobj);
+                    JsonObject offerObject = jobj.getAsJsonObject();
+                    String id = offerObject.get("id").toString().replaceAll("\"", "");
+                    String user_id = offerObject.get("user_id").toString().replaceAll("\"", "");
+                    String  title = offerObject.get("title").toString().replaceAll("\"", "");
+                    String description_short = offerObject.get("description_short").toString().replaceAll("\"", "");
+                    String description = offerObject.get("description").toString().replaceAll("\"", "");
+                    String  login = offerObject.get("login").toString().replaceAll("\"", "");
+                    String latitude = offerObject.get("latitude").toString().replaceAll("\"", "");
+                    String longitude = offerObject.get("longitude").toString().replaceAll("\"", "");
+
+                    Log.d(TAG, "title: "+title);
+                    Log.d(TAG, "description_short: "+description_short);
+                    Log.d(TAG, "description: "+description);
+                    Log.d(TAG, "login: "+login);
+                    Log.d(TAG, "latitude: "+latitude);
+                    Log.d(TAG, "longitude: "+longitude);
+
+
+                   /*
+                    Log.d(TAG, "id: " + id);
+                    lat= Double.parseDouble(latitude);
+                    lng= Double.parseDouble(longitude);
+                    Log.d(TAG, "lat: "+lat);
+                    Log.d(TAG, "lng: "+lng);
+*/
+                    tv_name.setText(title);
+                    tv_category.setText(login);
+                    tv_des.setText(description_short);
+                    detail_about_us.setText(Html.fromHtml(description));
+
+
+
+                }
+                catch (Exception e) {
+                    Log.d(TAG, "Exception: ");
+
+                    Toasty.warning(ServiceDetailScreen.this, "Search Not found", Toast.LENGTH_SHORT, true).show();
+                    e.printStackTrace();
+
+                }
+             //   setMapLocation(lat,lng);
+
+
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+
+            public void onErrorResponse(VolleyError error) {
+                Log.d(TAG, "Login Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(), "Not found", Toast.LENGTH_LONG).show();
+                pd.dismiss();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<>();
+
+
+
+                params.put("listing_id", id);
+                params.put("view", "viewListing");
+                Log.i(TAG, "getParams: "+params);
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        GlobalClass.getInstance().addToRequestQueue(strReq, tag_string_req);
+        strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
+
+    }
 
 
     public void favorites() {
@@ -542,11 +647,10 @@ public class ServiceDetailScreen extends AppCompatActivity  {
     }
 
 
-
     private void setMapLocation(double lat, double lng) {
         if (map == null) return;
 
-         latLng =new LatLng(lat,lng);
+        latLng =new LatLng(lat,lng);
         Log.d(TAG, "latLnggdsdgs: "+latLng);
 
         // Add a marker for this item and set the camera
@@ -556,14 +660,15 @@ public class ServiceDetailScreen extends AppCompatActivity  {
 
         marker = map.addMarker(new MarkerOptions()
                 .position(latLng)
-               .title(address)
-                  //.snippet("Snippet")
+                .title(address)
+                //.snippet("Snippet")
                 .draggable(true)
                 .icon(BitmapDescriptorFactory
                         .fromResource(R.mipmap.map1)));
 
         getLocation(latLng.latitude,latLng.longitude);
     }
+
     public  void getLocation(final double lat, final double lng){
 
         String URL ="https://maps.googleapis.com/maps/api/geocode/json?latlng="
@@ -702,111 +807,5 @@ public class ServiceDetailScreen extends AppCompatActivity  {
             }
         });
     }
-    public void ViewList(final String id) {
-        // Tag used to cancel the request
-        String tag_string_req = "req_login";
-
-        pd.show();
-
-        StringRequest strReq = new StringRequest(Request.Method.POST,
-                AppConfig.URL_DEV, new Response.Listener<String>() {
-
-            @Override
-            public void onResponse(String response) {
-                Log.d(TAG, "Invitation response: " + response.toString());
-
-                pd.dismiss();
-
-                Gson gson = new Gson();
-
-                try {
-
-
-                    JsonObject jobj = gson.fromJson(response, JsonObject.class);
-                    Log.d(TAG, "onResponse: "+jobj);
-                    JsonObject offerObject = jobj.getAsJsonObject();
-                    String id = offerObject.get("id").toString().replaceAll("\"", "");
-                    String user_id = offerObject.get("user_id").toString().replaceAll("\"", "");
-                    title = offerObject.get("title").toString().replaceAll("\"", "");
-                    String description_short = offerObject.get("description_short").toString().replaceAll("\"", "");
-                    String description = offerObject.get("description").toString().replaceAll("\"", "");
-                     login = offerObject.get("login").toString().replaceAll("\"", "");
-                    String latitude = offerObject.get("latitude").toString().replaceAll("\"", "");
-                    String longitude = offerObject.get("longitude").toString().replaceAll("\"", "");
-
-                    Log.d(TAG, "title: "+title);
-                    Log.d(TAG, "description_short: "+description_short);
-                    Log.d(TAG, "description: "+description);
-                    Log.d(TAG, "login: "+login);
-                    Log.d(TAG, "latitude: "+latitude);
-                    Log.d(TAG, "longitude: "+longitude);
-                    HashMap<String, String> hashMap = new HashMap<>();
-                    hashMap.put("title", title);
-                    hashMap.put("description", description_short);
-                   // hashMap.put("primary_category_name", primary_category_name);
-                    //hashMap.put("logo_url", logo_url);
-                    hashMap.put("id", id);
-                   // hashMap.put("location_name",location_name);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("id", id);
-                    //list_names.add(hashMap);
-                    Log.d(TAG, "id: " + id);
-                    lat= Double.parseDouble(latitude);
-                    lng= Double.parseDouble(longitude);
-                    Log.d(TAG, "lat: "+lat);
-                    Log.d(TAG, "lng: "+lng);
-
-                    tv_name.setText(title);
-                    tv_category.setText(login);
-                    tv_des.setText(description_short);
-                    detail_about_us.setText(Html.fromHtml(description));
-
-
-
-                }
-                catch (Exception e) {
-                    Log.d(TAG, "Exception: ");
-
-                    Toasty.warning(ServiceDetailScreen.this, "Search Not found", Toast.LENGTH_SHORT, true).show();
-                    e.printStackTrace();
-
-                }
-                setMapLocation(lat,lng);
-
-
-
-            }
-        }, new Response.ErrorListener() {
-
-            @Override
-
-            public void onErrorResponse(VolleyError error) {
-                Log.d(TAG, "Login Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(), "Not found", Toast.LENGTH_LONG).show();
-                pd.dismiss();
-            }
-        }) {
-
-            @Override
-            protected Map<String, String> getParams() {
-                // Posting parameters to login url
-                Map<String, String> params = new HashMap<>();
-
-
-
-                params.put("listing_id", id);
-                params.put("view", "viewListing");
-                Log.i(TAG, "getParams: "+params);
-                return params;
-            }
-
-        };
-
-        // Adding request to request queue
-        GlobalClass.getInstance().addToRequestQueue(strReq, tag_string_req);
-        strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
-
-    }
-
 
 }

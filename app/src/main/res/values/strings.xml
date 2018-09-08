@@ -88,7 +88,7 @@
     <!-- Add Product -->
     <string name="classified">Classified</string>
     <string name="price">Price</string>
-    <string name="expiry_date">Expiration Date</string>
+    <string name="expiry_date">Expiry Date</string>
     <!--Edit Profile-->
     <string name="profile_pic_updated">Your profile picture has been updated.</string>
     <string name="profile_updated">Your profile  has been updated.</string>

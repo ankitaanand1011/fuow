@@ -39,30 +39,51 @@ public class Invoice extends AppCompatActivity {
     ImageView back_img;
     ProgressDialog pd;
     ArrayList<HashMap<String,String>> list_namesfavoriteAll;
+    TextView  total1,tv_total1,paid,tv_paid,unpaid,tv_unpaid,cancelled,tv_cancelled;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.myinvoice);
 
-        listing=findViewById(R.id.invoice_list);
-        back_img=findViewById(R.id.back_img);
+
         globalClass = (GlobalClass) getApplicationContext();
         prefrence = new Shared_Preference(Invoice.this);
         prefrence.loadPrefrence();
         pd = new ProgressDialog(Invoice.this);
         pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pd.setMessage(getResources().getString(R.string.loading));
+
+        list_namesfavoriteAll=new ArrayList<>();
+
+
+        listing=findViewById(R.id.invoice_list);
+        back_img=findViewById(R.id.back_img);
+
+
+        total1=findViewById(R.id.total1);
+        tv_total1=findViewById(R.id.tv_total1);
+        paid=findViewById(R.id.paid);
+        tv_paid=findViewById(R.id.tv_paid);
+        unpaid=findViewById(R.id.unpaid);
+        tv_unpaid=findViewById(R.id.tv_unpaid);
+        cancelled=findViewById(R.id.cancelled);
+        tv_cancelled=findViewById(R.id.tv_cancelled);
+
+
+
+
         if (globalClass.isNetworkAvailable()) {
             if (globalClass.getLogin_status()) {
-               /* Intent intent = new Intent(HomeScreen.this, HomeScreen.class);
-                startActivity(intent);
-                finish();*/
+                ReviewList();
             }
         } else {
             Toasty.info(Invoice.this, getResources().getString(R.string.check_internet), Toast.LENGTH_LONG, true).show();
         }
-        ReviewList();
-        list_namesfavoriteAll=new ArrayList<>();
+
+
         back_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,8 +116,30 @@ public class Invoice extends AppCompatActivity {
                     JsonObject jobj = gson.fromJson(response, JsonObject.class);
                     Log.d(TAG, "onResponse: " + jobj);
 
-                    String result = jobj.get("success").toString().replaceAll("\"", "");
-                    if (result.equals("1")) {
+//                    String result = jobj.get("success").toString().replaceAll("\"", "");
+
+                    String total11 = jobj.get("total").toString().replaceAll("\"", "");
+                    String total_amount = jobj.get("total_amount").toString().replaceAll("\"", "");
+                    String paid1 = jobj.get("paid").toString().replaceAll("\"", "");
+                    String paid_amount = jobj.get("paid_amount").toString().replaceAll("\"", "");
+                    String unpaid1 = jobj.get("unpaid").toString().replaceAll("\"", "");
+                    String unpaid_amount = jobj.get("unpaid_amount").toString().replaceAll("\"", "");
+                    String cancelled1 = jobj.get("cancelled").toString().replaceAll("\"", "");
+                    String cancelled_amount = jobj.get("cancelled_amount").toString().replaceAll("\"", "");
+
+                    total1.setText("TOTAL"+ "\n" +"("+total11+")");
+                    tv_total1.setText(total_amount);
+                    paid.setText("PAID"+ "\n" +"("+paid1+")");
+                    tv_paid.setText(paid_amount);
+                    unpaid.setText("UNPAID"+ "\n" +"("+unpaid1+")");
+                    tv_unpaid.setText(unpaid_amount);
+                    cancelled.setText("CANCELLED"+ "\n" +"("+cancelled1+")");
+                    tv_cancelled.setText(cancelled_amount);
+
+
+
+
+                   // if (result.equals("1")) {
                         JsonArray data = jobj.getAsJsonArray("data");
                         Log.d(TAG, "Data: " + data);
 
@@ -136,15 +179,9 @@ public class Invoice extends AppCompatActivity {
 
                         adapter_invoice = new Adapter_invoice(Invoice.this, list_namesfavoriteAll);
                         listing.setAdapter(adapter_invoice);
-                    }
-                    else
 
 
-                    {
 
-
-                        Toasty.success(Invoice.this, result, Toast.LENGTH_SHORT, true).show();
-                    }
                     // favorite();
 
                 } catch (Exception e) {

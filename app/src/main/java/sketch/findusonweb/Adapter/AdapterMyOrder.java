@@ -83,6 +83,7 @@ public class AdapterMyOrder extends BaseAdapter {
 
         Log.d("TAG", "getItem: "+position);
         View view1 = inflater.inflate(R.layout.single_my_order_new, parent, false);
+
         icon =  view1.findViewById(R.id.icon);
         order_id=view1.findViewById(R.id.tv_order_id);
         date=view1.findViewById(R.id.tv_date_value_order);
@@ -98,7 +99,8 @@ public class AdapterMyOrder extends BaseAdapter {
 
         int[] androidColors = mContext.getResources().getIntArray(R.array.androidcolors);
         int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
-        //pay_invoice.setVisibility(View.GONE);
+
+
         order_id.setText(list_names.get(position).get("order_id"));
         tv_manage_proposal.setText(list_names.get(position).get("title"));
         tv_listing_name_val.setText(list_names.get(position).get("name"));
@@ -106,7 +108,7 @@ public class AdapterMyOrder extends BaseAdapter {
         order_status.setText(list_names.get(position).get("status"));
         type.setText(list_names.get(position).get("type"));
         amount.setText(globalClass.pound+list_names.get(position).get("amount"));
-        tv_invoice_status_value.setText("");
+        tv_invoice_status_value.setText(list_names.get(position).get("payment_status"));
 
         img.setVisibility(View.GONE);
         icon.setVisibility(View.VISIBLE);

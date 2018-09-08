@@ -97,10 +97,9 @@
                             android:layout_height="wrap_content"
                             android:textSize="14sp"
                             android:textStyle="bold"
-                            android:layout_alignParentLeft="true"
-                            android:layout_toLeftOf="@+id/rl_rating"
+                            android:padding="5dp"
+                            android:textColor="@color/black"
                             android:contentDescription="@string/app_name"
-                            android:layout_centerVertical="true"
                             android:layout_alignParentStart="true" />
 
                         <RelativeLayout
@@ -108,7 +107,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/tv_name"
-                            android:layout_marginRight="5dp"
                             android:orientation="horizontal"
 
                             android:layout_marginEnd="5dp">
@@ -118,12 +116,11 @@
 
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="10sp"
                                 android:text="Rating"
-                                android:layout_marginRight="10sp"
                                 android:textSize="10sp"
                                 android:textStyle="bold"
                                 android:gravity="center"
+                                android:layout_marginEnd="10dp"
                                 android:layout_centerVertical="true"
                                 android:padding="5dp"
                                 android:contentDescription="@string/app_name"

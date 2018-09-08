@@ -1,5 +1,6 @@
 package sketch.findusonweb.Adapter;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -12,16 +13,28 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
+import es.dmoral.toasty.Toasty;
+import sketch.findusonweb.Constants.AppConfig;
 import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
 import sketch.findusonweb.Screen.EditReview;
-
+import sketch.findusonweb.Screen.HomeScreen;
+import sketch.findusonweb.Screen.LoginScreen;
 
 
 public class AdapterEarning extends RecyclerView.Adapter<AdapterEarning.MyViewHolder> {
@@ -29,15 +42,17 @@ public class AdapterEarning extends RecyclerView.Adapter<AdapterEarning.MyViewHo
 
     Context context;
     ArrayList<HashMap<String,String>> Arraylist_review;
-
+    String TAG ="AdapterEarning";
     GlobalClass globalClass;
     DisplayImageOptions defaultOptions;
     LayoutInflater inflater;
+    ProgressDialog pd;
 
-    public AdapterEarning(Context c, ArrayList<HashMap<String,String>> Arraylist_review
+    public AdapterEarning(Context c, ArrayList<HashMap<String,String>> Arraylist_review,ProgressDialog pd
     ) {
         this.context = c;
         this.Arraylist_review = Arraylist_review;
+        this.pd = pd;
 
         globalClass = ((GlobalClass) c.getApplicationContext());
 
@@ -96,17 +111,14 @@ public class AdapterEarning extends RecyclerView.Adapter<AdapterEarning.MyViewHo
         holder.tv_order_status_val.setText(order_val);
         holder.tv_invoice_status_val.setText(invoice_val);
 
-       /* holder.tv_claim.setOnClickListener(new View.OnClickListener() {
+        holder.tv_claim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, EditReview.class);
-                intent.putExtra("id", id);
-                Log.d("tag", "onClick: " + id);
-                context.startActivity(intent);
-
+                String order_id =  Arraylist_review.get(position).get("order_id");
+                String type =  Arraylist_review.get(position).get("type");
+                myEarningsClaims(type,order_id);
             }
         });
-*/
 
 
 
@@ -141,5 +153,84 @@ public class AdapterEarning extends RecyclerView.Adapter<AdapterEarning.MyViewHo
             tv_invoice_status_val = itemView.findViewById(R.id.tv_invoice_status_val);
 
         }
+    }
+
+
+    private void myEarningsClaims(final String type, final String order_id) {
+        // Tag used to cancel the request
+        String tag_string_req = "req_login";
+
+        pd.show();
+
+        StringRequest strReq = new StringRequest(Request.Method.POST,
+                AppConfig.URL_DEV, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, "Login Response: " + response.toString());
+
+                pd.dismiss();
+
+                Gson gson = new Gson();
+
+                try
+                {
+
+
+                    JsonObject jobj = gson.fromJson(response, JsonObject.class);
+                    String success = jobj.get("success").getAsString().replaceAll("\"", "");
+                    String message = jobj.get("message").getAsString().replaceAll("\"", "");
+
+                    if(success.equals("1")) {
+                        Toasty.success(context, message, Toast.LENGTH_SHORT, true).show();
+
+                    }else{
+                        Toasty.error(context, message, Toast.LENGTH_SHORT, true).show();
+                    }
+                    pd.dismiss();
+
+                   // Log.d(TAG,"Token \n" +message);
+
+
+
+                }catch (Exception e) {
+
+                   // Toast.makeText(context,"Incorrect Client ID/Password", Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Login Error: " + error.getMessage());
+                Toast.makeText(context,
+                        "Connection Error", Toast.LENGTH_LONG).show();
+                pd.dismiss();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<>();
+
+                params.put("type", type);
+                params.put("order_id", order_id);
+                params.put("view","myEarningsClaims");
+
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        GlobalClass.getInstance().addToRequestQueue(strReq, tag_string_req);
+        strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
+
     }
 }

@@ -9,6 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import sketch.findusonweb.Pojo.RowItem;
@@ -17,26 +19,26 @@ import sketch.findusonweb.R;
 public class ChatAdapter extends BaseAdapter {
 
 	Context context;
-	List<RowItem> rowItems;
+	ArrayList<HashMap<String,String>> list_namesfavoriteAll;
 
-	public ChatAdapter(Context context, List<RowItem> rowItems) {
+	public ChatAdapter(Context context, ArrayList<HashMap<String,String>> list_namesfavoriteAll) {
 		this.context = context;
-		this.rowItems = rowItems;
+		this.list_namesfavoriteAll = list_namesfavoriteAll;
 	}
 
 	@Override
 	public int getCount() {
-		return rowItems.size();
+		return list_namesfavoriteAll.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return rowItems.get(position);
+		return list_namesfavoriteAll.get(position);
 	}
 
 	@Override
 	public long getItemId(int position) {
-		return rowItems.indexOf(getItem(position));
+		return position;
 	}
 
 	/* private view holder class */
@@ -64,10 +66,12 @@ public class ChatAdapter extends BaseAdapter {
 			holder.message =  convertView.findViewById(R.id.message);
 			holder.cart_badge =  convertView.findViewById(R.id.cart_badge);
 
-			RowItem row_pos = rowItems.get(position);
 
-			holder.profile_pic.setImageResource(row_pos.getProfile_pic_id());
-			holder.member_name.setText(row_pos.getMember_name());
+
+			holder.profile_pic.setImageResource(R.mipmap.default_user_img);
+			holder.member_name.setText(list_namesfavoriteAll.get(position).get("remote_user_name"));
+			holder.message.setText(list_namesfavoriteAll.get(position).get("message"));
+
 
 
 			convertView.setTag(holder);

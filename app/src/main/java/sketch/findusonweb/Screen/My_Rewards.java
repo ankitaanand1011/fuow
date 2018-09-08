@@ -47,7 +47,7 @@ public class My_Rewards extends AppCompatActivity {
     Shared_Preference prefrence;
     ProgressDialog pd;
     ArrayList<HashMap<String,String>> list_namesfavoriteAll;
-
+    TextView tv_total,tv_used,tv_balance;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,6 +65,11 @@ public class My_Rewards extends AppCompatActivity {
         globalClass = (GlobalClass) getApplicationContext();
         prefrence = new Shared_Preference(My_Rewards.this);
         pd = new ProgressDialog(My_Rewards.this);
+
+
+        tv_total = findViewById(R.id.tv_total);
+        tv_used = findViewById(R.id.tv_used);
+        tv_balance = findViewById(R.id.tv_balance);
     }
 
     public  void function(){
@@ -120,21 +125,26 @@ public class My_Rewards extends AppCompatActivity {
 
                     String result = jobj.get("success").toString().replaceAll("\"", "");
                     if (result.equals("1")) {
-                        JsonObject data=jobj.getAsJsonObject("data");
+//                        JsonObject data=jobj.getAsJsonObject("data");
 
                         //  String Login = data.get("msg").getAsString().replaceAll("\"", "");
-                        String balance = data.get("balance").getAsString().replaceAll("\"", "");
-                        String used_credits = data.get("used_credits").getAsString().replaceAll("\"", "");
-                        String total_credits = data.get("total_credits").getAsString().replaceAll("\"", "");
+                        String balance = jobj.get("balance").getAsString().replaceAll("\"", "");
+                        String used_credits = jobj.get("used_credits").getAsString().replaceAll("\"", "");
+                        String total_credits = jobj.get("total_credits").getAsString().replaceAll("\"", "");
 
 
 
-                        JsonArray credits_history = data.getAsJsonArray("credits_history");
+                        tv_total.setText(total_credits);
+                        tv_used.setText(used_credits);
+                        tv_balance.setText(balance);
+
+
+                        JsonArray data = jobj.getAsJsonArray("data");
                         Log.d(TAG, "Data: " + data);
 
-                        for (int i = 0; i < credits_history.size(); i++) {
+                        for (int i = 0; i < data.size(); i++) {
 
-                            JsonObject images1 = credits_history.get(i).getAsJsonObject();
+                            JsonObject images1 = data.get(i).getAsJsonObject();
                             String id = images1.get("id").toString().replaceAll("\"", "");
                             String type = images1.get("type").toString().replaceAll("\"", "");
                             String credit_name = images1.get("credit_name").toString().replaceAll("\"", "");

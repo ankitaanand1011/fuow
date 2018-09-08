@@ -81,8 +81,8 @@
                     android:id="@+id/total1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TOTAL"
                     android:textSize="10dp"
+                    android:gravity="center"
                    
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/dark_voilet"
@@ -96,6 +96,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/total1"
                     android:textSize="10dp"
+                    android:gravity="center"
                     android:layout_marginTop="5dp"
 
                     />
@@ -137,24 +138,23 @@
                 >
 
                 <TextView
-                    android:id="@+id/used1"
+                    android:id="@+id/active"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ACTIVE"
                     android:textSize="10dp"
-                   
+                    android:gravity="center"
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/dark_voilet"
 
                     />
 
                 <TextView
-                    android:id="@+id/tv_used1"
+                    android:id="@+id/tv_active"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/used1"
-                   
+                    android:layout_below="@+id/active"
+                    android:gravity="center"
                     android:textSize="10dp"
                     android:layout_marginTop="5dp"
 
@@ -196,24 +196,23 @@
                 >
 
                 <TextView
-                    android:id="@+id/balance1"
+                    android:id="@+id/pending"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PENDING"
                     android:textSize="10dp"
-                   
+                    android:gravity="center"
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/dark_voilet"
 
                     />
 
                 <TextView
-                    android:id="@+id/tv_balance1"
+                    android:id="@+id/tv_pending"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/balance1"
-                   
+                    android:layout_below="@+id/pending"
+                    android:gravity="center"
                     android:textSize="10dp"
                     android:layout_marginTop="5dp"
 
@@ -255,25 +254,24 @@
                 >
 
                 <TextView
-                    android:id="@+id/balance2"
+                    android:id="@+id/completed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="COMPLETED"
-                    android:textSize="10dp"
-                   
+                    android:textSize="10sp"
+                    android:gravity="center"
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/dark_voilet"
 
                     />
 
                 <TextView
-                    android:id="@+id/tv_balance2"
+                    android:id="@+id/tv_completed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/balance2"
-                   
-                    android:textSize="10dp"
+                    android:layout_below="@+id/completed"
+                    android:gravity="center"
+                    android:textSize="10sp"
 
                     android:layout_marginTop="5dp"
 
@@ -327,24 +325,23 @@
                 >
 
                 <TextView
-                    android:id="@+id/total"
+                    android:id="@+id/cancelled"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CANCELLED"
                     android:textSize="10dp"
-                   
+                    android:gravity="center"
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/dark_voilet"
 
                     />
 
                 <TextView
-                    android:id="@+id/tv_total"
+                    android:id="@+id/tv_cancelled"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/total"
-                   
+                    android:layout_below="@+id/cancelled"
+                    android:gravity="center"
                     android:textSize="10dp"
 
                     android:layout_marginTop="5dp"
@@ -388,26 +385,25 @@
                 >
 
                 <TextView
-                    android:id="@+id/used"
+                    android:id="@+id/fraud"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="FRAUD"
                     android:textSize="10dp"
-                   
+                    android:gravity="center"
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/dark_voilet"
 
                     />
 
                 <TextView
-                    android:id="@+id/tv_used"
+                    android:id="@+id/tv_fraud"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/used"
+                    android:layout_below="@+id/fraud"
                    
                     android:textSize="10dp"
-
+                    android:gravity="center"
                     android:layout_marginTop="5dp"
 
                     />
@@ -448,24 +444,23 @@
                 >
 
                 <TextView
-                    android:id="@+id/balance"
+                    android:id="@+id/suspended"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SUSPENDED"
                     android:textSize="10dp"
-                   
+                    android:gravity="center"
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/dark_voilet"
 
                     />
 
                 <TextView
-                    android:id="@+id/tv_balance"
+                    android:id="@+id/tv_suspended"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/balance"
-                   
+                    android:layout_below="@+id/suspended"
+                    android:gravity="center"
                     android:textSize="10dp"
 
                     android:layout_marginTop="5dp"

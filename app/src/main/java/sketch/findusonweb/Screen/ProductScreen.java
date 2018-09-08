@@ -139,6 +139,8 @@ public class ProductScreen extends AppCompatActivity{
                             String listingfriendly_url = images1.get("listingfriendly_url").toString().replaceAll("\"", "");
                             String listing_location_id = images1.get("listing_location_id").toString().replaceAll("\"", "");
                             String primary_category_id = images1.get("primary_category_id").toString().replaceAll("\"", "");
+                            String custom_15 = images1.get("custom_15").toString().replaceAll("\"", "");
+                            String custom_58 = images1.get("custom_58").toString().replaceAll("\"", "");
 
 
                             HashMap<String, String> hashMap = new HashMap<>();
@@ -154,6 +156,8 @@ public class ProductScreen extends AppCompatActivity{
                             hashMap.put("listing_name",listing_name);
                             hashMap.put("images",images);
                             hashMap.put("keywords",keywords);
+                            hashMap.put("custom_15",custom_15);
+                            hashMap.put("custom_58",custom_58);
                            /* hashMap.put("www",www);
                             hashMap.put("id",id);
                             hashMap.put("listingfriendly_url",listingfriendly_url);*/

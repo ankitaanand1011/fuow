@@ -37,6 +37,7 @@ public class Shared_Preference {
     private String pref_cart_no;
     private String pref_ship_address_id;
     private String pref_ship_full_address;
+    private String pref_organisation;
 
     private String fcm;
     private String login_from;
@@ -59,6 +60,7 @@ public class Shared_Preference {
     private static final String PREF_ship_address_id = "ship_address_id";
     private static final String PREF_ship_full_address = "ship_full_address";
     private static final String PREF_login_from = "login_from";
+    private static final String PREF_organisation = "organisation";
 
 
 
@@ -103,12 +105,17 @@ public class Shared_Preference {
 
             pref_phone_number= globalclass.getPhone_number();
             editor.putString(PREF_phone_number,pref_phone_number);
+
+
             pref_business=globalclass.getBusiness();
             editor.putString(PREF_business,pref_business);
 
 
             pref_profile_img = globalclass.getProfil_pic();
             editor.putString(PREF_profile_img, pref_profile_img);
+
+            pref_organisation = globalclass.getOrganization();
+            editor.putString(PREF_organisation, pref_organisation);
 
             pref_cart_no = globalclass.getCart_no();
             editor.putString(PREF_cart_no, pref_cart_no);
@@ -163,6 +170,9 @@ public class Shared_Preference {
 
             pref_email=sharedPreferences.getString(PREF_email,"");
             globalclass.setEmail(pref_email);
+
+            pref_organisation=sharedPreferences.getString(PREF_organisation,"");
+            globalclass.setOrganization(pref_organisation);
 
             pref_cart_no=sharedPreferences.getString(PREF_cart_no,"");
             globalclass.setCart_no(pref_cart_no);
