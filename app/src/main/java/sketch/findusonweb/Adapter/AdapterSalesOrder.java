@@ -87,7 +87,7 @@ public class AdapterSalesOrder extends RecyclerView.Adapter<AdapterSalesOrder.My
         holder.tv_type.setText("( "+listing_name+" )");
         holder.tv_listing_name_val.setText(globalClass.getFname());
         holder.tv_payment_method_val.setText(buyer);
-        holder.tv_in_pound.setText(globalClass.pound+amount);
+        holder.tv_in_pound.setText(amount);
         holder.tv_order_status_val.setText(order_status);
         holder.tv_invoice_status_val.setText(invoice_status);
 

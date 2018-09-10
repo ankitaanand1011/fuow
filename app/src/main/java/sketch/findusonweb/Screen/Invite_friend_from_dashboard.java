@@ -1,11 +1,15 @@
 package sketch.findusonweb.Screen;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,9 +44,12 @@ public class Invite_friend_from_dashboard extends AppCompatActivity {
     ProgressDialog pd;
     ArrayList<HashMap<String,String>> list_namesfavoriteAll;
     TextView tv_in_ref,tv_joined_ref,tv_pending_join,tv_pending_ref,tv_in_earning,
-            tv_join_earning,tv_potential_earning,tv_estimated_earning;
-
-
+            tv_join_earning,tv_potential_earning,tv_estimated_earning,tv_invite_friend;
+    Dialog dialog;
+    EditText firstname_dialog,lastname_dialog,email_dialog,business_name,phone_dialog,campaign_id;
+    TextView save,submit,tv_browse;
+    LinearLayout post_job_layout;
+    ImageView dialog_cut;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,8 +85,15 @@ public class Invite_friend_from_dashboard extends AppCompatActivity {
         tv_join_earning=findViewById(R.id.tv_join_earning);
         tv_potential_earning=findViewById(R.id.tv_potential_earning);
         tv_estimated_earning=findViewById(R.id.tv_estimated_earning);
+        tv_invite_friend=findViewById(R.id.tv_invite_friend);
 
 
+        tv_invite_friend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialog1();
+            }
+        });
 
         list_namesfavoriteAll=new ArrayList<>();
         back_img.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +104,124 @@ public class Invite_friend_from_dashboard extends AppCompatActivity {
             }
         });
     }
+
+    public void openDialog1() {
+        dialog = new Dialog(Invite_friend_from_dashboard.this);
+        dialog.setContentView(R.layout.invite_dialog);
+
+        dialog_cut=dialog.findViewById(R.id.cut_dialog);
+        firstname_dialog=dialog.findViewById(R.id.firstname);
+        lastname_dialog=dialog.findViewById(R.id.lastname);
+        email_dialog=dialog.findViewById(R.id.email);
+        phone_dialog=dialog.findViewById(R.id.phoone_no);
+        campaign_id=dialog.findViewById(R.id.campaign_id);
+        business_name=dialog.findViewById(R.id.business_name);
+        save=dialog.findViewById(R.id.save);
+        submit=dialog.findViewById(R.id.tv_submit);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String firstname = firstname_dialog.getText().toString().trim();
+                String lastname = lastname_dialog.getText().toString().trim();
+                String email = email_dialog.getText().toString().trim();
+                String Phone = phone_dialog.getText().toString().trim();
+                String organization = business_name.getText().toString().trim();
+                String campaign_id1 = campaign_id.getText().toString().trim();
+
+                if (globalClass.isNetworkAvailable()) {
+                    if (!firstname_dialog.getText().toString().isEmpty()) {
+                        if (!lastname_dialog.getText().toString().isEmpty()) {
+                            if (isValidEmail(email_dialog.getText().toString())) {
+                                if (!phone_dialog.getText().toString().isEmpty()) {
+                                    if (!business_name.getText().toString().isEmpty()) {
+                                        if (!campaign_id.getText().toString().isEmpty()) {
+
+                                            inviteFriend(firstname,lastname,email,organization,Phone,campaign_id1,globalClass.view_friend);
+
+                                        }
+                                        else {
+                                            Toasty.warning(Invite_friend_from_dashboard.this, getResources().getString(R.string.enter_campaign_id), Toast.LENGTH_SHORT, true).show();
+
+                                        }
+                                    } else {
+                                        Toasty.warning(Invite_friend_from_dashboard.this, getResources().getString(R.string.enter_mobile), Toast.LENGTH_SHORT, true).show();
+                                    }
+                                }
+                            } else {
+                                Toasty.warning(Invite_friend_from_dashboard.this, getResources().getString(R.string.valid_email), Toast.LENGTH_SHORT, true).show();
+                            }
+                        } else {
+                            Toasty.warning(Invite_friend_from_dashboard.this, getResources().getString(R.string.enter_last_name), Toast.LENGTH_SHORT, true).show();
+                        }
+                    } else {
+                        Toasty.warning(Invite_friend_from_dashboard.this, getResources().getString(R.string.enter_first_name), Toast.LENGTH_SHORT, true).show();
+                    }
+                } else {
+                    Toasty.warning(Invite_friend_from_dashboard.this, getResources().getString(R.string.check_internet), Toast.LENGTH_SHORT, true).show();
+                }
+            }
+
+
+
+        });
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String firstname = firstname_dialog.getText().toString().trim();
+                String lastname = lastname_dialog.getText().toString().trim();
+                String email = email_dialog.getText().toString().trim();
+                String Phone = phone_dialog.getText().toString().trim();
+                String organization = business_name.getText().toString().trim();
+                String campaign_id1 = campaign_id.getText().toString().trim();
+
+                if (globalClass.isNetworkAvailable()) {
+                    if (!firstname_dialog.getText().toString().isEmpty()) {
+                        if (!lastname_dialog.getText().toString().isEmpty()) {
+                            if (isValidEmail(email_dialog.getText().toString())) {
+                                if (!phone_dialog.getText().toString().isEmpty()) {
+                                    if (!business_name.getText().toString().isEmpty()) {
+                                        if (!campaign_id.getText().toString().isEmpty()) {
+
+                                            submitFriend(firstname,lastname,email,organization,Phone,campaign_id1,globalClass.view_friend);
+
+                                        }
+                                        else {
+                                            Toasty.warning(Invite_friend_from_dashboard.this, getResources().getString(R.string.enter_campaign_id), Toast.LENGTH_SHORT, true).show();
+
+                                        }
+                                    } else {
+                                        Toasty.warning(Invite_friend_from_dashboard.this, getResources().getString(R.string.enter_mobile), Toast.LENGTH_SHORT, true).show();
+                                    }
+                                }
+                            } else {
+                                Toasty.warning(Invite_friend_from_dashboard.this, getResources().getString(R.string.valid_email), Toast.LENGTH_SHORT, true).show();
+                            }
+                        } else {
+                            Toasty.warning(Invite_friend_from_dashboard.this, getResources().getString(R.string.enter_last_name), Toast.LENGTH_SHORT, true).show();
+                        }
+                    } else {
+                        Toasty.warning(Invite_friend_from_dashboard.this, getResources().getString(R.string.enter_first_name), Toast.LENGTH_SHORT, true).show();
+                    }
+                } else {
+                    Toasty.warning(Invite_friend_from_dashboard.this, getResources().getString(R.string.check_internet), Toast.LENGTH_SHORT, true).show();
+                }
+            }
+
+
+
+        });
+
+        dialog_cut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+
+        dialog.show();
+    }
+
     private void ReviewList() {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
@@ -226,5 +358,199 @@ public class Invite_friend_from_dashboard extends AppCompatActivity {
         strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
 
     }
+    private static boolean isValidEmail(String email) {
+        return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();}
+
+    private void inviteFriend(final String user_first_name, final String user_last_name, final String user_email,  final String user_organizaton, final String phone_number, final String campaign_source_field, final String view) {
+        // Tag used to cancel the request
+        String tag_string_req = "req_login";
+
+        pd.show();
+
+        StringRequest strReq = new StringRequest(Request.Method.POST,
+                AppConfig.URL_DEV, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, "Invitation response: " + response.toString());
+
+                pd.dismiss();
+
+                Gson gson = new Gson();
+
+                try {
+
+
+                    JsonObject jobj = gson.fromJson(response, JsonObject.class);
+                    String result = jobj.get("result").getAsString().replaceAll("\"", "");
+                    String message = jobj.get("msg").getAsString().replaceAll("\"", "");
+                    // JsonObject offerObject = jobj.getAsJsonObject("result");
+
+                    if (result.equals("success")) {
+
+
+                        Toasty.success(Invite_friend_from_dashboard.this, message, Toast.LENGTH_SHORT, true).show();
+                        // Intent intent = new Intent(Invite_friend_from_dashboard.this, Invite_friend_from_dashboard.class);
+                        // startActivity(intent);
+                        // finish();
+                        dialog.dismiss();
+
+                    } else
+
+
+                    {
+
+
+                        Toasty.success(Invite_friend_from_dashboard.this, message, Toast.LENGTH_SHORT, true).show();
+                    }
+
+                    //  JsonObject obj3 = jobj1.get("profileDetails").getAsJsonObject();
+
+                    Log.d(TAG, "Token \n" + message);
+
+
+                } catch (Exception e) {
+
+                    Toasty.warning(Invite_friend_from_dashboard.this, "Something went wrong", Toast.LENGTH_SHORT, true).show();
+                    e.printStackTrace();
+
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Login Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(), (CharSequence) error, Toast.LENGTH_LONG).show();
+                pd.dismiss();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<>();
+
+
+
+                params.put("user_first_name", user_first_name);
+                params.put("user_last_name", user_last_name);
+                params.put("user_email", user_email);
+                params.put("user_organization", user_organizaton);
+                params.put("user_phone", phone_number);
+                params.put("status", globalClass.Status_new);
+                params.put("campaign_source_field",campaign_source_field);
+                params.put("refer_user_id",globalClass.getId());
+                params.put("view", view);
+                Log.d(TAG, "getParams: "+params);
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        GlobalClass.getInstance().addToRequestQueue(strReq, tag_string_req);
+        strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
+
+    }
+
+    private void submitFriend(final String user_first_name, final String user_last_name, final String user_email,  final String user_organizaton, final String phone_number, final String campaign_source_field, final String view) {
+        // Tag used to cancel the request
+        String tag_string_req = "req_login";
+
+        pd.show();
+
+        StringRequest strReq = new StringRequest(Request.Method.POST,
+                AppConfig.URL_DEV, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, "Invitation response: " + response.toString());
+
+                pd.dismiss();
+
+                Gson gson = new Gson();
+
+                try {
+
+
+                    JsonObject jobj = gson.fromJson(response, JsonObject.class);
+                    String result = jobj.get("result").getAsString().replaceAll("\"", "");
+                    String message = jobj.get("msg").getAsString().replaceAll("\"", "");
+                    // JsonObject offerObject = jobj.getAsJsonObject("result");
+
+                    if (result.equals("success")) {
+
+
+                        Toasty.success(Invite_friend_from_dashboard.this, message, Toast.LENGTH_SHORT, true).show();
+                        // Intent intent = new Intent(Invite_friend_from_dashboard.this, Invite_friend_from_dashboard.class);
+                        // startActivity(intent);
+                        // finish();
+                        dialog.dismiss();
+
+                    } else
+
+
+                    {
+
+
+                        Toasty.success(Invite_friend_from_dashboard.this, message, Toast.LENGTH_SHORT, true).show();
+                    }
+
+                    //  JsonObject obj3 = jobj1.get("profileDetails").getAsJsonObject();
+
+                    Log.d(TAG, "Token \n" + message);
+
+
+                } catch (Exception e) {
+
+                    Toasty.warning(Invite_friend_from_dashboard.this, "Something went wrong", Toast.LENGTH_SHORT, true).show();
+                    e.printStackTrace();
+
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Login Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(), (CharSequence) error, Toast.LENGTH_LONG).show();
+                pd.dismiss();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<>();
+
+
+
+                params.put("user_first_name", user_first_name);
+                params.put("user_last_name", user_last_name);
+                params.put("user_email", user_email);
+                params.put("user_organization", user_organizaton);
+                params.put("user_phone", phone_number);
+                params.put("campaign_source_field",campaign_source_field);
+                params.put("refer_user_id",globalClass.getId());
+                params.put("view", view);
+                Log.d(TAG, "getParams: "+params);
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        GlobalClass.getInstance().addToRequestQueue(strReq, tag_string_req);
+        strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
+
+    }
+
 
 }

@@ -155,7 +155,7 @@ public class ServiceDetailScreen extends AppCompatActivity  {
 
 
 
-      /*  if (mapView != null) {
+        if (mapView != null) {
             // Initialise the MapView
             mapView.onCreate(null);
             // Set the map ready callback to receive the GoogleMap object
@@ -169,7 +169,7 @@ public class ServiceDetailScreen extends AppCompatActivity  {
                     try {
                         MapsInitializer.initialize(getApplicationContext());
                         map = googleMap;
-                        ViewList(id);
+                        //ViewList(id);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -178,7 +178,7 @@ public class ServiceDetailScreen extends AppCompatActivity  {
 
             });
             // bindView();
-        }*/
+        }
 
 
         txt_download.setOnClickListener(new View.OnClickListener() {

@@ -41,6 +41,7 @@ public class Financial_Transaction extends AppCompatActivity {
     ImageView back_img;
     ProgressDialog pd;
     RecyclerView.LayoutManager mLayoutManager;
+    TextView tv_purchases,tv_active,tv_complete,tv_personal,tv_credit_balance;
 
     ArrayList<HashMap<String,String>> list_namesfavoriteAll;
     @Override
@@ -60,6 +61,12 @@ public class Financial_Transaction extends AppCompatActivity {
         globalClass = (GlobalClass) getApplicationContext();
         prefrence = new Shared_Preference(Financial_Transaction.this);
         pd = new ProgressDialog(Financial_Transaction.this);
+
+        tv_purchases=findViewById(R.id.tv_purchases);
+        tv_active=findViewById(R.id.tv_active);
+        tv_complete=findViewById(R.id.tv_complete);
+        tv_personal=findViewById(R.id.tv_personal);
+        tv_credit_balance=findViewById(R.id.tv_credit_balance);
     }
 
     private void functions() {
@@ -118,6 +125,19 @@ public class Financial_Transaction extends AppCompatActivity {
                     Log.d(TAG, "onResponse: " + jobj);
 
                     String result = jobj.get("success").toString().replaceAll("\"", "");
+                    String purchases = jobj.get("purchases").toString().replaceAll("\"", "");
+                    String active = jobj.get("active").toString().replaceAll("\"", "");
+                    String complete = jobj.get("complete").toString().replaceAll("\"", "");
+                    String personal = jobj.get("personal").toString().replaceAll("\"", "");
+                    String credit_balance = jobj.get("credit_balance").toString().replaceAll("\"", "");
+
+
+                    tv_purchases.setText(purchases);
+                    tv_active.setText(active);
+                    tv_complete.setText(complete);
+                    tv_personal.setText(personal);
+                    tv_credit_balance.setText(credit_balance);
+
                     if (result.equals("1")) {
                         JsonArray data = jobj.getAsJsonArray("data");
                         Log.d(TAG, "Data: " + data);

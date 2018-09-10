@@ -302,11 +302,56 @@ public class HomeScreen  extends AppCompatActivity {
             @Override
             public void onItemClick(int itemIndex, String itemName) {
                 Log.d("onItemClick ", "" + itemIndex + " " + itemName);
-                spaceNavigationView.setActiveSpaceItemColor(ContextCompat.getColor(HomeScreen.this,R.color.black));            }
+                spaceNavigationView.setActiveSpaceItemColor(ContextCompat.getColor(HomeScreen.this,R.color.black));
+
+                if(itemIndex == 0){
+
+                    Intent intent = new Intent(HomeScreen.this,HomeScreen.class);
+                    startActivity(intent);
+
+                }else if(itemIndex == 1){
+
+                    Intent intent = new Intent(HomeScreen.this,ChatScreen.class);
+                    startActivity(intent);
+
+                }else if(itemIndex == 2){
+
+                    Log.d("onItemReselected ", "" + itemIndex + " " + itemName);
+
+                }else if(itemIndex == 3){
+
+
+                    Log.d("onItemReselected ", "" + itemIndex + " " + itemName);
+                }
+
+            }
+
+
+
 
             @Override
             public void onItemReselected(int itemIndex, String itemName) {
                 Log.d("onItemReselected ", "" + itemIndex + " " + itemName);
+
+                if(itemIndex == 0){
+
+                    Intent intent = new Intent(HomeScreen.this,HomeScreen.class);
+                    startActivity(intent);
+
+                }else if(itemIndex == 1){
+
+                    Intent intent = new Intent(HomeScreen.this,ChatScreen.class);
+                    startActivity(intent);
+
+                }else if(itemIndex == 2){
+
+                    Log.d("onItemReselected ", "" + itemIndex + " " + itemName);
+
+                }else if(itemIndex == 3){
+
+
+                    Log.d("onItemReselected ", "" + itemIndex + " " + itemName);
+                }
             }
         });
 

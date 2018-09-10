@@ -892,10 +892,10 @@ private void getCategory(final String Category)
                         pd.dismiss();
 
 
-                        Intent i=new Intent(PostRequriementScreen.this, ThankyouScreen.class);
+                  /*      Intent i=new Intent(PostRequriementScreen.this, ThankyouScreen.class);
                         i.putExtra("One",message);
 
-                        startActivity(i);
+                        startActivity(i);*/
 
                   //      Toasty.success(PostRequriementScreen.this, message, Toast.LENGTH_SHORT, true).show();
                         // pd.dismiss();

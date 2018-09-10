@@ -93,12 +93,13 @@ public class My_Schedule extends AppCompatActivity{
 
         type = new ArrayList<>();
         type.add("All");
-        type.add("Active");
-        type.add("Pending");
-        type.add("Awaiting Acceptance");
-        type.add("Paused");
-        type.add("Unapproved");
-        type.add("Complete");
+        type.add("Sent");
+        type.add("Received");
+        type.add("Today");
+        type.add("Tomorrow");
+        type.add("This Week");
+        type.add("Next Week");
+        type.add("History");
 
         spinner_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -109,6 +110,16 @@ public class My_Schedule extends AppCompatActivity{
                 switch (item1) {
                     case "All":
                         item = "all";
+                        ViewList(item);
+                        break;
+
+                    case "Sent":
+                        item = "sent";
+                        ViewList(item);
+                        break;
+
+                    case "Received":
+                        item = "received";
                         ViewList(item);
                         break;
 

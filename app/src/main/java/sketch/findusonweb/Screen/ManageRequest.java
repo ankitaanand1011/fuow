@@ -92,11 +92,14 @@ public class ManageRequest extends AppCompatActivity{
         type = new ArrayList<>();
         type.add("All");
         type.add("Active");
-        type.add("Pending");
-        type.add("Awaiting Acceptance");
         type.add("Paused");
+        type.add("Pending");
+        type.add("Paid");
+        type.add("In Progress");
+        type.add("Acceptance");
         type.add("Unapproved");
         type.add("Complete");
+
 
         spinner_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -131,14 +134,24 @@ public class ManageRequest extends AppCompatActivity{
                         ViewList(item);
                         break;
 
-                    case "Awaiting Acceptance":
-                        item = "awaiting_acceptance";
+                    case "Acceptance":
+                        item = "acceptance";
                         ViewList(item);
                         break;
 
 
                     case "Paused":
                         item = "paused";
+                        ViewList(item);
+                        break;
+
+                    case "Paid":
+                        item = "paid";
+                        ViewList(item);
+                        break;
+
+                    case "In Progress":
+                        item = "in_progress";
                         ViewList(item);
                         break;
 

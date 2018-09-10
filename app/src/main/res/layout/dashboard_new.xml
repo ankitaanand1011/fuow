@@ -129,7 +129,7 @@
                         android:layout_gravity="center_horizontal"
                         android:contentDescription="@string/app_name"
                         android:scaleType="centerCrop"
-                        android:src="@mipmap/no_image"
+                        android:src="@mipmap/default_user_img"
                         app:riv_border_color="@android:color/transparent"
                         app:riv_border_width="1dip"
                         app:riv_corner_radius="80dip"

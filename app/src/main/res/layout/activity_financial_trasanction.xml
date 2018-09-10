@@ -105,7 +105,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/tv_total1"
+                    android:id="@+id/tv_purchases"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -165,7 +165,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/tv_used1"
+                    android:id="@+id/tv_active"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -224,7 +224,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/tv_balance1"
+                    android:id="@+id/tv_complete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -305,7 +305,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/tv_total"
+                    android:id="@+id/tv_personal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -366,7 +366,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/tv_used"
+                    android:id="@+id/tv_credit_balance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"

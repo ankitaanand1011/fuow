@@ -140,7 +140,9 @@ public class AdapterBrowseCategorySingle extends BaseAdapter {
         category.setText(list_names.get(position).get("location_search_text"));
         location_name.setText(list_names.get(position).get("location_text_1"));
 
-        if(list_names.get(position).get("logo_url").equals(""))
+        Log.d("qwerty", "getView: "+list_names.get(position).get("logo_url"));
+
+        if(list_names.get(position).get("logo_url").equals("")||list_names.get(position).get("logo_url").equals("null"))
         {
             img.setVisibility(View.GONE);
             icon.setVisibility(View.VISIBLE);

@@ -114,8 +114,8 @@ public class AdapterFavoriteDescriptive extends RecyclerView.Adapter<AdapterFavo
             holder.icon.setVisibility(View.GONE);
             loader.displayImage(list_namesfavoriteAll.get(position).get("image"), holder.img, defaultOptions);
         }
-*/
-     /*   holder.tv_des.setText(list_namesfavoriteAll.get(position).get("description"));
+*//*
+        holder.tv_des.setText(list_namesfavoriteAll.get(position).get("description"));
         holder.category.setText(list_namesfavoriteAll.get(position).get("primary_category_name"));
         holder.location_name.setText(list_namesfavoriteAll.get(position).get("location_name"));
 
@@ -135,44 +135,29 @@ public class AdapterFavoriteDescriptive extends RecyclerView.Adapter<AdapterFavo
                 context.startActivity(intent);
             }
         });
-
+*/
         holder.rl_message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(globalClass.login_status.equals(false)){
 
-                    Intent intent = new Intent(context, LoginScreen.class);
-                    context.startActivity(intent);
-                    ((Activity)context).finish();
-
-                }
-                else {
                     Intent intent = new Intent(context, Messages.class);
                     intent.putExtra("id", list_namesfavoriteAll.get(position).get("id"));
                     context.startActivity(intent);
-                }
+
             }
         });
-        holder.rl_review.setOnClickListener(new View.OnClickListener() {
+        holder.rl_add_review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(globalClass.login_status.equals(false)){
 
-                    Intent intent = new Intent(context, LoginScreen.class);
-                    context.startActivity(intent);
-                    ((Activity)context).finish();
-
-                }
-                else {
                     Intent intent = new Intent(context, ReviewScreen.class);
                     intent.putExtra("id", list_namesfavoriteAll.get(position).get("id"));
                     Log.d("review", "onClick: " + list_namesfavoriteAll.get(position).get("id"));
                     context.startActivity(intent);
 
-                }
+
             }
         });
-*/
 
 
 
@@ -187,7 +172,7 @@ public class AdapterFavoriteDescriptive extends RecyclerView.Adapter<AdapterFavo
         // init the item view's
         TextView tv_name,tv_des,category,location_name,send_message,add_review;
         ImageView img;
-        RelativeLayout rl_message,rl_review;
+        RelativeLayout rl_message,rl_add_review;
         RatingBar rating;
         LayerDrawable stars;
         MaterialLetterIcon icon;
@@ -196,7 +181,7 @@ public class AdapterFavoriteDescriptive extends RecyclerView.Adapter<AdapterFavo
             // get the reference of item view's
             send_message=itemView.findViewById(R.id.send_message);
             rl_message=itemView.findViewById(R.id.rl_message);
-            rl_review=itemView.findViewById(R.id.Rl_add_review);
+            rl_add_review=itemView.findViewById(R.id.rl_add_review);
             add_review=itemView.findViewById(R.id.add_review);
             location_name=itemView.findViewById(R.id.location_check);
             category=itemView.findViewById(R.id.category);
