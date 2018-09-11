@@ -140,8 +140,8 @@ public class AdapterBrowseLocationSingle extends BaseAdapter {
         tv_des.setText(list_names.get(position).get("description"));
         category.setText(list_names.get(position).get("location_search_text"));
         location_name.setText(list_names.get(position).get("location_text_1"));
-        if(list_names.get(position).get("logo_url").equals(""))
-        {
+      /*  if(list_names.get(position).get("logo_url").equals(""))
+        {*/
             img.setVisibility(View.GONE);
             icon.setVisibility(View.VISIBLE);
             icon.setLetter(list_names.get(position).get("title"));
@@ -152,12 +152,12 @@ public class AdapterBrowseLocationSingle extends BaseAdapter {
             icon.setLetterTypeface(Typeface.SANS_SERIF);
             icon.setInitials(true);
             icon.setInitialsNumber(2);
-        }
+      /*  }
         else {
             img.setVisibility(View.VISIBLE);
             icon.setVisibility(View.GONE);
             loader.displayImage(list_names.get(position).get("logo_url"),img, defaultOptions);
-        }
+        }*/
         view1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

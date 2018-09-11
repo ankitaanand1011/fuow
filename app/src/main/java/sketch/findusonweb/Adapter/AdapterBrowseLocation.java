@@ -37,7 +37,7 @@ import sketch.findusonweb.Screen.ClaimBusinessScreen;
  * Created by developer on 9/7/18.
  */
 
-public class AdapterBrowseLocation extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class AdapterBrowseLocation extends RecyclerView.Adapter<AdapterBrowseLocation.ViewHolder> {
 
 
     Context context;
@@ -77,43 +77,22 @@ public class AdapterBrowseLocation extends RecyclerView.Adapter<RecyclerView.Vie
 
     }
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AdapterBrowseLocation.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        Context context = mContextWeakReference.get();
-        if (viewType == SECTION_VIEW) {
-            return new SectionHeaderViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_header_title, parent, false));
-        }
-        return new ItemViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.single_browse_location, parent, false), context);
+       // Context context = mContextWeakReference.get();
+        View view = inflater.inflate(R.layout.single_browse_location, parent, false);
+        return new AdapterBrowseLocation.ViewHolder(view);
     }
 
 
-    @Override
-    public int getItemViewType(int position) {
-        if (list_claim.get(position).isEmpty()) {
-            return SECTION_VIEW;
-        } else {
-            return CONTENT_VIEW;
-        }
-    }
+
 
     @Override
-    public void onBindViewHolder(final RecyclerView.ViewHolder holder,final int position) {
+    public void onBindViewHolder(final ViewHolder holder,final int position) {
 
-        final Context context = mContextWeakReference.get();
-        if (context == null) {
-            return;
-        }
-        if (SECTION_VIEW == getItemViewType(position)) {
 
-            SectionHeaderViewHolder sectionHeaderViewHolder = (SectionHeaderViewHolder) holder;
-          // boolean section= list_claim.get(position).get("title").equals("");
-            sectionHeaderViewHolder.headerTitleTextview.setText(list_claim.get(position).get("title"));
-            return;
-        }
-
-        ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-        itemViewHolder.nameTextview.setText(list_claim.get(position).get("title"));
-        itemViewHolder.count.setText(list_claim.get(position).get("count_total"));
+        holder.nameTextview.setText(list_claim.get(position).get("title"));
+        holder.count.setText(list_claim.get(position).get("count_total"));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -133,23 +112,23 @@ public class AdapterBrowseLocation extends RecyclerView.Adapter<RecyclerView.Vie
         return list_claim.size();
     }
 
-    public static class ItemViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView nameTextview,count;
 
-        public ItemViewHolder(View itemView, final Context context) {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+
+
+        TextView nameTextview,count;
+
+
+        ViewHolder(View itemView) {
             super(itemView);
+
             count=itemView.findViewById(R.id.count);
             nameTextview = itemView.findViewById(R.id.name);
+
         }
+
     }
 
-    public class SectionHeaderViewHolder extends RecyclerView.ViewHolder {
-        TextView headerTitleTextview;
 
-        public SectionHeaderViewHolder(View itemView) {
-            super(itemView);
-            headerTitleTextview =  itemView.findViewById(R.id.headerTitleTextview);
-        }
-    }
 }

@@ -127,7 +127,7 @@ public class BrowseLocation extends AppCompatActivity {
             public void onResponse(String response) {
                 Log.d(TAG, "JOB RESPONSE: " + response.toString());
 
-                pd.dismiss();
+
 
                 Gson gson = new Gson();
 
@@ -191,7 +191,7 @@ public class BrowseLocation extends AppCompatActivity {
                         }
                         adapterBrowse = new AdapterBrowseLocation(BrowseLocation.this, list_names);
                         recyclerView.setAdapter(adapterBrowse);
-
+                        pd.dismiss();
 
                     } else
 

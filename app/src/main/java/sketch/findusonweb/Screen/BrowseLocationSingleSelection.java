@@ -166,7 +166,7 @@ public class BrowseLocationSingleSelection extends AppCompatActivity {
             public void onResponse(String response) {
                 Log.d(TAG, "Invitation response: " + response.toString());
 
-                pd.dismiss();
+
                 list_names.clear();
 
                 Gson gson = new Gson();
@@ -187,6 +187,7 @@ public class BrowseLocationSingleSelection extends AppCompatActivity {
 
                             JsonObject images1 = images.get(i).getAsJsonObject();
                             String title = images1.get("title").toString().replaceAll("\"", "");
+                            String id = images1.get("id").toString().replaceAll("\"", "");
                             String user_id = images1.get("user_id").toString().replaceAll("\"", "");
                             String primary_category_id = images1.get("primary_category_id").toString().replaceAll("\"", "");
                             String status = images1.get("status").toString().replaceAll("\"", "");
@@ -347,7 +348,7 @@ public class BrowseLocationSingleSelection extends AppCompatActivity {
                     //  JsonObject obj3 = jobj1.get("profileDetails").getAsJsonObject();
 
                     //  Log.d(TAG, "Token \n" + logo_allow);
-
+                    pd.dismiss();
 
                 }
                 catch (Exception e) {
