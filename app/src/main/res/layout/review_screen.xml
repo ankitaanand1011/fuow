@@ -147,7 +147,6 @@
                 >
 
                 <TextView
-                    android:id="@+id/features_rating"
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -197,7 +196,6 @@
                 >
 
                 <TextView
-                    android:id="@+id/performance_rating"
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -246,7 +244,6 @@
                 >
 
                 <TextView
-                    android:id="@+id/reliable_rating"
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -294,7 +291,6 @@
                 >
 
                 <TextView
-                    android:id="@+id/value_rating"
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -65,8 +65,7 @@
             android:layout_centerVertical="true"
             android:gravity="center"
             android:padding="10sp"
-            android:textStyle="bold"
-            android:id="@+id/post_text" />
+            android:textStyle="bold" />
 
 
 
@@ -80,7 +79,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:orientation="vertical"
-            android:id="@+id/RL_requirement"
             android:layout_marginBottom="20dp"
 
             >
@@ -101,7 +99,6 @@
 
 
             <RelativeLayout
-                android:id="@+id/category_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -141,7 +138,6 @@
                 android:background="@color/grey"/>
 
             <RelativeLayout
-                android:id="@+id/location_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">

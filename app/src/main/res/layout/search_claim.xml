@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white">
+   >
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:orientation="horizontal"
+        android:background="@color/white"
+        android:layout_marginBottom="10dp"
         android:baselineAligned="false">
 
         <RelativeLayout
@@ -24,12 +26,12 @@
             <com.github.ivbaranov.mli.MaterialLetterIcon
                 android:id="@+id/icon"
                 android:layout_width="100dp"
-                android:layout_height="100dp" />
+                android:layout_height="110dp" />
 
             <ImageView
                 android:id="@+id/img"
                 android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_height="110dp"
                 android:layout_centerVertical="true"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/no_image"
@@ -151,14 +153,12 @@
                     android:orientation="horizontal">
 
                     <ImageButton
-                        android:id="@+id/ib_location"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:src="@mipmap/location_new32"
                         android:layout_weight="1"
                         />
                     <ImageButton
-                        android:id="@+id/ib_file"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:src="@mipmap/folder32"
@@ -201,7 +201,6 @@
                         android:layout_gravity="center"
                         />
                     <TextView
-                        android:id="@+id/mail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Mail"
@@ -246,7 +245,6 @@
                         android:layout_toEndOf="@+id/img_2" />
                 </RelativeLayout>
                 <RelativeLayout
-                    android:id="@+id/Rl_add_review"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="2.5dp"

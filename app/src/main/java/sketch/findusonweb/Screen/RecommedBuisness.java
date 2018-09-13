@@ -270,9 +270,14 @@ public class RecommedBuisness  extends AppCompatActivity {
 
 
                     if (globalClass.isNetworkAvailable()){
+                        if (globalClass.getLogin_status()) {
 
-                        postjob(title,rate,description,postcode,business_contact,
-                                username,user_phone,usermail,cat_id,city_id);
+                            postjob(title, rate, description, postcode, business_contact,
+                                    username, user_phone, usermail, cat_id, city_id);
+                        } else{
+                                Intent intent = new Intent(RecommedBuisness.this,LoginScreen.class);
+                                startActivity(intent);
+                            }
 
                     }else {
 

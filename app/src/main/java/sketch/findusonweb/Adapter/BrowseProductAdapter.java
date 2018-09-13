@@ -42,6 +42,7 @@ import sketch.findusonweb.Screen.LoginScreen;
 import sketch.findusonweb.Screen.Messages;
 import sketch.findusonweb.Screen.ReviewScreen;
 import sketch.findusonweb.Screen.ServiceDetailScreen;
+import sketch.findusonweb.Screen.ViewProductsDetails;
 
 
 public class BrowseProductAdapter extends BaseAdapter {
@@ -160,8 +161,14 @@ public class BrowseProductAdapter extends BaseAdapter {
         view1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, ServiceDetailScreen.class);
+                Intent intent = new Intent(mContext, ViewProductsDetails.class);
                 intent.putExtra("id",list_names.get(position).get("id"));
+                intent.putExtra("title",list_names.get(position).get("title"));
+                intent.putExtra("description",list_names.get(position).get("description"));
+                intent.putExtra("listing_name",list_names.get(position).get("listing_name"));
+                intent.putExtra("price",list_names.get(position).get("price"));
+                intent.putExtra("custom_58",list_names.get(position).get("custom_58"));
+                intent.putExtra("custom_15",list_names.get(position).get("custom_15"));
                 Log.d("tag", "onClick: "+list_names.get(position).get("id"));
                 mContext.startActivity(intent);
             }

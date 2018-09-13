@@ -1,6 +1,7 @@
 package sketch.findusonweb.Screen;
 
 import android.Manifest;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -24,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -44,8 +46,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
 import es.dmoral.toasty.Toasty;
@@ -72,7 +78,7 @@ public class AddProductScreen extends AppCompatActivity {
     String status_text,type_text;
     TextView tv_submit;
     ImageButton attach_data,attach_data1,attach_data2;
-    ImageView img_attach_1,img_attach_2,img_attach_3;
+    ImageView img_attach_1,img_attach_2,img_attach_3,img_btn;
     String title , description, expire, price;
     File file1,file2,file3;
     private static final int PICK_IMAGE_CAMERA1 = 11;
@@ -87,7 +93,12 @@ public class AddProductScreen extends AppCompatActivity {
     private static final int PICK_IMAGE_GALLERY5 = 25;
  //   TextView attach_data_name,attach_data_name1,attach_data_name2,attach_data_name3,attach_data_name4;
 
-
+    int mYear, mMonth, mDay;
+    Calendar myCalendar = Calendar.getInstance();
+    DatePickerDialog.OnDateSetListener datepicker;
+    static final int DATE_PICKER_ID = 1111;
+    SimpleDateFormat simpleDateFormat;
+    String date_to_send;
 
     @Override
     public void onCreate( Bundle savedInstanceState) {
@@ -117,6 +128,7 @@ public class AddProductScreen extends AppCompatActivity {
 
             }
         }
+        simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         type = new ArrayList<>();
         status = new ArrayList<>();
@@ -142,6 +154,51 @@ public class AddProductScreen extends AppCompatActivity {
         img_attach_2=findViewById(R.id.img_attach_2);
         img_attach_3=findViewById(R.id.img_attach_3);
         tv_submit=findViewById(R.id.tv_submit);
+        img_btn=findViewById(R.id.img_btn);
+
+
+        Calendar c = Calendar.getInstance();
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH);
+        mDay = c.get(Calendar.DAY_OF_MONTH);
+
+
+        img_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog dpd = new DatePickerDialog(AddProductScreen.this, datepicker, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
+                String today_date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+                Date d = null;
+
+                try {
+                    d = simpleDateFormat.parse(today_date);
+                } catch (java.text.ParseException e) {
+                    e.printStackTrace();
+                }
+
+                dpd.getDatePicker();
+                dpd.show();
+            }
+
+
+        });
+        datepicker = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                String myFormat = "MMM dd, yyyy";
+                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                date_to_send = sdf1.format(myCalendar.getTime());
+                String date_to_show = sdf.format(myCalendar.getTime());
+                Log.d("TP", date_to_send + " " + date_to_show);
+                edt_expire.setText(date_to_show);
+            }
+        };
+
    /*     attach_data_name=findViewById(R.id.attach_data_name);
         attach_data_name1=findViewById(R.id.attach_data_name1);
         attach_data_name2=findViewById(R.id.attach_data_name2);

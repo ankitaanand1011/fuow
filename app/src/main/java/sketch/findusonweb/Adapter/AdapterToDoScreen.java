@@ -76,9 +76,11 @@ public class AdapterToDoScreen extends RecyclerView.Adapter<AdapterToDoScreen.My
 
 
         String name =  list_names.get(position).get("todo_task");
+        String status =  list_names.get(position).get("status");
 
 
         holder.name.setText(name);
+        holder.tv_status.setText(status);
 
 
 
@@ -108,12 +110,13 @@ public class AdapterToDoScreen extends RecyclerView.Adapter<AdapterToDoScreen.My
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         // init the item view's
-        TextView name;
+        TextView name,tv_status;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             // get the reference of item view's
             name =  itemView.findViewById(R.id.text_todo);
+            tv_status =  itemView.findViewById(R.id.tv_status);
 
         }
     }

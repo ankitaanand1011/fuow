@@ -134,6 +134,7 @@
             android:text="Skip to Homepage"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
+            android:visibility="gone"
             android:textColor="@color/white"/>
 
         <!-- Link to Login Screen -->

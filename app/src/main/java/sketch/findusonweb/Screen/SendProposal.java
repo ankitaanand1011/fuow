@@ -68,7 +68,7 @@ import sketch.findusonweb.Utils.Shared_Preference;
 
 public class SendProposal extends AppCompatActivity {
     String TAG = "post requirement";
-    Spinner spinner_days;
+   // Spinner spinner_days;
     ImageView back_button;
     TextView attach_data,attach_data_link,tv_submit;
     String city_id,cat_id,id;
@@ -114,7 +114,7 @@ public class SendProposal extends AppCompatActivity {
 
             }
         }        attach_data=findViewById(R.id.attach_data);
-        spinner_days=findViewById(R.id.spinner_days);
+
         attach_data_link=findViewById(R.id.attach_data_name);
         edt_iteration=findViewById(R.id.edt_iteration);
         back_button=findViewById(R.id.back_img);

@@ -13,14 +13,12 @@
     <color name="light_grey">#EEF0F1</color>
     <color name="grey_text">#6e6e6e</color>
     <color name="light_green">#4ba942</color>
-    <color name="light_grey_new">#EDEDED</color>
     <color name="dark_grey">#353535</color>
     <color name="golden">#DAA520</color>
     <color name="orange">#ff6200</color>
     <color name="dark_voilet">#2e006f</color>
     <color name="red">#e70000</color>
     <color name="green_dark">#117f00</color>
-    <color name="black_oapacity">#99000000</color>
     <color name="center_button">#00489A</color>
     <color name="yellow_dashboard">#F6B520</color>
     <color name="grey_dashboard">#9E9E9E</color>

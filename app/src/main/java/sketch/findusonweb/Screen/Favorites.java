@@ -81,7 +81,7 @@ public class Favorites extends AppCompatActivity {
             public void onClick(View v) {
                 all.setBackground(getResources().getDrawable(R.drawable.button_yellow_dashboard));
                 listings.setBackground(getResources().getDrawable(R.drawable.button_grey_dashboard));
-                all.setBackground(getResources().getDrawable(R.drawable.button_grey_dashboard));
+                product.setBackground(getResources().getDrawable(R.drawable.button_grey_dashboard));
                 favoriteALL();
             }
         });
@@ -91,7 +91,7 @@ public class Favorites extends AppCompatActivity {
 
                 all.setBackground(getResources().getDrawable(R.drawable.button_grey_dashboard));
                 listings.setBackground(getResources().getDrawable(R.drawable.button_yellow_dashboard));
-                all.setBackground(getResources().getDrawable(R.drawable.button_grey_dashboard));
+                product.setBackground(getResources().getDrawable(R.drawable.button_grey_dashboard));
                 favoriteLisitngs();
             }
         });
@@ -102,7 +102,7 @@ public class Favorites extends AppCompatActivity {
 
                 all.setBackground(getResources().getDrawable(R.drawable.button_grey_dashboard));
                 listings.setBackground(getResources().getDrawable(R.drawable.button_grey_dashboard));
-                all.setBackground(getResources().getDrawable(R.drawable.button_yellow_dashboard));
+                product.setBackground(getResources().getDrawable(R.drawable.button_yellow_dashboard));
                 favoriteProduct();
             }
         });

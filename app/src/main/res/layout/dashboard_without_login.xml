@@ -308,7 +308,6 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/rl_local_business"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="10dp"
@@ -356,7 +355,6 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/rl_about_us"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="10dp"

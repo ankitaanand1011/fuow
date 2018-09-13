@@ -63,7 +63,6 @@
         android:layout_marginLeft="20sp"/>
 
     <EditText
-        android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="193dp"
         android:ems="10"

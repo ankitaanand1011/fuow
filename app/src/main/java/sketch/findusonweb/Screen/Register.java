@@ -62,7 +62,7 @@ public class Register extends AppCompatActivity{
 
     EditText username, email, pin_code, repeat_email, phone, password, repeat_password, business_name, owner_firstname, owner_lastname;
     ImageView down_arrow, country_spinner, image_username, img_email, img_repeat_email, img_phone, img_pass, img_repass, img_business, img_business_first, img_business_last;
-    Spinner sp, Sp1;
+
     ArrayList<HashMap<String, String>> selectedCategory = new ArrayList<>();
     ArrayList<HashMap<String, String>> selectedLocation = new ArrayList<>();
     ArrayAdapter<String> dataAdapter1, dataAdapter7, dataAdapter;
@@ -116,11 +116,11 @@ public class Register extends AppCompatActivity{
         username = findViewById(R.id.username_edit);
         image_username = findViewById(R.id.img_username);
         // age_spinner=findViewById(R.id.down_arrow_age);
-        sp = findViewById(R.id.spinner);
+       // sp = findViewById(R.id.spinner);
         country_spinner = findViewById(R.id.down_arrow1);
         // year_spinner=findViewById(R.id.down_arrow_year);
         // age_spinner=findViewById(R.id.down_arrow_age);
-        Sp1 = findViewById(R.id.spinner1);
+       // Sp1 = findViewById(R.id.spinner1);
         spinner_select_category = findViewById(R.id.spinner_category);
         spinner_city = findViewById(R.id.spinner1);
 
@@ -157,7 +157,7 @@ public class Register extends AppCompatActivity{
         country_spinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Sp1.performClick();
+                spinner_city.performClick();
             }
         });
 

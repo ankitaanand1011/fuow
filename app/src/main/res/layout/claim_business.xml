@@ -57,8 +57,7 @@
         android:layout_centerVertical="true"
         android:gravity="center"
         android:padding="10sp"
-        android:textStyle="bold"
-        android:id="@+id/post_text" />
+        android:textStyle="bold" />
 
 
     <ScrollView
@@ -70,7 +69,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:orientation="vertical"
-            android:id="@+id/RL_requirement"
             android:layout_marginBottom="20dp"
 
             >

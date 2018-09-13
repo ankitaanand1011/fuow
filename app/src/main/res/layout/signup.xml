@@ -60,7 +60,6 @@
 
 
             <TextView
-                android:id="@+id/signup_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
@@ -92,7 +91,6 @@
                 android:layout_marginTop="10dp"
                 android:orientation="vertical">
                 <RelativeLayout
-                    android:id="@+id/rl_username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -123,7 +121,7 @@
 
 
                 </RelativeLayout>
-                <View android:id="@+id/separator_username"
+                <View
                     android:background="@color/white"
                     android:layout_width = "match_parent"
                     android:layout_height="1dip"
@@ -163,13 +161,12 @@
 
 
                 </RelativeLayout>
-                <View android:id="@+id/separator_email"
+                <View
                     android:background="@color/white"
                     android:layout_width = "match_parent"
                     android:layout_height="1dip"
                     />
                 <RelativeLayout
-                    android:id="@+id/rl_repeat_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -202,7 +199,6 @@
 
                 </RelativeLayout>
                 <View
-                    android:id="@+id/separator_email_confirm"
                     android:background="@color/white"
                     android:layout_width = "match_parent"
                     android:layout_height="1dip"
@@ -243,7 +239,6 @@
 
                 </RelativeLayout>
                 <View
-                    android:id="@+id/separator_phone_new"
                     android:background="@color/white"
                     android:layout_width = "match_parent"
                     android:layout_height="1dip"
@@ -251,7 +246,6 @@
 
 
                 <LinearLayout
-                    android:id="@+id/rl_country"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -259,7 +253,6 @@
 
                     >
                     <RelativeLayout
-                        android:id="@+id/rl_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -292,14 +285,13 @@
 
 
                     </RelativeLayout>
-                    <View android:id="@+id/separator_password"
+                    <View
                         android:background="@color/white"
                         android:layout_width = "match_parent"
                         android:layout_height="1dip"
                         />
 
                     <RelativeLayout
-                        android:id="@+id/rl_repeat_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -331,14 +323,13 @@
 
 
                     </RelativeLayout>
-                    <View android:id="@+id/separator_re_pass"
+                    <View
                         android:background="@color/white"
                         android:layout_width = "match_parent"
                         android:layout_height="1dip"
                         />
 
                     <RelativeLayout
-                        android:id="@+id/rl_business_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -370,14 +361,13 @@
 
 
                     </RelativeLayout>
-                    <View android:id="@+id/separator_business_name"
+                    <View
                         android:background="@color/white"
                         android:layout_width = "match_parent"
                         android:layout_height="1dip"
                         />
 
                     <RelativeLayout
-                        android:id="@+id/rl_business_first"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -409,7 +399,7 @@
 
                     </RelativeLayout>
 
-                    <View android:id="@+id/separator_last"
+                    <View
                         android:background="@color/white"
                         android:layout_width = "match_parent"
                         android:layout_height="1dip"
@@ -420,7 +410,6 @@
 
 
                     <RelativeLayout
-                        android:id="@+id/rl_zip_code"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -451,14 +440,13 @@
 
 
                     </RelativeLayout>
-                    <View android:id="@+id/separator_phone"
+                    <View
                         android:background="@color/white"
                         android:layout_width = "match_parent"
                         android:layout_height="1dip"
                         />
 
                     <RelativeLayout
-                        android:id="@+id/rl_business_last"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -490,13 +478,12 @@
 
 
                     </RelativeLayout>
-                    <View android:id="@+id/separator_pin_code"
+                    <View
                         android:background="@color/white"
                         android:layout_width = "match_parent"
                         android:layout_height="1dip"
                         />
                     <RelativeLayout
-                        android:id="@+id/category_spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -537,13 +524,12 @@
                             android:layout_alignParentEnd="true" />
 
                     </RelativeLayout>
-                    <View android:id="@+id/separator_category"
+                    <View
                         android:background="@color/white"
                         android:layout_width = "match_parent"
                         android:layout_height="1dip"
                         />
                     <RelativeLayout
-                        android:id="@+id/city_spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -584,7 +570,7 @@
                             android:layout_alignParentEnd="true" />
 
                     </RelativeLayout>
-                    <View android:id="@+id/separator_city"
+                    <View
                         android:background="@color/white"
                         android:layout_width = "match_parent"
                         android:layout_height="1dip"

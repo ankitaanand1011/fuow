@@ -116,7 +116,6 @@
 
             >
             <LinearLayout
-                android:id="@+id/ll_manage"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
                 android:orientation="horizontal"

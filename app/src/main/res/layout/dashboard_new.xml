@@ -145,7 +145,6 @@
                     android:background="@color/grey"/>
 
                 <RelativeLayout
-                    android:id="@+id/rl_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -188,7 +187,6 @@
                      </RelativeLayout>
 
                     <RelativeLayout
-                        android:id="@+id/rl_business"
                         android:layout_below="@+id/rl_phone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -238,7 +236,6 @@
                     android:src="@mipmap/due_invoices"/>
 
                 <TextView
-                    android:id="@+id/tv_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/img_2"
@@ -340,7 +337,6 @@
                     android:src="@mipmap/favorites1"/>
 
                 <TextView
-                    android:id="@+id/tv_3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/img_3"
@@ -411,7 +407,6 @@
                     android:src="@mipmap/credit_history"/>
 
                 <TextView
-                    android:id="@+id/tv_4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/img_4"
@@ -461,7 +456,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <LinearLayout
-                        android:id="@+id/ll_manage"
                         android:layout_width="match_parent"
                         android:layout_height="130dp"
                         android:orientation="horizontal"
@@ -679,7 +673,6 @@
                     android:src="@mipmap/to_do"/>
 
                 <TextView
-                    android:id="@+id/tv_5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/img_5"
@@ -732,7 +725,6 @@
                     android:src="@mipmap/previous_search"/>
 
                 <TextView
-                    android:id="@+id/tv_6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/img_6"
@@ -803,7 +795,6 @@
                     android:src="@mipmap/due_invoices"/>
 
                 <TextView
-                    android:id="@+id/tv_7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/img_7"

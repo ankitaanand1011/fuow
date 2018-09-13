@@ -77,16 +77,16 @@ import static android.content.ContentValues.TAG;
 
 public class PostRequriementScreen extends AppCompatActivity {
     String TAG = "post requirement";
-    Spinner spinner_days;
+
     ImageView back_button;
     TextView attach_data,attach_data_link,tv_submit;
     String city_id,cat_id;
     Shared_Preference prefrence;
-    Spinner spinner_select_category;
+    Spinner spinner_select_category,spinner_on_stage;
     Uri URI = null;
     private static final int PICK_FROM_GALLERY = 101;
     GlobalClass globalClass;
-    ArrayAdapter<String> dataAdapter1;
+    ArrayAdapter dataAdapter1;
     ProgressDialog pd;
 
     RadioGroup rg;
@@ -104,13 +104,20 @@ public class PostRequriementScreen extends AppCompatActivity {
 
     ArrayList<HashMap<String, String>> selectedCategory = new ArrayList<>();
     ArrayList<String> category = new ArrayList<>();
-
-
+    String on_stage;
+    List<String> list;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState );
         setContentView(R.layout.post_job);
-        spinner_select_category = findViewById(R.id.spinner_category);
+
+        list = new ArrayList<>();
+
+        list.add("Ready to Hire");
+        list.add("Planning and Budgeting");
+        list.add("Need a quote for budgeting purpose");
+
+
 
         pd = new ProgressDialog(PostRequriementScreen.this);
         pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -134,9 +141,11 @@ public class PostRequriementScreen extends AppCompatActivity {
             }
         }
 
+        spinner_select_category = findViewById(R.id.spinner_category);
+        spinner_on_stage = findViewById(R.id.spinner_on_stage);
+
 
         attach_data=findViewById(R.id.attach_data);
-        spinner_days=findViewById(R.id.spinner_days);
         attach_data_link=findViewById(R.id.attach_data_name);
         back_button=findViewById(R.id.back_img);
      //   down_arrow=findViewById(R.id.down_arraowpost);
@@ -162,6 +171,32 @@ public class PostRequriementScreen extends AppCompatActivity {
             Toasty.warning(getApplicationContext(), getResources().getString(R.string.check_internet), Toast.LENGTH_LONG, true).show();
 
         }
+
+
+
+
+        ArrayAdapter<String> adp = new ArrayAdapter<String>
+                (this, android.R.layout.simple_spinner_item, list);
+        spinner_on_stage.setAdapter(adp);
+
+        spinner_on_stage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            //@Override
+            public void onItemSelected(AdapterView<?> parent, View arg1, int arg2, long arg3) {
+                // TODO Auto-generated method stub
+                String item = spinner_on_stage.getItemAtPosition(0).toString();
+                //Toast.makeText(spinner.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+                on_stage=spinner_on_stage.getSelectedItem().toString();
+            }
+
+
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+
+
         spinner_select_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -193,55 +228,12 @@ public class PostRequriementScreen extends AppCompatActivity {
                 // TODO Auto-generated method stub
             }
         });
-       /* down_arrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                spinner_select_category.performClick();
-            }
-        });
-*/
 
 
-/*
-        down_arrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                spinner_days.performClick();
-            }
-        });
-*/
-/*
-        spinner_days.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent,
-                                       View arg1, int position, long arg3) {
-                // TODO Auto-generated method stub
-                // Locate the textviews in activity_main.xml
-                String item = parent.getItemAtPosition(position).toString();
-                Spinner spinner_days = (Spinner) parent;
-                // Set the text followed by the position
-                if (spinner_days.getId() == R.id.spinner_days) {
 
 
-                    if (position != 0) {
-                        cat_id = selectedCategory.get(position-1).get("id");
-                        //String str_service = selectedCategory.get(position - 1).get("name");
-
-                        Log.d(TAG, "onItemSelected: "+cat_id);
 
 
-                    }
-
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
-            }
-        });
-*/
          attach_data.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
@@ -265,8 +257,8 @@ public class PostRequriementScreen extends AppCompatActivity {
                 budget = edt_budget.getText().toString();
                 Log.d(TAG, "cat_id "+cat_id);
 
-               postjob(title,description,duration,budget,cat_id);
-              //  user_profile_pic_update_url();
+               postjob(title,description,duration,budget,cat_id,on_stage);
+
             }
         });
 
@@ -313,135 +305,90 @@ public class PostRequriementScreen extends AppCompatActivity {
 
     }
 
-/*
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        if (requestCode == PICK_FROM_GALLERY && resultCode == RESULT_OK) {
-            Uri selectedImage = data.getData();
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
-            Cursor cursor = getContentResolver().query(selectedImage,filePathColumn, null, null, null);
-            cursor.moveToFirst();
-            columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            attachmentFile = cursor.getString(columnIndex);
-//            Log.e("Attachment Path:", attachmentFile);
-            URI = Uri.parse("file://" + attachmentFile);
-            Log.d(TAG, "Attachment: "+attachmentFile);
-            String filename = URI.getLastPathSegment();
-            attach_data_link.setText(filename);
-            cursor.close();
-        }
 
-    }
-*/
-/*
-  public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-    if (requestCode == PICK_FROM_GALLERY && resultCode == RESULT_OK && data != null && data.getData() != null) {
+        if (requestCode == PICK_IMAGE_GALLERY && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri uri = data.getData();
 
-        Uri uri = data.getData();
+            attachmentFile = new File(getRealPathFromURI(uri));
+            String strFileName = attachmentFile.getName();
+            attach_data_link.setText(strFileName);
 
-        attachmentFile = new File(getRealPathFromURI(uri));
-        URI = Uri.parse("file://" + attachmentFile);
-        String filename = URI.getLastPathSegment();
-        attach_data_link.setText(filename);
+            Log.d(TAG, "image = " + attachmentFile);
 
-        Log.d(TAG, "image = "+attachmentFile);
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                // Log.d(TAG, String.valueOf(bitmap));
+                //imageView2.setImageBitmap(bitmap);
 
-
-    }
-
-    if(globalClass.isNetworkAvailable()){
-
-    }else{
-        Toasty.info(PostRequriementScreen.this, "Please check your internet connection.", Toast.LENGTH_SHORT, true).show();
-    }
-
-}
-*/
-@Override
-public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-
-    if (requestCode == PICK_IMAGE_GALLERY && resultCode == RESULT_OK && data != null && data.getData() != null) {
-        Uri uri = data.getData();
-
-        attachmentFile = new File(getRealPathFromURI(uri));
-        String strFileName = attachmentFile.getName();
-        attach_data_link.setText(strFileName);
-
-        Log.d(TAG, "image = " + attachmentFile);
-
-        try {
-            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-            // Log.d(TAG, String.valueOf(bitmap));
-            //imageView2.setImageBitmap(bitmap);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    if (requestCode == PICK_IMAGE_CAMERA && resultCode == RESULT_OK) {
-
-
-        File f = new File(Environment.getExternalStorageDirectory().toString());
-        for (File temp : f.listFiles()) {
-            if (temp.getName().equals("temp.jpg")) {
-                f = temp;
-                break;
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
 
-
-        try {
-            Bitmap bitmap;
-            BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+        if (requestCode == PICK_IMAGE_CAMERA && resultCode == RESULT_OK) {
 
 
-            bitmap = (Bitmap) data.getExtras().get("data");
-            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-            assert bitmap != null;
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, bytes);
+            File f = new File(Environment.getExternalStorageDirectory().toString());
+            for (File temp : f.listFiles()) {
+                if (temp.getName().equals("temp.jpg")) {
+                    f = temp;
+                    break;
+                }
+            }
 
-/*
-                bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
-                        bitmapOptions);*/
 
-            Log.d(TAG, "bitmap: " + bitmap);
-
-            //imageView2.setImageBitmap(bitmap);
-
-            String path = Environment.getExternalStorageDirectory() + File.separator;
-            // + File.separator
-            //   + "Phoenix" + File.separator + "default";
-            f.delete();
-            OutputStream outFile = null;
-            File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
             try {
-                attachmentFile = file;
-                String strFileName = attachmentFile.getName();
-                attach_data_link.setText(strFileName);
+                Bitmap bitmap;
+                BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
 
-                outFile = new FileOutputStream(file);
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outFile);
-                outFile.flush();
-                outFile.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+
+                bitmap = (Bitmap) data.getExtras().get("data");
+                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                assert bitmap != null;
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 50, bytes);
+
+    /*
+                    bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),
+                            bitmapOptions);*/
+
+                Log.d(TAG, "bitmap: " + bitmap);
+
+                //imageView2.setImageBitmap(bitmap);
+
+                String path = Environment.getExternalStorageDirectory() + File.separator;
+                // + File.separator
+                //   + "Phoenix" + File.separator + "default";
+                f.delete();
+                OutputStream outFile = null;
+                File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
+                try {
+                    attachmentFile = file;
+                    String strFileName = attachmentFile.getName();
+                    attach_data_link.setText(strFileName);
+
+                    outFile = new FileOutputStream(file);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outFile);
+                    outFile.flush();
+                    outFile.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
-        // Bitmap photo = (Bitmap) data.getExtras().get("data");
-        // iv_product_image.setImageBitmap(photo);
+            // Bitmap photo = (Bitmap) data.getExtras().get("data");
+            // iv_product_image.setImageBitmap(photo);
+        }
     }
-}
 
     public String getRealPathFromURI(Uri contentUri) {
         String[] proj = {MediaStore.Audio.Media.DATA};
@@ -450,15 +397,8 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
         cursor.moveToFirst();
         return cursor.getString(column_index);
     }
-    public void openFolder()
-    {
-        /*Intent intent = new Intent();
-        intent.setType("image*//*");
-        intent.setType("application/image");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        intent.putExtra("return-data", true);
-        startActivityForResult(Intent.createChooser(intent, "Complete action using"), PICK_FROM_GALLERY);
-*/
+    public void openFolder() {
+
         try {
             PackageManager pm = getPackageManager();
             int hasPerm = pm.checkPermission(Manifest.permission.CAMERA, getPackageName());
@@ -494,9 +434,8 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
             e.printStackTrace();
         }
     }
-/*
-    private void getCategory(final String Category)
-    {
+
+    private void getCategory(final String Category){
         String tag_string_req = "req_login";
 
         pd.show();
@@ -541,35 +480,17 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
                         selectedCategory.add(map_ser);
                         array.add(title);
 
-                      //  Log.d("selectedCategory", "" + selectedCategory);
-
-                        dataAdapter1 = new ArrayAdapter<String>(PostRequriementScreen.this,R.layout.spinner_color,R.id.txt,array)
-                        {
-
-                            @Override
-                            public boolean isEnabled(int position) {
-                                return position != 0;
-                            }
-
-                            @Override
-                            public View getDropDownView(int position, View convertView, ViewGroup parent) {
-
-                                View view = super.getDropDownView(position, convertView, parent);
-
-                                if (position == 0) {
+                        Log.d("title", "" + array);
 
 
 
-                                } else {
-                                }
-                                return view;
+
+                        dataAdapter1 = new ArrayAdapter(PostRequriementScreen.this, android.R.layout.simple_spinner_item, array);
+                       // dataAdapter1.setDropDownViewResource(R.layout.spinner_color);
+                        spinner_select_category.setAdapter(dataAdapter1);
 
 
-                            }
-                        };
-                        // ArrayAdapter adapter = new ArrayAdapter(this, R.layout.spinner_layout, array_spinner);
-                        dataAdapter1.setDropDownViewResource(R.layout.spinner_color);
-                        spinner_days.setAdapter(dataAdapter1);
+
 
 
                         pd.dismiss();
@@ -618,237 +539,11 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
         strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
 
     }
-*/
-private void getCategory(final String Category)
-{
-    String tag_string_req = "req_login";
-
-    pd.show();
-
-    StringRequest strReq = new StringRequest(Request.Method.POST,
-            AppConfig.URL_DEV, new Response.Listener<String>() {
-
-        @Override
-        public void onResponse(String response) {
-            Log.d(TAG, "Category " + response.toString());
-
-
-
-            Gson gson = new Gson();
-
-            try
-            {
-
-
-                JsonObject jobj = gson.fromJson(response, JsonObject.class);
-
-                Log.d("jobj", "" + jobj);
-
-                JsonObject offerObject = jobj.getAsJsonObject();
-                category.add("Select Category");
-                JsonArray jarray=offerObject.getAsJsonArray("name");
-                Log.d("jarray", "" + jarray.toString());
-                ArrayList<String> array = new ArrayList<>();
-                for (int i = 0; i < jarray.size(); i++) {
-                    JsonObject jobj1 = jarray.get(i).getAsJsonObject();
-                    //get the object
-
-                    //JsonObject jobj1 = jarray.get(i).getAsJsonObject();
-                    String id =jobj1.get("id").toString().replaceAll("\"", "");
-                    String title= jobj1.get("title").toString().replaceAll("\"", "");
-                    HashMap<String, String> map_ser = new HashMap<>();
-
-
-                    map_ser.put("id", id);
-                    map_ser.put("title", title);
-
-                    selectedCategory.add(map_ser);
-                    array.add(title);
-
-                    Log.d("title", "" + array);
-
-                    dataAdapter1 = new ArrayAdapter<String>(PostRequriementScreen.this,R.layout.spinner_color,R.id.txt,array)
-                    {
-
-                        @Override
-                        public boolean isEnabled(int position) {
-                            return position != 0;
-                        }
-
-                        @Override
-                        public View getDropDownView(int position, View convertView, ViewGroup parent) {
-
-                            View view = super.getDropDownView(position, convertView, parent);
-
-                            if (position == 0) {
-
-
-
-                            } else {
-                            }
-                            return view;
-
-
-                        }
-                    };
-                    // ArrayAdapter adapter = new ArrayAdapter(this, R.layout.spinner_layout, array_spinner);
-                    dataAdapter1.setDropDownViewResource(R.layout.spinner_color);
-                    spinner_select_category.setAdapter(dataAdapter1);
-
-
-                    pd.dismiss();
-
-                }
-
-
-            }catch (Exception e) {
-
-                Toast.makeText(getApplicationContext(),"data Not found", Toast.LENGTH_LONG).show();
-                e.printStackTrace();
-                pd.dismiss();
-
-            }
-
-
-        }
-    }, new Response.ErrorListener() {
-
-        @Override
-
-        public void onErrorResponse(VolleyError error) {
-            Log.e(TAG, "Login Error: " + error.getMessage());
-            Toast.makeText(getApplicationContext(),
-                    "Connection Error", Toast.LENGTH_LONG).show();
-            pd.dismiss();
-        }
-    }) {
-
-        @Override
-        protected Map<String, String> getParams() {
-            // Posting parameters to login url
-            Map<String, String> params = new HashMap<>();
-
-
-
-            params.put("view",Category);
-
-            return params;
-        }
-
-    };
-
-    // Adding request to request queue
-    GlobalClass.getInstance().addToRequestQueue(strReq, tag_string_req);
-    strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
-
-}
-   /* private void getCategory_list()
-    {
-        String tag_string_req = "req_login";
-
-        pd.show();
-
-        StringRequest strReq = new StringRequest(Request.Method.POST,
-                AppConfig.URL_DEV, new Response.Listener<String>() {
-
-            @Override
-            public void onResponse(String response) {
-                Log.d(TAG, "Category " + response.toString());
-
-
-
-                Gson gson = new Gson();
-
-                try
-                {
-
-
-                    JsonObject jobj = gson.fromJson(response, JsonObject.class);
-
-                    Log.d("jobj", "" + jobj);
-
-                    JsonObject offerObject = jobj.getAsJsonObject();
-                    category.add("Select Category");
-                    JsonArray jarray=offerObject.getAsJsonArray("name");
-                    Log.d("jarray", "" + jarray.toString());
-
-                    for (int i = 0; i < jarray.size(); i++) {
-                        JsonObject jobj1 = jarray.get(i).getAsJsonObject();
-                        //get the object
-
-                        //JsonObject jobj1 = jarray.get(i).getAsJsonObject();
-                        id =jobj1.get("id").toString().replaceAll("\"", "");
-                        String title= jobj1.get("title").toString().replaceAll("\"", "");
-                        HashMap<String, String> map_ser = new HashMap<>();
-
-
-                        map_ser.put("id", id);
-                        map_ser.put("title", title);
-
-                        // selectedCategory.add(map_ser);
-                        selectedCategory.add(map_ser);
-                        array.add(title);
-
-
-
-                        rb = new RadioButton(PostRequriementScreen.this);
-                        rb.setText(title +"");
-                        rg.addView(rb);
-
-                        //rb.setLayoutParams(params);
-                    }
-                    Log.d("title", "" + array);
-                    pd.dismiss();
-
-
-
-
-                }catch (Exception e) {
-
-                    Toast.makeText(getApplicationContext(),"data Not found", Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
-                    pd.dismiss();
-
-                }
-
-
-            }
-        }, new Response.ErrorListener() {
-
-            @Override
-
-            public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Login Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),
-                        "Connection Error", Toast.LENGTH_LONG).show();
-                pd.dismiss();
-            }
-        }) {
-
-            @Override
-            protected Map<String, String> getParams() {
-                // Posting parameters to login url
-                Map<String, String> params = new HashMap<>();
-
-
-
-                params.put("view","getCategory");
-
-                return params;
-            }
-
-        };
-
-        // Adding request to request queue
-        GlobalClass.getInstance().addToRequestQueue(strReq, tag_string_req);
-        strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
-
-    }*/
 
 
     private void postjob(final String title, final String description, final String duration,
-                         final String budget, String cat_id){
-    pd.show();
+                         final String budget, String cat_id, String on_stage){
+         pd.show();
         String url = AppConfig.URL_DEV;
         AsyncHttpClient cl = new AsyncHttpClient();
         RequestParams params = new RequestParams();
@@ -860,6 +555,7 @@ private void getCategory(final String Category)
         params.put("primary_category_id",cat_id);
         params.put("duration",duration);
         params.put("budget",budget);
+        params.put("on_stage",on_stage);
 
         try{
 
@@ -887,17 +583,20 @@ private void getCategory(final String Category)
 
                         //JSONObject result = response.getJSONObject("result");
 
-                        String status = response.optString("status");
+                        String success = response.optString("success");
                         String message = response.getString("message");
+
+                        if(success.equals("1")) {
+
+                            Intent i = new Intent(PostRequriementScreen.this, HomeScreen.class);
+                            startActivity(i);
+                            Toasty.success(PostRequriementScreen.this, message, Toast.LENGTH_SHORT, true).show();
+                        }else{
+
+                            Toasty.error(PostRequriementScreen.this, message, Toast.LENGTH_SHORT, true).show();
+                        }
                         pd.dismiss();
 
-
-                  /*      Intent i=new Intent(PostRequriementScreen.this, ThankyouScreen.class);
-                        i.putExtra("One",message);
-
-                        startActivity(i);*/
-
-                  //      Toasty.success(PostRequriementScreen.this, message, Toast.LENGTH_SHORT, true).show();
                         // pd.dismiss();
 
                     } catch (JSONException e) {

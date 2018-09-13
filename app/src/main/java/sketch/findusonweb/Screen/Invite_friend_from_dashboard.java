@@ -2,6 +2,7 @@ package sketch.findusonweb.Screen;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -72,6 +73,9 @@ public class Invite_friend_from_dashboard extends AppCompatActivity {
 
 
                 ReviewList();
+            }else{
+                Intent intent = new Intent(Invite_friend_from_dashboard.this,LoginScreen.class);
+                startActivity(intent);
             }
         } else {
             Toasty.info(Invite_friend_from_dashboard.this, getResources().getString(R.string.check_internet), Toast.LENGTH_LONG, true).show();
@@ -136,7 +140,7 @@ public class Invite_friend_from_dashboard extends AppCompatActivity {
                                     if (!business_name.getText().toString().isEmpty()) {
                                         if (!campaign_id.getText().toString().isEmpty()) {
 
-                                            inviteFriend(firstname,lastname,email,organization,Phone,campaign_id1,globalClass.view_friend);
+                                            inviteFriend(firstname,lastname,email,organization,Phone,campaign_id1,globalClass.view_friend, dialog);
 
                                         }
                                         else {
@@ -361,7 +365,10 @@ public class Invite_friend_from_dashboard extends AppCompatActivity {
     private static boolean isValidEmail(String email) {
         return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();}
 
-    private void inviteFriend(final String user_first_name, final String user_last_name, final String user_email,  final String user_organizaton, final String phone_number, final String campaign_source_field, final String view) {
+    private void inviteFriend(final String user_first_name, final String user_last_name,
+                              final String user_email,  final String user_organizaton,
+                              final String phone_number, final String campaign_source_field,
+                              final String view, final Dialog dialog1) {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
 
@@ -374,7 +381,7 @@ public class Invite_friend_from_dashboard extends AppCompatActivity {
             public void onResponse(String response) {
                 Log.d(TAG, "Invitation response: " + response.toString());
 
-                pd.dismiss();
+
 
                 Gson gson = new Gson();
 
@@ -393,7 +400,6 @@ public class Invite_friend_from_dashboard extends AppCompatActivity {
                         // Intent intent = new Intent(Invite_friend_from_dashboard.this, Invite_friend_from_dashboard.class);
                         // startActivity(intent);
                         // finish();
-                        dialog.dismiss();
 
                     } else
 
@@ -403,6 +409,10 @@ public class Invite_friend_from_dashboard extends AppCompatActivity {
 
                         Toasty.success(Invite_friend_from_dashboard.this, message, Toast.LENGTH_SHORT, true).show();
                     }
+                    ReviewList();
+
+                    pd.dismiss();
+                    dialog1.dismiss();
 
                     //  JsonObject obj3 = jobj1.get("profileDetails").getAsJsonObject();
 
@@ -424,7 +434,10 @@ public class Invite_friend_from_dashboard extends AppCompatActivity {
 
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Login Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(), (CharSequence) error, Toast.LENGTH_LONG).show();
+                ReviewList();
+                dialog1.dismiss();
+                Toasty.success(Invite_friend_from_dashboard.this, "Invitation sent.", Toast.LENGTH_SHORT, true).show();
+
                 pd.dismiss();
             }
         }) {
@@ -519,9 +532,11 @@ public class Invite_friend_from_dashboard extends AppCompatActivity {
             @Override
 
             public void onErrorResponse(VolleyError error) {
+                dialog.dismiss();
                 Log.e(TAG, "Login Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(), (CharSequence) error, Toast.LENGTH_LONG).show();
+                Toasty.success(Invite_friend_from_dashboard.this, "Invitation saved.", Toast.LENGTH_SHORT, true).show();
                 pd.dismiss();
+
             }
         }) {
 

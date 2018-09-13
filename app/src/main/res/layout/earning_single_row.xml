@@ -223,7 +223,6 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/llcom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -232,7 +231,6 @@
         android:layout_below="@+id/rl_proposal">
 
     <RelativeLayout
-        android:id="@+id/rl_commission"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
@@ -266,7 +264,6 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/rl_sales_earning"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -352,7 +349,6 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/rl_invoice_status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"

@@ -156,7 +156,7 @@ public class BrowseJobScreen extends AppCompatActivity {
             public void onResponse(String response) {
                 Log.d(TAG, "JOB RESPONSE: " + response.toString());
 
-                pd.dismiss();
+
                 list_names.clear();
                 Gson gson = new Gson();
 
@@ -216,7 +216,7 @@ public class BrowseJobScreen extends AppCompatActivity {
 
                     Log.d(TAG, "Token \n" + message);
 
-
+                    pd.dismiss();
                 } catch (Exception e) {
 
                     Toasty.warning(BrowseJobScreen.this, "Username Already Exists", Toast.LENGTH_SHORT, true).show();

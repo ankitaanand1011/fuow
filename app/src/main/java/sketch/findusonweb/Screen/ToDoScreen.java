@@ -49,7 +49,7 @@ public class ToDoScreen extends AppCompatActivity {
     ListView listView;
     String TAG = "Listing";
     ImageView back_img;
-    TextView total,tv_total,used,tv_used,view_all_review,balance,tv_balance;
+    TextView total,tv_total,used,tv_used,balance,tv_balance;
     ImageView img_grid,seach_button,header_img,menu;
     String textString;
     Shared_Preference prefrence;
@@ -93,7 +93,6 @@ public class ToDoScreen extends AppCompatActivity {
         recyclerView_to = findViewById(R.id.rv_to_do);
 
         back_img=findViewById(R.id.back_img);
-        view_all_review=findViewById(R.id.view_all_review);
 
         total=findViewById(R.id.total);
         tv_total=findViewById(R.id.tv_total);

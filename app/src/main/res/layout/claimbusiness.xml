@@ -91,7 +91,6 @@
             android:layout_marginLeft="10dp"
             />
         <TextView
-            android:id="@+id/txt_search_by_business"
             android:layout_width="150dp"
             android:layout_height="40sp"
             android:textColor="@color/white"

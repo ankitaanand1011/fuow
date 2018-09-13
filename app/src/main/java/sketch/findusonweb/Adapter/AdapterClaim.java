@@ -147,12 +147,17 @@ public class AdapterClaim extends BaseAdapter {
         tv_claim_business.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, ClaimBusinessScreen.class);
-                intent.putExtra("id",list_claim.get(position).get("id"));
-                intent.putExtra("title",list_claim.get(position).get("title"));
-                intent.putExtra("location_search_text",list_claim.get(position).get("location_search_text"));
-                Log.d("tag", "onClick: "+list_claim.get(position).get("id"));
-                mContext.startActivity(intent);
+                if (globalClass.getLogin_status()) {
+                    Intent intent = new Intent(mContext, ClaimBusinessScreen.class);
+                    intent.putExtra("id", list_claim.get(position).get("id"));
+                    intent.putExtra("title", list_claim.get(position).get("title"));
+                    intent.putExtra("location_search_text", list_claim.get(position).get("location_search_text"));
+                    Log.d("tag", "onClick: " + list_claim.get(position).get("id"));
+                    mContext.startActivity(intent);
+                }else{
+                    Intent intent = new Intent(mContext,LoginScreen.class);
+                    mContext. startActivity(intent);
+                }
             }
         });
 

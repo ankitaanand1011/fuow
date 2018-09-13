@@ -165,7 +165,6 @@
                 android:layout_below="@+id/rl_top">
 
                 <TextView
-                    android:id="@+id/tv_start_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="start"
@@ -186,7 +185,6 @@
                     />
 
                 <TextView
-                    android:id="@+id/tv_end_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="start"

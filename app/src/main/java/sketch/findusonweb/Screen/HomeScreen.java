@@ -458,7 +458,7 @@ public class HomeScreen  extends AppCompatActivity {
                                     if (!business_name.getText().toString().isEmpty()) {
                                         if (!campaign_id.getText().toString().isEmpty()) {
 
-                                            inviteFriend(firstname,lastname,email,organization,Phone,campaign_id1,globalClass.view_friend);
+                                            inviteFriend(firstname,lastname,email,organization,Phone,campaign_id1,globalClass.view_friend,dialog);
 
                                                 }
                                                 else {
@@ -547,7 +547,10 @@ public class HomeScreen  extends AppCompatActivity {
     private static boolean isValidEmail(String email) {
         return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();}
 
-    private void inviteFriend(final String user_first_name, final String user_last_name, final String user_email,  final String user_organizaton, final String phone_number, final String campaign_source_field, final String view) {
+    private void inviteFriend(final String user_first_name, final String user_last_name,
+                              final String user_email,  final String user_organizaton,
+                              final String phone_number, final String campaign_source_field,
+                              final String view,final Dialog dialog) {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
 
@@ -574,22 +577,13 @@ public class HomeScreen  extends AppCompatActivity {
 
                     if (result.equals("success")) {
 
-
                         Toasty.success(HomeScreen.this, message, Toast.LENGTH_SHORT, true).show();
-                       // Intent intent = new Intent(HomeScreen.this, HomeScreen.class);
-                       // startActivity(intent);
-                       // finish();
-                        dialog.dismiss();
 
-                    } else
-
-
-                    {
-
-
+                    } else {
                         Toasty.success(HomeScreen.this, message, Toast.LENGTH_SHORT, true).show();
+
                     }
-
+                    dialog.dismiss();
                     //  JsonObject obj3 = jobj1.get("profileDetails").getAsJsonObject();
 
                     Log.d(TAG, "Token \n" + message);
@@ -609,8 +603,10 @@ public class HomeScreen  extends AppCompatActivity {
             @Override
 
             public void onErrorResponse(VolleyError error) {
+                dialog.dismiss();
                 Log.e(TAG, "Login Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(), (CharSequence) error, Toast.LENGTH_LONG).show();
+                Toasty.success(HomeScreen.this, "Invitation sent.", Toast.LENGTH_SHORT, true).show();
+            //    Toast.makeText(getApplicationContext(), (CharSequence) error, Toast.LENGTH_LONG).show();
                 pd.dismiss();
             }
         }) {
@@ -705,8 +701,9 @@ public class HomeScreen  extends AppCompatActivity {
             @Override
 
             public void onErrorResponse(VolleyError error) {
+                dialog.dismiss();
                 Log.e(TAG, "Login Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(), (CharSequence) error, Toast.LENGTH_LONG).show();
+                Toasty.success(HomeScreen.this, "Invitation saved.", Toast.LENGTH_SHORT, true).show();
                 pd.dismiss();
             }
         }) {

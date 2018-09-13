@@ -185,7 +185,7 @@ public class My_Schedule extends AppCompatActivity{
             public void onResponse(String response) {
                 Log.d(TAG, "Invitation response: " + response.toString());
 
-
+                list_products.clear();
 
                 Gson gson = new Gson();
 
@@ -199,53 +199,56 @@ public class My_Schedule extends AppCompatActivity{
 
                     if (success.equals("1")) {
                         JsonArray products = jobj.getAsJsonArray("data");
-
-                        for (int i = 0; i < products.size(); i++) {
-
-
-                            JsonObject images1 = products.get(i).getAsJsonObject();
-                            String id = images1.get("id").toString().replaceAll("\"", "");
-                            String from_user_id = images1.get("from_user_id").toString().replaceAll("\"", "");
-                            String to_user_id = images1.get("to_user_id").toString().replaceAll("\"", "");
-                            String listing_id = images1.get("listing_id").toString().replaceAll("\"", "");
-                            String from_user = images1.get("from_user").toString().replaceAll("\"", "");
-                            String to_user = images1.get("to_user").toString().replaceAll("\"", "");
-                            String subject = images1.get("subject").toString().replaceAll("\"", "");
-                            String location = images1.get("location").toString().replaceAll("\"", "");
-                            String start_time = images1.get("start_time").toString().replaceAll("\"", "");
-                            String end_time = images1.get("end_time").toString().replaceAll("\"", "");
-                            String overview = images1.get("overview").toString().replaceAll("\"", "");
-                            String attendies = images1.get("attendies").toString().replaceAll("\"", "");
-                            String status = images1.get("status").toString().replaceAll("\"", "");
-                            String sync = images1.get("sync").toString().replaceAll("\"", "");
+                        if (products != null) {
+                            for (int i = 0; i < products.size(); i++) {
 
 
-                            HashMap<String, String> hashMap = new HashMap<>();
-
-                            hashMap.put("id", id);
-                            hashMap.put("from_user_id", from_user_id);
-                            hashMap.put("to_user_id", to_user_id);
-                            hashMap.put("listing_id", listing_id);
-                            hashMap.put("from_user", from_user);
-                            hashMap.put("to_user", to_user);
-                            hashMap.put("subject", subject);
-                            hashMap.put("location", location);
-                            hashMap.put("start_time", start_time);
-                            hashMap.put("end_time", end_time);
-                            hashMap.put("overview", overview);
-                            hashMap.put("attendies", attendies);
-                            hashMap.put("status", status);
-                            hashMap.put("sync", sync);
-
-
-                            list_products.add(hashMap);
+                                JsonObject images1 = products.get(i).getAsJsonObject();
+                                String id = images1.get("id").toString().replaceAll("\"", "");
+                                String from_user_id = images1.get("from_user_id").toString().replaceAll("\"", "");
+                                String to_user_id = images1.get("to_user_id").toString().replaceAll("\"", "");
+                                String listing_id = images1.get("listing_id").toString().replaceAll("\"", "");
+                                String from_user = images1.get("from_user").toString().replaceAll("\"", "");
+                                String to_user = images1.get("to_user").toString().replaceAll("\"", "");
+                                String subject = images1.get("subject").toString().replaceAll("\"", "");
+                                String location = images1.get("location").toString().replaceAll("\"", "");
+                                String start_time = images1.get("start_time").toString().replaceAll("\"", "");
+                                String end_time = images1.get("end_time").toString().replaceAll("\"", "");
+                                String overview = images1.get("overview").toString().replaceAll("\"", "");
+                                String attendies = images1.get("attendies").toString().replaceAll("\"", "");
+                                String status = images1.get("status").toString().replaceAll("\"", "");
+                                String sync = images1.get("sync").toString().replaceAll("\"", "");
 
 
+                                HashMap<String, String> hashMap = new HashMap<>();
+
+                                hashMap.put("id", id);
+                                hashMap.put("from_user_id", from_user_id);
+                                hashMap.put("to_user_id", to_user_id);
+                                hashMap.put("listing_id", listing_id);
+                                hashMap.put("from_user", from_user);
+                                hashMap.put("to_user", to_user);
+                                hashMap.put("subject", subject);
+                                hashMap.put("location", location);
+                                hashMap.put("start_time", start_time);
+                                hashMap.put("end_time", end_time);
+                                hashMap.put("overview", overview);
+                                hashMap.put("attendies", attendies);
+                                hashMap.put("status", status);
+                                hashMap.put("sync", sync);
+
+
+                                list_products.add(hashMap);
+
+
+                            }
                         }
-                    }
-                    Adapter_My_Schedule adapter_my_schedule = new Adapter_My_Schedule(My_Schedule.this, list_products);
-                    my_schedule.setAdapter(adapter_my_schedule);
+                        Adapter_My_Schedule adapter_my_schedule = new Adapter_My_Schedule(My_Schedule.this, list_products);
+                        my_schedule.setAdapter(adapter_my_schedule);
+                    }else{
 
+                        Toasty.info(My_Schedule.this, "No Data found", Toast.LENGTH_SHORT, true).show();
+                    }
                     pd.dismiss();
 
 
@@ -281,7 +284,7 @@ public class My_Schedule extends AppCompatActivity{
 
                 params.put("user_id", globalClass.getId());
                 params.put("view","getScheduleByUser");
-                params.put("action","all");
+                params.put("action",item);
                 Log.d(TAG, "getID: "+params);
                 return params;
             }

@@ -40,7 +40,6 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/ll_manage"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:orientation="horizontal"
@@ -285,7 +284,6 @@
 
     </LinearLayout>
     <LinearLayout
-        android:id="@+id/ll_manage2"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:orientation="horizontal"

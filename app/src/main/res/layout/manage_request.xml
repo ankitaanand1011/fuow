@@ -82,7 +82,6 @@
                 android:textColor="@color/grey_text"/>
 
             <RelativeLayout
-                android:id="@+id/rl_item"
                 android:layout_width="match_parent"
                 android:layout_below="@+id/tv_1"
                 android:layout_height="wrap_content"

@@ -96,7 +96,7 @@ public class Invoice extends AppCompatActivity {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
 
-        // pd.show();
+         pd.show();
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
                 AppConfig.URL_DEV, new Response.Listener<String>() {
@@ -106,7 +106,7 @@ public class Invoice extends AppCompatActivity {
             {
                 Log.d(TAG, "JOB RESPONSE: " + response.toString());
 
-                pd.dismiss();
+                list_namesfavoriteAll.clear();
 
                 Gson gson = new Gson();
 
@@ -182,7 +182,7 @@ public class Invoice extends AppCompatActivity {
 
 
 
-                    // favorite();
+                    pd.dismiss();
 
                 } catch (Exception e) {
 
