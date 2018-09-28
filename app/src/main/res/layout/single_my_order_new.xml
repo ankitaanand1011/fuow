@@ -7,9 +7,10 @@
     android:orientation="vertical"
     tools:context=".Screen.HomeScreen">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:background="@color/white"
         android:layout_marginBottom="10dp">
     <RelativeLayout
@@ -305,7 +306,7 @@
         </LinearLayout>
     </RelativeLayout>
 
-    </RelativeLayout>
+    </LinearLayout>
 
 
 

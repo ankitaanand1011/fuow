@@ -131,7 +131,7 @@ public class Manage_Proposal extends AppCompatActivity {
                         String budget = images1.get("budget").toString().replaceAll("\"", "");
                         String status = images1.get("status").toString().replaceAll("\"", "");
                         String date_requested = images1.get("date_requested").toString().replaceAll("\"", "");
-                        String title = images1.get("title").toString().replaceAll("\"", "");
+                        String title = images1.get("request_title").toString().replaceAll("\"", "");
                         String rr_count = images1.get("rr_count").toString().replaceAll("\"", "");
                         String attachment_id = images1.get("attachment_id").toString().replaceAll("\"", "");
 

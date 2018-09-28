@@ -10,7 +10,10 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import sketch.findusonweb.Controller.GlobalClass;
@@ -62,7 +65,8 @@ public class AdapterFavorite  extends RecyclerView.Adapter<AdapterFavorite.MyVie
 
 
 
-        holder.name.setText(list_namesfavoriteAll.get(position).get("listing_title"));
+        holder.title_favorite.setText(list_namesfavoriteAll.get(position).get("title"));
+
 
 
 
@@ -92,12 +96,12 @@ public class AdapterFavorite  extends RecyclerView.Adapter<AdapterFavorite.MyVie
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         // init the item view's
-        TextView name;
+        TextView title_favorite;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             // get the reference of item view's
-            name =  itemView.findViewById(R.id.title_favorite);
+            title_favorite =  itemView.findViewById(R.id.title_favorite);
 
         }
     }

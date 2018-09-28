@@ -9,17 +9,19 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.PersistableBundle;
+
 import android.provider.MediaStore;
-import android.support.annotation.Nullable;
+
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +31,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,14 +59,14 @@ import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
 import es.dmoral.toasty.Toasty;
+
+import sketch.findusonweb.Adapter.AdapterRequirement;
 import sketch.findusonweb.Constants.AppConfig;
 import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
 import sketch.findusonweb.Utils.Shared_Preference;
 
-/**
- * Created by developer on 12/6/18.
- */
+
 
 public class AddProductScreen extends AppCompatActivity {
     ImageView back_img;
@@ -70,6 +74,8 @@ public class AddProductScreen extends AppCompatActivity {
     EditText edt_title,edt_description,edt_price,edt_expire;
     ArrayList<String> type;
     ArrayList<String> status;
+    ArrayList<String> requirement;
+
     String TAG = "add_product";
     ProgressDialog pd;
     String listing_id;
@@ -84,32 +90,79 @@ public class AddProductScreen extends AppCompatActivity {
     private static final int PICK_IMAGE_CAMERA1 = 11;
     private static final int PICK_IMAGE_CAMERA2 = 12;
     private static final int PICK_IMAGE_CAMERA3 = 13;
-    private static final int PICK_IMAGE_CAMERA4 = 14;
-    private static final int PICK_IMAGE_CAMERA5 = 15;
+
     private static final int PICK_IMAGE_GALLERY1 = 21;
     private static final int PICK_IMAGE_GALLERY2 = 22;
     private static final int PICK_IMAGE_GALLERY3 = 23;
-    private static final int PICK_IMAGE_GALLERY4 = 24;
-    private static final int PICK_IMAGE_GALLERY5 = 25;
- //   TextView attach_data_name,attach_data_name1,attach_data_name2,attach_data_name3,attach_data_name4;
-
     int mYear, mMonth, mDay;
     Calendar myCalendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener datepicker;
     static final int DATE_PICKER_ID = 1111;
     SimpleDateFormat simpleDateFormat;
     String date_to_send;
+    ArrayList<String> ans_type;
+    Spinner spinner_ans_type;
+
+    TextView tv_primary_detail,tv_requirement,tv_image_gallery,tv_add_requiremnt;
+
+    LinearLayout ll_primary_detail,ll_requirement,ll_image_gallery,ll_radio_option;
+    LinearLayout rl_add_requirement;
+    RelativeLayout rl_requirement_list;
+
+    RecyclerView rv_requirement;
 
     @Override
     public void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_product);
 
+        initialisation();
+        function();
+
+
+    }
+
+    private void initialisation() {
         globalClass = (GlobalClass) getApplicationContext();
         prefrence = new Shared_Preference(AddProductScreen.this);
         prefrence.loadPrefrence();
 
         pd = new ProgressDialog(AddProductScreen.this);
+
+
+        back_img=findViewById(R.id.back_img);
+        spinner_type=findViewById(R.id.spinner_type);
+        spinner_status=findViewById(R.id.spinner_status);
+        edt_title=findViewById(R.id.edt_title);
+        edt_description=findViewById(R.id.edt_description);
+        edt_price=findViewById(R.id.edt_price);
+        edt_expire=findViewById(R.id.edt_expire);
+        attach_data=findViewById(R.id.attach_data);
+        attach_data1=findViewById(R.id.attach_data1);
+        attach_data2=findViewById(R.id.attach_data2);
+        img_attach_1=findViewById(R.id.img_attach_1);
+        img_attach_2=findViewById(R.id.img_attach_2);
+        img_attach_3=findViewById(R.id.img_attach_3);
+        tv_submit=findViewById(R.id.tv_submit);
+        img_btn=findViewById(R.id.img_btn);
+        tv_add_requiremnt=findViewById(R.id.tv_add_requiremnt);
+        tv_primary_detail=findViewById(R.id.tv_primary_detail);
+        tv_requirement=findViewById(R.id.tv_requirement);
+        tv_image_gallery=findViewById(R.id.tv_image_gallery);
+        ll_primary_detail=findViewById(R.id.ll_primary_detail);
+        ll_requirement=findViewById(R.id.ll_requirement);
+        ll_image_gallery=findViewById(R.id.ll_image_gallery);
+        rl_add_requirement=findViewById(R.id.ll_add_requirement);
+        rl_requirement_list=findViewById(R.id.rl_requirement_list);
+        rv_requirement=findViewById(R.id.rv_requirement);
+        spinner_ans_type = findViewById(R.id.spinner_ans_type);
+        ll_radio_option = findViewById(R.id.ll_radio_option);
+
+
+    }
+
+    private void function() {
+
         pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pd.setMessage(getResources().getString(R.string.loading));
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -128,34 +181,44 @@ public class AddProductScreen extends AppCompatActivity {
 
             }
         }
-        simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
+
+        function_primary_detail();
+        function_requirement();
+        function_image_gallery();
+
+        ll_primary_detail.setVisibility(View.VISIBLE);
+        ll_requirement.setVisibility(View.GONE);
+        ll_image_gallery.setVisibility(View.GONE);
+
+        tv_add_requiremnt.setVisibility(View.GONE);
+
+        back_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
+
+
+
+
+    }
+
+    private void function_primary_detail() {
         type = new ArrayList<>();
         status = new ArrayList<>();
-       /* Bundle b = getIntent().getExtras();
-        listing_id=b.getString("id");*/
+
         type.add("Product");
         type.add("Service");
         type.add("Promotional");
 
         status.add("Active");
         status.add("Inactive");
-        back_img=findViewById(R.id.back_img);
-        spinner_type=findViewById(R.id.spinner_type);
-        spinner_status=findViewById(R.id.spinner_status);
-        edt_title=findViewById(R.id.edt_title);
-        edt_description=findViewById(R.id.edt_description);
-        edt_price=findViewById(R.id.edt_price);
-        edt_expire=findViewById(R.id.edt_expire);
-        attach_data=findViewById(R.id.attach_data);
-        attach_data1=findViewById(R.id.attach_data1);
-        attach_data2=findViewById(R.id.attach_data2);
-        img_attach_1=findViewById(R.id.img_attach_1);
-        img_attach_2=findViewById(R.id.img_attach_2);
-        img_attach_3=findViewById(R.id.img_attach_3);
-        tv_submit=findViewById(R.id.tv_submit);
-        img_btn=findViewById(R.id.img_btn);
 
+        simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         Calendar c = Calendar.getInstance();
         mYear = c.get(Calendar.YEAR);
@@ -199,13 +262,6 @@ public class AddProductScreen extends AppCompatActivity {
             }
         };
 
-   /*     attach_data_name=findViewById(R.id.attach_data_name);
-        attach_data_name1=findViewById(R.id.attach_data_name1);
-        attach_data_name2=findViewById(R.id.attach_data_name2);
-        attach_data_name3=findViewById(R.id.attach_data_name3);
-        attach_data_name4=findViewById(R.id.attach_data_name4);*/
-
-     //   ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, type);
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,R.layout.spinner_color,R.id.txt,type)
         {
@@ -231,12 +287,7 @@ public class AddProductScreen extends AppCompatActivity {
 
             }
         };
-        back_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+
 
         dataAdapter.setDropDownViewResource(R.layout.spinner_color);
         spinner_type.setAdapter(dataAdapter);
@@ -279,7 +330,7 @@ public class AddProductScreen extends AppCompatActivity {
                                        View arg1, int position, long arg3) {
                 // TODO Auto-generated method stub
                 // Locate the textviews in activity_main.xml
-               type_text= parent.getItemAtPosition(position).toString();
+                type_text= parent.getItemAtPosition(position).toString();
                 Log.d(TAG, "onItemSelected: "+type_text);
             }
 
@@ -295,7 +346,7 @@ public class AddProductScreen extends AppCompatActivity {
                                        View arg1, int position, long arg3) {
                 // TODO Auto-generated method stub
                 // Locate the textviews in activity_main.xml
-               status_text= parent.getItemAtPosition(position).toString();
+                status_text= parent.getItemAtPosition(position).toString();
                 Log.d(TAG, "onItemSelected: "+status_text);
             }
 
@@ -339,22 +390,147 @@ public class AddProductScreen extends AppCompatActivity {
                 openFolder(PICK_IMAGE_CAMERA3,PICK_IMAGE_GALLERY3);
             }
         });
-     /*   attach_data3.setOnClickListener(new View.OnClickListener() {
+
+
+        tv_primary_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openFolder(PICK_IMAGE_CAMERA4,PICK_IMAGE_GALLERY4);
+                tv_primary_detail.setTextColor(getResources().getColor(R.color.white));
+                tv_primary_detail.setBackground(getResources().getDrawable(R.drawable.bg_add_product_tab_left));
+                tv_requirement.setTextColor(getResources().getColor(R.color.black));
+                tv_requirement.setBackground(getResources().getDrawable(R.drawable.bg_add_product_tab_white));
+                tv_image_gallery.setTextColor(getResources().getColor(R.color.black));
+                tv_image_gallery.setBackground(getResources().getDrawable(R.drawable.bg_tab_right_white));
+
+                ll_primary_detail.setVisibility(View.VISIBLE);
+                ll_requirement.setVisibility(View.GONE);
+                ll_image_gallery.setVisibility(View.GONE);
+
+                tv_add_requiremnt.setVisibility(View.GONE);
             }
         });
-        attach_data4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openFolder(PICK_IMAGE_CAMERA5,PICK_IMAGE_GALLERY5);
-            }
-        });*/
+
     }
 
-    public void openFolder(final int code_camera,final int code_gallery)
-    {
+    private void function_requirement() {
+
+        ans_type = new ArrayList<>();
+        requirement = new ArrayList<>();
+
+        ans_type.add("Free Text");
+        ans_type.add("Radio Options");
+        ans_type.add("Multiple Answers");
+        ans_type.add("Attached Files");
+
+        requirement.add("sdsfdgfh");
+        requirement.add("zdffggds");
+
+
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        rv_requirement.setLayoutManager(mLayoutManager);
+        AdapterRequirement adapterRequirement = new AdapterRequirement(AddProductScreen.this, requirement);
+        rv_requirement.setAdapter(adapterRequirement);
+
+
+        ArrayAdapter<String> adp = new ArrayAdapter<String>
+                (this, android.R.layout.simple_spinner_item, ans_type);
+        spinner_ans_type.setAdapter(adp);
+
+        spinner_ans_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            //@Override
+            public void onItemSelected(AdapterView<?> parent, View arg1, int arg2, long arg3) {
+                // TODO Auto-generated method stub
+                String item = spinner_ans_type.getItemAtPosition(0).toString();
+
+                String text = spinner_ans_type.getSelectedItem().toString();
+
+                if(text.equals("Free Text") || text.equals("Attached Files")){
+                    ll_radio_option.setVisibility(View.GONE);
+
+
+                }else {
+
+                    ll_radio_option.setVisibility(View.VISIBLE);
+                }
+
+
+
+                }
+
+
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+
+
+
+
+        tv_requirement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tv_primary_detail.setTextColor(getResources().getColor(R.color.black));
+                tv_primary_detail.setBackground(getResources().getDrawable(R.drawable.bg_add_product_tab_white));
+                tv_requirement.setTextColor(getResources().getColor(R.color.white));
+                tv_requirement.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                tv_image_gallery.setTextColor(getResources().getColor(R.color.black));
+                tv_image_gallery.setBackground(getResources().getDrawable(R.drawable.bg_tab_right_white));
+
+                ll_primary_detail.setVisibility(View.GONE);
+                ll_requirement.setVisibility(View.VISIBLE);
+                ll_image_gallery.setVisibility(View.GONE);
+
+                tv_add_requiremnt.setVisibility(View.VISIBLE);
+                rl_add_requirement.setVisibility(View.GONE);
+                rl_requirement_list.setVisibility(View.VISIBLE);
+            }
+        });
+
+
+
+        tv_add_requiremnt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rl_add_requirement.setVisibility(View.VISIBLE);
+                rl_requirement_list.setVisibility(View.GONE);
+
+
+
+            }
+        });
+    }
+
+    private void function_image_gallery() {
+
+        tv_image_gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tv_primary_detail.setTextColor(getResources().getColor(R.color.black));
+                tv_primary_detail.setBackground(getResources().getDrawable(R.drawable.bg_tab_left_white));
+                tv_requirement.setTextColor(getResources().getColor(R.color.black));
+                tv_requirement.setBackground(getResources().getDrawable(R.drawable.bg_add_product_tab_white));
+                tv_image_gallery.setTextColor(getResources().getColor(R.color.white));
+                tv_image_gallery.setBackground(getResources().getDrawable(R.drawable.bg_add_product_tab_right));
+
+                ll_primary_detail.setVisibility(View.GONE);
+                ll_requirement.setVisibility(View.GONE);
+                ll_image_gallery.setVisibility(View.VISIBLE);
+
+                tv_add_requiremnt.setVisibility(View.GONE);
+            }
+        });
+
+
+
+    }
+
+
+
+
+
+    public void openFolder(final int code_camera,final int code_gallery) {
 
 
         try {
@@ -683,4 +859,6 @@ public class AddProductScreen extends AppCompatActivity {
         }
 
     }
+
+
 }

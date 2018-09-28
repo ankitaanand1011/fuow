@@ -411,9 +411,9 @@ public class HomeScreen  extends AppCompatActivity {
 
                     }else if(position == 3){
 
-                        /*rl_opacity.setVisibility(View.GONE);
-                        Intent intent = new Intent(HomeScreen.this,BrowseProduct.class);
-                        startActivity(intent);*/
+                        rl_opacity.setVisibility(View.GONE);
+                        Intent intent = new Intent(HomeScreen.this,BrowseDeal.class);
+                        startActivity(intent);
 
                     }else if(position == 4){
 

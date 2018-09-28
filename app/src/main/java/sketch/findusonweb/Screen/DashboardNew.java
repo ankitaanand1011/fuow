@@ -24,14 +24,19 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
 import sketch.findusonweb.Adapter.AdapterCreditHistory;
+import sketch.findusonweb.Adapter.AdapterDueInvoices;
 import sketch.findusonweb.Adapter.AdapterFavorite;
 import sketch.findusonweb.Adapter.AdapterListing;
+import sketch.findusonweb.Adapter.AdapterPreviousSearch;
 import sketch.findusonweb.Adapter.AdapterToDoScreen;
 import sketch.findusonweb.Constants.AppConfig;
 import sketch.findusonweb.Controller.GlobalClass;
@@ -64,11 +69,15 @@ public class DashboardNew extends AppCompatActivity {
     AdapterCreditHistory adapterCreditHistory;
     AdapterToDoScreen adapterToDo;
     AdapterListing adapterListing;
+    AdapterPreviousSearch adapterPreviousSearch;
+    AdapterDueInvoices adapterDueInvoices;
 
     ArrayList<HashMap<String,String>> list_namesfavoriteAll;
     ArrayList<HashMap<String,String>> list_credit;
     ArrayList<HashMap<String,String>> list_todo;
     ArrayList<HashMap<String,String>> listing;
+    ArrayList<HashMap<String,String>> search;
+    ArrayList<HashMap<String,String>> invoice;
 
     TextView tv_name,tv_phone_val,tv_business_val;
 
@@ -168,6 +177,8 @@ public class DashboardNew extends AppCompatActivity {
         list_credit=new ArrayList<>();
         list_todo=new ArrayList<>();
         listing=new ArrayList<>();
+        search=new ArrayList<>();
+        invoice=new ArrayList<>();
 
 
         mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -457,12 +468,104 @@ public class DashboardNew extends AppCompatActivity {
 
     }
 
+
+    private void viewListingByUser() {
+        // Tag used to cancel the request
+        String tag_string_req = "req_login";
+
+        pd.show();
+
+        StringRequest strReq = new StringRequest(Request.Method.POST,
+                AppConfig.URL_DEV, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response)
+            {
+                Log.d(TAG, "JOB RESPONSE: " + response.toString());
+
+                //pd.dismiss();
+
+                Gson gson = new Gson();
+
+                try {
+
+
+                    JsonObject jobj = gson.fromJson(response, JsonObject.class);
+                    Log.d(TAG, "onResponse: " + jobj);
+                    JsonArray data = jobj.getAsJsonArray("data");
+                    Log.d(TAG, "Data: " + data);
+
+                    for (int i = 0; i < data.size(); i++) {
+
+                        JsonObject jsonobj = data.get(i).getAsJsonObject();
+                        String id = jsonobj.get("id").toString().replaceAll("\"", "");
+                        String title = jsonobj.get("title").toString().replaceAll("\"", "");
+                        //  String title = jsonobj.get("title").toString().replaceAll("\"", "");
+
+                        //  Log.d(TAG, "Images 1: " + User_id);
+                        HashMap<String, String> hashMap = new HashMap<>();
+                        hashMap.put("id", id);
+                        hashMap.put("title", title);
+
+
+                        listing.add(hashMap);
+                        //Log.d(TAG, "Listmane: " + list_todo);
+
+                    }
+                    Log.d(TAG, "Listmane outer: " + listing);
+
+                    adapterListing = new AdapterListing(DashboardNew.this, listing);
+                    rv_listing.setAdapter(adapterListing);
+
+                    getFavoritiesListByUser();
+
+                    // pd.dismiss();
+
+                } catch (Exception e) {
+
+                    Toasty.warning(DashboardNew.this, "NO DATA FOUND", Toast.LENGTH_SHORT, true).show();
+                    e.printStackTrace();
+
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Login Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),"Registration Error", Toast.LENGTH_LONG).show();
+                //  pd.dismiss();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<>();
+                params.put("user_id", globalClass.getId());
+                params.put("view", "viewListingDDByUser");
+
+                Log.d(TAG, "getParams: "+params);
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        GlobalClass.getInstance().addToRequestQueue(strReq, tag_string_req);
+        strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
+
+    }
+
     private void getFavoritiesListByUser() {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
 
         pd.show();
-        list_namesfavoriteAll.clear();
+
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
                 AppConfig.URL_DEV, new Response.Listener<String>() {
@@ -487,27 +590,28 @@ public class DashboardNew extends AppCompatActivity {
                     for (int i = 0; i < data.size(); i++) {
 
                         JsonObject images1 = data.get(i).getAsJsonObject();
+                        String title = images1.get("title").toString().replaceAll("\"", "");
                         String id = images1.get("id").toString().replaceAll("\"", "");
-                        String listing_id = images1.get("listing_id").toString().replaceAll("\"", "");
-                        String listing_title = images1.get("listing_title").toString().replaceAll("\"", "");
-                        String listing_url = images1.get("listing_url").toString().replaceAll("\"", "");
+                     /*   String listing_id = images1.get("listing_id").toString().replaceAll("\"", "");
+                        String description = images1.get("description").toString().replaceAll("\"", "");
+                        String rating = images1.get("rating").toString().replaceAll("\"", "");
                         String type = images1.get("type").toString().replaceAll("\"", "");
-                        String product_title = images1.get("product_title").toString().replaceAll("\"", "");
+                        String product_id = images1.get("product_id").toString().replaceAll("\"", "");
                         // String sync = images1.get("sync").toString().replaceAll("\"", "");
-                        String product_url = images1.get("product_url").toString().replaceAll("\"", "");
-
+                        String img_url = images1.get("img_url").toString().replaceAll("\"", "");
+*/
                         //  Log.d(TAG, "Images 1: " + User_id);
                         HashMap<String, String> hashMap = new HashMap<>();
-                        //  hashMap.put("user_id", User_id);
-                        //  hashMap.put("listing_id", listing_id);
-                        hashMap.put("id",id);
+                        hashMap.put("id", id);
+                        hashMap.put("title", title);
+              /*          //  hashMap.put("user_id", User_id);
+                        hashMap.put("description", description);
                         hashMap.put("listing_id", listing_id);
-                        hashMap.put("listing_title", listing_title);
-                        hashMap.put("listing_url", listing_url);
-                        hashMap.put("product_title", product_title);
+                        hashMap.put("img_url", img_url);
+                        hashMap.put("product_id", product_id);
                         hashMap.put("type", type);
                         //hashMap.put("credits_points", credits_points);
-                        hashMap.put("product_url", product_url);
+                        hashMap.put("rating", rating);*/
 
 
                         list_namesfavoriteAll.add(hashMap);
@@ -628,6 +732,8 @@ public class DashboardNew extends AppCompatActivity {
 
                         adapterCreditHistory = new AdapterCreditHistory(DashboardNew.this, list_credit);
                         rv_credit.setAdapter(adapterCreditHistory);
+
+
                     }
                     else
 
@@ -745,9 +851,9 @@ public class DashboardNew extends AppCompatActivity {
                     adapterToDo = new AdapterToDoScreen(DashboardNew.this, list_todo);
                     rv_to_do.setAdapter(adapterToDo);
 
-                   // favorite();
+                    previous_search();
 
-                    pd.dismiss();
+
 
                 } catch (Exception e) {
 
@@ -788,7 +894,7 @@ public class DashboardNew extends AppCompatActivity {
 
     }
 
-    private void viewListingByUser() {
+    private void previous_search() {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
 
@@ -802,8 +908,8 @@ public class DashboardNew extends AppCompatActivity {
             {
                 Log.d(TAG, "JOB RESPONSE: " + response.toString());
 
-                //pd.dismiss();
-
+                // pd.dismiss();
+                search.clear();
                 Gson gson = new Gson();
 
                 try {
@@ -816,29 +922,44 @@ public class DashboardNew extends AppCompatActivity {
 
                     for (int i = 0; i < data.size(); i++) {
 
-                        JsonObject jsonobj = data.get(i).getAsJsonObject();
-                        String id = jsonobj.get("id").toString().replaceAll("\"", "");
-                        String title = jsonobj.get("title").toString().replaceAll("\"", "");
-                      //  String title = jsonobj.get("title").toString().replaceAll("\"", "");
+                        JsonObject images1 = data.get(i).getAsJsonObject();
+                        String date = images1.get("date").toString().replaceAll("\"", "");
+                        String keywords = images1.get("keywords").toString().replaceAll("\"", "");
 
-                        //  Log.d(TAG, "Images 1: " + User_id);
+                        SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        SimpleDateFormat output = new SimpleDateFormat("dd-MM-yyyy");
+                     /*   String show = "";
+                        try {
+                            Date oneWayTripDate = input.parse(date);
+                            show = output.format(oneWayTripDate);// parse input
+                            // format output
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+*/
+                        Date newDate = input.parse(date);
+
+
+                        String show = output.format(newDate);
+
+
                         HashMap<String, String> hashMap = new HashMap<>();
-                          hashMap.put("id", id);
-                          hashMap.put("title", title);
+                        hashMap.put("date",show);
+                        hashMap.put("keywords", keywords);
+
+                        Log.d("mega", "search "+show+"\n keword"+keywords);
 
 
-                        listing.add(hashMap);
-                        //Log.d(TAG, "Listmane: " + list_todo);
+                        search.add(hashMap);
+                        Log.d(TAG, "Listmane: " + search);
 
                     }
-                    Log.d(TAG, "Listmane outer: " + listing);
 
-                    adapterListing = new AdapterListing(DashboardNew.this, listing);
-                    rv_listing.setAdapter(adapterListing);
-
-                    getFavoritiesListByUser();
-
-                   // pd.dismiss();
+                    adapterPreviousSearch = new AdapterPreviousSearch(DashboardNew.this, search);
+                    rv_search.setAdapter(adapterPreviousSearch);
+                    adapterPreviousSearch.notifyDataSetChanged();
+                    //  ReviewList();
+                    dueInvoices();
 
                 } catch (Exception e) {
 
@@ -856,7 +977,7 @@ public class DashboardNew extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Login Error: " + error.getMessage());
                 Toast.makeText(getApplicationContext(),"Registration Error", Toast.LENGTH_LONG).show();
-                //  pd.dismiss();
+                pd.dismiss();
             }
         }) {
 
@@ -865,7 +986,8 @@ public class DashboardNew extends AppCompatActivity {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<>();
                 params.put("user_id", globalClass.getId());
-                params.put("view", "viewListingDDByUser");
+                params.put("view", "previous_search");
+
 
                 Log.d(TAG, "getParams: "+params);
                 return params;
@@ -878,6 +1000,97 @@ public class DashboardNew extends AppCompatActivity {
         strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
 
     }
+
+    private void dueInvoices() {
+        // Tag used to cancel the request
+        String tag_string_req = "req_login";
+
+        pd.show();
+
+        StringRequest strReq = new StringRequest(Request.Method.POST,
+                AppConfig.URL_DEV, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response)
+            {
+                Log.d(TAG, "JOB RESPONSE: " + response.toString());
+
+                // pd.dismiss();
+                invoice.clear();
+                Gson gson = new Gson();
+
+                try {
+
+
+                    JsonObject jobj = gson.fromJson(response, JsonObject.class);
+                    Log.d(TAG, "onResponse: " + jobj);
+
+                    JsonObject data = jobj.getAsJsonObject("data") ;
+                    JsonArray invoices = data.getAsJsonArray("invoices");
+                    Log.d(TAG, "Data: " + data);
+
+                    for (int i = 0; i < invoices.size(); i++) {
+
+                       // JsonObject images1 = invoices.get(i).getAsJsonObject();
+                        String title = invoices.get(i).toString().replaceAll("\"", "");
+
+                        //  Log.d(TAG, "Images 1: " + User_id);
+                        HashMap<String, String> hashMap = new HashMap<>();
+                        hashMap.put("title", title);
+
+
+
+                        invoice.add(hashMap);
+                        Log.d(TAG, "Listmane: " + invoice);
+
+                    }
+
+                    adapterDueInvoices = new AdapterDueInvoices(DashboardNew.this, invoice);
+                    rv_invoice.setAdapter(adapterDueInvoices);
+                    //  ReviewList();
+                    pd.dismiss();
+
+                } catch (Exception e) {
+
+                    Toasty.warning(DashboardNew.this, "NO DATA FOUND", Toast.LENGTH_SHORT, true).show();
+                    e.printStackTrace();
+
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Login Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),"Registration Error", Toast.LENGTH_LONG).show();
+                pd.dismiss();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<>();
+                //params.put("user_id", globalClass.getId());
+                params.put("user_id", "353172");
+                params.put("view", "dueInvoices");
+
+
+                Log.d(TAG, "getParams: "+params);
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        GlobalClass.getInstance().addToRequestQueue(strReq, tag_string_req);
+        strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
+
+    }
+
 
 
 }

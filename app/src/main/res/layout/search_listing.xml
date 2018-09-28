@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/grey"
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -70,14 +71,15 @@
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
+
 
         >
         <TextView
 
             android:layout_width="wrap_content"
-            android:layout_height="25sp"
+            android:layout_height="wrap_content"
             android:tint="@color/white"
             android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
@@ -94,7 +96,7 @@
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:dividerHeight="2dp"
+        android:layout_marginTop="10dp"
         />
 
 

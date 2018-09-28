@@ -147,28 +147,28 @@ public class Favorites extends AppCompatActivity {
                     for (int i = 0; i < data.size(); i++) {
 
                         JsonObject images1 = data.get(i).getAsJsonObject();
+                        String title = images1.get("title").toString().replaceAll("\"", "");
                         String id = images1.get("id").toString().replaceAll("\"", "");
                         String listing_id = images1.get("listing_id").toString().replaceAll("\"", "");
-                        String listing_title = images1.get("listing_title").toString().replaceAll("\"", "");
-                        String listing_url = images1.get("listing_url").toString().replaceAll("\"", "");
+                        String description = images1.get("description").toString().replaceAll("\"", "");
+                        String rating = images1.get("rating").toString().replaceAll("\"", "");
                         String type = images1.get("type").toString().replaceAll("\"", "");
-                        String product_title = images1.get("product_title").toString().replaceAll("\"", "");
+                        String product_id = images1.get("product_id").toString().replaceAll("\"", "");
                         // String sync = images1.get("sync").toString().replaceAll("\"", "");
-                        String product_url = images1.get("product_url").toString().replaceAll("\"", "");
+                        String img_url = images1.get("img_url").toString().replaceAll("\"", "");
 
                         //  Log.d(TAG, "Images 1: " + User_id);
                         HashMap<String, String> hashMap = new HashMap<>();
                         //  hashMap.put("user_id", User_id);
-                        //  hashMap.put("listing_id", listing_id);
-                        hashMap.put("id",id);
+                        hashMap.put("description", description);
+                        hashMap.put("id", id);
                         hashMap.put("listing_id", listing_id);
-                        hashMap.put("listing_title", listing_title);
-                        hashMap.put("listing_url", listing_url);
-                        hashMap.put("product_title", product_title);
+                        hashMap.put("title", title);
+                        hashMap.put("img_url", img_url);
+                        hashMap.put("product_id", product_id);
                         hashMap.put("type", type);
                         //hashMap.put("credits_points", credits_points);
-                        hashMap.put("product_url", product_url);
-
+                        hashMap.put("rating", rating);
 
                         list_namesfavoriteAll.add(hashMap);
                         Log.d(TAG, "Listmane: " + list_namesfavoriteAll);
@@ -250,28 +250,28 @@ public class Favorites extends AppCompatActivity {
                     for (int i = 0; i < data.size(); i++) {
 
                         JsonObject images1 = data.get(i).getAsJsonObject();
+                        String title = images1.get("title").toString().replaceAll("\"", "");
                         String id = images1.get("id").toString().replaceAll("\"", "");
                         String listing_id = images1.get("listing_id").toString().replaceAll("\"", "");
-                        String listing_title = images1.get("listing_title").toString().replaceAll("\"", "");
-                        String listing_url = images1.get("listing_url").toString().replaceAll("\"", "");
+                        String description = images1.get("description").toString().replaceAll("\"", "");
+                        String rating = images1.get("rating").toString().replaceAll("\"", "");
                         String type = images1.get("type").toString().replaceAll("\"", "");
-                        String product_title = images1.get("product_title").toString().replaceAll("\"", "");
+                        String product_id = images1.get("product_id").toString().replaceAll("\"", "");
                         // String sync = images1.get("sync").toString().replaceAll("\"", "");
-                        String product_url = images1.get("product_url").toString().replaceAll("\"", "");
+                        String img_url = images1.get("img_url").toString().replaceAll("\"", "");
 
                         //  Log.d(TAG, "Images 1: " + User_id);
                         HashMap<String, String> hashMap = new HashMap<>();
                         //  hashMap.put("user_id", User_id);
-                        //  hashMap.put("listing_id", listing_id);
-                        hashMap.put("id",id);
+                        hashMap.put("description", description);
+                        hashMap.put("id", id);
                         hashMap.put("listing_id", listing_id);
-                        hashMap.put("listing_title", listing_title);
-                        hashMap.put("listing_url", listing_url);
-                        hashMap.put("product_title", product_title);
+                        hashMap.put("title", title);
+                        hashMap.put("img_url", img_url);
+                        hashMap.put("product_id", product_id);
                         hashMap.put("type", type);
                         //hashMap.put("credits_points", credits_points);
-                        hashMap.put("product_url", product_url);
-
+                        hashMap.put("rating", rating);
 
                         list_namesfavoriteAll.add(hashMap);
                         Log.d(TAG, "Listmane: " + list_namesfavoriteAll);
@@ -353,28 +353,28 @@ public class Favorites extends AppCompatActivity {
                     for (int i = 0; i < data.size(); i++) {
 
                         JsonObject images1 = data.get(i).getAsJsonObject();
+                        String title = images1.get("title").toString().replaceAll("\"", "");
                         String id = images1.get("id").toString().replaceAll("\"", "");
                         String listing_id = images1.get("listing_id").toString().replaceAll("\"", "");
-                        String listing_title = images1.get("listing_title").toString().replaceAll("\"", "");
-                        String listing_url = images1.get("listing_url").toString().replaceAll("\"", "");
+                        String description = images1.get("description").toString().replaceAll("\"", "");
+                        String rating = images1.get("rating").toString().replaceAll("\"", "");
                         String type = images1.get("type").toString().replaceAll("\"", "");
-                        String product_title = images1.get("product_title").toString().replaceAll("\"", "");
+                        String product_id = images1.get("product_id").toString().replaceAll("\"", "");
                         // String sync = images1.get("sync").toString().replaceAll("\"", "");
-                        String product_url = images1.get("product_url").toString().replaceAll("\"", "");
+                        String img_url = images1.get("img_url").toString().replaceAll("\"", "");
 
                         //  Log.d(TAG, "Images 1: " + User_id);
                         HashMap<String, String> hashMap = new HashMap<>();
                         //  hashMap.put("user_id", User_id);
-                        //  hashMap.put("listing_id", listing_id);
-                        hashMap.put("id",id);
+                        hashMap.put("description", description);
+                        hashMap.put("id", id);
                         hashMap.put("listing_id", listing_id);
-                        hashMap.put("listing_title", listing_title);
-                        hashMap.put("listing_url", listing_url);
-                        hashMap.put("product_title", product_title);
+                        hashMap.put("title", title);
+                        hashMap.put("img_url", img_url);
+                        hashMap.put("product_id", product_id);
                         hashMap.put("type", type);
                         //hashMap.put("credits_points", credits_points);
-                        hashMap.put("product_url", product_url);
-
+                        hashMap.put("rating", rating);
 
                         list_namesfavoriteAll.add(hashMap);
                         Log.d(TAG, "Listmane: " + list_namesfavoriteAll);

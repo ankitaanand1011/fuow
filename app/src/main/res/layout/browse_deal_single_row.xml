@@ -45,6 +45,7 @@
 
 
         </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -61,35 +62,69 @@
                     android:id="@+id/tv_product_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:layout_alignParentLeft="true"
                     android:padding="5dp"
                     android:text="sfdgfdhgfh"
+                    android:layout_toStartOf="@+id/tv_off"
                     android:contentDescription="@string/app_name"
                     android:layout_alignParentStart="true" />
 
+                <TextView
+                    android:id="@+id/tv_off"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/white"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textSize="12sp"
+                    android:layout_centerVertical="true"
+                    android:background="@color/colorPrimaryDark"
+                    android:text="50% off"/>
+
 
             </RelativeLayout>
-
-            <TextView
-                android:id="@+id/tv_price_starting"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:paddingStart="5dp"
-                android:text="sfdgfdhgfh"
-                />
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tv_des"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:paddingStart="5dp"
-                android:text="sfdgfdhgfh"
-                />
+                <TextView
+                    android:id="@+id/tv_starting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:paddingStart="5dp"
+                    android:text="Staring at"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_price_starting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:layout_toEndOf="@id/tv_starting"
+                    android:paddingStart="5dp"
+
+
+                    />
+
+                <TextView
+                    android:id="@+id/tv_n_price_starting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_toEndOf="@id/tv_price_starting"
+                    android:paddingStart="5dp"
+
+
+                    />
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/category"
@@ -101,63 +136,17 @@
                 android:text="sfdgfdhgfh"
                 />
 
-            <RelativeLayout
+
+            <TextView
+                android:id="@+id/tv_des"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                android:baselineAligned="false">
+                android:textSize="14sp"
+                android:paddingStart="5dp"
 
-                <RelativeLayout
-                    android:id="@+id/rl_view"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="2.5dp"
-                    android:padding="5dp"
-                    android:background="@drawable/blue_bg_tv"
-                    android:layout_marginEnd="2.5dp">
+                />
 
 
-                    <TextView
-
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:text="View"
-                        android:textSize="14sp"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:layout_centerVertical="true"
-
-                        />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/rl_manage"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="2.5dp"
-                    android:layout_marginLeft="2.5dp"
-                    android:padding="5dp"
-                    android:gravity="center"
-                    android:layout_toEndOf="@+id/rl_view"
-                    android:background="@drawable/button_green_dashboard"
-                    >
-
-
-                    <TextView
-
-                        android:id="@+id/send_message"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:text="Manage"
-                        android:textSize="14sp"
-                        android:gravity="center"
-                        android:textColor="@color/white"
-                        android:layout_centerVertical="true"
-                       />
-                </RelativeLayout>
-
-            </RelativeLayout>
 
         </LinearLayout>
     </RelativeLayout>

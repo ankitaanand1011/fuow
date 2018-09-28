@@ -129,6 +129,12 @@
     <string name="financial">Financial Transaction</string>
     <string name="my_schedule">My Schedule</string>
     <string name="manage_proposal">Manage Proposal</string>
+    <string name="commission">Commission Percentage free listing - 2% standard - 23% professional -
+        21% enterprise - 19% global	- 17% Every listing will have a default commission
+        percentage applicable to it as per the above matrix</string>
+
+    <string name="tell_us">Tell your buyer what you need to get started.</string>
+    <string name="structure">Structure your buyer instruction as free text, a multiple choice question or file upload</string>
 
     <!--Proposal Screen-->
 

@@ -69,7 +69,7 @@ public class BrowseLocation extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.browse_category);
-        menu=findViewById(R.id.menu);
+      //  menu=findViewById(R.id.menu);
         back_img=findViewById(R.id.back_img);
         globalClass = (GlobalClass) getApplicationContext();
         prefrence = new Shared_Preference(BrowseLocation.this);

@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 
@@ -30,6 +31,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.ivbaranov.mli.MaterialLetterIcon;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -82,6 +84,7 @@ import java.io.FileOutputStream;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 
 import cz.msebera.android.httpclient.Header;
@@ -115,6 +118,12 @@ public class ServiceDetailScreen extends AppCompatActivity  {
     MapView mapView;
     Marker marker;
     String id;
+    RelativeLayout rl_icon;
+    int[] androidColors ;
+    int randomAndroidColor;
+    MaterialLetterIcon icon;
+    ImageView img;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState );
@@ -141,6 +150,9 @@ public class ServiceDetailScreen extends AppCompatActivity  {
         tv_back = findViewById(R.id.back_img);
         tv_name = findViewById(R.id.tv_name);
         tv_des = findViewById(R.id.tv_des);
+        rl_icon = findViewById(R.id.rl_icon);
+        icon = findViewById(R.id.icon);
+        img = findViewById(R.id.img);
        // rl_message=findViewById(R.id.rl_message);
         rl_review=findViewById(R.id.rl_review);
         tv_category = findViewById(R.id.tv_category);
@@ -151,6 +163,8 @@ public class ServiceDetailScreen extends AppCompatActivity  {
         Log.d(TAG, "id service: "+id);
 
         ViewList(id);
+        androidColors = getResources().getIntArray(R.array.androidcolors);
+        randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
 
 
 
@@ -333,6 +347,19 @@ public class ServiceDetailScreen extends AppCompatActivity  {
                     tv_category.setText(login);
                     tv_des.setText(description_short);
                     detail_about_us.setText(Html.fromHtml(description));
+
+                    img.setVisibility(View.GONE);
+                    icon.setVisibility(View.VISIBLE);
+                    icon.setLetter(title);
+                    icon.setLetterColor(getResources().getColor(R.color.black));
+                    icon.setShapeColor(getResources().getColor(R.color.white));
+                    icon.setShapeType(MaterialLetterIcon.Shape.CIRCLE);
+                    icon.setLetterSize(26);
+                    icon.setLetterTypeface(Typeface.SANS_SERIF);
+                    icon.setInitials(true);
+                    icon.setInitialsNumber(2);
+
+                    rl_icon.setBackgroundColor(randomAndroidColor);
 
 
 

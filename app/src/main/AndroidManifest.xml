@@ -62,10 +62,6 @@
             android:name=".Screen.Job_details"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Screen.BrowseJobCategory"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity
             android:name=".Screen.Messages"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
@@ -103,10 +99,6 @@
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".Screen.BrowseProduct"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity
-            android:name=".Screen.BrowserProductScreen"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
@@ -243,6 +235,13 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize"/>
 
+        <activity android:name=".Screen.BrowseDeal"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
+
+        <activity android:name=".Screen.EditSchedule"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
 
 
     </application>

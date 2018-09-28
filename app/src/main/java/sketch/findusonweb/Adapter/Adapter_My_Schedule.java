@@ -1,6 +1,7 @@
 package sketch.findusonweb.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -20,7 +21,8 @@ import java.util.HashMap;
 
 import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
-
+import sketch.findusonweb.Screen.EditSchedule;
+import sketch.findusonweb.Screen.ViewProductsDetails;
 
 
 public class Adapter_My_Schedule extends RecyclerView.Adapter<Adapter_My_Schedule.ViewHolder> {
@@ -54,19 +56,20 @@ public class Adapter_My_Schedule extends RecyclerView.Adapter<Adapter_My_Schedul
     }
 
     @Override
-    public Adapter_My_Schedule.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.single_my_schedule, parent, false);
-        return new Adapter_My_Schedule.ViewHolder(view);
+        return new ViewHolder(view);
 
 
     }
 
     @Override
-    public void onBindViewHolder(Adapter_My_Schedule.ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         //   int po = position+1;
 
 
         holder.tv_from_val.setText(list_products.get(position).get("from_user"));
+       // holder.tv_edit.setText(list_products.get(position).get("from_user"));
         holder.tv_to_val.setText(list_products.get(position).get("to_user"));
         holder.tv_attendees_val.setText(Html.fromHtml(list_products.get(position).get("attendies")));
         holder.tv_status.setText(list_products.get(position).get("status"));
@@ -76,6 +79,29 @@ public class Adapter_My_Schedule extends RecyclerView.Adapter<Adapter_My_Schedul
         holder.tv_start_time_val.setText(list_products.get(position).get("start_time"));
         holder.tv_end_time_val.setText(list_products.get(position).get("end_time"));
 
+        holder.tv_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,EditSchedule.class);
+                intent.putExtra("id",list_products.get(position).get("id"));
+                intent.putExtra("from_user_id",list_products.get(position).get("from_user_id"));
+                intent.putExtra("to_user_id",list_products.get(position).get("to_user_id"));
+                intent.putExtra("listing_id",list_products.get(position).get("listing_id"));
+                intent.putExtra("from_user",list_products.get(position).get("from_user"));
+                intent.putExtra("to_user",list_products.get(position).get("to_user"));
+                intent.putExtra("subject",list_products.get(position).get("subject"));
+                intent.putExtra("location",list_products.get(position).get("location"));
+                intent.putExtra("start_time",list_products.get(position).get("start_time"));
+                intent.putExtra("end_time",list_products.get(position).get("end_time"));
+                intent.putExtra("overview",list_products.get(position).get("overview"));
+                intent.putExtra("attendies",list_products.get(position).get("attendies"));
+                intent.putExtra("propose_user_id",list_products.get(position).get("propose_user_id"));
+                intent.putExtra("status",list_products.get(position).get("status"));
+                intent.putExtra("propose_user_id",list_products.get(position).get("propose_user_id"));
+                //intent.putExtra("propose_user_id",list_products.get(position).get("propose_user_id"));
+                context.startActivity(intent);
+            }
+        });
 
     }
 
@@ -88,7 +114,7 @@ public class Adapter_My_Schedule extends RecyclerView.Adapter<Adapter_My_Schedul
 
 
         TextView tv_from_val, tv_to_val,tv_attendees_val,
-                tv_title, tv_location,tv_des,
+                tv_title, tv_location,tv_des,tv_edit,
                 tv_status, tv_start_time_val, tv_end_time_val;
 
 
@@ -97,6 +123,8 @@ public class Adapter_My_Schedule extends RecyclerView.Adapter<Adapter_My_Schedul
 
             tv_from_val = itemView.findViewById(R.id.tv_from_val);
             tv_to_val = itemView.findViewById(R.id.tv_to_val);
+            tv_edit = itemView.findViewById(R.id.tv_edit);
+
             tv_attendees_val = itemView.findViewById(R.id.tv_attendees_val);
             tv_title = itemView.findViewById(R.id.tv_title);
             tv_location = itemView.findViewById(R.id.tv_location);

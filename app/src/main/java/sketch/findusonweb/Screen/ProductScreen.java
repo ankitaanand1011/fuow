@@ -1,5 +1,7 @@
 package sketch.findusonweb.Screen;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -11,8 +13,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,8 +32,13 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
@@ -48,6 +60,9 @@ public class ProductScreen extends AppCompatActivity{
     TextView tv_add_products;
     RelativeLayout rl_add_product;
     ArrayList<HashMap<String,String>> list_products;
+    Spinner spinner_business;
+    List<String> list;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,6 +76,10 @@ public class ProductScreen extends AppCompatActivity{
         pd.setMessage(getResources().getString(R.string.loading));
 
         list_products = new ArrayList<>();
+
+
+
+
 
 
 
@@ -84,8 +103,9 @@ public class ProductScreen extends AppCompatActivity{
         tv_add_products.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProductScreen.this,AddProductScreen.class);
-                startActivity(intent);
+
+                add_product_dialog();
+
             }
         });
 
@@ -224,4 +244,58 @@ public class ProductScreen extends AppCompatActivity{
         strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
 
     }
+
+    private void add_product_dialog() {
+
+        final Dialog dialog = new Dialog(ProductScreen.this);
+        dialog.setContentView(R.layout.add_product_dialog);
+
+        list = new ArrayList<>();
+
+        list.add("Select Business");
+        list.add("Ready to Hire");
+        list.add("Planning and Budgeting");
+        list.add("Need a quote for budgeting purpose");
+
+
+
+        spinner_business = dialog.findViewById(R.id.spinner_business);
+
+        ArrayAdapter<String> adp = new ArrayAdapter<String>
+                (this, android.R.layout.simple_spinner_item, list);
+        spinner_business.setAdapter(adp);
+
+        spinner_business.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            //@Override
+            public void onItemSelected(AdapterView<?> parent, View arg1, int arg2, long arg3) {
+                // TODO Auto-generated method stub
+                String item = spinner_business.getItemAtPosition(0).toString();
+
+                String text = spinner_business.getSelectedItem().toString();
+
+               if(!text.equals("Select Business")){
+
+                   dialog.dismiss();
+                   Intent intent = new Intent(ProductScreen.this,AddProductScreen.class);
+                   startActivity(intent);
+
+
+               }
+
+            }
+
+
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+
+
+        dialog.show();
+
+    }
+
+
 }

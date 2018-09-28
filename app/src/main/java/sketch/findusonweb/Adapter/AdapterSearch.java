@@ -62,7 +62,7 @@ public class AdapterSearch extends BaseAdapter {
     RelativeLayout rl_message,rl_review;
 
     MaterialLetterIcon icon;
-
+    RelativeLayout  rl_icon;
 
     public AdapterSearch(Context c, ArrayList<HashMap<String,String>> list_names) {
         mContext = c;
@@ -133,6 +133,7 @@ public class AdapterSearch extends BaseAdapter {
         tv_des = view1.findViewById(R.id.tv_des);
         img = view1.findViewById(R.id.img);
         rating=view1.findViewById(R.id.rating_adpater);
+        rl_icon =  view1.findViewById(R.id.rl_icon);
         stars = (LayerDrawable) rating.getProgressDrawable();
         stars.getDrawable(2).setColorFilter(mContext.getResources().getColor(R.color.golden), PorterDuff.Mode.SRC_ATOP);
         stars.getDrawable(1).setColorFilter(mContext.getResources().getColor(R.color.golden), PorterDuff.Mode.SRC_ATOP);
@@ -173,13 +174,15 @@ public class AdapterSearch extends BaseAdapter {
             img.setVisibility(View.GONE);
             icon.setVisibility(View.VISIBLE);
             icon.setLetter(list_names.get(position).get("title"));
-            icon.setLetterColor(mContext.getResources().getColor(R.color.white));
-            icon.setShapeColor(randomAndroidColor);
-            icon.setShapeType(MaterialLetterIcon.Shape.ROUND_RECT);
+            icon.setLetterColor(mContext.getResources().getColor(R.color.black));
+            icon.setShapeColor(mContext.getResources().getColor(R.color.white));
+            icon.setShapeType(MaterialLetterIcon.Shape.CIRCLE);
             icon.setLetterSize(26);
             icon.setLetterTypeface(Typeface.SANS_SERIF);
             icon.setInitials(true);
             icon.setInitialsNumber(2);
+
+            rl_icon.setBackgroundColor(randomAndroidColor);
         }
         else {
             img.setVisibility(View.VISIBLE);

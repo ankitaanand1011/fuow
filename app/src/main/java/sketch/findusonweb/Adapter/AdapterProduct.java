@@ -103,16 +103,41 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
             }
         });
 
+
         holder.img_product.setVisibility(View.GONE);
         holder.icon.setVisibility(View.VISIBLE);
         holder.icon.setLetter(list_products.get(position).get("title"));
-        holder.icon.setLetterColor(context.getResources().getColor(R.color.white));
-        holder.icon.setShapeColor(randomAndroidColor);
-        holder.icon.setShapeType(MaterialLetterIcon.Shape.ROUND_RECT);
+        holder.icon.setLetterColor(context.getResources().getColor(R.color.black));
+        holder.icon.setShapeColor(context.getResources().getColor(R.color.white));
+        holder.icon.setShapeType(MaterialLetterIcon.Shape.CIRCLE);
         holder.icon.setLetterSize(26);
         holder.icon.setLetterTypeface(Typeface.SANS_SERIF);
         holder.icon.setInitials(true);
         holder.icon.setInitialsNumber(2);
+
+        holder.rl_icon.setBackgroundColor(randomAndroidColor);
+
+
+         /*   if(list_names.get(position).get("profile_pic").equals(""))
+        {
+            img.setVisibility(View.GONE);
+            icon.setVisibility(View.VISIBLE);
+            icon.setLetter(list_names.get(position).get("title"));
+            icon.setLetterColor(mContext.getResources().getColor(R.color.black));
+            icon.setShapeColor(R.color.white);
+            icon.setShapeType(MaterialLetterIcon.Shape.CIRCLE);
+            icon.setLetterSize(26);
+            icon.setLetterTypeface(Typeface.SANS_SERIF);
+            icon.setInitials(true);
+            icon.setInitialsNumber(2);
+
+            rl_icon.setBackgroundColor(randomAndroidColor);
+        }
+        else {
+            img.setVisibility(View.VISIBLE);
+            rl_icon.setVisibility(View.GONE);
+            loader.displayImage(list_names.get(position).get("profile_pic"), img, defaultOptions);
+        }*/
 
 
        /* if(list_products.get(position).get("product_image").equals("null") ||
@@ -138,6 +163,7 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
         TextView tv_product_name, tv_des, tv_price_starting,category;
         RelativeLayout rl_manage,rl_view;
         MaterialLetterIcon icon;
+        RelativeLayout rl_icon;
         ViewHolder(View itemView) {
             super(itemView);
 
@@ -149,6 +175,7 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
             rl_manage = itemView.findViewById(R.id.rl_manage);
             rl_view = itemView.findViewById(R.id.rl_view);
             icon =  itemView.findViewById(R.id.icon);
+            rl_icon =  itemView.findViewById(R.id.rl_icon);
           //  tv_product_price = itemView.findViewById(R.id.tv_product_price);
 
 

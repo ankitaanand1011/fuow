@@ -72,26 +72,27 @@ public class AdapterManageProduct extends RecyclerView.Adapter<AdapterManageProd
       /*  int[] androidColors = context.getResources().getIntArray(R.array.androidcolors);
         int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
 
+ /*   if(list_names.get(position).get("profile_pic").equals(""))
+        {
+            img.setVisibility(View.GONE);
+            icon.setVisibility(View.VISIBLE);
+            icon.setLetter(list_names.get(position).get("title"));
+            icon.setLetterColor(mContext.getResources().getColor(R.color.black));
+            icon.setShapeColor(R.color.white);
+            icon.setShapeType(MaterialLetterIcon.Shape.CIRCLE);
+            icon.setLetterSize(26);
+            icon.setLetterTypeface(Typeface.SANS_SERIF);
+            icon.setInitials(true);
+            icon.setInitialsNumber(2);
 
-        if (list_products.get(position).get("image").equals("")){
-
-            holder.img.setVisibility(View.GONE);
-            holder.icon.setVisibility(View.VISIBLE);
-            holder.icon.setLetter(list_products.get(position).get("title"));
-            holder.icon.setLetterColor(context.getResources().getColor(R.color.white));
-            holder.icon.setShapeColor(randomAndroidColor);
-            holder.icon.setShapeType(MaterialLetterIcon.Shape.ROUND_RECT);
-            holder.icon.setLetterSize(26);
-            holder.icon.setLetterTypeface(Typeface.SANS_SERIF);
-            holder.icon.setInitials(true);
-            holder.icon.setInitialsNumber(2);
-
-        }else {
-            holder.img.setVisibility(View.VISIBLE);
-            holder.icon.setVisibility(View.GONE);
-            loader.displayImage(list_products.get(position).get("image"), holder.img, defaultOptions);
+            rl_icon.setBackgroundColor(randomAndroidColor);
         }
-*/
+        else {
+            img.setVisibility(View.VISIBLE);
+            rl_icon.setVisibility(View.GONE);
+            loader.displayImage(list_names.get(position).get("profile_pic"), img, defaultOptions);
+        }*/
+
 
 
     /*    holder.tv_name.setText(list_products.get(position).get("title"));
@@ -139,6 +140,7 @@ public class AdapterManageProduct extends RecyclerView.Adapter<AdapterManageProd
         TextView tv_id_value, tv_name,tv_des, tv_price_value,category;
         RelativeLayout rl_edit,rl_delete;
         MaterialLetterIcon icon;
+        RelativeLayout   rl_icon ;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -152,6 +154,7 @@ public class AdapterManageProduct extends RecyclerView.Adapter<AdapterManageProd
             rl_edit = itemView.findViewById(R.id.rl_edit);
             rl_delete = itemView.findViewById(R.id.rl_delete);
             icon =  itemView.findViewById(R.id.icon);
+            rl_icon =  itemView.findViewById(R.id.rl_icon);
           //  tv_product_price = itemView.findViewById(R.id.tv_product_price);
 
 

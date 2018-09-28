@@ -101,7 +101,7 @@ public class ManageProductScreen extends AppCompatActivity {
             }
         });
 
-    //    ViewList();
+        ViewList();
 
     }
 

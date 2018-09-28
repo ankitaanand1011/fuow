@@ -61,6 +61,7 @@ public class BrowseProductAdapter extends BaseAdapter {
     DisplayImageOptions defaultOptions;
     /*RelativeLayout rl_message,rl_review;*/
     MaterialLetterIcon icon;
+    RelativeLayout rl_icon;
 
 
 
@@ -128,6 +129,7 @@ public class BrowseProductAdapter extends BaseAdapter {
         tv_name = view1.findViewById(R.id.tv_name);
         tv_des = view1.findViewById(R.id.tv_des);
         img = view1.findViewById(R.id.img);
+        rl_icon =  view1.findViewById(R.id.rl_icon);
 
         int[] androidColors = mContext.getResources().getIntArray(R.array.androidcolors);
         int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
@@ -140,23 +142,29 @@ public class BrowseProductAdapter extends BaseAdapter {
         category_product.setText(list_names.get(position).get("listing_name"));
        // favorites.setText(list_names.get(position).get("listing_name"));
         Log.d("TAG", "Category: "+list_names.get(position).get("category"));
-        if(list_names.get(position).get("images").equals("")||list_names.get(position).get("images").equals("null"))
+
+
+
+        if(list_names.get(position).get("images").equals("")||
+                list_names.get(position).get("images").equals("null"))
         {
             img.setVisibility(View.GONE);
             icon.setVisibility(View.VISIBLE);
             icon.setLetter(list_names.get(position).get("title"));
-            icon.setLetterColor(mContext.getResources().getColor(R.color.white));
-            icon.setShapeColor(randomAndroidColor);
-            icon.setShapeType(MaterialLetterIcon.Shape.ROUND_RECT);
+            icon.setLetterColor(mContext.getResources().getColor(R.color.black));
+            icon.setShapeColor(mContext.getResources().getColor(R.color.white));
+            icon.setShapeType(MaterialLetterIcon.Shape.CIRCLE);
             icon.setLetterSize(26);
             icon.setLetterTypeface(Typeface.SANS_SERIF);
             icon.setInitials(true);
             icon.setInitialsNumber(2);
+
+            rl_icon.setBackgroundColor(randomAndroidColor);
         }
         else {
             img.setVisibility(View.VISIBLE);
-            icon.setVisibility(View.GONE);
-            loader.displayImage(list_names.get(position).get("images"), img, defaultOptions);
+            rl_icon.setVisibility(View.GONE);
+            loader.displayImage(list_names.get(position).get("profile_pic"), img, defaultOptions);
         }
         view1.setOnClickListener(new View.OnClickListener() {
             @Override
