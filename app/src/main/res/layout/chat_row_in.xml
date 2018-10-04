@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    >
+    <RelativeLayout
+            android:id="@+id/rl_incoming_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_chat"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:padding="10dp"
+            android:layout_marginRight="30dp"
+            >
+
+            <TextView
+                android:id="@+id/chat_message1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="200dp"
+                android:textColor="@color/colorPrimaryDark"
+
+                />
+            <LinearLayout
+                android:id="@+id/ic_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_centerVertical="true"
+
+                android:layout_below="@+id/chat_message1">
+
+                <TextView
+                    android:id="@+id/user_name_incoming"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_weight="3"
+                    android:inputType="text"
+                    android:maxLines="1"
+                />
+
+
+            <TextView
+                android:id="@+id/chat1_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textSize="10sp"
+                android:layout_centerVertical="true"
+                android:paddingRight="10dp"
+                android:layout_toRightOf="@+id/user_name_incoming"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_weight="1"
+                android:inputType="text"
+                android:maxLines="1"
+                android:gravity="right"
+                />
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+
+<!--
+
+
+
+    <RelativeLayout
+        android:id="@+id/rl_outgoing_chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/blue_chat"
+        android:layout_below="@+id/rl_incoming_chat"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="@dimen/_30sdp"
+        android:padding="10dp"
+        >
+
+        <TextView
+
+
+            android:id="@+id/chat_message2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello"
+            android:minWidth="150dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/white"
+
+            />
+
+        <LinearLayout
+            android:id="@+id/ll_oc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/chat_message2">
+        <TextView
+
+
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="User Name , "
+            android:layout_marginRight="5dp"
+            android:textColor="@color/white"
+            android:layout_gravity="center_vertical"
+
+
+            />
+
+
+        <TextView
+            android:id="@+id/chat2_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:text="05:12 PM"
+            android:textColor="@color/white"
+            android:layout_toRightOf="@+id/user_name"
+            android:paddingRight="10dp"
+            android:layout_gravity="center_vertical"
+
+            />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/eye_img"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:src="@mipmap/grey24"
+            android:textColor="@color/white"
+            android:layout_alignRight="@+id/chat_message2"
+            android:layout_below="@+id/chat_message2"
+
+
+            />
+
+    </RelativeLayout>
+-->
+
+
+
+
+
+</RelativeLayout>

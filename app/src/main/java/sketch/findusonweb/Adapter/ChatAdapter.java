@@ -2,6 +2,7 @@ package sketch.findusonweb.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import java.util.List;
 
 import sketch.findusonweb.Pojo.RowItem;
 import sketch.findusonweb.R;
+import sketch.findusonweb.Screen.ChatDetail;
 
 public class ChatAdapter extends BaseAdapter {
 
@@ -50,7 +52,7 @@ public class ChatAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 
 		ViewHolder holder = null;
 
@@ -68,11 +70,21 @@ public class ChatAdapter extends BaseAdapter {
 
 
 
+
 			holder.profile_pic.setImageResource(R.mipmap.default_user_img);
 			holder.member_name.setText(list_namesfavoriteAll.get(position).get("remote_user_name"));
 			holder.message.setText(list_namesfavoriteAll.get(position).get("message"));
 
-
+			convertView.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					Intent intent = new Intent(context,ChatDetail.class);
+					intent.putExtra("remote_user_id",list_namesfavoriteAll.get(position).get("remote_user_id"));
+					intent.putExtra("remote_user_name",list_namesfavoriteAll.get(position).get("remote_user_name"));
+					intent.putExtra("conv_id",list_namesfavoriteAll.get(position).get("conv_id"));
+					context.startActivity(intent);
+				}
+			});
 
 			convertView.setTag(holder);
 		} else {

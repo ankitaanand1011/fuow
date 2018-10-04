@@ -32,6 +32,7 @@ public class GlobalClass extends Application {
     public String search_business="search";
     public String browseProducts="browseProducts";
     public String pound="£";
+    public String chatfetch;
 
 
     private static GlobalClass mInstance;
@@ -200,6 +201,14 @@ public class GlobalClass extends Application {
 
     public void setLogin_from(String login_from) {
         this.login_from = login_from;
+    }
+
+    public String getChatfetch() {
+        return chatfetch;
+    }
+
+    public void setChatfetch(String chatfetch) {
+        this.chatfetch = chatfetch;
     }
 
     ///////////////////////////////////////////////////////////

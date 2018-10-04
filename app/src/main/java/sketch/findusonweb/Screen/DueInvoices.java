@@ -46,7 +46,7 @@ public class DueInvoices extends AppCompatActivity {
     ProgressDialog pd;
     RecyclerView.LayoutManager mLayoutManager;
     ArrayList<HashMap<String,String>> list_namesfavoriteAll;
-    TextView total1 ,tv_total1,active, tv_active,pending,tv_pending,cancelled,
+    TextView total1 ,tv_total1,paid, tv_active,unpaid,tv_pending,cancelled,
             tv_cancelled ,completed ,tv_completed,fraud ,tv_fraud,suspended,tv_suspended;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,9 +69,9 @@ public class DueInvoices extends AppCompatActivity {
 
         total1 = findViewById(R.id.total1);
         tv_total1 = findViewById(R.id.tv_total1);
-        active = findViewById(R.id.active);
+        paid = findViewById(R.id.active);
         tv_active = findViewById(R.id.tv_active);
-        pending = findViewById(R.id.pending);
+        unpaid = findViewById(R.id.pending);
         tv_pending = findViewById(R.id.tv_pending);
         cancelled = findViewById(R.id.cancelled);
         tv_cancelled = findViewById(R.id.tv_cancelled);
@@ -102,7 +102,7 @@ public class DueInvoices extends AppCompatActivity {
 
         if (globalClass.isNetworkAvailable()) {
             if (globalClass.getLogin_status()) {
-               // ReviewList();
+                ReviewList();
             }
         } else {
             Toasty.info(DueInvoices.this, getResources().getString(R.string.check_internet), Toast.LENGTH_LONG, true).show();
@@ -145,40 +145,29 @@ public class DueInvoices extends AppCompatActivity {
                     JsonObject jobj = gson.fromJson(response, JsonObject.class);
                     Log.d(TAG, "onResponse: " + jobj);
 
-                    String result = jobj.get("success").toString().replaceAll("\"", "");
+                    String paid_new = jobj.get("paid").toString().replaceAll("\"", "");
 
                     String total = jobj.get("total").toString().replaceAll("\"", "");
                     String total_amount = jobj.get("total_amount").toString().replaceAll("\"", "");
-                    String active1 = jobj.get("active").toString().replaceAll("\"", "");
-                    String active_amount = jobj.get("active_amount").toString().replaceAll("\"", "");
-                    String pending1 = jobj.get("pending").toString().replaceAll("\"", "");
-                    String pending_amount = jobj.get("pending_amount").toString().replaceAll("\"", "");
+                    String paid_amount = jobj.get("paid_amount").toString().replaceAll("\"", "");
+                    String unpaid_amount = jobj.get("unpaid_amount").toString().replaceAll("\"", "");
+                    String unpaid_new = jobj.get("unpaid").toString().replaceAll("\"", "");
+
                     String cancelled1 = jobj.get("cancelled").toString().replaceAll("\"", "");
                     String cancelled_amount = jobj.get("cancelled_amount").toString().replaceAll("\"", "");
-                    String completed1 = jobj.get("completed").toString().replaceAll("\"", "");
-                    String completed_amount = jobj.get("completed_amount").toString().replaceAll("\"", "");
-                    String fraud1 = jobj.get("fraud").toString().replaceAll("\"", "");
-                    String fraud_amount = jobj.get("fraud_amount").toString().replaceAll("\"", "");
-                    String suspended1 = jobj.get("suspended").toString().replaceAll("\"", "");
-                    String suspended_amount = jobj.get("suspended_amount").toString().replaceAll("\"", "");
+
 
                     total1.setText("TOTAL"+ "\n" +"("+total+")");
                     tv_total1.setText(total_amount);
-                    active.setText("ACTIVE"+ "\n" +"("+active1+")");
-                    tv_active.setText(active_amount);
-                    pending.setText("PENDING"+ "\n" +"("+pending1+")");
-                    tv_pending.setText(pending_amount);
-                    cancelled.setText("CANCELLED"+ "\n" +"("+cancelled1+")");
-                    tv_cancelled.setText(cancelled_amount);
-                    completed.setText("COMPLETED"+ "\n" +"("+completed1+")");
-                    tv_completed.setText(completed_amount);
-                    fraud.setText("FRAUD"+ "\n" +"("+fraud1+")");
-                    tv_fraud.setText(fraud_amount);
-                    suspended.setText("SUSPENDED"+ "\n" +"("+suspended1+")");
-                    tv_suspended.setText(globalClass.pound+suspended_amount);
+                    paid.setText("PAID"+ "\n" +"("+paid_new+")");
+                    tv_active.setText(paid_amount);
+                    unpaid.setText("UNPAID"+ "\n" +"("+unpaid_new+")");
+                    tv_pending.setText(unpaid_amount);
+                    completed.setText("CANCELLED"+ "\n" +"("+cancelled1+")");
+                    tv_completed.setText(cancelled_amount);
 
 
-                    if (result.equals("1")) {
+                  //  if (result.equals("1")) {
                         JsonArray data = jobj.getAsJsonArray("data");
                         Log.d(TAG, "Data: " + data);
 
@@ -186,30 +175,28 @@ public class DueInvoices extends AppCompatActivity {
 
 
                             JsonObject images1 = data.get(i).getAsJsonObject();
-                            String id = images1.get("id").toString().replaceAll("\"", "");
+                            String invoice_id = images1.get("invoice_id").toString().replaceAll("\"", "");
                             String order_id = images1.get("order_id").toString().replaceAll("\"", "");
-                            String date = images1.get("date").toString().replaceAll("\"", "");
-                            String title = images1.get("title").toString().replaceAll("\"", "");
-                            String listing_name = images1.get("listing_name").toString().replaceAll("\"", "");
-                            String amount = images1.get("amount").toString().replaceAll("\"", "");
+                            String user_id = images1.get("user_id").toString().replaceAll("\"", "");
+                            String order_number = images1.get("order_number").toString().replaceAll("\"", "");
+                            String total_new = images1.get("total").toString().replaceAll("\"", "");
                             String type = images1.get("type").toString().replaceAll("\"", "");
-                            String order_status = images1.get("order_status").toString().replaceAll("\"", "");
-                            String invoice_status = images1.get("invoice_status").toString().replaceAll("\"", "");
-                            String buyer = images1.get("buyer").toString().replaceAll("\"", "");
                             String status = images1.get("status").toString().replaceAll("\"", "");
+                            String balance = images1.get("balance").toString().replaceAll("\"", "");
+                            String date_due = images1.get("date_due").toString().replaceAll("\"", "");
+                            String date = images1.get("date").toString().replaceAll("\"", "");
 
                             //  Log.d(TAG, "Images 1: " + User_id);
                             HashMap<String, String> hashMap = new HashMap<>();
-                            hashMap.put("id", id);
+                            hashMap.put("invoice_id", invoice_id);
                             hashMap.put("order_id", order_id);
                             hashMap.put("date", date);
-                            hashMap.put("title", title);
-                            hashMap.put("listing_name", listing_name);
+                            hashMap.put("user_id", user_id);
+                            hashMap.put("order_number", order_number);
                             hashMap.put("type", type);
-                            hashMap.put("amount", amount);
-                            hashMap.put("order_status", order_status);
-                            hashMap.put("buyer", buyer);
-                            hashMap.put("invoice_status", invoice_status);
+                            hashMap.put("total_new", total_new);
+                            hashMap.put("date_due", date_due);
+                            hashMap.put("balance", balance);
                             hashMap.put("status", status);
 
 
@@ -221,15 +208,15 @@ public class DueInvoices extends AppCompatActivity {
 
                         adapter_due_invoice_detail = new Adapter_Due_Invoice_Detail(DueInvoices.this, list_namesfavoriteAll);
                         rv_due_invoice.setAdapter(adapter_due_invoice_detail);
-                    }
-                    else
+
+                   /* else
 
 
                     {
 
 
                         Toasty.success(DueInvoices.this, result, Toast.LENGTH_SHORT, true).show();
-                    }
+                    }*/
                     // favorite();
 
                 } catch (Exception e) {
@@ -257,7 +244,7 @@ public class DueInvoices extends AppCompatActivity {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<>();
                 params.put("user_id", globalClass.getId());
-                params.put("view", "mySalesOrders");
+                params.put("view", "getMyInvoices");
 
                 Log.d(TAG, "getParams: "+params);
                 return params;

@@ -450,12 +450,13 @@ public class DashboardNew extends AppCompatActivity {
             }
         });
 
-        /*tv_view_all.setOnClickListener(new View.OnClickListener() {
+        tv_view_all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DashboardNew,this,)
+                Intent intent = new Intent(DashboardNew.this,DueInvoices.class);
+                startActivity(intent);
             }
-        });*/
+        });
 
         tv_view_all_fav.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -2,6 +2,7 @@ package sketch.findusonweb.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.github.ivbaranov.mli.MaterialLetterIcon;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -22,6 +24,8 @@ import java.util.HashMap;
 import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
 import sketch.findusonweb.Screen.EditSchedule;
+
+import static android.view.View.VISIBLE;
 
 
 public class Adapter_Due_Invoice_Detail extends RecyclerView.Adapter<Adapter_Due_Invoice_Detail.ViewHolder> {
@@ -67,17 +71,24 @@ public class Adapter_Due_Invoice_Detail extends RecyclerView.Adapter<Adapter_Due
         //   int po = position+1;
 
 
-        holder.tv_from_val.setText(list_products.get(position).get("from_user"));
+        holder.tv_total_val.setText(list_products.get(position).get("total"));
        // holder.tv_edit.setText(list_products.get(position).get("from_user"));
-        holder.tv_to_val.setText(list_products.get(position).get("to_user"));
-        holder.tv_attendees_val.setText(Html.fromHtml(list_products.get(position).get("attendies")));
-        holder.tv_status.setText(list_products.get(position).get("status"));
-        holder.tv_title.setText(list_products.get(position).get("overview"));
-        holder.tv_des.setText(list_products.get(position).get("subject"));
-        holder.tv_location.setText("( "+list_products.get(position).get("location")+" )");
-        holder.tv_start_time_val.setText(list_products.get(position).get("start_time"));
-        holder.tv_end_time_val.setText(list_products.get(position).get("end_time"));
-
+       // holder.tv_to_val.setText(list_products.get(position).get("to_user"));
+       // holder.tv_attendees_val.setText(Html.fromHtml(list_products.get(position).get("attendies")));
+        holder.status.setText(list_products.get(position).get("status"));
+        holder.tv_invoice_id_val.setText(list_products.get(position).get("invoice_id"));
+       holder.order_id.setText(list_products.get(position).get("order_id"));
+        holder.tv_balance_val.setText("( "+list_products.get(position).get("balance"));
+      //  holder.tv_start_time_val.setText(list_products.get(position).get("start_time"));
+        holder.tv_date_val.setText(list_products.get(position).get("date"));
+        if(list_products.get(position).get("status").equals("paid"))
+        {
+           holder.print.setVisibility(VISIBLE);
+        }
+        else{
+            holder.pay_invoice.setVisibility(VISIBLE);
+        }
+/*
         holder.tv_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,6 +112,7 @@ public class Adapter_Due_Invoice_Detail extends RecyclerView.Adapter<Adapter_Due
                 context.startActivity(intent);
             }
         });
+*/
 
     }
 
@@ -112,25 +124,28 @@ public class Adapter_Due_Invoice_Detail extends RecyclerView.Adapter<Adapter_Due
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
 
-        TextView tv_from_val, tv_to_val,tv_attendees_val,
-                tv_title, tv_location,tv_des,tv_edit,
-                tv_status, tv_start_time_val, tv_end_time_val;
+        TextView tv_date_val, tv_to_val,tv_balance_val,
+                tv_title, order_id,tv_des,tv_edit,tv_total_val,
+                status, tv_start_time_val, tv_end_time_val,tv_invoice_id_val,print,pay_invoice;
 
 
         ViewHolder(View itemView) {
             super(itemView);
 
-            tv_from_val = itemView.findViewById(R.id.tv_from_val);
+            tv_date_val = itemView.findViewById(R.id.tv_date_val);
             tv_to_val = itemView.findViewById(R.id.tv_to_val);
             tv_edit = itemView.findViewById(R.id.tv_edit);
 
-            tv_attendees_val = itemView.findViewById(R.id.tv_attendees_val);
+            order_id = itemView.findViewById(R.id.tv_order_id_val);
             tv_title = itemView.findViewById(R.id.tv_title);
-            tv_location = itemView.findViewById(R.id.tv_location);
-            tv_status = itemView.findViewById(R.id.tv_status);
+            tv_total_val = itemView.findViewById(R.id.tv_total_val);
+            status = itemView.findViewById(R.id.status);
             tv_start_time_val = itemView.findViewById(R.id.tv_start_time_val);
             tv_end_time_val = itemView.findViewById(R.id.tv_end_time_val);
             tv_des = itemView.findViewById(R.id.tv_des);
+            tv_invoice_id_val = itemView.findViewById(R.id.tv_invoice_id_val);
+            print = itemView.findViewById(R.id.print);
+            tv_balance_val = itemView.findViewById(R.id.tv_balance_val);
 
 
         }
