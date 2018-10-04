@@ -243,6 +243,10 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize"/>
 
+        <activity android:name=".Screen.DueInvoices"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
+
 
     </application>
 
