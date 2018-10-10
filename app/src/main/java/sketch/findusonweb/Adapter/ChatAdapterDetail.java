@@ -87,7 +87,7 @@ public class ChatAdapterDetail extends BaseAdapter {
             TextView user_name = rowView.findViewById(R.id.user_name);
             TextView chat2_time = rowView.findViewById(R.id.chat2_time);
 
-            chat_message2.setText(chatMessageList.get(position).get("message"));
+            chat_message2.setText(chatMessageList.get(position).get("message").replaceAll("\"", ""));
     //        user_name.setText(chatMessageList.get(position).get("sender_name"));
             chat2_time.setText(changeTimeFormat(chatMessageList.get(position).get("date")));
          //   Log.d("ujm", "thm: "+chatMessageList.get(position).get("iseen"));
@@ -99,7 +99,7 @@ public class ChatAdapterDetail extends BaseAdapter {
             TextView user_name_incoming = rowView.findViewById(R.id.user_name_incoming);
             TextView chat1_time = rowView.findViewById(R.id.chat1_time);
 
-            chat_message1.setText(chatMessageList.get(position).get("message"));
+            chat_message1.setText(chatMessageList.get(position).get("message").replaceAll("\"", ""));
             //user_name_incoming.setText(chatMessageList.get(position).get("receiver_name"));
             chat1_time.setText(changeTimeFormat(chatMessageList.get(position).get("date")));
 

@@ -73,7 +73,7 @@ public class ChatAdapter extends BaseAdapter {
 
 			holder.profile_pic.setImageResource(R.mipmap.default_user_img);
 			holder.member_name.setText(list_namesfavoriteAll.get(position).get("remote_user_name"));
-			holder.message.setText(list_namesfavoriteAll.get(position).get("message"));
+			holder.message.setText(list_namesfavoriteAll.get(position).get("message").replaceAll("\"", ""));
 
 			convertView.setOnClickListener(new View.OnClickListener() {
 				@Override

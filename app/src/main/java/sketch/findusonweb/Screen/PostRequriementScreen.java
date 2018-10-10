@@ -97,7 +97,7 @@ public class PostRequriementScreen extends AppCompatActivity {
     String id;
     File attachmentFile;
     EditText edt_description,edt_title,edt_duration,edt_budget;
-    String title , description, duration, budget;
+    String title , description, duration, budget_new;
     private final int PICK_IMAGE_CAMERA = 1, PICK_IMAGE_GALLERY = 2;
 
     private static final int PICKFILE_RESULT_CODE = 1;
@@ -106,6 +106,7 @@ public class PostRequriementScreen extends AppCompatActivity {
     ArrayList<String> category = new ArrayList<>();
     String on_stage;
     List<String> list;
+    String title_new,description_new,budget,id_new;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState );
@@ -116,7 +117,13 @@ public class PostRequriementScreen extends AppCompatActivity {
         list.add("Ready to Hire");
         list.add("Planning and Budgeting");
         list.add("Need a quote for budgeting purpose");
-
+       // title_new=getIntent().getStringExtra("title");
+       // description_new=getIntent().getStringExtra("description");
+        budget_new=getIntent().getStringExtra("budget");
+        id_new = getIntent().getExtras().getString("id");
+        title_new = getIntent().getExtras().getString("title");
+        description_new = getIntent().getExtras().getString("description");
+        budget_new = getIntent().getExtras().getString("budget");
 
 
         pd = new ProgressDialog(PostRequriementScreen.this);
@@ -155,6 +162,9 @@ public class PostRequriementScreen extends AppCompatActivity {
         edt_duration=findViewById(R.id.edt_duration);
         edt_budget=findViewById(R.id.edt_budget);
         globalClass = (GlobalClass) getApplicationContext();
+        edt_title.setText(title_new);
+        edt_description.setText(description_new);
+        edt_budget.setText(budget_new);
         prefrence = new Shared_Preference(PostRequriementScreen.this);
         prefrence.loadPrefrence();
 

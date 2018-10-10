@@ -71,7 +71,7 @@ import sketch.findusonweb.Utils.Shared_Preference;
 public class AddProductScreen extends AppCompatActivity {
     ImageView back_img;
     Spinner spinner_type,spinner_status;
-    EditText edt_title,edt_description,edt_price,edt_expire;
+    EditText edt_title,edt_description,edt_price,edt_expire,edt_tax_price;
     ArrayList<String> type;
     ArrayList<String> status;
     ArrayList<String> requirement;
@@ -85,8 +85,9 @@ public class AddProductScreen extends AppCompatActivity {
     TextView tv_submit;
     ImageButton attach_data,attach_data1,attach_data2;
     ImageView img_attach_1,img_attach_2,img_attach_3,img_btn;
-    String title , description, expire, price;
+    String title , description, expire, price,tax;
     File file1,file2,file3;
+    Float new_tax_price;
     private static final int PICK_IMAGE_CAMERA1 = 11;
     private static final int PICK_IMAGE_CAMERA2 = 12;
     private static final int PICK_IMAGE_CAMERA3 = 13;
@@ -104,7 +105,7 @@ public class AddProductScreen extends AppCompatActivity {
     Spinner spinner_ans_type;
 
     TextView tv_primary_detail,tv_requirement,tv_image_gallery,tv_add_requiremnt;
-
+     String id;
     LinearLayout ll_primary_detail,ll_requirement,ll_image_gallery,ll_radio_option;
     LinearLayout rl_add_requirement;
     RelativeLayout rl_requirement_list;
@@ -129,7 +130,7 @@ public class AddProductScreen extends AppCompatActivity {
 
         pd = new ProgressDialog(AddProductScreen.this);
 
-
+        edt_tax_price=findViewById(R.id.edt_tax_price);
         back_img=findViewById(R.id.back_img);
         spinner_type=findViewById(R.id.spinner_type);
         spinner_status=findViewById(R.id.spinner_status);
@@ -182,7 +183,8 @@ public class AddProductScreen extends AppCompatActivity {
             }
         }
 
-
+       id=getIntent().getStringExtra("id");
+        Log.d(TAG, "ID of Activty: "+id);
         function_primary_detail();
         function_requirement();
         function_image_gallery();
@@ -364,9 +366,11 @@ public class AddProductScreen extends AppCompatActivity {
                 description = edt_description.getText().toString();
                 expire = edt_expire.getText().toString();
                 price = edt_price.getText().toString();
+               /* Float f= Float.parseFloat(price);
+                new_tax_price=((20/100)*f);*/
+                 tax=edt_tax_price.getText().toString();
 
-
-                postjob(title,description,price,expire);
+                postjob(title,description,price,expire,tax);
                 //  user_profile_pic_update_url();
             }
         });
@@ -734,7 +738,7 @@ public class AddProductScreen extends AppCompatActivity {
 
 
     private void postjob(final String title, final String description, final String price,
-                         final String expire_date){
+                         final String expire_date,final String tax){
         pd.show();
         String url = AppConfig.URL_DEV;
         AsyncHttpClient cl = new AsyncHttpClient();
@@ -742,12 +746,14 @@ public class AddProductScreen extends AppCompatActivity {
 
         params.put("view","addProductApp");
         params.put("title",title);
+        params.put("user_id",globalClass.getId());
         params.put("type",status_text);
         params.put("description",description);
         params.put("expire_date",expire_date);
         params.put("custom_16",status_text);
         params.put("price",price);
-        params.put("listing_id", "808685");
+        params.put("inc_tax_price",tax);
+        params.put("listing_id", id);
         Log.d(TAG, "listing ID for Add Product: "+listing_id);
         params.put("friendly_url","https://www.mydevsystems.com/dev/findusonweb/rest/RestController.php");
 
@@ -782,22 +788,12 @@ public class AddProductScreen extends AppCompatActivity {
 
                         String status = response.optString("status");
                         String message = response.getString("message");
+                        Toasty.success(AddProductScreen.this, message, Toast.LENGTH_SHORT, true).show();
+
                         pd.dismiss();
+                        Intent newIntent=new Intent(AddProductScreen.this,ProductScreen.class);
+                        startActivity(newIntent);
 
-                        android.app.AlertDialog alert = new android.app.AlertDialog.Builder(AddProductScreen.this).create();
-                        alert.setMessage(message);
-                        alert.setButton(Dialog.BUTTON_POSITIVE, "Ok",
-                                new DialogInterface.OnClickListener() {
-
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        // TODO Auto-generated method stub
-                                        finish();
-                                    }
-                                });
-                        alert.show();
-
-                        //      Toasty.success(PostRequriementScreen.this, message, Toast.LENGTH_SHORT, true).show();
                         // pd.dismiss();
 
                     } catch (JSONException e) {

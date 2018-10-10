@@ -66,8 +66,8 @@
 
 
                 <TextView
-                    android:id="@+id/tv_add_products"
-                    android:text="ADD CONTACT PERSON"
+                    android:id="@+id/tv_contact_request"
+                    android:text="ADD CONTACT REQUEST"
                     android:layout_width="wrap_content"
                     android:gravity="center"
                     android:textSize="14sp"

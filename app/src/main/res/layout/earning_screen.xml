@@ -109,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/total1"
-                   
+
                     android:textSize="10sp"
                     android:layout_marginTop="5dp"
 
@@ -164,11 +164,12 @@
                     />
 
                 <TextView
+                    android:id="@+id/tv_value_process"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/used1"
-                   
+
                     android:textSize="10sp"
                     android:layout_marginTop="5dp"
 
@@ -222,11 +223,12 @@
                     />
 
                 <TextView
+                    android:id="@+id/tv_commission_paid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/balance1"
-                   
+
                     android:textSize="10sp"
                     android:layout_marginTop="5dp"
 
@@ -284,7 +286,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/balance2"
-                   
+                    android:id="@+id/my_earning"
                     android:textSize="10sp"
                     android:layout_marginTop="5dp"
 
@@ -354,7 +356,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/tv_total"
+                        android:id="@+id/tv_earning_claim"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
@@ -414,7 +416,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/tv_used"
+                        android:id="@+id/tv_credit_earning"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
@@ -473,7 +475,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/tv_balance"
+                        android:id="@+id/tv_non_credit_earning"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"

@@ -13,6 +13,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
@@ -48,6 +49,8 @@ import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
 import sketch.findusonweb.Utils.Shared_Preference;
 
+import static org.bouncycastle.asn1.x509.X509ObjectIdentifiers.id;
+
 
 public class ProductScreen extends AppCompatActivity{
 
@@ -62,8 +65,13 @@ public class ProductScreen extends AppCompatActivity{
     ArrayList<HashMap<String,String>> list_products;
     Spinner spinner_business;
     List<String> list;
-
-
+    String id;
+    ArrayList<String> array;
+    ArrayList<String> arrayid;
+    ArrayList<String> addProductList = new ArrayList<>();
+    ArrayList<HashMap<String, String>> selectedLocation = new ArrayList<>();
+    ArrayList<String> category = new ArrayList<>();
+    ArrayAdapter<String> dataAdapter1;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,8 +84,6 @@ public class ProductScreen extends AppCompatActivity{
         pd.setMessage(getResources().getString(R.string.loading));
 
         list_products = new ArrayList<>();
-
-
 
 
 
@@ -112,7 +118,7 @@ public class ProductScreen extends AppCompatActivity{
         ViewList();
     }
 
-    public void ViewList() {
+    public  void ViewList() {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
 
@@ -143,7 +149,7 @@ public class ProductScreen extends AppCompatActivity{
 
 
                             JsonObject images1 = products.get(i).getAsJsonObject();
-                            String id = images1.get("id").toString().replaceAll("\"", "");
+                             id = images1.get("id").toString().replaceAll("\"", "");
                             String listing_id = images1.get("listing_id").toString().replaceAll("\"", "");
                             String title = images1.get("title").toString().replaceAll("\"", "");
                             String friendly_url = images1.get("friendly_url").toString().replaceAll("\"", "");
@@ -244,40 +250,147 @@ public class ProductScreen extends AppCompatActivity{
         strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
 
     }
+    private void AddProductList()
+    {
+        String tag_string_req = "req_login";
+
+        pd.show();
+
+        StringRequest strReq = new StringRequest(Request.Method.POST,
+                AppConfig.URL_DEV, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, "Category " + response.toString());
+
+
+
+                Gson gson = new Gson();
+
+                try
+                {
+
+
+                    JsonObject jobj = gson.fromJson(response, JsonObject.class);
+
+                    Log.d("jobj", "" + jobj);
+                    JsonObject offerObject = jobj.getAsJsonObject();
+
+                    JsonArray jarray=offerObject.getAsJsonArray("name");
+                  //  JsonObject offerObject = jobj.getAsJsonObject();
+                  //  addProductList.add("Select Business");
+                   // JsonArray jarray=jobj.getAsJsonArray();
+                    Log.d("jarray", "" + jarray.toString());
+
+
+                    for (int i = 0; i < jarray.size(); i++) {
+                        JsonObject jobj1 = jarray.get(i).getAsJsonObject();
+
+                        String id = jobj1.get("id").toString().replaceAll("\"", "");
+                        String title = jobj1.get("title").toString().replaceAll("\"", "");
+                        Log.d(TAG, "title: "+title);
+                        HashMap<String, String> map_ser = new HashMap<>();
+
+
+                        map_ser.put("id", id);
+                        map_ser.put("title", title);
+
+                        selectedLocation.add(map_ser);
+                        array.add(title);
+                        arrayid.add(id);
+                    }
+
+                        Log.d("title", "" + addProductList);
+                    ArrayAdapter<String> adp = new ArrayAdapter<String>
+                            (ProductScreen.this, android.R.layout.simple_spinner_item, array);
+                    spinner_business.setAdapter(adp);
+
+
+                        pd.dismiss();
+
+
+
+
+                }catch (Exception e) {
+
+                    Toast.makeText(getApplicationContext(),"data Not found", Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                    pd.dismiss();
+
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Login Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),
+                        "Connection Error", Toast.LENGTH_LONG).show();
+                pd.dismiss();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<>();
+
+
+
+                params.put("view","listing_lists");
+                params.put("user_id", globalClass.getId());
+                params.put("id",id);
+                params.put("action","add");
+
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        GlobalClass.getInstance().addToRequestQueue(strReq, tag_string_req);
+        strReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 10, 1.0f));
+
+    }
 
     private void add_product_dialog() {
 
         final Dialog dialog = new Dialog(ProductScreen.this);
         dialog.setContentView(R.layout.add_product_dialog);
 
-        list = new ArrayList<>();
-
-        list.add("Select Business");
+        array = new ArrayList<>();
+        arrayid = new ArrayList<>();
+        array.add("Select Business");
+        //list = new ArrayList<>();
+        AddProductList();
+       /* list.add("Select Business");
         list.add("Ready to Hire");
         list.add("Planning and Budgeting");
-        list.add("Need a quote for budgeting purpose");
+        list.add("Need a quote for budgeting purpose");*/
 
 
 
         spinner_business = dialog.findViewById(R.id.spinner_business);
 
-        ArrayAdapter<String> adp = new ArrayAdapter<String>
-                (this, android.R.layout.simple_spinner_item, list);
-        spinner_business.setAdapter(adp);
+
 
         spinner_business.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             //@Override
-            public void onItemSelected(AdapterView<?> parent, View arg1, int arg2, long arg3) {
+            public void onItemSelected(AdapterView<?> parent, View arg1, int pos, long arg3) {
                 // TODO Auto-generated method stub
-                String item = spinner_business.getItemAtPosition(0).toString();
-
+              //  String item = spinner_business.getItemAtPosition(0).toString();
+                String selected = parent.getItemAtPosition(pos).toString();
                 String text = spinner_business.getSelectedItem().toString();
 
-               if(!text.equals("Select Business")){
+               if(!spinner_business.getItemAtPosition(pos).toString().equals("Select Business")){
 
                    dialog.dismiss();
                    Intent intent = new Intent(ProductScreen.this,AddProductScreen.class);
+                   intent.putExtra("id",arrayid.get(pos-1));
                    startActivity(intent);
 
 

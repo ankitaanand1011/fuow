@@ -250,6 +250,10 @@
         <activity android:name=".Screen.ChatDetail"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize"/>
+        <activity android:name=".Screen.AddContactRequest"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
+
     </application>
 
 </manifest>

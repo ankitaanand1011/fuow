@@ -139,7 +139,7 @@ public class ChatScreen extends AppCompatActivity {
 
 								String sender = jsonObject.get("sender").toString().replaceAll("\"", "");
 								String receiver = jsonObject.get("receiver").toString().replaceAll("\"", "");
-								message = jsonObject.get("message").toString().replaceAll("\"", "");
+								message = jsonObject.get("message").toString().replaceAll("\"","");
 								String date = jsonObject.get("date").toString().replaceAll("\"", "");
 								String sender_name = jsonObject.get("sender_name").toString().replaceAll("\"", "");
 								String receiver_name = jsonObject.get("receiver_name").toString().replaceAll("\"", "");

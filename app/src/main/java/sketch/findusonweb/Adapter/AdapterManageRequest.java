@@ -1,8 +1,10 @@
 package sketch.findusonweb.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,8 @@ import java.util.HashMap;
 
 import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
+import sketch.findusonweb.Screen.PostRequriementScreen;
+import sketch.findusonweb.Screen.ReviewScreen;
 
 /**
  * Created by developer on 21/6/18.
@@ -67,17 +71,31 @@ public class AdapterManageRequest extends RecyclerView.Adapter<AdapterManageRequ
     }
 
     @Override
-    public void onBindViewHolder(AdapterManageRequest.ViewHolder holder, int position) {
+    public void onBindViewHolder(AdapterManageRequest.ViewHolder holder, final int position) {
         //   int po = position+1;
 
 
         holder.tv_date_manage_proposal.setText(list_products.get(position).get("date_requested"));
         holder.tv_manage_proposal.setText(list_products.get(position).get("title"));
         holder.tv_manage_proposal_brief.setText(Html.fromHtml(list_products.get(position).get("description")));
-        holder.tv_status.setText(list_products.get(position).get("status"));
+       // holder.tv_status.setText(list_products.get(position).get("status"));
         holder.tv_budget.setText(globalClass.pound+list_products.get(position).get("budget"));
         holder.tv_date_manage_proposal_days.setText(globalClass.pound+list_products.get(position).get("duration")+" Days");
 
+        holder.tv_status.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context, PostRequriementScreen.class);
+                intent.putExtra("id",list_products.get(position).get("id"));
+                intent.putExtra("title", list_products.get(position).get("title"));
+                intent.putExtra("description", list_products.get(position).get("description"));
+                intent.putExtra("budget", list_products.get(position).get("budget"));
+                context.startActivity(intent);
+
+
+            }
+        });
 
     }
 
@@ -104,7 +122,7 @@ public class AdapterManageRequest extends RecyclerView.Adapter<AdapterManageRequ
             tv_date_manage_proposal = itemView.findViewById(R.id.tv_date_manage_proposal);
             tv_status = itemView.findViewById(R.id.tv_status);
             tv_complete_order = itemView.findViewById(R.id.tv_complete_order);
-            tv_complete_order1 = itemView.findViewById(R.id.tv_complete_order1);
+          //  tv_complete_order1 = itemView.findViewById(R.id.tv_complete_order1);
 
 
         }

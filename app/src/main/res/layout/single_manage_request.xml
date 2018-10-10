@@ -162,6 +162,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:padding="5dp"
+                    android:text="Edit"
                     android:gravity="center"
                     android:layout_centerInParent="true"
                     android:textColor="@color/white"
@@ -170,56 +171,7 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_below="@+id/rl_cost_in_pound"
-                android:id="@+id/rl_complete_order"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_yellow_dashboard"
-                android:layout_marginTop="5dp"
 
-                >
-                <TextView
-                    android:id="@+id/tv_complete_order"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:drawableLeft="@mipmap/pause"
-                    android:drawablePadding="3dp"
-                    android:text="PAUSE"
-                    android:gravity="center"
-                    android:layout_centerInParent="true"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"/>
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_below="@+id/rl_complete_order"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_grey_dashboard"
-                android:layout_marginTop="5dp"
-
-                >
-                <TextView
-                    android:id="@+id/tv_complete_order1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:gravity="center"
-                    android:text="DELETE"
-                    android:drawableLeft="@mipmap/trash"
-                    android:drawablePadding="3dp"
-                    android:layout_centerInParent="true"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"/>
-
-
-            </RelativeLayout>
 
         </RelativeLayout>
 

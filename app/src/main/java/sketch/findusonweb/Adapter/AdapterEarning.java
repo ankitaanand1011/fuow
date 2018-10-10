@@ -105,8 +105,8 @@ public class AdapterEarning extends RecyclerView.Adapter<AdapterEarning.MyViewHo
         holder.tv_type.setText("( "+type+" )");
         holder.tv_listing_name_val.setText(listing_name);
         holder.tv_payment_method_val.setText(payment);
-        holder.tv_in_pound.setText(globalClass.pound+amount);
-        holder.tv_commission_val.setText(globalClass.pound+com_val);
+        holder.tv_in_pound.setText(amount);
+        holder.tv_commission_val.setText(com_val);
         holder.tv_sales_earning_val.setText(globalClass.pound+sales_val);
         holder.tv_order_status_val.setText(order_val);
         holder.tv_invoice_status_val.setText(invoice_val);

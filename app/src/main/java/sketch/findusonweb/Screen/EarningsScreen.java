@@ -21,13 +21,13 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
 import sketch.findusonweb.Adapter.AdapterEarning;
-
 import sketch.findusonweb.Constants.AppConfig;
 import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
@@ -38,6 +38,7 @@ public class EarningsScreen extends AppCompatActivity {
 
 
     RecyclerView rv_earning;
+    TextView tv_total1,value_processed,tv_commission_paid,my_earning,tv_earning_claim,tv_credit_earning,tv_non_credit_earning;
     String TAG = "Earnings";
     GlobalClass globalClass;
     Shared_Preference prefrence;
@@ -63,8 +64,14 @@ public class EarningsScreen extends AppCompatActivity {
         globalClass = (GlobalClass) getApplicationContext();
         prefrence = new Shared_Preference(EarningsScreen.this);
         pd = new ProgressDialog(EarningsScreen.this);
-
+        tv_total1=findViewById(R.id.tv_total1);
+        value_processed=findViewById(R.id.tv_value_process);
+        tv_commission_paid=findViewById(R.id.tv_commission_paid);
+        my_earning=findViewById(R.id.my_earning);
         rv_earning=findViewById(R.id.rv_earning);
+        tv_earning_claim=findViewById(R.id.tv_earning_claim);
+        tv_credit_earning=findViewById(R.id.tv_credit_earning);
+        tv_non_credit_earning=findViewById(R.id.tv_non_credit_earning);
         back_img=findViewById(R.id.back_img);
 
     }
@@ -129,8 +136,30 @@ public class EarningsScreen extends AppCompatActivity {
                     Log.d(TAG, "onResponse: " + jobj);
 
                     String result = jobj.get("success").toString().replaceAll("\"", "");
+                    String total_amount = jobj.get("total_amount").toString().replaceAll("\"", "");
+                    String total_commission = jobj.get("total_commission").toString().replaceAll("\"", "");
+                    String claimed_amount = jobj.get("claimed_amount").toString().replaceAll("\"", "");
+                    String credit_amount = jobj.get("credit_amount").toString().replaceAll("\"", "");
+                    String credit_commission = jobj.get("credit_commission").toString().replaceAll("\"", "");
+                    String credit_claimed_amount = jobj.get("credit_claimed_amount").toString().replaceAll("\"", "");
+                    int total_earning= Integer.parseInt(total_amount);
+                    float total_comm_new = Float.parseFloat(total_commission);
 
+                    float total_earning_new=(total_earning)-(total_comm_new);
+                    DecimalFormat form = new DecimalFormat("0.00");
+                    String FormattedText=form.format(total_earning_new);
+                    float claim= Float.parseFloat(claimed_amount);
+                    float total_claim = Float.parseFloat(credit_claimed_amount);
 
+                    float total_claim_new=(claim)-(total_claim);
+                   // DecimalFormat form = new DecimalFormat("0.00");
+                    String FormattedText_new=form.format(total_claim_new);
+                    value_processed.setText(globalClass.pound+total_amount);
+                    tv_commission_paid.setText(globalClass.pound+total_commission);
+                    my_earning.setText(globalClass.pound+FormattedText);
+                    tv_earning_claim.setText(globalClass.pound+claimed_amount);
+                    tv_credit_earning.setText(globalClass.pound+credit_claimed_amount);
+                    tv_non_credit_earning.setText(globalClass.pound+FormattedText_new);
 
 
 
@@ -138,7 +167,8 @@ public class EarningsScreen extends AppCompatActivity {
                     if (result.equals("1")) {
                         JsonArray data = jobj.getAsJsonArray("data");
                         Log.d(TAG, "Data: " + data);
-
+                        int number = data.size();
+                        tv_total1.setText(String.valueOf(number));
                         for (int i = 0; i < data.size(); i++) {
 
                             JsonObject images1 = data.get(i).getAsJsonObject();

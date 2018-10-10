@@ -1,6 +1,7 @@
 package sketch.findusonweb.Screen;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -43,6 +44,7 @@ public class SalesEnquiry extends AppCompatActivity{
     Shared_Preference prefrence;
     ImageView back_img;
     ProgressDialog pd;
+    TextView tv_add_products;
     RecyclerView.LayoutManager mLayoutManager;
     ArrayList<HashMap<String,String>> list_namesfavoriteAll;
 
@@ -62,7 +64,7 @@ public class SalesEnquiry extends AppCompatActivity{
         globalClass = (GlobalClass) getApplicationContext();
         prefrence = new Shared_Preference(SalesEnquiry.this);
         pd = new ProgressDialog(SalesEnquiry.this);
-
+        tv_add_products=findViewById(R.id.tv_contact_request);
         rv_sales_enquiry=findViewById(R.id.rv_sales_enquiry);
         back_img=findViewById(R.id.back_img);
 
@@ -99,7 +101,13 @@ public class SalesEnquiry extends AppCompatActivity{
             }
         });
 
-
+        tv_add_products.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent addContact=new Intent(SalesEnquiry.this,AddContactRequest.class);
+                startActivity(addContact);
+            }
+        });
     }
 
 

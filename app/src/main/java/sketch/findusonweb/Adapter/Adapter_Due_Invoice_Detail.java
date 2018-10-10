@@ -70,7 +70,7 @@ public class Adapter_Due_Invoice_Detail extends RecyclerView.Adapter<Adapter_Due
     public void onBindViewHolder(ViewHolder holder, final int position) {
         //   int po = position+1;
 
-
+       // holder.print.setVisibility(View.GONE);
         holder.tv_total_val.setText(list_products.get(position).get("total"));
        // holder.tv_edit.setText(list_products.get(position).get("from_user"));
        // holder.tv_to_val.setText(list_products.get(position).get("to_user"));
@@ -78,15 +78,19 @@ public class Adapter_Due_Invoice_Detail extends RecyclerView.Adapter<Adapter_Due
         holder.status.setText(list_products.get(position).get("status"));
         holder.tv_invoice_id_val.setText(list_products.get(position).get("invoice_id"));
        holder.order_id.setText(list_products.get(position).get("order_id"));
-        holder.tv_balance_val.setText("( "+list_products.get(position).get("balance"));
+        holder.tv_balance_val.setText(list_products.get(position).get("balance"));
       //  holder.tv_start_time_val.setText(list_products.get(position).get("start_time"));
         holder.tv_date_val.setText(list_products.get(position).get("date"));
         if(list_products.get(position).get("status").equals("paid"))
         {
+            holder.pay_invoice.setVisibility(View.GONE);
+
+
            holder.print.setVisibility(VISIBLE);
         }
         else{
             holder.pay_invoice.setVisibility(VISIBLE);
+            holder.print.setVisibility(View.GONE);
         }
 /*
         holder.tv_edit.setOnClickListener(new View.OnClickListener() {
@@ -135,7 +139,7 @@ public class Adapter_Due_Invoice_Detail extends RecyclerView.Adapter<Adapter_Due
             tv_date_val = itemView.findViewById(R.id.tv_date_val);
             tv_to_val = itemView.findViewById(R.id.tv_to_val);
             tv_edit = itemView.findViewById(R.id.tv_edit);
-
+            pay_invoice=itemView.findViewById(R.id.pay_invoice);
             order_id = itemView.findViewById(R.id.tv_order_id_val);
             tv_title = itemView.findViewById(R.id.tv_title);
             tv_total_val = itemView.findViewById(R.id.tv_total_val);
