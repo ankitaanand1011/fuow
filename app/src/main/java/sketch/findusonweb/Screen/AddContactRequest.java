@@ -482,7 +482,7 @@ public class AddContactRequest extends AppCompatActivity {
 
         params.put("view","addSalesEnquiry");
         params.put("user_id",globalClass.getId());
-        params.put("description",description);
+        params.put("message",description);
         params.put("primary_category_id",cat_id);
         params.put("location_id",city_id);
 
