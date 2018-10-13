@@ -74,8 +74,8 @@ public class AddContactRequest extends AppCompatActivity {
     ImageView down_arrow,down_arrow1;
     int columnIndex;
     String id;
-    EditText edt_description,edit_btitle,edit_postcode,edit_contact,edit_username,edit_usernumber,edit_email;
-    String title , description, business_contact, username,user_phone,postcode,usermail;
+    EditText edt_description,et_first_name,et_last_name,edit_contact,edit_username,edit_usernumber,edit_email;
+    String fname,lname , description, business_contact, username,user_phone,postcode,usermail;
 
     ArrayList<HashMap<String, String>> selectedLocation = new ArrayList<>();
     ArrayList<HashMap<String, String>> selectedCategory = new ArrayList<>();
@@ -85,7 +85,7 @@ public class AddContactRequest extends AppCompatActivity {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState );
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.add_contact_request);
         spinner_select_category = findViewById(R.id.spinner_category);
 
@@ -94,28 +94,29 @@ public class AddContactRequest extends AppCompatActivity {
         pd.setMessage(getResources().getString(R.string.loading));
         //rg=findViewById(R.id.radiogroup);
         array = new ArrayList<>();
-       // edit_usernumber=findViewById(R.id.edt_phone);
-       // edit_postcode=findViewById(R.id.edt_postcode);
-       // ratingBar =  findViewById(R.id.rating);
-      //  edit_contact=findViewById(R.id.edt_contactt);
-       // edit_email=findViewById(R.id.edt_email);
-       // edit_username=findViewById(R.id.edt_username);
-        spinner_city=findViewById(R.id.spinner_location);
+         et_first_name=findViewById(R.id.et_first_name);
+         et_last_name=findViewById(R.id.et_last_name);
+        // ratingBar =  findViewById(R.id.rating);
+        edt_description=findViewById(R.id.edt_description);
+        // edit_email=findViewById(R.id.edt_email);
+        // edit_username=findViewById(R.id.edt_username);
+        spinner_city = findViewById(R.id.spinner_location);
         // attach_data=findViewById(R.id.attach_data);
         // spinner_days=findViewById(R.id.spinner_days);
         // attach_data_link=findViewById(R.id.attach_data_name);
-        back_button=findViewById(R.id.back_img);
-       // down_arrow=findViewById(R.id.down_arraowpost);
+        back_button = findViewById(R.id.back_img);
+        // down_arrow=findViewById(R.id.down_arraowpost);
         //down_arrow1=findViewById(R.id.down_arrowlocation);
-       // tv_submit=findViewById(R.id.tv_submit);
-       // edit_btitle=findViewById(R.id.edt_btitle);
-        edt_description=findViewById(R.id.edt_description);
+        tv_submit = findViewById(R.id.tv_submit);
+        // edit_btitle=findViewById(R.id.edt_btitle);
+        edt_description = findViewById(R.id.edt_description);
+
         globalClass = (GlobalClass) getApplicationContext();
-      //  edit_username.setText(globalClass.getName());
-     //   edit_usernumber.setText(globalClass.getPhone_number());
-       // edit_email.setText(globalClass.getEmail());
+        et_first_name.setText(globalClass.getFname());
+           et_last_name.setText(globalClass.getLname());
+        // edit_email.setText(globalClass.getEmail());
         prefrence = new Shared_Preference(AddContactRequest.this);
-        Log.d(TAG, "Mail id: "+globalClass.getEmail());
+        Log.d(TAG, "Mail id: " + globalClass.getEmail());
         prefrence.loadPrefrence();
 
 
@@ -146,12 +147,11 @@ public class AddContactRequest extends AppCompatActivity {
                 if (spinner_select_category.getId() == R.id.spinner_category) {
 
 
-
                     if (position != 0) {
                         cat_id = selectedCategory.get(position - 1).get("id");
                         String str_service = selectedCategory.get(position - 1).get("name");
 
-                        Log.d(TAG, "onItemSelected: "+cat_id);
+                        Log.d(TAG, "onItemSelected: " + cat_id);
 
 
                     }
@@ -164,8 +164,6 @@ public class AddContactRequest extends AppCompatActivity {
                 // TODO Auto-generated method stub
             }
         });
-
-
 
 
         spinner_city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -182,10 +180,10 @@ public class AddContactRequest extends AppCompatActivity {
 
 
                     if (position != 0) {
-                        city_id = selectedCategory.get(position-1).get("id");
+                        city_id = selectedCategory.get(position - 1).get("id");
                         //String str_service = selectedCategory.get(position - 1).get("name");
 
-                        Log.d(TAG, "onItemSelected: "+cat_id);
+                        Log.d(TAG, "onItemSelected: " + cat_id);
 
 
                     }
@@ -205,59 +203,23 @@ public class AddContactRequest extends AppCompatActivity {
                 finish();
             }
         });
-
-/*
         tv_submit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
+                fname = et_first_name.getText().toString();
+                lname = et_last_name.getText().toString();
+                description = edt_description.getText().toString();
 
 
+                Log.d(TAG, "cat_id "+cat_id);
 
-                if ((ratingBar.getRating() == 0)){
-
-                    Toasty.info(AddContactRequest.this, getResources().getString(R.string.Put_rate), Toast.LENGTH_LONG, true).show();
-
-                }else {
-
-                    String rate = String.valueOf(ratingBar.getRating());
-                    title = edit_btitle.getText().toString();
-                    description = edt_description.getText().toString();
-                    postcode = edit_postcode.getText().toString();
-                    business_contact = edit_usernumber.getText().toString();
-                    username = edit_username.getText().toString();
-                    user_phone = edit_contact.getText().toString();
-                    usermail = edit_email.getText().toString();
-
-
-                    if (globalClass.isNetworkAvailable()){
-                        //   if (globalClass.getLogin_status()) {
-
-                       // postjob(title, rate, description, postcode, business_contact,
-                            //    username, user_phone, usermail, cat_id, city_id);
-                      */
-/*  } else{
-                                Intent intent = new Intent(RecommedBuisness.this,LoginScreen.class);
-                                startActivity(intent);
-                            }*//*
-
-
-                    }else {
-
-                        Toasty.warning(AddContactRequest.this,getResources().getString(R.string.check_internet),Toast.LENGTH_LONG, true).show();
-
-                    }
-
-
-
-                }
+                postjob(fname,lname,description,cat_id,city_id);
 
             }
         });
-*/
-
-
-
     }
+
+
 
 
 
@@ -511,27 +473,20 @@ public class AddContactRequest extends AppCompatActivity {
     }
 
 
-/*
-    private void postjob(final String title,final String rate,final String description, final String postcode, final String business_contact,
-                         final String username,final String user_phone,final String usermail,final String cat_id,final String city_id
+    private void postjob(final String fname,final String lname,final String description,final String cat_id,final String city_id
     ){
         pd.show();
         String url = AppConfig.URL_DEV;
         AsyncHttpClient cl = new AsyncHttpClient();
         RequestParams params = new RequestParams();
 
-        params.put("view","recommend_business");
+        params.put("view","addSalesEnquiry");
         params.put("user_id",globalClass.getId());
-        params.put("title",title);
         params.put("description",description);
         params.put("primary_category_id",cat_id);
         params.put("location_id",city_id);
-        params.put("rating",rate);
-        params.put("zip",postcode);
-        params.put("phone",business_contact);
-        params.put("user_name",username);
-        params.put("user_phone",user_phone);
-        params.put("user_email",usermail);
+
+
 
 
 
@@ -557,15 +512,15 @@ public class AddContactRequest extends AppCompatActivity {
                         if(success.equals("1")) {
 
 
-                            Intent i = new Intent(RecommedBuisness.this, HomeScreen.class);
-                            i.putExtra("One", message);
+                            Intent i = new Intent(AddContactRequest.this, SalesEnquiry.class);
+
 
                             startActivity(i);
 
-                            Toasty.success(RecommedBuisness.this, message, Toast.LENGTH_SHORT, true).show();
+                            Toasty.success(AddContactRequest.this, message, Toast.LENGTH_SHORT, true).show();
                         }
                         else {
-                            Toasty.success(RecommedBuisness.this, message, Toast.LENGTH_SHORT, true).show();
+                            Toasty.success(AddContactRequest.this, message, Toast.LENGTH_SHORT, true).show();
 
                         }
                         pd.dismiss();
@@ -589,6 +544,5 @@ public class AddContactRequest extends AppCompatActivity {
 
 
     }
-*/
 
 }

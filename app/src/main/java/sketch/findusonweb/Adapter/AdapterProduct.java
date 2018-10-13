@@ -28,6 +28,8 @@ import java.util.Random;
 
 import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
+import sketch.findusonweb.Screen.AddContactRequest;
+import sketch.findusonweb.Screen.AddProductScreen;
 import sketch.findusonweb.Screen.ManageProductScreen;
 import sketch.findusonweb.Screen.ViewProductsDetails;
 
@@ -98,7 +100,7 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
         holder.rl_manage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context,ManageProductScreen.class);
+                Intent intent = new Intent(context,AddProductScreen.class);
                 context.startActivity(intent);
             }
         });

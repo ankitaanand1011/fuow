@@ -128,6 +128,7 @@ public class ChatScreen extends AppCompatActivity {
 
 							JsonObject images1 = data.get(i).getAsJsonObject();
 							String conv_id = images1.get("conv_id").toString().replaceAll("\"", "");
+							String remote_profile = images1.get("remote_profile").toString().replaceAll("\"", "");
 							String remote_user_id = images1.get("remote_user_id").toString().replaceAll("\"", "");
 							String remote_user_name = images1.get("remote_user_name").toString().replaceAll("\"", "");
 
@@ -153,6 +154,7 @@ public class ChatScreen extends AppCompatActivity {
 							hashMap.put("remote_user_id", remote_user_id);
 							hashMap.put("remote_user_name", remote_user_name);
 							hashMap.put("message", message);
+							hashMap.put("remote_profile", remote_profile);
 
 
 							list_namesfavoriteAll.add(hashMap);

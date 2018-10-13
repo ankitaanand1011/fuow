@@ -98,16 +98,18 @@ public class AdapterFavoriteDescriptive extends RecyclerView.Adapter<AdapterFavo
 
         //if (list_namesfavoriteAll.get(position).get("image").equals("")){
 
-            holder.img.setVisibility(View.GONE);
-            holder.icon.setVisibility(View.VISIBLE);
-            holder.icon.setLetter(list_namesfavoriteAll.get(position).get("title"));
-            holder.icon.setLetterColor(context.getResources().getColor(R.color.white));
-            holder.icon.setShapeColor(randomAndroidColor);
-            holder.icon.setShapeType(MaterialLetterIcon.Shape.ROUND_RECT);
-            holder.icon.setLetterSize(26);
-            holder.icon.setLetterTypeface(Typeface.SANS_SERIF);
-            holder.icon.setInitials(true);
-            holder.icon.setInitialsNumber(2);
+        holder.img.setVisibility(View.GONE);
+        holder.icon.setVisibility(View.VISIBLE);
+        holder.icon.setLetter(list_namesfavoriteAll.get(position).get("title"));
+        holder.icon.setLetterColor(context.getResources().getColor(R.color.black));
+        holder.icon.setShapeColor(context.getResources().getColor(R.color.white));
+        holder.icon.setShapeType(MaterialLetterIcon.Shape.CIRCLE);
+        holder.icon.setLetterSize(26);
+        holder.icon.setLetterTypeface(Typeface.SANS_SERIF);
+        holder.icon.setInitials(true);
+        holder.icon.setInitialsNumber(2);
+        holder.rl_icon.setBackgroundColor(randomAndroidColor);
+
 
        /* }else {
             holder.img.setVisibility(View.VISIBLE);
@@ -172,7 +174,7 @@ public class AdapterFavoriteDescriptive extends RecyclerView.Adapter<AdapterFavo
         // init the item view's
         TextView tv_name,tv_des,category,location_name,send_message,add_review;
         ImageView img;
-        RelativeLayout rl_message,rl_add_review;
+        RelativeLayout rl_message,rl_add_review,rl_icon;
         RatingBar rating;
         LayerDrawable stars;
         MaterialLetterIcon icon;
@@ -182,6 +184,7 @@ public class AdapterFavoriteDescriptive extends RecyclerView.Adapter<AdapterFavo
             send_message=itemView.findViewById(R.id.send_message);
             rl_message=itemView.findViewById(R.id.rl_message);
             rl_add_review=itemView.findViewById(R.id.rl_add_review);
+            rl_icon=itemView.findViewById(R.id.rl_icon);
             add_review=itemView.findViewById(R.id.add_review);
             location_name=itemView.findViewById(R.id.location_check);
             category=itemView.findViewById(R.id.category);

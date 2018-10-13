@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.github.ivbaranov.mli.MaterialLetterIcon;
@@ -97,14 +98,16 @@ public class AdapterReview  extends RecyclerView.Adapter<AdapterReview.MyViewHol
 
         holder.img.setVisibility(View.GONE);
         holder.icon.setVisibility(View.VISIBLE);
-        holder.icon.setLetter(name);
-        holder.icon.setLetterColor(context.getResources().getColor(R.color.white));
-        holder.icon.setShapeColor(randomAndroidColor);
-        holder.icon.setShapeType(MaterialLetterIcon.Shape.ROUND_RECT);
+        holder.icon.setLetter(Arraylist_review.get(position).get("title"));
+        holder.icon.setLetterColor(context.getResources().getColor(R.color.black));
+        holder.icon.setShapeColor(context.getResources().getColor(R.color.white));
+        holder.icon.setShapeType(MaterialLetterIcon.Shape.CIRCLE);
         holder.icon.setLetterSize(26);
         holder.icon.setLetterTypeface(Typeface.SANS_SERIF);
         holder.icon.setInitials(true);
         holder.icon.setInitialsNumber(2);
+        holder.rl_icon.setBackgroundColor(randomAndroidColor);
+
 
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,6 +138,7 @@ public class AdapterReview  extends RecyclerView.Adapter<AdapterReview.MyViewHol
         RatingBar rating;
         ImageView img;
         MaterialLetterIcon icon;
+        RelativeLayout rl_icon;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -145,6 +149,7 @@ public class AdapterReview  extends RecyclerView.Adapter<AdapterReview.MyViewHol
             edit = itemView.findViewById(R.id.edit_review);
             icon =  itemView.findViewById(R.id.icon);
             img =  itemView.findViewById(R.id.img);
+            rl_icon =  itemView.findViewById(R.id.rl_icon);
 
         }
     }

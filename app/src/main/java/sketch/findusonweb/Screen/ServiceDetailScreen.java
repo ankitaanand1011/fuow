@@ -108,7 +108,7 @@ public class ServiceDetailScreen extends AppCompatActivity  {
     LatLng latLng;
     PdfPTable table = new PdfPTable(2);
     String address,city,state,country,zip,f_address;
-    String title,login;
+    String title,login,description;
     Bitmap bitmap;
     double lat;
     RelativeLayout rl_pdflayout,rl_favorites,rl_share;
@@ -160,6 +160,8 @@ public class ServiceDetailScreen extends AppCompatActivity  {
         mapView = findViewById(R.id.map_view);
 
         id = getIntent().getStringExtra("id");
+        title = getIntent().getStringExtra("title");
+        description = getIntent().getStringExtra("description");
         Log.d(TAG, "id service: "+id);
 
         ViewList(id);

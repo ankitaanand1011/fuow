@@ -201,54 +201,69 @@ public class ManageRequest extends AppCompatActivity{
                 try {
 
                     JsonObject jobj = gson.fromJson(response, JsonObject.class);
-                    //      String status = jobj.get("status").toString().replaceAll("\"", "");
-                    //      String message = jobj.get("message").toString().replaceAll("\"", "");
+                         String status_new = jobj.get("success").toString().replaceAll("\"", "");
+                    String message = jobj.get("message").toString().replaceAll("\"", "");
+                    String count = jobj.get("count").toString().replaceAll("\"", "");
                     //    Log.d(TAG, "message: "+message);
                     // final_search.setText(message);
 
-                    // if (status.equals("1")) {
-                    JsonArray products = jobj.getAsJsonArray("data");
+                     if (status_new.equals("1")) {
+                         JsonArray products = jobj.getAsJsonArray("data");
 
-                    for (int i = 0; i < products.size(); i++) {
-
-
-
-                        JsonObject images1 = products.get(i).getAsJsonObject();
-                        String fw_id = images1.get("fw_id").toString().replaceAll("\"", "");
-                        String fw_user_id = images1.get("fw_user_id").toString().replaceAll("\"", "");
-                        String description = images1.get("description").toString().replaceAll("\"", "");
-                        String title = images1.get("title").toString().replaceAll("\"", "");
-                        String primary_category = images1.get("primary_category").toString().replaceAll("\"", "");
-                        String duration = images1.get("duration").toString().replaceAll("\"", "");
-                        String status = images1.get("status").toString().replaceAll("\"", "");
-                        String date_requested = images1.get("date_requested").toString().replaceAll("\"", "");
-                        String budget = images1.get("budget").toString().replaceAll("\"", "");
+                         for (int i = 0; i < products.size(); i++) {
 
 
-                        HashMap<String, String> hashMap = new HashMap<>();
-                        hashMap.put("fw_id", fw_id);
+                             JsonObject images1 = products.get(i).getAsJsonObject();
+                             String id = images1.get("id").toString().replaceAll("\"", "");
+                             String user_id = images1.get("user_id").toString().replaceAll("\"", "");
+                             String description = images1.get("description").toString().replaceAll("\"", "");
+                             String title = images1.get("title").toString().replaceAll("\"", "");
+                             String primary_category = images1.get("primary_category").toString().replaceAll("\"", "");
+                             String duration = images1.get("duration").toString().replaceAll("\"", "");
+                             String status = images1.get("status").toString().replaceAll("\"", "");
+                             String date_requested = images1.get("date_requested").toString().replaceAll("\"", "");
+                             String budget = images1.get("budget").toString().replaceAll("\"", "");
+                             String isEdit = images1.get("isEdit").toString().replaceAll("\"", "");
+                             String isPaused = images1.get("isPaused").toString().replaceAll("\"", "");
+                             String isDelete = images1.get("isDelete").toString().replaceAll("\"", "");
+                             String isActivate = images1.get("isActivate").toString().replaceAll("\"", "");
+                             String completeOrder = images1.get("completeOrder").toString().replaceAll("\"", "");
+                             String requestRevision = images1.get("requestRevision").toString().replaceAll("\"", "");
 
-                        hashMap.put("iterations", primary_category);
-                        hashMap.put("duration", duration);
-                        hashMap.put("budget", budget);
-                        hashMap.put("description", description);
-                        hashMap.put("status",status);
-                        hashMap.put("title",title);
-                        hashMap.put("date_requested",date_requested);
-                        hashMap.put("fw_user_id",fw_user_id);
+
+                             HashMap<String, String> hashMap = new HashMap<>();
+                             hashMap.put("id", id);
+                             hashMap.put("primary_category", primary_category);
+                             hashMap.put("duration", duration);
+                             hashMap.put("budget", budget);
+                             hashMap.put("description", description);
+                             hashMap.put("status", status);
+                             hashMap.put("title", title);
+                             hashMap.put("date_requested", date_requested);
+                             hashMap.put("isEdit", isEdit);
+                             hashMap.put("isPaused", isPaused);
+                             hashMap.put("isDelete", isDelete);
+                             hashMap.put("isActivate", isActivate);
+                             hashMap.put("completeOrder", completeOrder);
+                             hashMap.put("requestRevision", requestRevision);
+                             hashMap.put("user_id", user_id);
 
 
+                             list_products.add(hashMap);
 
-                        list_products.add(hashMap);
+
+                         }
 
 
-                    }
+                         AdapterManageRequest adapterSearch = new AdapterManageRequest(ManageRequest.this, list_products,pd);
+                         rv_list_product.setAdapter(adapterSearch);
 
-                    AdapterManageRequest adapterSearch = new AdapterManageRequest(ManageRequest.this, list_products);
-                    rv_list_product.setAdapter(adapterSearch);
+                         pd.dismiss();
+                     }
+                     else{
+                         Toasty.warning(ManageRequest.this, message, Toast.LENGTH_SHORT, true).show();
 
-                    pd.dismiss();
-
+                     }
 
 
                 }
@@ -281,7 +296,7 @@ public class ManageRequest extends AppCompatActivity{
 
 
                 params.put("user_id", globalClass.getId());
-                params.put("view","getAllRequestsByUserID");
+                params.put("view","manageRequests");
                 params.put("status",item);
                 Log.d(TAG, "getID: "+params);
                 return params;

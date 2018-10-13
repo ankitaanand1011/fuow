@@ -53,7 +53,7 @@ public class AdapterBrowseCategorySingle extends BaseAdapter {
     ImageLoader loader;
     GlobalClass globalClass;
     DisplayImageOptions defaultOptions;
-    RelativeLayout rl_message,rl_review;
+    RelativeLayout rl_message,rl_review,rl_icon;
     MaterialLetterIcon icon;
 
 
@@ -123,6 +123,7 @@ public class AdapterBrowseCategorySingle extends BaseAdapter {
         tv_name = view1.findViewById(R.id.tv_name);
         tv_des = view1.findViewById(R.id.tv_des);
         img = view1.findViewById(R.id.img);
+        rl_icon = view1.findViewById(R.id.rl_icon);
         icon =  view1.findViewById(R.id.icon);
         rating=view1.findViewById(R.id.rating_adpater);
         stars = (LayerDrawable) rating.getProgressDrawable();
@@ -144,16 +145,18 @@ public class AdapterBrowseCategorySingle extends BaseAdapter {
 
         if(list_names.get(position).get("logo_url").equals("")||list_names.get(position).get("logo_url").equals("null"))
         {
+
             img.setVisibility(View.GONE);
             icon.setVisibility(View.VISIBLE);
             icon.setLetter(list_names.get(position).get("title"));
-            icon.setLetterColor(mContext.getResources().getColor(R.color.white));
-            icon.setShapeColor(randomAndroidColor);
-            icon.setShapeType(MaterialLetterIcon.Shape.ROUND_RECT);
+            icon.setLetterColor(mContext.getResources().getColor(R.color.black));
+            icon.setShapeColor(mContext.getResources().getColor(R.color.white));
+            icon.setShapeType(MaterialLetterIcon.Shape.CIRCLE);
             icon.setLetterSize(26);
             icon.setLetterTypeface(Typeface.SANS_SERIF);
             icon.setInitials(true);
             icon.setInitialsNumber(2);
+            rl_icon.setBackgroundColor(randomAndroidColor);
         }
         else {
             img.setVisibility(View.VISIBLE);
@@ -165,6 +168,8 @@ public class AdapterBrowseCategorySingle extends BaseAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, ServiceDetailScreen.class);
                 intent.putExtra("id",list_names.get(position).get("id"));
+                intent.putExtra("title",list_names.get(position).get("title"));
+                intent.putExtra("description",list_names.get(position).get("description"));
                 Log.d("tag", "onClick: "+list_names.get(position).get("id"));
                 mContext.startActivity(intent);
             }

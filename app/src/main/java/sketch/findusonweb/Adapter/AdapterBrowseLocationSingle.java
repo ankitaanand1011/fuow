@@ -53,7 +53,7 @@ public class AdapterBrowseLocationSingle extends BaseAdapter {
     ImageLoader loader;
     GlobalClass globalClass;
     DisplayImageOptions defaultOptions;
-    RelativeLayout rl_message,rl_review;
+    RelativeLayout rl_message,rl_review,rl_icon;
 
     MaterialLetterIcon icon;
 
@@ -118,6 +118,7 @@ public class AdapterBrowseLocationSingle extends BaseAdapter {
         rl_message=view1.findViewById(R.id.rl_message);
         rl_review=view1.findViewById(R.id.rl_add_review);
         add_review=view1.findViewById(R.id.add_review);
+        rl_icon=view1.findViewById(R.id.rl_icon);
         location_name=view1.findViewById(R.id.location_check);
         category=view1.findViewById(R.id.category);
         tv_name = view1.findViewById(R.id.tv_name);
@@ -142,16 +143,17 @@ public class AdapterBrowseLocationSingle extends BaseAdapter {
         location_name.setText(list_names.get(position).get("location_text_1"));
       /*  if(list_names.get(position).get("logo_url").equals(""))
         {*/
-            img.setVisibility(View.GONE);
-            icon.setVisibility(View.VISIBLE);
-            icon.setLetter(list_names.get(position).get("title"));
-            icon.setLetterColor(mContext.getResources().getColor(R.color.white));
-            icon.setShapeColor(randomAndroidColor);
-            icon.setShapeType(MaterialLetterIcon.Shape.ROUND_RECT);
-            icon.setLetterSize(26);
-            icon.setLetterTypeface(Typeface.SANS_SERIF);
-            icon.setInitials(true);
-            icon.setInitialsNumber(2);
+        img.setVisibility(View.GONE);
+        icon.setVisibility(View.VISIBLE);
+        icon.setLetter(list_names.get(position).get("title"));
+        icon.setLetterColor(mContext.getResources().getColor(R.color.black));
+        icon.setShapeColor(mContext.getResources().getColor(R.color.white));
+        icon.setShapeType(MaterialLetterIcon.Shape.CIRCLE);
+        icon.setLetterSize(26);
+        icon.setLetterTypeface(Typeface.SANS_SERIF);
+        icon.setInitials(true);
+        icon.setInitialsNumber(2);
+        rl_icon.setBackgroundColor(randomAndroidColor);
       /*  }
         else {
             img.setVisibility(View.VISIBLE);

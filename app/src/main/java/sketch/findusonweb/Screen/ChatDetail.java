@@ -1,7 +1,13 @@
 package sketch.findusonweb.Screen;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Message;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -19,16 +25,29 @@ import android.widget.Toolbar;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
@@ -46,7 +65,7 @@ import sketch.findusonweb.Utils.Shared_Preference;
  */
 
 public class ChatDetail extends AppCompatActivity {
-
+    String TAG = "chat details";
     private EditText msg_edittext;
     ListView msgListView;
     ImageButton send;
@@ -57,6 +76,7 @@ public class ChatDetail extends AppCompatActivity {
     ProgressDialog progressBar;
     String str_date;
     Toolbar toolbar;
+    ImageLoader loader;
     String seen;
     ImageView toolbar_image;
     SwipeRefreshLayout mSwipeRefreshLayout;
@@ -64,7 +84,8 @@ public class ChatDetail extends AppCompatActivity {
     ArrayList<HashMap<String , String>> arraylist_chatlist, arraylist_chatlist1 , arraylist_chatlist2 ;
     String refresh_status, called;
     TextView user_name;
-    ImageView img_back;
+    ImageView img_back,imageView2;
+    Bitmap resized;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -84,10 +105,24 @@ public class ChatDetail extends AppCompatActivity {
         progressBar=new ProgressDialog(ChatDetail.this);
 
 
+        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
+                .cacheOnDisk(true).cacheInMemory(true)
+                //  .showImageOnLoading(R.mipmap.loading_black128px)
+                //  .showImageForEmptyUri(R.mipmap.no_image)
+                //  .showImageOnFail(R.mipmap.no_image)
+                //  .showImageOnFail(R.mipmap.img_failed)
+                .imageScaleType(ImageScaleType.EXACTLY)
+                .displayer(new FadeInBitmapDisplayer(300)).build();
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(ChatDetail.this.getApplicationContext())
+                .defaultDisplayImageOptions(defaultOptions)
+                .memoryCache(new WeakMemoryCache())
+                .diskCacheSize(100 * 1024 * 1024).build();
+        ImageLoader.getInstance().init(config);
+        loader = ImageLoader.getInstance();
         mSwipeRefreshLayout = findViewById(R.id.swipeToRefresh);
         msgListView =  findViewById(R.id.lvmsg);
         msg_edittext =  findViewById(R.id.msg_edittext);
-
+        imageView2=findViewById(R.id.imageView2);
         send =  findViewById(R.id.send);
         user_name =  findViewById(R.id.user_name);
         img_back =  findViewById(R.id.img_back);
@@ -104,8 +139,15 @@ public class ChatDetail extends AppCompatActivity {
         chatlist = new ArrayList<>();
         String remote_user_id = getIntent().getStringExtra("remote_user_id");
         String remote_user_name = getIntent().getStringExtra("remote_user_name");
+        String remote_profile = getIntent().getStringExtra("remote_profile");
         user_name.setText(remote_user_name);
+        Log.d(TAG, "Chat: "+remote_profile);
+  if(remote_profile.isEmpty()){
+            imageView2.setImageResource(R.mipmap.no_image);
+        }else{
+      Picasso.get().load(remote_profile).into(imageView2);
 
+  }
 
         fetch_chat(remote_user_id);
 
@@ -443,7 +485,83 @@ public class ChatDetail extends AppCompatActivity {
         // msgListView.setSelection(arraylist_chatlist2.size());
 
     }
+/*
+    public void sendImage(Uri uri) {
 
+        try {
+
+            InputStream inputStream = getContentResolver().openInputStream(uri);
+            Bitmap bmp = BitmapFactory.decodeStream(inputStream);
+            if (inputStream != null) inputStream.close();
+            resized = getResizedBitmap(bmp,480);
+        }catch (Exception e){
+
+        }
+
+
+        long time = 0;
+        time =  System.currentTimeMillis();
+        String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() +
+                "/HBHG/Images/sent";
+        File dir = new File(file_path);
+        if(!dir.exists())
+            dir.mkdirs();
+        final File image_file = new File(dir, "hbhg"+time+ ".jpg");
+
+        OutputStream os;
+        try {
+            os = new FileOutputStream(image_file);
+            resized.compress(Bitmap.CompressFormat.JPEG, 90, os);
+            os.flush();
+            os.close();
+            sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(image_file)));
+        } catch (Exception e) {
+
+        }
+
+*/
+/*
+        Date today = Calendar.getInstance().getTime();
+        final ChatMessage chatMessage = new ChatMessage("img","me", "test",true);
+        chatMessage.note = "sentnow";
+        chatMessage.Date = dateFormat.format(today);
+        chatMessage.img = Uri.fromFile(image_file).toString();
+        arrData.add(chatMessage);
+        adapter.notifyDataSetChanged();
+
+        final int firstListItemPosition = listView.getFirstVisiblePosition();
+        final int lastListItemPosition = firstListItemPosition + listView.getChildCount() - 1;
+
+        // donutProgress=(DonutProgress)listView.getChildAt(listView.getChildCount()-1).findViewById(R.id.donut_progress_iv22);
+
+        postChat("2",image_file.getAbsolutePath());*//*
+
+    }
+*/
+    public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
+        int width = image.getWidth();
+        int height = image.getHeight();
+
+        if (width < maxSize && height < maxSize){
+
+            return image;
+
+        }else {
+
+            float bitmapRatio = (float) width / (float) height;
+            if (bitmapRatio > 1) {
+                width = maxSize;
+                height = (int) (width / bitmapRatio);
+            } else {
+                height = maxSize;
+                width = (int) (height * bitmapRatio);
+            }
+
+            return Bitmap.createScaledBitmap(image, width, height, true);
+        }
+
+
+    }
     public String changeTimeFormat(String time){
 
         SimpleDateFormat df_source = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.ENGLISH);

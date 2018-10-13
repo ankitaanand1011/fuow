@@ -1,6 +1,7 @@
 package sketch.findusonweb.Screen;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,13 +13,18 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.ParcelFileDescriptor;
+import android.os.PersistableBundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -46,6 +52,7 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -62,18 +69,20 @@ import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
 import sketch.findusonweb.Utils.Shared_Preference;
 
+import static android.content.ContentValues.TAG;
+
 /**
  * Created by developer on 25/5/18.
  */
 
-public class PostRequriementScreen extends AppCompatActivity {
+public class EditRequest extends AppCompatActivity {
     String TAG = "post requirement";
 
     ImageView back_button;
-    TextView attach_data,attach_data_link,tv_submit;
+    TextView attach_data,attach_data_link,tv_submit,tv_cancel;
     String city_id,cat_id;
     Shared_Preference prefrence;
-    Spinner spinner_select_category,spinner_on_stage;
+    Spinner spinner_select_category,spinner_on_stage,service_delivered;
     Uri URI = null;
     private static final int PICK_FROM_GALLERY = 101;
     GlobalClass globalClass;
@@ -83,42 +92,61 @@ public class PostRequriementScreen extends AppCompatActivity {
     RadioGroup rg;
     RadioButton rb;
     ArrayList<String> array;
-   // ImageView down_arrow;
+    // ImageView down_arrow;
     int columnIndex;
     String id;
     File attachmentFile;
     EditText edt_description,edt_title,edt_duration,edt_budget;
-    String title , description, duration, budget;
+    String title , description, request_id, budget_new;
     private final int PICK_IMAGE_CAMERA = 1, PICK_IMAGE_GALLERY = 2;
 
     private static final int PICKFILE_RESULT_CODE = 1;
 
     ArrayList<HashMap<String, String>> selectedCategory = new ArrayList<>();
     ArrayList<String> category = new ArrayList<>();
-    String on_stage;
+    String on_stage,service;
     List<String> list;
+    List<String> list1;
+    String title_new,description_new,budget,id_new;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState );
-        setContentView(R.layout.post_job);
+        setContentView(R.layout.edit_request);
 
         list = new ArrayList<>();
+        list1 = new ArrayList<>();
 
         list.add("Ready to Hire");
         list.add("Planning and Budgeting");
         list.add("Need a quote for budgeting purpose");
+        /*for service deliverd*/
+        list1.add("Urgently");
+        list1.add("Within 2 days");
+        list1.add("Within 2 weeks");
+        list1.add("Within 2 months");
+        list1.add("2 months +");
+        list1.add("I am flexible on start date");
+
+        tv_cancel=findViewById(R.id.tv_cancel);
+        // title_new=getIntent().getStringExtra("title");
+        // description_new=getIntent().getStringExtra("description");
+        budget_new=getIntent().getStringExtra("budget");
+        id_new = getIntent().getExtras().getString("id");
+        title_new = getIntent().getExtras().getString("title");
+        description_new = getIntent().getExtras().getString("description");
+        budget_new = getIntent().getExtras().getString("budget");
+        request_id = getIntent().getExtras().getString("id");
 
 
-
-        pd = new ProgressDialog(PostRequriementScreen.this);
+        pd = new ProgressDialog(EditRequest.this);
         pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pd.setMessage(getResources().getString(R.string.loading));
         rg=findViewById(R.id.radiogroup);
         array = new ArrayList<>();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(PostRequriementScreen.this,
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(EditRequest.this,
                     Manifest.permission.CAMERA)
-                    == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(PostRequriementScreen.this,
+                    == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(EditRequest.this,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     == PackageManager.PERMISSION_GRANTED) {
                 Log.d(TAG, "onCreate: ");
@@ -134,19 +162,23 @@ public class PostRequriementScreen extends AppCompatActivity {
 
         spinner_select_category = findViewById(R.id.spinner_category);
         spinner_on_stage = findViewById(R.id.spinner_on_stage);
+        service_delivered = findViewById(R.id.service_delivered);
 
 
         attach_data=findViewById(R.id.attach_data);
         attach_data_link=findViewById(R.id.attach_data_name);
         back_button=findViewById(R.id.back_img);
-     //   down_arrow=findViewById(R.id.down_arraowpost);
+        //   down_arrow=findViewById(R.id.down_arraowpost);
         tv_submit=findViewById(R.id.tv_submit);
         edt_title=findViewById(R.id.edt_title);
         edt_description=findViewById(R.id.edt_description);
         edt_duration=findViewById(R.id.edt_duration);
         edt_budget=findViewById(R.id.edt_budget);
         globalClass = (GlobalClass) getApplicationContext();
-        prefrence = new Shared_Preference(PostRequriementScreen.this);
+        edt_title.setText(title_new);
+        edt_description.setText(description_new);
+        edt_budget.setText(budget_new);
+        prefrence = new Shared_Preference(EditRequest.this);
         prefrence.loadPrefrence();
 
 
@@ -154,7 +186,7 @@ public class PostRequriementScreen extends AppCompatActivity {
 
             getCategory(globalClass.Category);
 
-          //  getCategory_list();
+            //  getCategory_list();
             // getLocation(globalClass.Location);
 
         } else {
@@ -186,8 +218,32 @@ public class PostRequriementScreen extends AppCompatActivity {
 
             }
         });
+        tv_cancel.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        ArrayAdapter<String> adp1 = new ArrayAdapter<String>
+                (this, android.R.layout.simple_spinner_item, list1);
+        service_delivered.setAdapter(adp1);
+
+        service_delivered.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            //@Override
+            public void onItemSelected(AdapterView<?> parent, View arg1, int arg2, long arg3) {
+                // TODO Auto-generated method stub
+                String item = service_delivered.getItemAtPosition(0).toString();
+                //Toast.makeText(spinner.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+                service=service_delivered.getSelectedItem().toString();
+            }
 
 
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+
+            }
+        });
         spinner_select_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -225,12 +281,12 @@ public class PostRequriementScreen extends AppCompatActivity {
 
 
 
-         attach_data.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 openFolder();
-             }
-         });
+        attach_data.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFolder();
+            }
+        });
 
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -244,11 +300,11 @@ public class PostRequriementScreen extends AppCompatActivity {
             public void onClick(View v) {
                 title = edt_title.getText().toString();
                 description = edt_description.getText().toString();
-                duration = edt_duration.getText().toString();
+               // duration = edt_duration.getText().toString();
                 budget = edt_budget.getText().toString();
                 Log.d(TAG, "cat_id "+cat_id);
 
-               postjob(title,description,duration,budget,cat_id,on_stage);
+                postjob(title,description,service,budget,cat_id,on_stage);
 
             }
         });
@@ -262,8 +318,8 @@ public class PostRequriementScreen extends AppCompatActivity {
         final List<String> permissionsNeeded = new ArrayList<>();
         for (int i = 0; i < permissions.length; i++) {
             final String perm = permissions[i];
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (ContextCompat.checkSelfPermission(PostRequriementScreen.this, permissions[i]) != PackageManager.PERMISSION_GRANTED) {
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (ContextCompat.checkSelfPermission(EditRequest.this, permissions[i]) != PackageManager.PERMISSION_GRANTED) {
 
                     Log.d("permisssion","not granted");
 
@@ -284,7 +340,7 @@ public class PostRequriementScreen extends AppCompatActivity {
         }
 
         if (permissionsNeeded.size() > 0) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 // go ahead and request permissions
                 requestPermissions(permissionsNeeded.toArray(new String[permissionsNeeded.size()]), permRequestCode);
             }
@@ -399,7 +455,7 @@ public class PostRequriementScreen extends AppCompatActivity {
                         getResources().getString(R.string.choose_from_gallery),
                         getResources().getString(R.string.cancel),
                 };
-                android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(PostRequriementScreen.this);
+                android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(EditRequest.this);
                 builder.setTitle(getResources().getString(R.string.select_option));
                 builder.setItems(options, new DialogInterface.OnClickListener() {
                     @Override
@@ -419,9 +475,9 @@ public class PostRequriementScreen extends AppCompatActivity {
                 });
                 builder.show();
             } else
-                Toasty.error(PostRequriementScreen.this, getResources().getString(R.string.camera_permission_error), Toast.LENGTH_SHORT).show();
+                Toasty.error(EditRequest.this, getResources().getString(R.string.camera_permission_error), Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            Toast.makeText(PostRequriementScreen.this,  getResources().getString(R.string.camera_permission_error), Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditRequest.this,  getResources().getString(R.string.camera_permission_error), Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
@@ -476,8 +532,8 @@ public class PostRequriementScreen extends AppCompatActivity {
 
 
 
-                        dataAdapter1 = new ArrayAdapter(PostRequriementScreen.this, android.R.layout.simple_spinner_item, array);
-                       // dataAdapter1.setDropDownViewResource(R.layout.spinner_color);
+                        dataAdapter1 = new ArrayAdapter(EditRequest.this, android.R.layout.simple_spinner_item, array);
+                        // dataAdapter1.setDropDownViewResource(R.layout.spinner_color);
                         spinner_select_category.setAdapter(dataAdapter1);
 
 
@@ -533,8 +589,8 @@ public class PostRequriementScreen extends AppCompatActivity {
 
 
     private void postjob(final String title, final String description, final String duration,
-                         final String budget, String cat_id, String on_stage){
-         pd.show();
+                         final String budget,final String cat_id, final String on_stage){
+        pd.show();
         String url = AppConfig.URL_DEV;
         AsyncHttpClient cl = new AsyncHttpClient();
         RequestParams params = new RequestParams();
@@ -547,6 +603,8 @@ public class PostRequriementScreen extends AppCompatActivity {
         params.put("duration",duration);
         params.put("budget",budget);
         params.put("on_stage",on_stage);
+        params.put("action","update");
+        params.put("request_id",request_id);
 
         try{
 
@@ -579,12 +637,12 @@ public class PostRequriementScreen extends AppCompatActivity {
 
                         if(success.equals("1")) {
 
-                            Intent i = new Intent(PostRequriementScreen.this, HomeScreen.class);
+                            Intent i = new Intent(EditRequest.this, ManageRequest.class);
                             startActivity(i);
-                            Toasty.success(PostRequriementScreen.this, message, Toast.LENGTH_SHORT, true).show();
+                            Toasty.success(EditRequest.this, message, Toast.LENGTH_SHORT, true).show();
                         }else{
 
-                            Toasty.error(PostRequriementScreen.this, message, Toast.LENGTH_SHORT, true).show();
+                            Toasty.error(EditRequest.this, message, Toast.LENGTH_SHORT, true).show();
                         }
                         pd.dismiss();
 
