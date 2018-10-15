@@ -196,7 +196,7 @@
                 android:id="@+id/edt_description"
                 android:layout_width="match_parent"
                 android:layout_height="150sp"
-                android:hint="Why Do you recommend this business "
+                android:hint="Why Do you recommend this business *"
                 android:gravity="start"
                 android:textSize="14sp"
                 android:textColorHint="@color/grey_text"

@@ -113,7 +113,7 @@ public class AdapterReview  extends RecyclerView.Adapter<AdapterReview.MyViewHol
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, EditReview.class);
-                intent.putExtra("id", id);
+                intent.putExtra("id",Arraylist_review.get(position).get("id"));
                 Log.d("tag", "onClick: " + id);
                 context.startActivity(intent);
 

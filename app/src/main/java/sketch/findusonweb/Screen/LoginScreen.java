@@ -53,7 +53,7 @@ public class LoginScreen extends AppCompatActivity
     GlobalClass globalClass;
     ProgressDialog pd;
     Shared_Preference prefrence;
-    TextView login_tv, signup_tv,skip;
+    TextView login_tv, signup_tv,skip,forget_pass;
     EditText email_edt, password_edt;
     EditText email;
 
@@ -67,6 +67,7 @@ public class LoginScreen extends AppCompatActivity
         prefrence = new Shared_Preference(LoginScreen.this);
         prefrence.loadPrefrence();
         skip=findViewById(R.id.skip);
+        forget_pass=findViewById(R.id.forget_pass);
         pd = new ProgressDialog(LoginScreen.this);
         pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pd.setMessage(getResources().getString(R.string.loading));
@@ -93,6 +94,14 @@ public class LoginScreen extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(),HomeScreen.class));
+
+
+            }
+        });
+        forget_pass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),Forget_Password.class));
 
 
             }

@@ -128,19 +128,27 @@ public class RecommedBuisness  extends AppCompatActivity {
         edit_btitle=findViewById(R.id.edt_btitle);
         edt_description=findViewById(R.id.edt_description);
         globalClass = (GlobalClass) getApplicationContext();
-        edit_username.setText(globalClass.getName());
-        edit_usernumber.setText(globalClass.getPhone_number());
-        edit_email.setText(globalClass.getEmail());
+
         prefrence = new Shared_Preference(RecommedBuisness.this);
         Log.d(TAG, "Mail id: "+globalClass.getEmail());
         prefrence.loadPrefrence();
 
 
         if (globalClass.isNetworkAvailable()) {
-
             getCategory(globalClass.Category);
             getLocation(globalClass.Location);
+            if (globalClass.getLogin_status()) {
 
+
+                edit_username.setText(globalClass.getName());
+                edit_usernumber.setText(globalClass.getPhone_number());
+                edit_email.setText(globalClass.getEmail());
+            }
+
+            else {
+                edit_username.setText("");
+                edit_usernumber.setText("");
+                edit_email.setText("");            }
 
             //  getCategory_list();
             // getLocation(globalClass.Location);
@@ -150,6 +158,7 @@ public class RecommedBuisness  extends AppCompatActivity {
             Toasty.warning(getApplicationContext(), getResources().getString(R.string.check_internet), Toast.LENGTH_LONG, true).show();
 
         }
+
         spinner_select_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -322,12 +331,11 @@ public class RecommedBuisness  extends AppCompatActivity {
                     JsonObject jobj = gson.fromJson(response, JsonObject.class);
 
                     Log.d("jobj", "" + jobj);
-
+                    array.add("Select Category *");
                     JsonObject offerObject = jobj.getAsJsonObject();
-                    category.add("Select Category");
                     JsonArray jarray=offerObject.getAsJsonArray("name");
                     Log.d("jarray", "" + jarray.toString());
-                    ArrayList<String> array = new ArrayList<>();
+                     array = new ArrayList<>();
                     for (int i = 0; i < jarray.size(); i++) {
                         JsonObject jobj1 = jarray.get(i).getAsJsonObject();
                         //get the object
@@ -343,6 +351,7 @@ public class RecommedBuisness  extends AppCompatActivity {
 
                         selectedCategory.add(map_ser);
                         array.add(title);
+
 
                         Log.d("title", "" + array);
 

@@ -17,7 +17,7 @@
     <string name="button_Register">REGISTER</string>
     <string name="cancel">Cancel</string>
     <string name="submit_job">Submit</string>
-    <string name="requirement_title">Requirement Title</string>
+    <string name="requirement_title">Requirement Title *</string>
     <string name="search_job_type">Search Job Type/Business</string>
     <string name="search_product">Search Product and Service </string>
     <string name="enter_business_name">Please enter business name</string>
@@ -34,7 +34,7 @@
     <string name="firstname">FIRST NAME</string>
     <string name="lastname">LAST NAME </string>
     <string name="email">EMAIL</string>
-    <string name="businee_name">Business Name</string>
+    <string name="businee_name">Business Name *</string>
     <string name="phone">PHONE</string>
     <string name="submit">SUBMIT</string>
     <string name="login_register"><u>LOGIN</u></string>

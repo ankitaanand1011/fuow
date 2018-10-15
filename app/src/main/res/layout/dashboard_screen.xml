@@ -1091,7 +1091,110 @@
 
             </RelativeLayout>
 
+            <RelativeLayout
+                android:id="@+id/rl_recommedbusiness"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:background="@color/list_bg"
+                >
+                <ImageView
+                    android:id="@+id/img3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_recommend_business"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="16sp"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:contentDescription="@string/app_name"/>
+                <View
+                    android:id="@+id/view_new"
+                    android:layout_width="1dp"
+                    android:layout_height="25dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:background="@color/grey"
+                    android:layout_toEndOf="@+id/img3"/>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/recommend"
+                    android:layout_marginStart="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/view_new"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="16sp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_nxt"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:contentDescription="@string/app_name"/>
+
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_claim_business"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+
+                >
+                <ImageView
+                    android:id="@+id/img_claim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icons_claim_a_listing"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="16sp"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:contentDescription="@string/app_name"/>
+
+                <View
+                    android:id="@+id/view_claim"
+                    android:layout_width="1dp"
+                    android:layout_height="25dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:background="@color/grey"
+                    android:layout_toEndOf="@+id/img_claim"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Claim a Listing"
+                    android:layout_marginStart="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/view_claim"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="16sp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_nxt"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:contentDescription="@string/app_name"/>
+
+
+
+
+            </RelativeLayout>
 
 
         </LinearLayout>

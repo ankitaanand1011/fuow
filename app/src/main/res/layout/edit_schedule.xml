@@ -143,7 +143,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textSize="14sp"
-                                android:hint="Subject"
+                                android:hint="Subject *"
                                 android:textColor="@color/black"/>
 
                         </android.support.design.widget.TextInputLayout>
@@ -169,7 +169,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textSize="14sp"
-                                android:hint="Location"
+                                android:hint="Location *"
                                 android:textColor="@color/black"/>
 
                         </android.support.design.widget.TextInputLayout>
@@ -201,10 +201,22 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="14sp"
-                            android:hint="Start Time"
+                            android:hint="Start Time *"
                             android:textColor="@color/black"/>
 
                     </android.support.design.widget.TextInputLayout>
+                    <ImageButton
+
+                        android:id="@+id/img_btn"
+                        android:background="@null"
+                        android:padding="5dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@android:drawable/ic_menu_my_calendar"
+                        />
 
                     <android.support.design.widget.TextInputLayout
                         android:id="@+id/end_date"
@@ -219,11 +231,27 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="14sp"
-                            android:hint="End Time"
+                            android:hint="End Time *"
                             android:textColor="@color/black"/>
 
                     </android.support.design.widget.TextInputLayout>
+
+                    <ImageButton
+
+                        android:id="@+id/img_btn1"
+                        android:background="@null"
+                        android:padding="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@android:drawable/ic_menu_my_calendar"
+                        />
+
                 </LinearLayout>
+
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -243,7 +271,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="14sp"
-                            android:hint="Number of Attendees"
+                            android:hint="Number of Attendees *"
                             android:textColor="@color/black"/>
 
                     </android.support.design.widget.TextInputLayout>
@@ -264,7 +292,7 @@
                         android:gravity="start"
                         android:textSize="14sp"
                         android:layout_marginTop="10dp"
-                        android:hint="Reason/Additional Info"
+                        android:hint="Reason/Additional Info *"
                         android:textColorHint="@color/grey_text"
                         android:background="@drawable/grey_stoke_bg"
                         android:padding="15sp"/>
@@ -310,6 +338,7 @@
 
 
                     <TextView
+                        android:id="@+id/tv_submit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/button_d_blue_dashboard"

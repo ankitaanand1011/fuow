@@ -42,7 +42,7 @@ public class DashboardScreenLogin extends AppCompatActivity {
     RelativeLayout rl_products,rl_invoice,rl_my_todo,my_sales_order,
             rl_dashboard,rl_submitted_review,rl_invite,rl_order,rl_favorites, rl_financial,
             rl_manage_request,rl_manage_proposal,rl_my_rewards,rl_sales_enquiry,rl_my_earnings,
-            rl_my_schedule,rl_my_msg;
+            rl_my_schedule,rl_my_msg,rl_claim_business,rl_recommend_business;
     ImageView back;
     TextView tv_name,tv_balance_val,tv_business_val;
 
@@ -67,7 +67,8 @@ public class DashboardScreenLogin extends AppCompatActivity {
 
 
         rl_submitted_review=findViewById(R.id.rl_submitted_review);
-
+        rl_claim_business=findViewById(R.id.rl_claim_business);
+        rl_recommend_business=findViewById(R.id.rl_recommedbusiness);
         rl_products =findViewById(R.id.rl_products);
         rl_dashboard=findViewById(R.id.dashboard);
         rl_invoice=findViewById(R.id.rl_invoice);
@@ -248,7 +249,21 @@ public class DashboardScreenLogin extends AppCompatActivity {
             }
         });
 
+        rl_claim_business.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DashboardScreenLogin.this, ClaimBusiness.class);
+                startActivity(intent);
+            }
+        });
 
+        rl_recommend_business.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DashboardScreenLogin.this, RecommedBuisness.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
