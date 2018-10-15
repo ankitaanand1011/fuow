@@ -200,7 +200,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="shajskdh"
+
                     android:padding="5dp"
                     android:textSize="14sp"
                     android:background="@android:color/transparent"
@@ -227,7 +227,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="gdhjkdks@hsdkjfh.cndc"
                     android:padding="5dp"
                     android:textSize="14sp"
                     android:inputType="textEmailAddress"
@@ -255,13 +254,11 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="gdhjkdks@hsdkjfh.cndc"
-                    android:padding="5dp"
-                    android:textSize="14sp"
-                    android:inputType="textEmailAddress"
                     android:background="@android:color/transparent"
+                    android:inputType="textEmailAddress"
+                    android:padding="5dp"
                     android:textColor="@color/black"
-                    />
+                    android:textSize="14sp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -288,7 +285,6 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="gdhjkdks@hsdkjfh.cndc"
                     android:padding="5dp"
                     android:textSize="14sp"
                     android:maxLines="3"

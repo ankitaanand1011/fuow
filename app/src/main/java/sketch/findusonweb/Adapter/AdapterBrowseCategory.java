@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.github.ivbaranov.mli.MaterialLetterIcon;
@@ -108,19 +109,21 @@ public class AdapterBrowseCategory extends RecyclerView.Adapter<AdapterBrowseCat
         int[] androidColors = context.getResources().getIntArray(R.array.androidcolors);
         int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
 
+        Log.d("TAG", "onBindViewHolder: "+list_claim.get(position).get("image"));
+        if (list_claim.get(position).get("image").equals("false")){
 
-        if (list_claim.get(position).get("image").equals("")){
 
             holder.image.setVisibility(View.GONE);
             holder.icon.setVisibility(View.VISIBLE);
             holder.icon.setLetter(name);
-            holder.icon.setLetterColor(context.getResources().getColor(R.color.white));
-            holder.icon.setShapeColor(randomAndroidColor);
-            holder.icon.setShapeType(MaterialLetterIcon.Shape.ROUND_RECT);
+            holder.icon.setLetterColor(context.getResources().getColor(R.color.black));
+            holder.icon.setShapeColor(context.getResources().getColor(R.color.white));
+            holder.icon.setShapeType(MaterialLetterIcon.Shape.CIRCLE);
             holder.icon.setLetterSize(26);
             holder.icon.setLetterTypeface(Typeface.SANS_SERIF);
             holder.icon.setInitials(true);
             holder.icon.setInitialsNumber(2);
+            holder.rl_icon.setBackgroundColor(randomAndroidColor);
 
         }else {
             holder.image.setVisibility(View.VISIBLE);
@@ -152,12 +155,14 @@ public class AdapterBrowseCategory extends RecyclerView.Adapter<AdapterBrowseCat
         TextView name;
         ImageView image;
         MaterialLetterIcon icon;
+        RelativeLayout rl_icon;
         public MyViewHolder(View itemView) {
             super(itemView);
             // get the reference of item view's
             name =  itemView.findViewById(R.id.name);
-            image = (ImageView) itemView.findViewById(R.id.image);
+            image =  itemView.findViewById(R.id.image);
             icon =  itemView.findViewById(R.id.icon);
+            rl_icon = itemView.findViewById(R.id.rl_icon);
         }
     }
 }

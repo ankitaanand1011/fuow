@@ -7,8 +7,9 @@ package sketch.findusonweb.Constants;
 public class AppConfig
 {
 
-    public static String URL_DEV = "https://www.mydevsystems.com/dev/findusonweb/rest/RestController.php";
- //   public static String URL_LOGIN = "https://www.findusonweb.com/rest/RestController.php";
+   // public static String URL_DEV = "https://www.mydevsystems.com/dev/findusonweb/rest/RestController.php";
+    public static String URL_DEV = "https://findusonweb.com/rest/RestController.php";
+ //   public static String URL_LOGIN = "https://findusonweb.com/rest/RestController.php";
 
 
 }

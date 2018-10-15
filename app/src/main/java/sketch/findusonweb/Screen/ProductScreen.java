@@ -49,7 +49,7 @@ import sketch.findusonweb.Controller.GlobalClass;
 import sketch.findusonweb.R;
 import sketch.findusonweb.Utils.Shared_Preference;
 
-import static org.bouncycastle.asn1.x509.X509ObjectIdentifiers.id;
+
 
 
 public class ProductScreen extends AppCompatActivity{
