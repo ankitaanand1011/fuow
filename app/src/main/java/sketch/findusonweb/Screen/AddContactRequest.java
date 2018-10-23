@@ -15,9 +15,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -74,9 +76,9 @@ public class AddContactRequest extends AppCompatActivity {
     ImageView down_arrow,down_arrow1;
     int columnIndex;
     String id;
+
     EditText edt_description,et_first_name,et_last_name,edit_contact,edit_username,edit_usernumber,edit_email;
     String fname,lname , description, business_contact, username,user_phone,postcode,usermail;
-
     ArrayList<HashMap<String, String>> selectedLocation = new ArrayList<>();
     ArrayList<HashMap<String, String>> selectedCategory = new ArrayList<>();
     ArrayList<String> category = new ArrayList<>();
@@ -86,7 +88,7 @@ public class AddContactRequest extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_contact_request);
+        setContentView(R.layout.add_product_services);
         spinner_select_category = findViewById(R.id.spinner_category);
 
         pd = new ProgressDialog(AddContactRequest.this);
@@ -94,17 +96,16 @@ public class AddContactRequest extends AppCompatActivity {
         pd.setMessage(getResources().getString(R.string.loading));
         //rg=findViewById(R.id.radiogroup);
         array = new ArrayList<>();
-         et_first_name=findViewById(R.id.et_first_name);
+
+        et_first_name=findViewById(R.id.et_first_name);
          et_last_name=findViewById(R.id.et_last_name);
         // ratingBar =  findViewById(R.id.rating);
         edt_description=findViewById(R.id.edt_description);
         // edit_email=findViewById(R.id.edt_email);
         // edit_username=findViewById(R.id.edt_username);
         spinner_city = findViewById(R.id.spinner_location);
-        // attach_data=findViewById(R.id.attach_data);
-        // spinner_days=findViewById(R.id.spinner_days);
-        // attach_data_link=findViewById(R.id.attach_data_name);
-        back_button = findViewById(R.id.back_img);
+
+
         // down_arrow=findViewById(R.id.down_arraowpost);
         //down_arrow1=findViewById(R.id.down_arrowlocation);
         tv_submit = findViewById(R.id.tv_submit);
@@ -217,6 +218,7 @@ public class AddContactRequest extends AppCompatActivity {
 
             }
         });
+
     }
 
 

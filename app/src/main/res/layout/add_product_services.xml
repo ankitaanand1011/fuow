@@ -2,148 +2,91 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal"
-        android:background="@color/colorPrimaryDark"
-        >
-
-        <ImageView
-            android:layout_width="120sp"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/logo_white"
-            android:layout_centerInParent="true"
-
-            android:layout_gravity="center"/>
-
-        <ImageView
-            android:id="@+id/back_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10sp"
-            android:src="@mipmap/back"
-            android:layout_marginRight="10sp"
-            android:textColor="@color/white"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:layout_alignParentEnd="true"
-            android:padding="5dp"
-            android:contentDescription="@string/app_name"
-            android:layout_alignParentRight="true"
-            tools:ignore="RtlHardcoded" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/light_grey">
-
-    <TextView
-        android:id="@+id/tv1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_toStartOf="@+id/tv_add_requiremnt"
-        android:text="ADD PRODUCT / SERVICES"/>
-
-    <TextView
-        android:id="@+id/tv_add_requiremnt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:text="ADD REQUIREMENT"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_gravity="start"
-        android:paddingTop="5dp"
-        android:textSize="12sp"
-        android:paddingBottom="5dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:textColor="@color/white"
-        android:background="@drawable/button_orange_dashboard"
-        android:gravity="center"
-        />
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/grey_stoke_white_bg"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tv_primary_detail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:background="@drawable/bg_add_product_tab_left"
-            android:textSize="12sp"
-            android:textColor="@color/white"
-            android:text="Primary Detail"
-            android:padding="10dp"/>
-
-        <View
-            android:layout_width="1dp"
-            android:visibility="gone"
-            android:layout_height="match_parent"
-            android:background="@color/grey"/>
-        <TextView
-            android:id="@+id/tv_requirement"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="12sp"
-            android:background="@drawable/bg_add_product_tab_white"
-            android:textColor="@color/black"
-            android:text="Requirement"
-            android:padding="10dp"/>
-
-        <View
-            android:layout_width="1dp"
-            android:visibility="gone"
-            android:layout_height="match_parent"
-            android:background="@color/grey"/>
-        <TextView
-            android:id="@+id/tv_image_gallery"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="12sp"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:text="Image Gallery"
-            android:padding="10dp"/>
-
-    </LinearLayout>
-
     <ScrollView
+        android:id="@+id/scrl_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_top"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
 
+
+        >
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!--Primary Detail-->
+            <!--account-->
+
+            <RelativeLayout
+                android:id="@+id/rl_primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:background="@drawable/dashboard_layout_bg">
+
+                <ImageView
+                    android:id="@+id/img_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:src="@mipmap/account_summary"/>
+
+                <TextView
+                    android:id="@+id/tv_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/img_1"
+                    android:layout_toLeftOf="@+id/arrow_img_1"
+                    android:textStyle="bold"
+                    android:textSize="12sp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_centerVertical="true"
+                    android:text="PRIMARY DETAILS"/>
+
+                <ImageView
+                    android:id="@+id/arrow_img_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:src="@mipmap/down"/>
+
+                <ImageView
+                    android:id="@+id/edit_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:visibility="gone"
+                    android:src="@mipmap/icon_edit"/>
+
+                <ImageView
+                    android:id="@+id/sync_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@+id/edit_img"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:visibility="gone"
+                    android:src="@mipmap/icon_sync"/>
+
+
+            </RelativeLayout>
             <LinearLayout
                 android:id="@+id/ll_primary_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-android:visibility="gone"
+
                 android:orientation="vertical"
                 android:background="@color/white"
                 >
@@ -450,30 +393,43 @@ android:visibility="gone"
 
             </LinearLayout>
 
+            <!--listing-->
 
-            <!--Requirement-->
-            <LinearLayout
-                android:id="@+id/ll_requirement"
+            <RelativeLayout
+                android:id="@+id/rl_requirement"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:visibility="gone"
-                android:layout_margin="20dp"
-                android:orientation="vertical">
+                android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/dashboard_layout_bg">
+
+                <ImageView
+                    android:id="@+id/img_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:src="@mipmap/due_invoices"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
-                    android:text="@string/tell_us"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/img_2"
+                    android:layout_toLeftOf="@+id/arrow_img_2"
+                    android:textStyle="bold"
                     android:textSize="12sp"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/structure"/>
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_centerVertical="true"
+                    android:text="REQUIREMENT"/>
+
+                <ImageView
+                    android:id="@+id/arrow_img_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:src="@mipmap/down"/>
 
                 <LinearLayout
                     android:id="@+id/ll_add_requirement"
@@ -577,42 +533,80 @@ android:visibility="gone"
 
                 </LinearLayout>
 
-                <RelativeLayout
-                    android:id="@+id/rl_requirement_list"
-                    android:layout_marginTop="10dp"
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_listing_detail"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:visibility="gone"
+                android:background="@color/white">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_listing"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    />
+            </RelativeLayout>
 
+            <!--favorite-->
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rv_requirement"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        />
-                </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_gallery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/dashboard_layout_bg">
 
-
-                <TextView
-                    android:id="@+id/tv_save"
+                <ImageView
+                    android:id="@+id/img_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="SAVE"
-                    android:layout_marginTop="20dp"
-                    android:layout_gravity="center_horizontal"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="50dp"
-                    android:paddingRight="50dp"
-                    android:textColor="@color/white"
-                    android:background="@drawable/button_d_blue_dashboard"
+                    android:padding="5dp"
+                    android:src="@mipmap/favorites1"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/img_3"
+                    android:layout_toLeftOf="@+id/arrow_img_3"
+                    android:textStyle="bold"
+                    android:textSize="12sp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_centerVertical="true"
+                    android:text="IMAGE GALLERY"/>
+
+                <ImageView
+                    android:id="@+id/arrow_img_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:src="@mipmap/down"/>
+
+                <TextView
+                    android:id="@+id/tv_view_all_fav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingTop="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="5dp"
+                    android:visibility="gone"
                     android:gravity="center"
-                    />
+                    android:text="VIEW ALL"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/button_yellow_dashboard"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"/>
 
-
-            </LinearLayout>
-
-            <!--Image Gallery-->
+            </RelativeLayout>
             <LinearLayout
                 android:id="@+id/ll_image_gallery"
                 android:layout_width="match_parent"
@@ -620,7 +614,7 @@ android:visibility="gone"
                 android:padding="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
-
+                android:visibility="gone"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -755,8 +749,24 @@ android:visibility="gone"
             </LinearLayout>
 
 
-        </LinearLayout>
 
+            <RelativeLayout
+                android:id="@+id/rl_invoice_detail"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:visibility="gone"
+                android:background="@color/white">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_invoice"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    />
+            </RelativeLayout>
+
+        </LinearLayout>
     </ScrollView>
+
 
 </LinearLayout>

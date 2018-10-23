@@ -38,13 +38,421 @@
             tools:ignore="RtlHardcoded" />
 
     </RelativeLayout>
+    <LinearLayout
+        android:layout_below="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#ffffff"
+        >
+        <sketch.findusonweb.Controller.Sliding
+            android:id="@+id/sliding1"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="1px"
+           >
+            <LinearLayout
+                android:id="@+id/ll_summary"
+                android:layout_below="@+id/sliding1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center">
+           <TextView
+               android:id="@+id/tv_summary"
+               android:layout_width="180dp"
+               android:layout_height="50dp"
+               android:text="SUMMARY"
+               android:background="@color/dark_voilet"
+               android:padding="10dp"
+               android:textSize="12sp"
+               android:gravity="center"
+               android:textColor="@color/white"
+               android:layout_margin="10dp"
+               />
+            <TextView
+                android:id="@+id/tv_view_public_listing"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:text="VIEW PUBLIC LISTING  "
+                android:background="@color/dark_voilet"
+                android:padding="10dp"
+                android:textSize="10sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/rl_product"
+                android:layout_below="@+id/ll_summary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+
+                    android:gravity="center"
+                    android:background="@color/dark_voilet">
+                <TextView
+                    android:id="@+id/tv_product_service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PRODUCT/SERVICES"
+                    android:textSize="12sp"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/white"
+                    />
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/darker_gray" />
+                   <TextView
+                       android:id="@+id/tv_plus_product_service"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="+"
+                       android:padding="5dp"
+                       android:textColor="@color/white"
+                       android:textSize="30dp"
+
+                       android:layout_marginLeft="10dp"/>
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/my_business_earning"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:text="MY BUSINESS BRIEFING"
+                    android:background="@color/dark_voilet"
+                    android:padding="10dp"
+                    android:textSize="10sp"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_marginLeft="22dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/purchase"
+                android:layout_below="@+id/rl_product"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/purchase_context"
+                    android:layout_width="180dp"
+                    android:layout_height="50dp"
+                    android:text="PURCHASE CONTEXT"
+                    android:background="@color/dark_voilet"
+                    android:padding="10dp"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:layout_margin="10dp"
+                    />
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:text="ONE PAGE BUSINESS PLAN"
+                    android:background="@color/dark_voilet"
+                    android:padding="10dp"
+                    android:textSize="10sp"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/promotions"
+                android:layout_below="@+id/rl_product"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginTop="-10dp">
+                <TextView
+                    android:layout_width="180dp"
+                    android:layout_height="50dp"
+                    android:text="PROMOTIONS / DISCOUNT"
+                    android:background="@color/dark_voilet"
+                    android:padding="10dp"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:layout_margin="10dp"
+                    />
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:text="SUBSCRIPTION DETAILS"
+                    android:background="@color/dark_voilet"
+                    android:padding="10dp"
+                    android:textSize="10sp"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/LISTING"
+                android:layout_below="@+id/rl_product"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginTop="-10dp">
+                <TextView
+                    android:layout_width="180dp"
+                    android:layout_height="50dp"
+                    android:text="EDIT LISTING"
+                    android:background="@color/dark_voilet"
+                    android:padding="10dp"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:layout_margin="10dp"
+                    />
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:text="STATISTICS"
+                    android:background="@color/dark_voilet"
+                    android:padding="10dp"
+                    android:textSize="10sp"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/business_review"
+                android:layout_below="@+id/rl_product"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+               >
+
+                <TextView
+                    android:layout_width="180dp"
+                    android:layout_height="50dp"
+                    android:background="@color/dark_voilet"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="MY BUSINESS REVIEW"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+
+                    />
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginLeft="19dp"
+                    android:layout_marginRight="1dp"
+                    android:background="@color/dark_voilet">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="GALLERY      "
+                        android:textSize="12sp"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/white"
+                        />
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/darker_gray" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+"
+                        android:padding="5dp"
+                        android:textColor="@color/white"
+                        android:textSize="30dp"
+
+                        android:layout_marginLeft="10dp"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/rl_document"
+                android:layout_below="@+id/business_review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginTop="10dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+
+                    android:gravity="center"
+                    android:background="@color/dark_voilet">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DOCUMENTS           "
+                        android:textSize="12sp"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/white"
+                        />
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/darker_gray" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+"
+                        android:padding="5dp"
+                        android:textColor="@color/white"
+                        android:textSize="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="5dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginLeft="19dp"
+                    android:layout_marginRight="1dp"
+                    android:background="@color/dark_voilet">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="EVENTS     "
+                        android:textSize="12sp"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/white"
+                        />
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/darker_gray" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+"
+                        android:padding="5dp"
+                        android:textColor="@color/white"
+                        android:textSize="30dp"
+
+                        android:layout_marginLeft="10dp"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/rl_banner"
+                android:layout_below="@+id/business_review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginTop="10dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+
+                    android:gravity="center"
+                    android:background="@color/dark_voilet">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BANNERS                  "
+                        android:textSize="12sp"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/white"
+                        />
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/darker_gray" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+"
+                        android:padding="5dp"
+                        android:textColor="@color/white"
+                        android:textSize="30dp"
+android:layout_marginRight="5dp"
+                        android:layout_marginLeft="10dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginLeft="19dp"
+                    android:layout_marginRight="1dp"
+                    android:background="@color/dark_voilet">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="LOCATIONS"
+                        android:textSize="12sp"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/white"
+                        />
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/darker_gray" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+"
+                        android:padding="5dp"
+                        android:textColor="@color/white"
+                        android:textSize="30dp"
+
+                        android:layout_marginLeft="10dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </sketch.findusonweb.Controller.Sliding>
+
+        <Button android:id="@+id/show1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="-15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/arrow_new"/>
+    </LinearLayout>
 
     <ScrollView
+        android:id="@+id/scrl_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none"
         android:layout_below="@+id/rl_top"
-        android:layout_margin="10dp">
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
+
+
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -75,11 +75,14 @@ public class AddProductScreen extends AppCompatActivity {
     ArrayList<String> type;
     ArrayList<String> status;
     ArrayList<String> requirement;
-
+    RelativeLayout primary_details,requirement_new,gallery;
     String TAG = "add_product";
     ProgressDialog pd;
     String listing_id;
     GlobalClass globalClass;
+    ImageView arrow_img_1,arrow_img_2,arrow_img_3,arrow_img_4,arrow_img_5,arrow_img_6,arrow_img_7;
+    LinearLayout rl_account_detail,rl_listing_detail,rl_favorite_detail;
+
     Shared_Preference prefrence;
     String status_text,type_text;
     TextView tv_submit;
@@ -115,7 +118,7 @@ public class AddProductScreen extends AppCompatActivity {
     @Override
     public void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_product);
+        setContentView(R.layout.add_product_services);
 
         initialisation();
         function();
@@ -128,8 +131,15 @@ public class AddProductScreen extends AppCompatActivity {
         prefrence = new Shared_Preference(AddProductScreen.this);
         prefrence.loadPrefrence();
 
+        rl_account_detail=findViewById(R.id.ll_primary_detail);
+        rl_listing_detail=findViewById(R.id.ll_add_requirement);
+        rl_favorite_detail=findViewById(R.id.ll_image_gallery);
         pd = new ProgressDialog(AddProductScreen.this);
-
+        primary_details=findViewById(R.id.rl_primary);
+        requirement_new=findViewById(R.id.rl_requirement);
+        gallery=findViewById(R.id.rl_gallery);
+        arrow_img_2 = findViewById(R.id.arrow_img_2);
+        arrow_img_3 = findViewById(R.id.arrow_img_3);
         edt_tax_price=findViewById(R.id.edt_tax_price);
         back_img=findViewById(R.id.back_img);
         spinner_type=findViewById(R.id.spinner_type);
@@ -158,7 +168,7 @@ public class AddProductScreen extends AppCompatActivity {
         rv_requirement=findViewById(R.id.rv_requirement);
         spinner_ans_type = findViewById(R.id.spinner_ans_type);
         ll_radio_option = findViewById(R.id.ll_radio_option);
-
+        arrow_img_1 = findViewById(R.id.arrow_img_1);
 
     }
 
@@ -185,23 +195,73 @@ public class AddProductScreen extends AppCompatActivity {
 
        id=getIntent().getStringExtra("id");
         Log.d(TAG, "ID of Activty: "+id);
-        function_primary_detail();
-        function_requirement();
-        function_image_gallery();
+       // function_primary_detail();
+       // function_requirement();
+       // function_image_gallery();
+        rl_account_detail.setVisibility(View.GONE);
+        rl_listing_detail.setVisibility(View.GONE);
+        rl_favorite_detail.setVisibility(View.GONE);
+        primary_details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rl_account_detail.setVisibility(View.VISIBLE);
+                rl_listing_detail.setVisibility(View.GONE);
+                rl_favorite_detail.setVisibility(View.GONE);
 
-        ll_primary_detail.setVisibility(View.VISIBLE);
+
+                arrow_img_1.setVisibility(View.GONE);
+                arrow_img_2.setVisibility(View.VISIBLE);
+                arrow_img_3.setVisibility(View.VISIBLE);
+
+
+
+            }
+        });
+        requirement_new.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rl_listing_detail.setVisibility(View.VISIBLE);
+                rl_account_detail.setVisibility(View.GONE);
+                rl_favorite_detail.setVisibility(View.GONE);
+
+
+                arrow_img_1.setVisibility(View.VISIBLE);
+                arrow_img_2.setVisibility(View.GONE);
+                arrow_img_3.setVisibility(View.VISIBLE);
+
+
+
+            }
+        });
+        gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rl_listing_detail.setVisibility(View.GONE);
+                rl_account_detail.setVisibility(View.GONE);
+                rl_favorite_detail.setVisibility(View.VISIBLE);
+
+
+                arrow_img_1.setVisibility(View.VISIBLE);
+                arrow_img_2.setVisibility(View.VISIBLE);
+                arrow_img_3.setVisibility(View.GONE);
+
+
+
+            }
+        });
+      /*  ll_primary_detail.setVisibility(View.VISIBLE);
         ll_requirement.setVisibility(View.GONE);
         ll_image_gallery.setVisibility(View.GONE);
 
-        tv_add_requiremnt.setVisibility(View.GONE);
+        tv_add_requiremnt.setVisibility(View.GONE);*/
 
-        back_img.setOnClickListener(new View.OnClickListener() {
+      /*  back_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-
+*/
 
 
 
@@ -209,6 +269,7 @@ public class AddProductScreen extends AppCompatActivity {
 
     }
 
+/*
     private void function_primary_detail() {
         type = new ArrayList<>();
         status = new ArrayList<>();
@@ -366,8 +427,10 @@ public class AddProductScreen extends AppCompatActivity {
                 description = edt_description.getText().toString();
                 expire = edt_expire.getText().toString();
                 price = edt_price.getText().toString();
-               /* Float f= Float.parseFloat(price);
-                new_tax_price=((20/100)*f);*/
+               */
+/* Float f= Float.parseFloat(price);
+                new_tax_price=((20/100)*f);*//*
+
                  tax=edt_tax_price.getText().toString();
 
                 postjob(title,description,price,expire,tax);
@@ -396,6 +459,8 @@ public class AddProductScreen extends AppCompatActivity {
         });
 
 
+*/
+/*
         tv_primary_detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -413,8 +478,59 @@ public class AddProductScreen extends AppCompatActivity {
                 tv_add_requiremnt.setVisibility(View.GONE);
             }
         });
+*//*
+
+        primary_details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rl_account_detail.setVisibility(View.VISIBLE);
+                rl_listing_detail.setVisibility(View.GONE);
+                rl_favorite_detail.setVisibility(View.GONE);
+
+
+                arrow_img_1.setVisibility(View.GONE);
+                arrow_img_2.setVisibility(View.VISIBLE);
+                arrow_img_3.setVisibility(View.VISIBLE);
+
+
+
+            }
+        });
+        requirement_new.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rl_listing_detail.setVisibility(View.VISIBLE);
+                rl_account_detail.setVisibility(View.GONE);
+                rl_favorite_detail.setVisibility(View.GONE);
+
+
+                arrow_img_1.setVisibility(View.VISIBLE);
+                arrow_img_2.setVisibility(View.GONE);
+                arrow_img_3.setVisibility(View.VISIBLE);
+
+
+
+            }
+        });
+        gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rl_listing_detail.setVisibility(View.GONE);
+                rl_account_detail.setVisibility(View.GONE);
+                rl_favorite_detail.setVisibility(View.VISIBLE);
+
+
+                arrow_img_1.setVisibility(View.VISIBLE);
+                arrow_img_2.setVisibility(View.VISIBLE);
+                arrow_img_3.setVisibility(View.GONE);
+
+
+
+            }
+        });
 
     }
+*/
 
     private void function_requirement() {
 
@@ -431,7 +547,7 @@ public class AddProductScreen extends AppCompatActivity {
 
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        rv_requirement.setLayoutManager(mLayoutManager);
+       rv_requirement.setLayoutManager(mLayoutManager);
         AdapterRequirement adapterRequirement = new AdapterRequirement(AddProductScreen.this, requirement);
         rv_requirement.setAdapter(adapterRequirement);
 

@@ -10,8 +10,11 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +43,7 @@ import sketch.findusonweb.Adapter.AdapterPreviousSearch;
 import sketch.findusonweb.Adapter.AdapterToDoScreen;
 import sketch.findusonweb.Constants.AppConfig;
 import sketch.findusonweb.Controller.GlobalClass;
+import sketch.findusonweb.Controller.Sliding;
 import sketch.findusonweb.R;
 import sketch.findusonweb.Utils.Shared_Preference;
 
@@ -49,6 +53,7 @@ public class DashboardNew extends AppCompatActivity {
     GlobalClass globalClass;
     Shared_Preference prefrence;
     ProgressDialog pd;
+
     String TAG = "DashboardNew";
     RelativeLayout rl_account,rl_account_detail,
             rl_listing,rl_listing_detail,
@@ -71,16 +76,18 @@ public class DashboardNew extends AppCompatActivity {
     AdapterListing adapterListing;
     AdapterPreviousSearch adapterPreviousSearch;
     AdapterDueInvoices adapterDueInvoices;
-
+     Sliding popup;
+     ScrollView scrl_mian;
     ArrayList<HashMap<String,String>> list_namesfavoriteAll;
     ArrayList<HashMap<String,String>> list_credit;
     ArrayList<HashMap<String,String>> list_todo;
     ArrayList<HashMap<String,String>> listing;
     ArrayList<HashMap<String,String>> search;
     ArrayList<HashMap<String,String>> invoice;
-
+    Button btn;
     TextView tv_name,tv_phone_val,tv_business_val;
-
+    CheckBox c1,c2,c3;
+    int key=0;
     ImageView back;
 
     ImageView edit_img,sync_img,sync_img1;
@@ -91,7 +98,10 @@ public class DashboardNew extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard_new);
-
+         popup =  findViewById(R.id.sliding1);
+         scrl_mian=findViewById(R.id.scrl_main);
+        popup.setVisibility(View.GONE);
+        btn=findViewById(R.id.show1);
         initialisation();
         function();
         viewListingByUser();
@@ -211,7 +221,24 @@ public class DashboardNew extends AppCompatActivity {
                 finish();
             }
         });
+        btn.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View arg0) {
+                if(key==0){
+                    key=1;
+                    popup.setVisibility(View.VISIBLE);
+                    btn.setBackgroundResource(R.mipmap.arrow_new);
+                    scrl_mian.setVisibility(View.GONE);
+                }
+                else if(key==1){
+                    key=0;
+                    popup.setVisibility(View.GONE);
+                    btn.setBackgroundResource(R.mipmap.arrow_new);
+                    scrl_mian.setVisibility(View.VISIBLE);
+                }
+            }
+        });
         rl_account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
