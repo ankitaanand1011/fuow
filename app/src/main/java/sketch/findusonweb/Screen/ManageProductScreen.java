@@ -46,6 +46,7 @@ public class ManageProductScreen extends AppCompatActivity {
     ProgressDialog pd;
     RecyclerView rv_manage_product;
     String TAG = "product";
+    String id;
     ImageView back_img;
     TextView tv_add_products;
     RelativeLayout rl_add_product;
@@ -68,7 +69,7 @@ public class ManageProductScreen extends AppCompatActivity {
         pd = new ProgressDialog(ManageProductScreen.this);
         pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pd.setMessage(getResources().getString(R.string.loading));
-
+        id=getIntent().getStringExtra("id");
         list_products = new ArrayList<>();
 
 
@@ -97,6 +98,7 @@ public class ManageProductScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ManageProductScreen.this,AddProductScreen.class);
+                intent.putExtra("id",id);
                 startActivity(intent);
             }
         });
@@ -148,7 +150,7 @@ public class ManageProductScreen extends AppCompatActivity {
                             String listing_name = images1.get("listing_name").toString().replaceAll("\"", "");
                             String images = images1.get("images").toString().replaceAll("\"", "");
                             String keywords = images1.get("keywords").toString().replaceAll("\"", "");
-                            String www = images1.get("www").toString().replaceAll("\"", "");
+                            String image_url = images1.get("image_url").toString().replaceAll("\"", "");
                             String listingfriendly_url = images1.get("listingfriendly_url").toString().replaceAll("\"", "");
                             String listing_location_id = images1.get("listing_location_id").toString().replaceAll("\"", "");
                             String primary_category_id = images1.get("primary_category_id").toString().replaceAll("\"", "");
@@ -167,9 +169,9 @@ public class ManageProductScreen extends AppCompatActivity {
                             hashMap.put("listing_name",listing_name);
                             hashMap.put("images",images);
                             hashMap.put("keywords",keywords);
-                           /* hashMap.put("www",www);
-                            hashMap.put("id",id);
-                            hashMap.put("listingfriendly_url",listingfriendly_url);*/
+                            hashMap.put("image_url",image_url);
+
+                            hashMap.put("listingfriendly_url",listingfriendly_url);
                             // hashMap.put(pricerating",rating);
 
                             list_products.add(hashMap);
@@ -221,6 +223,7 @@ public class ManageProductScreen extends AppCompatActivity {
 
                 params.put("user_id", globalClass.getId());
                 params.put("view","myProducts");
+                params.put("listing_id",id);
 
                 Log.d(TAG, "getParams: "+params);
                 return params;

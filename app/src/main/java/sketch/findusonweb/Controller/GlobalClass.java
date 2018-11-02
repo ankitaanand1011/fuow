@@ -58,6 +58,7 @@ public class GlobalClass extends Application {
     String fname;
     String lname;
     String organization;
+    String order_id,type;
 
     public String device_type = "Android";
     public String view1="validateLogin";
@@ -213,8 +214,20 @@ public class GlobalClass extends Application {
 
     ///////////////////////////////////////////////////////////
     //cart section
+    public String getOrder_id() {
+        return order_id;
+    }
 
+    public void setOrder_id(String order_id) {
+        this.order_id = order_id;
+    }
+    public String getType() {
+        return type;
+    }
 
+    public void setType(String type) {
+        this.type = type;
+    }
     public String cart_no= "0";
 
     public String getCart_no() {

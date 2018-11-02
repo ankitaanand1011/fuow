@@ -13,6 +13,7 @@
     <color name="light_grey">#EEF0F1</color>
     <color name="grey_text">#6e6e6e</color>
     <color name="light_green">#4ba942</color>
+    <color name="light_green_new">#5CD53F</color>
     <color name="dark_grey">#353535</color>
     <color name="golden">#DAA520</color>
     <color name="orange">#ff6200</color>
@@ -24,6 +25,8 @@
     <color name="grey_dashboard">#9E9E9E</color>
     <color name="list_bg">#F2F2F2</color>
     <color name="pink">#F251DC</color>
+    <color name="blue_new">#33119B</color>
+    <color name="pink_new">#F85F61</color>
 
 
     <item name="blue" type="color">#FF33B5E5</item>

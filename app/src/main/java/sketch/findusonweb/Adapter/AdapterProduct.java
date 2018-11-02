@@ -101,6 +101,7 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.ViewHold
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context,AddProductScreen.class);
+                intent.putExtra("id",list_products.get(position).get("id"));
                 context.startActivity(intent);
             }
         });

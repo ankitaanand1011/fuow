@@ -84,24 +84,22 @@ public class DashboardNew extends AppCompatActivity {
     ArrayList<HashMap<String,String>> listing;
     ArrayList<HashMap<String,String>> search;
     ArrayList<HashMap<String,String>> invoice;
-    Button btn;
+
     TextView tv_name,tv_phone_val,tv_business_val;
     CheckBox c1,c2,c3;
-    int key=0;
+
     ImageView back;
 
     ImageView edit_img,sync_img,sync_img1;
     ImageView arrow_img_1,arrow_img_2,arrow_img_3,arrow_img_4,arrow_img_5,arrow_img_6,arrow_img_7;
-    TextView tv_view_all,tv_add_listing,tv_view_all_fav,tv_top_up,tv_new_search,tv_view_all_invoice;
+    TextView tv_view_all,tv_add_listing,tv_view_all_fav,tv_top_up,tv_new_search,
+            tv_view_all_invoice,tv_summary;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard_new);
-         popup =  findViewById(R.id.sliding1);
-         scrl_mian=findViewById(R.id.scrl_main);
-        popup.setVisibility(View.GONE);
-        btn=findViewById(R.id.show1);
+
         initialisation();
         function();
         viewListingByUser();
@@ -111,6 +109,7 @@ public class DashboardNew extends AppCompatActivity {
         globalClass = (GlobalClass) getApplicationContext();
         prefrence = new Shared_Preference(DashboardNew.this);
         pd = new ProgressDialog(DashboardNew.this);
+
 
 
 
@@ -221,24 +220,7 @@ public class DashboardNew extends AppCompatActivity {
                 finish();
             }
         });
-        btn.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View arg0) {
-                if(key==0){
-                    key=1;
-                    popup.setVisibility(View.VISIBLE);
-                    btn.setBackgroundResource(R.mipmap.arrow_new);
-                    scrl_mian.setVisibility(View.GONE);
-                }
-                else if(key==1){
-                    key=0;
-                    popup.setVisibility(View.GONE);
-                    btn.setBackgroundResource(R.mipmap.arrow_new);
-                    scrl_mian.setVisibility(View.VISIBLE);
-                }
-            }
-        });
         rl_account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -474,6 +456,13 @@ public class DashboardNew extends AppCompatActivity {
                 tv_new_search.setVisibility(View.GONE);
                 tv_top_up.setVisibility(View.GONE);
 
+            }
+        });
+        edit_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DashboardNew.this,EditSummary.class);
+                startActivity(intent);
             }
         });
 

@@ -1,0 +1,753 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimaryDark"
+        >
+
+        <ImageView
+            android:layout_width="120sp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/logo_white"
+            android:layout_centerInParent="true"
+
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:id="@+id/back_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:src="@mipmap/back"
+            android:layout_marginRight="10sp"
+            android:textColor="@color/white"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_alignParentEnd="true"
+            android:padding="5dp"
+            android:contentDescription="@string/app_name"
+            android:layout_alignParentRight="true"
+            tools:ignore="RtlHardcoded" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/light_grey">
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_toStartOf="@+id/tv_add_requiremnt"
+            android:text="BUSINESS PLAN"/>
+
+        <TextView
+            android:id="@+id/tv_add_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="ADD ACTION PLAN ITEM"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="start"
+            android:paddingTop="5dp"
+            android:textSize="12sp"
+            android:visibility="gone"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/white"
+            android:background="@drawable/button_yellow_dashboard"
+            android:gravity="center"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/grey_stoke_white_bg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_primary_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@drawable/bg_add_product_tab_left"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:text="One page business plan "
+            android:padding="10dp"/>
+
+        <View
+            android:layout_width="1dp"
+            android:visibility="gone"
+            android:layout_height="match_parent"
+            android:background="@color/grey"/>
+        <TextView
+            android:id="@+id/tv_requirement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:background="@drawable/bg_add_product_tab_white"
+            android:textColor="@color/black"
+            android:text="Action plan Item"
+            android:padding="10dp"/>
+
+
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--Primary Detail-->
+            <LinearLayout
+                android:id="@+id/ll_primary_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+
+                android:orientation="vertical"
+                android:background="@color/white"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Listing Name"/>
+                <EditText
+                    android:id="@+id/edt_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:textColorHint="@color/grey_text"
+                    android:background="@android:color/transparent"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Mission Statements"
+                    android:layout_marginTop="5dp"/>
+
+                <EditText
+                    android:id="@+id/edt_mission_statement"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:gravity="start"
+                    android:textSize="14sp"
+
+                    android:layout_marginTop="5dp"
+                    android:textColorHint="@color/grey_text"
+                    android:inputType="textMultiLine"
+                    android:background="@drawable/grey_border_corner"
+                    android:padding="15sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Big picture plan statement *"
+                    android:layout_marginTop="5dp"/>
+
+
+                <EditText
+                    android:id="@+id/edt_big_picture"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:layout_marginTop="5dp"
+                    android:textColorHint="@color/grey_text"
+                    android:inputType="textMultiLine"
+                    android:background="@drawable/grey_border_corner"
+                    android:padding="15sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Where our business now *"
+                    android:layout_marginTop="5dp"/>
+
+
+                <EditText
+                    android:id="@+id/edt_business_now"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:layout_marginTop="5dp"
+                    android:textColorHint="@color/grey_text"
+                    android:inputType="textMultiLine"
+                    android:background="@drawable/grey_border_corner"
+                    android:padding="15sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Where our business will be in six month time *"
+                    android:layout_marginTop="5dp"/>
+
+
+                <EditText
+                    android:id="@+id/edt_six_month"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:layout_marginTop="5dp"
+                    android:textColorHint="@color/grey_text"
+                    android:inputType="textMultiLine"
+                    android:background="@drawable/grey_border_corner"
+                    android:padding="15sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Where our business will be in 12 month time *"
+                    android:layout_marginTop="5dp"/>
+
+
+                <EditText
+                    android:id="@+id/edt_12_month"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:layout_marginTop="5dp"
+                    android:textColorHint="@color/grey_text"
+                    android:inputType="textMultiLine"
+                    android:background="@drawable/grey_border_corner"
+                    android:padding="15sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Where our business will be in three years time *"
+                    android:layout_marginTop="5dp"/>
+
+
+                <EditText
+                    android:id="@+id/edt_three_years"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:layout_marginTop="5dp"
+                    android:textColorHint="@color/grey_text"
+                    android:inputType="textMultiLine"
+                    android:background="@drawable/grey_border_corner"
+                    android:padding="15sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Key offerings "
+                    android:layout_marginTop="5dp"/>
+
+
+                <EditText
+                    android:id="@+id/edt_key_offering"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:layout_marginTop="5dp"
+                    android:textColorHint="@color/grey_text"
+                    android:inputType="textMultiLine"
+                    android:background="@drawable/grey_border_corner"
+                    android:padding="15sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Key Features"
+                    android:layout_marginTop="5dp"/>
+
+
+                <EditText
+                    android:id="@+id/edt_key_features"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:layout_marginTop="5dp"
+                    android:textColorHint="@color/grey_text"
+                    android:inputType="textMultiLine"
+                    android:background="@drawable/grey_border_corner"
+                    android:padding="15sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Key Benefits"
+                    android:layout_marginTop="5dp"/>
+
+
+                <EditText
+                    android:id="@+id/edt_key_benefits"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:layout_marginTop="5dp"
+                    android:textColorHint="@color/grey_text"
+                    android:inputType="textMultiLine"
+                    android:background="@drawable/grey_border_corner"
+                    android:padding="15sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Buyers Persona"
+                    android:layout_marginTop="5dp"/>
+
+
+                <EditText
+                    android:id="@+id/edt_buyers_persona"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:layout_marginTop="5dp"
+                    android:textColorHint="@color/grey_text"
+                    android:inputType="textMultiLine"
+                    android:background="@drawable/grey_border_corner"
+                    android:padding="15sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Buying reasons"
+                    android:layout_marginTop="5dp"/>
+
+
+                <EditText
+                    android:id="@+id/edt_buying_reason"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:layout_marginTop="5dp"
+                    android:textColorHint="@color/grey_text"
+                    android:inputType="textMultiLine"
+                    android:background="@drawable/grey_border_corner"
+                    android:padding="15sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Important success resource"
+                    android:layout_marginTop="5dp"/>
+
+
+                <EditText
+                    android:id="@+id/edt_success_resource"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:layout_marginTop="5dp"
+                    android:textColorHint="@color/grey_text"
+                    android:inputType="textMultiLine"
+                    android:background="@drawable/grey_border_corner"
+                    android:padding="15sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Finance Requirement"
+                    android:layout_marginTop="5dp"/>
+
+
+                <EditText
+                    android:id="@+id/edt_finance_requirement"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:layout_marginTop="5dp"
+                    android:textColorHint="@color/grey_text"
+                    android:inputType="textMultiLine"
+                    android:background="@drawable/grey_border_corner"
+                    android:padding="15sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Day To Day Expenses"
+                    android:layout_marginTop="5dp"/>
+
+
+                <EditText
+                    android:id="@+id/edt_day_to_day_work"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:layout_marginTop="5dp"
+                    android:textColorHint="@color/grey_text"
+                    android:inputType="textMultiLine"
+                    android:background="@drawable/grey_border_corner"
+                    android:padding="15sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Target Market"
+                    android:layout_marginTop="5dp"/>
+
+
+                <EditText
+                    android:id="@+id/edt_target_market"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:layout_marginTop="5dp"
+                    android:textColorHint="@color/grey_text"
+                    android:inputType="textMultiLine"
+                    android:background="@drawable/grey_border_corner"
+                    android:padding="15sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Success Factors"
+                    android:layout_marginTop="5dp"/>
+
+
+                <EditText
+                    android:id="@+id/edt_success_factors"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:layout_marginTop="5dp"
+                    android:textColorHint="@color/grey_text"
+                    android:inputType="textMultiLine"
+                    android:background="@drawable/grey_border_corner"
+                    android:padding="15sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="The Key People"
+                    android:layout_marginTop="5dp"/>
+
+
+                <EditText
+                    android:id="@+id/edt_key_people"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:layout_marginTop="5dp"
+                    android:textColorHint="@color/grey_text"
+                    android:inputType="textMultiLine"
+                    android:background="@drawable/grey_border_corner"
+                    android:padding="15sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Got To Market Strategy"
+                    android:layout_marginTop="5dp"/>
+
+
+                <EditText
+                    android:id="@+id/edt_marget_strategy"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:layout_marginTop="5dp"
+                    android:textColorHint="@color/grey_text"
+                    android:inputType="textMultiLine"
+                    android:background="@drawable/grey_border_corner"
+                    android:padding="15sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Competition "
+                    android:layout_marginTop="5dp"/>
+
+
+                <EditText
+                    android:id="@+id/edt_competition"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:layout_marginTop="5dp"
+                    android:textColorHint="@color/grey_text"
+                    android:inputType="textMultiLine"
+                    android:background="@drawable/grey_border_corner"
+                    android:padding="15sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nice to have (but not constraints) "
+                    android:layout_marginTop="5dp"/>
+
+
+                <EditText
+                    android:id="@+id/edt_nice_to_have"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:layout_marginTop="5dp"
+                    android:textColorHint="@color/grey_text"
+                    android:inputType="textMultiLine"
+                    android:background="@drawable/grey_border_corner"
+                    android:padding="15sp"/>
+
+               <!-- <EditText
+                    android:id="@+id/edt_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/price"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:textColorHint="@color/grey_text"
+                    android:background="@android:color/transparent"
+                    android:padding="15sp"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey"/>
+
+                <EditText
+                    android:id="@+id/edt_tax_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Inclusive Tax Price"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:textColorHint="@color/grey_text"
+                    android:background="@android:color/transparent"
+                    android:padding="15sp"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/edt_expire"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/expiry_date"
+                        android:gravity="start"
+                        android:textSize="14sp"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:layout_toStartOf="@+id/img_btn"
+                        android:textColorHint="@color/grey_text"
+                        android:background="@android:color/transparent"
+                        android:padding="15sp"/>
+
+                    <ImageButton
+
+                        android:id="@+id/img_btn"
+                        android:background="@null"
+                        android:padding="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@android:drawable/ic_menu_my_calendar"
+                        />
+                </RelativeLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/spinner_status"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/status"
+                        android:gravity="center"
+                        android:background="@android:color/transparent"
+                        android:spinnerMode="dropdown"
+                        android:layout_toStartOf="@+id/status"
+                        />
+                    <ImageView
+                        android:id="@+id/status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:onClick="showDropDown"
+                        android:tint="@color/black"
+                        android:src="@mipmap/dropdown16"
+                        android:layout_alignParentEnd="true" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey"/>
+                <EditText
+                    android:id="@+id/edt_commission"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Commission  %"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:textColorHint="@color/grey_text"
+                    android:background="@android:color/transparent"
+                    android:padding="15sp"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/commission"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:textSize="10sp"
+                    android:textColor="@color/grey_text"/>
+
+
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Attachment :"
+                        android:textColor="@color/grey_text"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Browse   "
+                        android:layout_marginLeft="10dp"
+                        android:background="@color/grey"
+                        android:padding="8dp"
+                        android:drawableRight="@mipmap/attachment24"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:padding="8dp"
+                        />
+
+
+
+                </LinearLayout>-->
+
+
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tv_save"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="SAVE"
+                        android:textColor="@color/white"
+                        android:background="@color/light_green_new"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        />
+                    <TextView
+                        android:id="@+id/tv_update"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="UPDATE"
+                        android:visibility="gone"
+                        android:textColor="@color/white"
+                        android:background="@color/light_green_new"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <!--Requirement-->
+
+
+                <RelativeLayout
+                    android:id="@+id/rl_requirement_list"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:visibility="gone">
+
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_requirement"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        />
+                </RelativeLayout>
+
+
+
+
+
+
+            <!--Image Gallery-->
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

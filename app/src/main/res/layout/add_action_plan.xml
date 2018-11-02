@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimaryDark"
+        >
+
+        <ImageView
+            android:layout_width="120sp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/logo_white"
+            android:layout_centerInParent="true"
+
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:id="@+id/back_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:src="@mipmap/back"
+            android:layout_marginRight="10sp"
+            android:textColor="@color/white"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_alignParentEnd="true"
+            android:padding="5dp"
+            android:contentDescription="@string/app_name"
+            android:layout_alignParentRight="true"
+            tools:ignore="RtlHardcoded" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/light_grey">
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_toStartOf="@+id/tv_add_requiremnt"
+            android:text="ADD ACTION PLAN ITEM"/>
+
+
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/ll_primary_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+
+        android:orientation="vertical"
+        android:background="@color/white"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Strategy *"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:textColor="@color/grey_text"/>
+        <Spinner
+            style="@style/Widget.AppCompat.DropDownItem.Spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textSize="14sp"
+            android:id="@+id/spinner_strategy"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Action Plan *"
+            android:layout_marginTop="5dp"/>
+        <EditText
+            android:id="@+id/edt_action_plan"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="start"
+            android:textSize="14sp"
+
+            android:layout_marginTop="5dp"
+            android:textColorHint="@color/grey_text"
+            android:inputType="textMultiLine"
+            android:background="@drawable/grey_border_corner"
+            android:padding="15sp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/end_date"
+                android:layout_weight="1"
+                android:layout_marginEnd="5dp"
+                app:hintTextAppearance="@style/TextAppearence.App.TextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/input_end_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:hint="Time-Completion Date *"
+                    android:textColor="@color/black"/>
+
+            </android.support.design.widget.TextInputLayout>
+            <ImageButton
+
+                android:id="@+id/img_btn1"
+                android:background="@null"
+                android:padding="10dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_my_calendar"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Person Responsible *"
+            android:layout_marginTop="5dp"/>
+        <EditText
+            android:id="@+id/edt_person_responsible"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="start"
+            android:textSize="14sp"
+
+            android:layout_marginTop="5dp"
+            android:textColorHint="@color/grey_text"
+            android:inputType="textMultiLine"
+            android:background="@drawable/grey_border_corner"
+            android:padding="15sp"/>
+        <TextView
+            android:id="@+id/tv_save_action"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="SAVE"
+            android:textColor="@color/white"
+            android:layout_marginRight="5dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/button_d_blue_dashboard"
+            android:gravity="center"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_gravity="center"
+            />
+
+
+    </LinearLayout>
+</LinearLayout>

@@ -69,46 +69,48 @@ public class AdapterManageProduct extends RecyclerView.Adapter<AdapterManageProd
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-      /*  int[] androidColors = context.getResources().getIntArray(R.array.androidcolors);
+      int[] androidColors = context.getResources().getIntArray(R.array.androidcolors);
         int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
 
- /*   if(list_names.get(position).get("profile_pic").equals(""))
+    if(list_products.get(position).get("image_url").equals(""))
         {
-            img.setVisibility(View.GONE);
-            icon.setVisibility(View.VISIBLE);
-            icon.setLetter(list_names.get(position).get("title"));
-            icon.setLetterColor(mContext.getResources().getColor(R.color.black));
-            icon.setShapeColor(R.color.white);
-            icon.setShapeType(MaterialLetterIcon.Shape.CIRCLE);
-            icon.setLetterSize(26);
-            icon.setLetterTypeface(Typeface.SANS_SERIF);
-            icon.setInitials(true);
-            icon.setInitialsNumber(2);
+            holder.img.setVisibility(View.GONE);
+            holder.icon.setVisibility(View.VISIBLE);
+            holder.icon.setLetter(list_products.get(position).get("title"));
+            holder.icon.setLetterColor(context.getResources().getColor(R.color.black));
+            holder.icon.setShapeColor(R.color.white);
+            holder.icon.setShapeType(MaterialLetterIcon.Shape.CIRCLE);
+            holder.icon.setLetterSize(26);
+            holder.icon.setLetterTypeface(Typeface.SANS_SERIF);
+            holder.icon.setInitials(true);
+            holder.icon.setInitialsNumber(2);
 
-            rl_icon.setBackgroundColor(randomAndroidColor);
+            holder.rl_icon.setBackgroundColor(randomAndroidColor);
         }
         else {
-            img.setVisibility(View.VISIBLE);
-            rl_icon.setVisibility(View.GONE);
-            loader.displayImage(list_names.get(position).get("profile_pic"), img, defaultOptions);
-        }*/
+            holder.img.setVisibility(View.VISIBLE);
+           holder. rl_icon.setVisibility(View.GONE);
+            loader.displayImage(list_products.get(position).get("image_url"), holder.img, defaultOptions);
+        }
 
 
 
-    /*    holder.tv_name.setText(list_products.get(position).get("title"));
+        holder.tv_name.setText(list_products.get(position).get("title"));
+        holder.tv_id_value.setText(list_products.get(position).get("id"));
         holder.tv_des.setText(list_products.get(position).get("listing_name"));
         holder.category.setText(list_products.get(position).get("type"));
-        holder.tv_price_starting.setText("Starting at "+globalClass.pound+list_products.get(position).get("price"));
+       // holder.tv_price_value.setText(list_products.get(position).get("price"));
+        holder.tv_price_value.setText("Starting at "+globalClass.pound+list_products.get(position).get("price"));
 
 
-        holder.rl_view.setOnClickListener(new View.OnClickListener() {
+      /*  holder.rl_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
-        });
+        });*/
 
-        holder.rl_manage.setOnClickListener(new View.OnClickListener() {
+       /* holder.rl_manage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context,ManageProductScreen.class);
@@ -122,7 +124,7 @@ public class AdapterManageProduct extends RecyclerView.Adapter<AdapterManageProd
 
             holder.img_product.setImageResource(R.mipmap.no_image);
         }else{
-            loader.displayImage(list_products.get(position).get("product_image"), holder.img_product , defaultOptions);
+            loader.displayImage(list_products.get(position).get("product_image"), holder.img , defaultOptions);
         }*/
 
 

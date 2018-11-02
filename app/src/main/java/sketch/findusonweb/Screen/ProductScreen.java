@@ -390,8 +390,11 @@ public class ProductScreen extends AppCompatActivity{
 
                    dialog.dismiss();
                    Intent intent = new Intent(ProductScreen.this,AddProductScreen.class);
+
                    intent.putExtra("id",arrayid.get(pos-1));
+                   intent.putExtra("title",array.get(pos));
                    startActivity(intent);
+
 
 
                }

@@ -33,6 +33,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -63,6 +64,7 @@ import es.dmoral.toasty.Toasty;
 import sketch.findusonweb.Adapter.AdapterRequirement;
 import sketch.findusonweb.Constants.AppConfig;
 import sketch.findusonweb.Controller.GlobalClass;
+import sketch.findusonweb.Controller.Sliding;
 import sketch.findusonweb.R;
 import sketch.findusonweb.Utils.Shared_Preference;
 
@@ -106,9 +108,17 @@ public class AddProductScreen extends AppCompatActivity {
     String date_to_send;
     ArrayList<String> ans_type;
     Spinner spinner_ans_type;
-
+    Sliding popup;
+    int key=0;
+    ScrollView scrl_mian;
+    TextView tv_view_all,tv_add_listing,tv_view_all_fav,tv_top_up,tv_new_search,
+            tv_view_all_invoice,tv_summary,tv,tv_view_publication_list,tv_production_service,
+            tv_plus_product_service,tv_my_business_brief,tv_purchase_context,tv_one_page_business,
+            tv_promotiion_discount,tv_subs_details,tv_edit_list,tv_statistics,tv_my_busiiness_review,
+            tv_gallery,tv_galley_plus,tv_document,tv_document_plus,tv_event,tv_event_plus,tv_banner,tv_banner_plus,tv_location,tv_location_plus;
     TextView tv_primary_detail,tv_requirement,tv_image_gallery,tv_add_requiremnt;
-     String id;
+     String id,title_product;
+    ImageView btn;
     LinearLayout ll_primary_detail,ll_requirement,ll_image_gallery,ll_radio_option;
     LinearLayout rl_add_requirement;
     RelativeLayout rl_requirement_list;
@@ -119,7 +129,10 @@ public class AddProductScreen extends AppCompatActivity {
     public void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_product_services);
-
+        popup =  findViewById(R.id.sliding1);
+        scrl_mian=findViewById(R.id.scrl_main);
+        popup.setVisibility(View.GONE);
+        btn=findViewById(R.id.show1);
         initialisation();
         function();
 
@@ -130,7 +143,7 @@ public class AddProductScreen extends AppCompatActivity {
         globalClass = (GlobalClass) getApplicationContext();
         prefrence = new Shared_Preference(AddProductScreen.this);
         prefrence.loadPrefrence();
-
+        tv_subs_details=findViewById(R.id.tv_subs_details);
         rl_account_detail=findViewById(R.id.ll_primary_detail);
         rl_listing_detail=findViewById(R.id.ll_add_requirement);
         rl_favorite_detail=findViewById(R.id.ll_image_gallery);
@@ -138,6 +151,28 @@ public class AddProductScreen extends AppCompatActivity {
         primary_details=findViewById(R.id.rl_primary);
         requirement_new=findViewById(R.id.rl_requirement);
         gallery=findViewById(R.id.rl_gallery);
+        tv_summary=findViewById(R.id.tv_summary);
+        tv_view_publication_list=findViewById(R.id.tv_view_public_listing);
+        tv_production_service=findViewById(R.id.tv_product_service);
+        tv_plus_product_service=findViewById(R.id.tv_plus_product_service);
+        tv_my_business_brief=findViewById(R.id.my_business_earning);
+        tv_purchase_context=findViewById(R.id.purchase_context);
+        tv_one_page_business=findViewById(R.id.tv_one_page_business);
+        tv_promotiion_discount=findViewById(R.id.tv_promotion_discount);
+        tv_subs_details=findViewById(R.id.tv_subs_details);
+        tv_edit_list=findViewById(R.id.tv_edit_list);
+        tv_statistics=findViewById(R.id.tv_statistics);
+        tv_my_busiiness_review=findViewById(R.id.tv_my_business_review);
+        tv_gallery=findViewById(R.id.tv_gallery);
+        tv_galley_plus=findViewById(R.id.tv_gallery_plus);
+        tv_document=findViewById(R.id.tv_document);
+        tv_document_plus=findViewById(R.id.tv_document_plus);
+        tv_event=findViewById(R.id.tv_event);
+        tv_event_plus=findViewById(R.id.tv_event_plus);
+        tv_banner=findViewById(R.id.tv_banner);
+        tv_banner_plus=findViewById(R.id.tv_banner_plus);
+        tv_location=findViewById(R.id.tv_location);
+        tv_location_plus=findViewById(R.id.tv_locations_plus);
         arrow_img_2 = findViewById(R.id.arrow_img_2);
         arrow_img_3 = findViewById(R.id.arrow_img_3);
         edt_tax_price=findViewById(R.id.edt_tax_price);
@@ -194,6 +229,7 @@ public class AddProductScreen extends AppCompatActivity {
         }
 
        id=getIntent().getStringExtra("id");
+        title_product=getIntent().getStringExtra("title");
         Log.d(TAG, "ID of Activty: "+id);
        // function_primary_detail();
        // function_requirement();
@@ -217,6 +253,77 @@ public class AddProductScreen extends AppCompatActivity {
 
             }
         });
+        tv_summary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent summary=new Intent(AddProductScreen.this,Summary_new.class);
+                summary.putExtra("id",id);
+                 startActivity(summary);
+            }
+        });
+        tv_one_page_business.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent summary=new Intent(AddProductScreen.this,OnePageBusinessPlan.class);
+                summary.putExtra("id",id);
+                summary.putExtra("title",title_product);
+                 startActivity(summary);
+            }
+        });
+        tv_my_business_brief.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent summary=new Intent(AddProductScreen.this,BusinessBriefing.class);
+                summary.putExtra("id",id);
+
+                startActivity(summary);
+            }
+        });
+        tv_subs_details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent summary=new Intent(AddProductScreen.this,SunscriptionsDetails.class);
+                summary.putExtra("id",id);
+
+                startActivity(summary);
+            }
+        });
+        tv_plus_product_service .setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent summary=new Intent(AddProductScreen.this,AddProductScreen.class);
+                summary.putExtra("id",id);
+
+                startActivity(summary);
+            }
+        });
+        btn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                if(key==0){
+                    key=1;
+                    popup.setVisibility(View.VISIBLE);
+                    btn.setBackgroundResource(R.mipmap.arrow);
+                    scrl_mian.setVisibility(View.GONE);
+                }
+                else if(key==1){
+                    key=0;
+                    popup.setVisibility(View.GONE);
+                    btn.setBackgroundResource(R.mipmap.arrow);
+                    scrl_mian.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+        tv_production_service.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent manageProduct=new Intent(AddProductScreen.this,ManageProductScreen.class);
+                manageProduct.putExtra("id",id);
+                startActivity(manageProduct);
+            }
+        });
+
         requirement_new.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -255,13 +362,12 @@ public class AddProductScreen extends AppCompatActivity {
 
         tv_add_requiremnt.setVisibility(View.GONE);*/
 
-      /*  back_img.setOnClickListener(new View.OnClickListener() {
+        back_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-*/
 
 
 
